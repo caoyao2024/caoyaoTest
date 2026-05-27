@@ -1,0 +1,747 @@
+{
+    "state": {
+        "searchVal": "",
+        "activeTab": "home",
+        "username": "李明",
+        "notifyCount": 5,
+        "orderCount": "1,284",
+        "totalSales": "¥452,800",
+        "filterValue": "all",
+        "filterOptions": [
+            {
+                "text": "全部",
+                "value": "all"
+            },
+            {
+                "text": "待付款",
+                "value": "pending"
+            },
+            {
+                "text": "已完成",
+                "value": "done"
+            }
+        ],
+        "productRate": 4,
+        "prefValues": [
+            "notify"
+        ],
+        "prefOptions": [
+            {
+                "text": "接收通知",
+                "value": "notify"
+            },
+            {
+                "text": "深色模式",
+                "value": "dark"
+            }
+        ]
+    },
+    "rootId": "mobileRoot",
+    "elements": [
+        {
+            "id": "mobileRoot",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "minHeight": "100vh",
+                    "flexDirection": "column",
+                    "backgroundColor": "rgb(243,243,243)"
+                }
+            },
+            "children": [
+                "header",
+                "searchBar",
+                "mainTabs",
+                "footer"
+            ]
+        },
+        {
+            "id": "header",
+            "component": "div",
+            "props": {
+                "style": {
+                    "position": "sticky",
+                    "top": "0px",
+                    "zIndex": 50,
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "space-between",
+                    "backgroundColor": "rgb(255,255,255)",
+                    "paddingLeft": "1rem",
+                    "paddingRight": "1rem",
+                    "paddingTop": "0.75rem",
+                    "paddingBottom": "0.75rem",
+                    "boxShadow": "0 0 #0000, 0 0 #0000, 1px 1px 6px 0 rgba(0, 0, 0, 0.08)"
+                }
+            },
+            "children": [
+                "headerTitle",
+                "headerBadge"
+            ]
+        },
+        {
+            "id": "headerTitle",
+            "component": "span",
+            "props": {
+                "value": "管理后台",
+                "style": {
+                    "fontSize": "16px",
+                    "lineHeight": 1.5,
+                    "fontWeight": 700,
+                    "color": "rgb(25,25,25)"
+                }
+            }
+        },
+        {
+            "id": "headerBadge",
+            "component": "Badge",
+            "props": {
+                "count": {
+                    "path": "/notifyCount"
+                },
+                "position": "RightTop"
+            },
+            "children": [
+                "headerBellIcon"
+            ]
+        },
+        {
+            "id": "headerBellIcon",
+            "component": "Icon",
+            "props": {
+                "name": "bell",
+                "color": "default",
+                "shape": "outline",
+                "style": {
+                    "height": "1.5rem",
+                    "width": "1.5rem"
+                }
+            }
+        },
+        {
+            "id": "searchBar",
+            "component": "Search",
+            "props": {
+                "value": {
+                    "path": "/searchVal"
+                },
+                "placeholder": "搜索订单、用户...",
+                "style": {}
+            }
+        },
+        {
+            "id": "mainTabs",
+            "component": "Tabs",
+            "props": {
+                "activeKey": {
+                    "path": "/activeTab"
+                },
+                "contentPosition": "bottom"
+            },
+            "children": [
+                "tabHome",
+                "tabOrders",
+                "tabMe"
+            ]
+        },
+        {
+            "id": "tabHome",
+            "component": "TabItem",
+            "props": {
+                "key": "home",
+                "text": "首页",
+                "resources": "home",
+                "content": {
+                    "componentId": "homePanel"
+                }
+            }
+        },
+        {
+            "id": "tabOrders",
+            "component": "TabItem",
+            "props": {
+                "key": "orders",
+                "text": "订单",
+                "resources": "shopping-cart",
+                "content": {
+                    "componentId": "ordersPanel"
+                }
+            }
+        },
+        {
+            "id": "tabMe",
+            "component": "TabItem",
+            "props": {
+                "key": "me",
+                "text": "我的",
+                "resources": "user",
+                "content": {
+                    "componentId": "mePanel"
+                }
+            }
+        },
+        {
+            "id": "homePanel",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "gap": "0.75rem",
+                    "padding": "1rem"
+                }
+            },
+            "children": [
+                "kpiRow",
+                "actionBtns",
+                "productCard"
+            ]
+        },
+        {
+            "id": "kpiRow",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "grid",
+                    "gridTemplateColumns": "repeat(2, minmax(0, 1fr))",
+                    "gap": "0.75rem"
+                }
+            },
+            "children": [
+                "kpiCard1",
+                "kpiCard2"
+            ]
+        },
+        {
+            "id": "kpiCard1",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "gap": "0.5rem",
+                    "borderRadius": "8px",
+                    "backgroundColor": "rgb(255,255,255)",
+                    "padding": "1.5rem",
+                    "boxShadow": "0 0 #0000, 0 0 #0000, 1px 1px 6px 0 rgba(0, 0, 0, 0.08)"
+                }
+            },
+            "children": [
+                "kpi1Label",
+                "kpi1Value"
+            ]
+        },
+        {
+            "id": "kpi1Label",
+            "component": "span",
+            "props": {
+                "value": "今日订单",
+                "style": {
+                    "fontSize": "12px",
+                    "lineHeight": 1.6,
+                    "color": "rgb(119,119,119)"
+                }
+            }
+        },
+        {
+            "id": "kpi1Value",
+            "component": "span",
+            "props": {
+                "value": {
+                    "path": "/orderCount"
+                },
+                "style": {
+                    "fontSize": "20px",
+                    "lineHeight": 1.4,
+                    "fontWeight": 700,
+                    "color": "rgb(25,25,25)"
+                }
+            }
+        },
+        {
+            "id": "kpiCard2",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "gap": "0.5rem",
+                    "borderRadius": "8px",
+                    "backgroundColor": "rgb(255,255,255)",
+                    "padding": "1.5rem",
+                    "boxShadow": "0 0 #0000, 0 0 #0000, 1px 1px 6px 0 rgba(0, 0, 0, 0.08)"
+                }
+            },
+            "children": [
+                "kpi2Label",
+                "kpi2Value"
+            ]
+        },
+        {
+            "id": "kpi2Label",
+            "component": "span",
+            "props": {
+                "value": "总销售额",
+                "style": {
+                    "fontSize": "12px",
+                    "lineHeight": 1.6,
+                    "color": "rgb(119,119,119)"
+                }
+            }
+        },
+        {
+            "id": "kpi2Value",
+            "component": "span",
+            "props": {
+                "value": {
+                    "path": "/totalSales"
+                },
+                "style": {
+                    "fontSize": "20px",
+                    "lineHeight": 1.4,
+                    "fontWeight": 700,
+                    "color": "rgb(25,25,25)"
+                }
+            }
+        },
+        {
+            "id": "actionBtns",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "gap": "0.75rem"
+                }
+            },
+            "children": [
+                "btnNew",
+                "btnExport"
+            ]
+        },
+        {
+            "id": "btnNew",
+            "component": "Button",
+            "props": {
+                "value": "新建订单",
+                "types": "Brand",
+                "icon": "plus",
+                "iconPlacement": "start",
+                "style": {
+                    "flex": "1 1 0%"
+                }
+            }
+        },
+        {
+            "id": "btnExport",
+            "component": "Button",
+            "props": {
+                "value": "导出报表",
+                "types": "Normal",
+                "icon": "download",
+                "iconPlacement": "start",
+                "style": {
+                    "flex": "1 1 0%"
+                }
+            }
+        },
+        {
+            "id": "productCard",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "gap": "0.75rem",
+                    "borderRadius": "8px",
+                    "backgroundColor": "rgb(255,255,255)",
+                    "padding": "1.5rem",
+                    "boxShadow": "0 0 #0000, 0 0 #0000, 1px 1px 6px 0 rgba(0, 0, 0, 0.08)"
+                }
+            },
+            "children": [
+                "productTitle",
+                "productDesc",
+                "productRate",
+                "productBtn"
+            ]
+        },
+        {
+            "id": "productTitle",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "space-between"
+                }
+            },
+            "children": [
+                "productName",
+                "productTag"
+            ]
+        },
+        {
+            "id": "productName",
+            "component": "span",
+            "props": {
+                "value": "智能手表 Pro",
+                "style": {
+                    "fontSize": "16px",
+                    "lineHeight": 1.5,
+                    "fontWeight": 700,
+                    "color": "rgb(25,25,25)"
+                }
+            }
+        },
+        {
+            "id": "productTag",
+            "component": "Tag",
+            "props": {
+                "value": "热销",
+                "types": "Danger",
+                "size": "SMALL"
+            }
+        },
+        {
+            "id": "productDesc",
+            "component": "span",
+            "props": {
+                "value": "¥1,299.00 | 库存: 320 件",
+                "style": {
+                    "fontSize": "14px",
+                    "lineHeight": 1.5,
+                    "color": "rgb(119,119,119)"
+                }
+            }
+        },
+        {
+            "id": "productRate",
+            "component": "Rate",
+            "props": {
+                "value": {
+                    "path": "/productRate"
+                },
+                "stars": 5,
+                "stepSize": 0.5
+            }
+        },
+        {
+            "id": "productBtn",
+            "component": "Button",
+            "props": {
+                "value": "查看详情",
+                "types": "Text",
+                "icon": "chevron-right",
+                "iconPlacement": "end",
+                "size": "SMALL"
+            }
+        },
+        {
+            "id": "ordersPanel",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "gap": "0.75rem",
+                    "padding": "1rem"
+                }
+            },
+            "children": [
+                "ordersTitle",
+                "ordersFilter"
+            ]
+        },
+        {
+            "id": "ordersTitle",
+            "component": "span",
+            "props": {
+                "value": "订单筛选",
+                "style": {
+                    "fontSize": "16px",
+                    "lineHeight": 1.5,
+                    "fontWeight": 700,
+                    "color": "rgb(25,25,25)"
+                }
+            }
+        },
+        {
+            "id": "ordersFilter",
+            "component": "RadioGroup",
+            "props": {
+                "value": {
+                    "path": "/filterValue"
+                },
+                "options": {
+                    "path": "/filterOptions"
+                }
+            }
+        },
+        {
+            "id": "mePanel",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "gap": "0.75rem",
+                    "padding": "1rem"
+                }
+            },
+            "children": [
+                "meTitle",
+                "meAvatar",
+                "meField",
+                "mePrefs",
+                "meLabel",
+                "meBtns"
+            ]
+        },
+        {
+            "id": "meTitle",
+            "component": "span",
+            "props": {
+                "value": "个人中心",
+                "style": {
+                    "fontSize": "16px",
+                    "lineHeight": 1.5,
+                    "fontWeight": 700,
+                    "color": "rgb(25,25,25)"
+                }
+            }
+        },
+        {
+            "id": "meAvatar",
+            "component": "Icon",
+            "props": {
+                "name": "user",
+                "color": "primary",
+                "shape": "circle",
+                "style": {
+                    "height": "3rem",
+                    "width": "3rem"
+                }
+            }
+        },
+        {
+            "id": "meField",
+            "component": "Field",
+            "props": {
+                "value": {
+                    "path": "/username"
+                },
+                "placeholder": "请输入用户名"
+            }
+        },
+        {
+            "id": "mePrefs",
+            "component": "CheckboxGroup",
+            "props": {
+                "value": {
+                    "path": "/prefValues"
+                },
+                "options": {
+                    "path": "/prefOptions"
+                }
+            }
+        },
+        {
+            "id": "meLabel",
+            "component": "span",
+            "props": {
+                "value": "账号等级",
+                "style": {
+                    "fontSize": "14px",
+                    "lineHeight": 1.5,
+                    "color": "rgb(119,119,119)"
+                }
+            }
+        },
+        {
+            "id": "meBtns",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "gap": "0.75rem"
+                }
+            },
+            "children": [
+                "btnSave",
+                "btnLogout"
+            ]
+        },
+        {
+            "id": "btnSave",
+            "component": "Button",
+            "props": {
+                "value": "保存",
+                "types": "Brand",
+                "style": {
+                    "flex": "1 1 0%"
+                }
+            }
+        },
+        {
+            "id": "btnLogout",
+            "component": "Button",
+            "props": {
+                "value": "退出",
+                "types": "Warning",
+                "style": {
+                    "flex": "1 1 0%"
+                }
+            }
+        },
+        {
+            "id": "footer",
+            "component": "div",
+            "props": {
+                "style": {
+                    "position": "sticky",
+                    "bottom": "0px",
+                    "zIndex": 50,
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "space-around",
+                    "borderTopWidth": "1px",
+                    "borderColor": "rgb(243,243,243)",
+                    "backgroundColor": "rgb(255,255,255)",
+                    "paddingTop": "0.75rem",
+                    "paddingBottom": "0.75rem",
+                    "boxShadow": "0 0 #0000, 0 0 #0000, 1px 1px 6px 0 rgba(0, 0, 0, 0.08)"
+                }
+            },
+            "children": [
+                "footerHome",
+                "footerOrders",
+                "footerMe"
+            ]
+        },
+        {
+            "id": "footerHome",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "alignItems": "center",
+                    "gap": "0.25rem"
+                }
+            },
+            "children": [
+                "footerHomeIcon",
+                "footerHomeText"
+            ]
+        },
+        {
+            "id": "footerHomeIcon",
+            "component": "Icon",
+            "props": {
+                "name": "home",
+                "color": "primary",
+                "shape": "outline",
+                "style": {
+                    "height": "1.25rem",
+                    "width": "1.25rem"
+                }
+            }
+        },
+        {
+            "id": "footerHomeText",
+            "component": "span",
+            "props": {
+                "value": "首页",
+                "style": {
+                    "fontSize": "12px",
+                    "lineHeight": 1.6,
+                    "fontWeight": 600,
+                    "color": "rgb(0,103,209)"
+                }
+            }
+        },
+        {
+            "id": "footerOrders",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "alignItems": "center",
+                    "gap": "0.25rem"
+                }
+            },
+            "children": [
+                "footerOrdersIcon",
+                "footerOrdersText"
+            ]
+        },
+        {
+            "id": "footerOrdersIcon",
+            "component": "Icon",
+            "props": {
+                "name": "shopping-cart",
+                "color": "default",
+                "shape": "outline",
+                "style": {
+                    "height": "1.25rem",
+                    "width": "1.25rem"
+                }
+            }
+        },
+        {
+            "id": "footerOrdersText",
+            "component": "span",
+            "props": {
+                "value": "订单",
+                "style": {
+                    "fontSize": "12px",
+                    "lineHeight": 1.6,
+                    "color": "rgb(119,119,119)"
+                }
+            }
+        },
+        {
+            "id": "footerMe",
+            "component": "div",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "alignItems": "center",
+                    "gap": "0.25rem"
+                }
+            },
+            "children": [
+                "footerMeIcon",
+                "footerMeText"
+            ]
+        },
+        {
+            "id": "footerMeIcon",
+            "component": "Icon",
+            "props": {
+                "name": "user",
+                "color": "default",
+                "shape": "outline",
+                "style": {
+                    "height": "1.25rem",
+                    "width": "1.25rem"
+                }
+            }
+        },
+        {
+            "id": "footerMeText",
+            "component": "span",
+            "props": {
+                "value": "我的",
+                "style": {
+                    "fontSize": "12px",
+                    "lineHeight": 1.6,
+                    "color": "rgb(119,119,119)"
+                }
+            }
+        }
+    ]
+}
