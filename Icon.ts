@@ -7,8 +7,9 @@
  * 1. name（字面量 string）→ ctx.resolveIcon(iconName, props) 查表 resolve
  *    - 返回对应命名导出组件（如 IconPlusIcIctCircleCheck）
  *    - props 的 shape→type、color→iconColor 等映射由 resolveIcon 内部处理
- * 2. name（DataBinding）→ 编译期无法 resolve name，PLACEHOLDER_ICON 兜底
- *    - 其他 props 仍正常映射
+ * 2. name（DataBinding）→ 用 stateValue（编译期快照值）查 iconNameMap resolve
+ *    - stateValue 有效时 → 同字面量分支，返回 resolved icon 节点
+ *    - stateValue 不可用时 → PLACEHOLDER_ICON 兜底，其他 props 正常映射
  * 3. 无有效 name → 纯占位
  *
  * 依赖：api-new/src/core/iconCollection.ts 中的 resolveIcon / PLACEHOLDER_ICON
@@ -19,7 +20,7 @@
  *   square  → square-bg
  *   circle  → round-bg
  *
- * color → iconColor（1:1 改名）
+ * color → iconColor（包装为数组）
  * className → className（透传）
  * 非标准 prop → 透传（排除 name/shape/color/className/__ 前缀）
  */
@@ -48,17 +49,34 @@ const IconMapping: MappingDef = {
     // ─── 处理 name ───
     const iconName = props.name
 
-    // 路径绑定分支：编译期无法 resolve name，PLACEHOLDER_ICON 兜底
+    // 路径绑定分支：用 stateValue（编译期快照值）查 iconNameMap resolve 图标名
     if (iconName && typeof iconName === 'object' && iconName.type === 'binding') {
+      // 优先用 stateValue 查表 resolve，只有 stateValue 无效时才用 PLACEHOLDER_ICON
+      const bindingName = iconName as { stateValue?: string; [key: string]: any }
+      let iconNode: any = null
+      if (typeof bindingName.stateValue === 'string') {
+        iconNode = ctx.resolveIcon(bindingName.stateValue, props)
+      }
+      if (iconNode && iconNode.kind === 'component') {
+        return {
+          tag: iconNode.tag,
+          import: iconNode.import,
+          props: iconNode.props,
+          children: null,
+          selfClosing: iconNode.selfClosing ?? true,
+        }
+      }
+
+      // stateValue 不可用 → 手动映射基础 props，tag 用 PLACEHOLDER_ICON
       const outputProps: Record<string, any> = {}
 
       // shape → type
       if (props.shape && SHAPE_MAP[props.shape]) {
         outputProps.type = SHAPE_MAP[props.shape]
       }
-      // color → iconColor
+      // color → iconColor（包装为数组）
       if (props.color !== undefined) {
-        outputProps.iconColor = props.color
+        outputProps.iconColor = [props.color]
       }
       // className 透传
       if (props.className) {
