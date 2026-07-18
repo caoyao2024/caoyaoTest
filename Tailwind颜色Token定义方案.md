@@ -308,3 +308,76 @@ colors: {
 - Tailwind CSS v4（通过 `@tailwindcss/vite` 引入）
 - 配置通过 `style.css` 中的 `@config "../tailwind.config.ts"` 加载
 - 原有的 `theme.extend.colors` 模式在 v4 中通过 `@config` 兼容支持
+
+---
+
+## 对话记录
+
+### 问题提出
+
+**用户**：tailwind.config.ts 中定义了很多 extend，这个是给 ai 去理解的，现在用的很好。但是 hui-base.css 和 base.css 中其他的颜色也可以让用户在面板上选择使用，但代码层面要转换成 tailwind 名称，我要如何将它们定义出来。
+
+**分析**：tailwind.config.ts 目前只有「设计 Token」层（primary、surface、error 等），缺少：
+1. base.css 的「基础色阶」（--neutral-50、--primary-500 等）
+2. hui-base.css 的「HUI 语义色」（--color-text-primary、--color-bg-1 等）
+
+---
+
+### 方案讨论
+
+**方案一：平铺式扩展**
+
+```ts
+"color-text-primary": "var(--color-text-primary)",
+"color-bg-1": "var(--color-bg-1)",
+```
+
+❌ 平铺过多条目会变得混乱，且语义分组不明显。
+
+**方案二：命名空间嵌套（选定方案）**
+
+```ts
+"base": { "neutral": { "50": "..." } }   // → text-base-neutral-50
+"hui": { "text-primary": "..." }          // → text-hui-text-primary
+```
+
+✅ Tailwind 原生支持 colors 嵌套，多级自动拍平
+✅ 避免与 Tailwind 内置色系（neutral、red 等）冲突
+✅ 分组清晰，AI 易于理解
+
+---
+
+### 关键答疑
+
+**Q：base 和 hui 写在 colors 属性里对吗？**
+
+A：对的。Tailwind 的 `colors` 对象支持任意深度的嵌套，每一级自动变成 class 名中的 `-` 分段。这是标准用法，不需要改动结构。
+
+**Q：文字色和背景色的 Tailwind 字段是什么样？**
+
+A：统一用 `text-{color-name}` 和 `bg-{color-name}`。例如：
+
+| 用途 | Tailwind class |
+|---|---|
+| 基础色中性 900 文字 | `text-base-neutral-900` |
+| 基础色主色 500 背景 | `bg-base-primary-500` |
+| HUI 主要文本色 | `text-hui-text-primary` |
+| HUI 背景 1 | `bg-hui-bg-1` |
+
+---
+
+### 实施修正
+
+在编辑 tailwind.config.ts 过程中发现一个注意点：
+
+**hui-base.css 只应取第 1~180 行的 `--color-*` 变量**（用户纠正），第 180 行以后是另外的语义化 Token（--text-default、--surface-background 等），不属于 HUI 组件语义色范畴。
+
+另外 `--color-chart-5` 在 CSS 中不存在（chart-4 直接跳到 chart-6），已在配置中移除。
+
+---
+
+### 最终产出
+
+- [x] `tailwind.config.ts` 中补全了 `base-*`（16 个色系，~170 个色阶值）
+- [x] `tailwind.config.ts` 中补全了 `hui-*`（~110 个 HUI 语义色 Token）
+- [x] 以上变更已写入此文档
