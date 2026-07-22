@@ -1,0 +1,104 @@
+{
+  "size": [
+    {
+      "key": "12",
+      "value": "12"
+    },
+    {
+      "key": "14",
+      "value": "14"
+    },
+    {
+      "key": "16",
+      "value": "16"
+    },
+    {
+      "key": "20",
+      "value": "20"
+    },
+    {
+      "key": "24",
+      "value": "24"
+    },
+    {
+      "key": "32",
+      "value": "32"
+    },
+    {
+      "key": "36",
+      "value": "36"
+    },
+    {
+      "key": "40",
+      "value": "40"
+    },
+    {
+      "key": "48",
+      "value": "48"
+    },
+    {
+      "key": "60",
+      "value": "60"
+    }
+  ],
+  "style": [
+    {
+      "key": "border",
+      "value": "线性"
+    },
+    {
+      "key": "filled",
+      "value": "面性"
+    },
+    {
+      "key": "two_colors1",
+      "value": "线性双色"
+    },
+    {
+      "key": "two_colors2",
+      "value": "面性双色"
+    },
+    {
+      "key": "round_bottom2",
+      "value": "圆底托"
+    },
+    {
+      "key": "square_bottom2",
+      "value": "方底托"
+    }
+  ],
+  "colors": [
+    {
+      "id": "GTS_线性_Gray-10",
+      "key": "Gray-10",
+      "value": "#2E2E2E",
+      "domain": "GTS",
+      "type": "通用色",
+      "style": "线性"
+    },
+    {
+      "id": "GTS_面性_Cyan-5",
+      "key": "Cyan-5",
+      "value": "#0094A7",
+      "domain": "GTS",
+      "type": "通用色",
+      "style": "面性"
+    },
+    {
+      "id": "GTS_圆底托_Rose-5-Rose-4-Rose-2",
+      "key": "Rose-5,Rose-4,Rose-2",
+      "value": "#D756A8,#F081C4,#FFE1F1",
+      "domain": "GTS",
+      "type": "通用色",
+      "style": "圆底托"
+    },
+    {
+      "id": "GTS_方底托_Fuchsia-5-Fuchsia-4-Fuchsia-2",
+      "key": "Fuchsia-5,Fuchsia-4,Fuchsia-2",
+      "value": "#C75BC9,#DF86E1,#F9E2FA",
+      "domain": "GTS",
+      "type": "通用色",
+      "style": "方底托"
+    }
+  ]
+}
