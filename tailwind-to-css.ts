@@ -509,14 +509,8 @@ function resolveValue(value: string, localVars: Map<string, string>, useVar: boo
             const innerName = `--${varMatch[1]}`
             // 检查是否自引用（如 --shadow-sm: var(--shadow-sm, ...)）
             if (innerName === name) {
-              // 自引用：使用 fallback 值
-              const innerCommaIdx = resolved2.indexOf(",")
-              if (innerCommaIdx >= 0) {
-                result += resolved2.slice(innerCommaIdx + 1).trim()
-              } else {
-                // 无 fallback 的自引用，保持 var 引用
-                result += `var(${name})`
-              }
+              // 自引用：返回 var(--name)，让浏览器自行解析
+              result += `var(${name})`
             } else {
               // 非自引用：返回 var(--innerName)，不再递归
               result += `var(${innerName})`
@@ -536,18 +530,15 @@ function resolveValue(value: string, localVars: Map<string, string>, useVar: boo
     return result
   }
   let r = resolve(value, new Set())
-  // useVar=true 时不做 calc 简化（保留原始表达式结构）
-  if (!useVar) {
-    r = r.replace(/calc\(([\d.]+)\s*\/\s*([\d.]+)\)/g, (_, a: string, b: string) =>
-      `${Math.round((parseFloat(a) / parseFloat(b)) * 1000) / 1000}`,
-    )
-    r = r.replace(/calc\(([\d.]+)rem\s*\*\s*(-?[\d.]+)\)/g, (_, rem: string, n: string) =>
-      `${Math.round(parseFloat(rem) * parseFloat(n) * 16)}px`,
-    )
-    r = r.replace(/calc\(var\(--spacing\)\s*\*\s*(-?[\d.]+)\)/g, (_, n: string) =>
-      `${parseFloat(n) * 4}px`,
-    )
-  }
+  r = r.replace(/calc\(([\d.]+)\s*\/\s*([\d.]+)\)/g, (_, a: string, b: string) =>
+    `${Math.round((parseFloat(a) / parseFloat(b)) * 1000) / 1000}`,
+  )
+  r = r.replace(/calc\(([\d.]+)rem\s*\*\s*(-?[\d.]+)\)/g, (_, rem: string, n: string) =>
+    `${Math.round(parseFloat(rem) * parseFloat(n) * 16)}px`,
+  )
+  r = r.replace(/calc\(var\(--spacing\)\s*\*\s*(-?[\d.]+)\)/g, (_, n: string) =>
+    `${parseFloat(n) * 4}px`,
+  )
   return r
 }
 
@@ -586,11 +577,16 @@ function parseCssToProperties(css: string, useVar: boolean = false): Record<stri
       const val = decl.slice(idx + 1).trim()
       const camelProp = kebabToCamel(prop)
       const resolved = resolveValue(val, localVars, useVar)
+      // useVar=true 时，如果 shadow 属性包含 tailwind 占位符（0 0 #0000）和 var(--shadow-xxx)
+      // 则简化为只输出 var(--shadow-xxx)
+      const cleaned = useVar
+        ? resolved.replace(/^(?:0\s+0\s+#0000\s*,\s*)+/, "")
+        : resolved
       const physicals = logicalToPhysical[camelProp]
       if (physicals) {
-        for (const p of physicals) result[p] = resolved
+        for (const p of physicals) result[p] = cleaned
       } else {
-        result[camelProp] = resolved
+        result[camelProp] = cleaned
       }
     }
   }
