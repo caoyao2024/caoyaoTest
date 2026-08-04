@@ -1,0 +1,100 @@
+{
+  "state": {
+    "isModalOpen": false
+  },
+  "rootId": "pageRoot",
+  "elements": [
+    {
+      "id": "pageRoot",
+      "component": "div",
+      "props": {
+        "className": "min-h-screen flex items-center justify-center bg-slate-50"
+      },
+      "children": ["demoOpenBtn", "demoModal"]
+    },
+    {
+      "id": "demoOpenBtn",
+      "component": "Button",
+      "props": {
+        "value": "打开弹窗",
+        "color": "primary",
+        "size": "large",
+        "className": "shadow-sm",
+        "onClick": {
+          "action": "setState",
+          "args": { "path": "/isModalOpen", "value": true }
+        }
+      }
+    },
+    {
+      "id": "demoModal",
+      "component": "Modal",
+      "props": {
+        "open": { "path": "/isModalOpen" },
+        "title": "操作确认",
+        "mask": true,
+        "footer": { "componentId": "demoModalFooter" },
+        "onClose": {
+          "action": "setState",
+          "args": { "path": "/isModalOpen", "value": false }
+        }
+      },
+      "children": ["demoModalBody"]
+    },
+    {
+      "id": "demoModalBody",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2 py-2"
+      },
+      "children": ["demoModalDesc", "demoModalHint"]
+    },
+    {
+      "id": "demoModalDesc",
+      "component": "span",
+      "props": {
+        "className": "text-sm text-slate-700",
+        "value": "这是一个通过声明式事件控制的模态弹窗，点击下方按钮即可关闭。"
+      }
+    },
+    {
+      "id": "demoModalHint",
+      "component": "span",
+      "props": {
+        "className": "text-xs text-slate-400",
+        "value": "提示：点击遮罩、右上角关闭图标或按 ESC 也会触发 onClose。"
+      }
+    },
+    {
+      "id": "demoModalFooter",
+      "component": "div",
+      "props": {
+        "className": "flex justify-end gap-2"
+      },
+      "children": ["demoModalCancelBtn", "demoModalConfirmBtn"]
+    },
+    {
+      "id": "demoModalCancelBtn",
+      "component": "Button",
+      "props": {
+        "value": "取消",
+        "onClick": {
+          "action": "setState",
+          "args": { "path": "/isModalOpen", "value": false }
+        }
+      }
+    },
+    {
+      "id": "demoModalConfirmBtn",
+      "component": "Button",
+      "props": {
+        "value": "确定",
+        "color": "primary",
+        "onClick": {
+          "action": "setState",
+          "args": { "path": "/isModalOpen", "value": false }
+        }
+      }
+    }
+  ]
+}

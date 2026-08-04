@@ -1,0 +1,101 @@
+{
+  "state": {
+    "isDrawerOpen": false
+  },
+  "rootId": "pageRoot",
+  "elements": [
+    {
+      "id": "pageRoot",
+      "component": "div",
+      "props": {
+        "className": "min-h-screen flex items-center justify-center bg-surface-container-lowest"
+      },
+      "children": ["demoOpenBtn", "demoDrawer"]
+    },
+    {
+      "id": "demoOpenBtn",
+      "component": "Button",
+      "props": {
+        "value": "打开抽屉",
+        "color": "primary",
+        "size": "large",
+        "className": "shadow-sm",
+        "onClick": {
+          "action": "setState",
+          "args": { "path": "/isDrawerOpen", "value": true }
+        }
+      }
+    },
+    {
+      "id": "demoDrawer",
+      "component": "Drawer",
+      "props": {
+        "open": { "path": "/isDrawerOpen" },
+        "placement": "right",
+        "title": "操作确认",
+        "mask": true,
+        "footer": { "componentId": "demoDrawerFooter" },
+        "onClose": {
+          "action": "setState",
+          "args": { "path": "/isDrawerOpen", "value": false }
+        }
+      },
+      "children": ["demoDrawerBody"]
+    },
+    {
+      "id": "demoDrawerBody",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-inline py-inline"
+      },
+      "children": ["demoDrawerDesc", "demoDrawerHint"]
+    },
+    {
+      "id": "demoDrawerDesc",
+      "component": "span",
+      "props": {
+        "className": "text-sm text-on-surface",
+        "value": "这是一个通过声明式事件控制的抽屉，点击下方按钮即可关闭。"
+      }
+    },
+    {
+      "id": "demoDrawerHint",
+      "component": "span",
+      "props": {
+        "className": "text-sm text-on-surface-variant",
+        "value": "提示：点击遮罩、右上角关闭图标或按 ESC 也会触发 onClose。"
+      }
+    },
+    {
+      "id": "demoDrawerFooter",
+      "component": "div",
+      "props": {
+        "className": "flex justify-end gap-inline"
+      },
+      "children": ["demoDrawerCancelBtn", "demoDrawerConfirmBtn"]
+    },
+    {
+      "id": "demoDrawerCancelBtn",
+      "component": "Button",
+      "props": {
+        "value": "取消",
+        "onClick": {
+          "action": "setState",
+          "args": { "path": "/isDrawerOpen", "value": false }
+        }
+      }
+    },
+    {
+      "id": "demoDrawerConfirmBtn",
+      "component": "Button",
+      "props": {
+        "value": "确定",
+        "color": "primary",
+        "onClick": {
+          "action": "setState",
+          "args": { "path": "/isDrawerOpen", "value": false }
+        }
+      }
+    }
+  ]
+}
