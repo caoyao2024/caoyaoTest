@@ -16,31 +16,31 @@
  *
  * | A2UI TimelineItem prop | eview-react dataType | 处理方式 |
  * |------------------------|---------------------|---------|
- * | title / label（标题/步骤名） | title | 改名透传，放入 content[{title}] |
+ * | title / label（标题/步骤名） | title | 改名透传，放入 content |
  * | content（字面量） | content[{text}] | 放入 content 数组 |
  * | content（DataBinding） | content[{text}] | 同上，每项 item[path] 映射 |
- * | content（SlotNode） | render fn body | resolve 后作为 render 函数 body，需 dataSource 参数解析相对绑定 |
+ * | content（SlotNode） | render fn body | resolve 后作为 render 函数 body |
  * | icon（字面量） | icon | ctx.resolveIcon() |
  * | icon（DataBinding） | icon | ComputedValue + containsJSX |
  *
  * ## render 函数
  *
- * eview-react TimeLine 的 render 函数接收当前时间线项的 content 数组：
- *   render(content) → content 是 { [key: string]: any }[] 数组
- * 组件对每个时间线项调用一次 render，传入该项的 content 数组。
+ * eview-react TimeLine 对每个时间线项调用一次 render，签名因内容类型不同：
  *
- * - **文本/绑定 content** → render 使用 rawExpr 遍历 content 数组渲染文本
- * - **SlotNode content** → render body 为 resolve 后的子树。
- *   由于 render 只接收 content 参数，而 SlotNode 子树中的相对绑定需要访问当前项数据，
- *   render 函数需添加 `dataSource` 参数（如 `(content, item)`），其中 item 绑定到循环数据源，
- *   使 state-builder 建立 RenderFnScope、jsx-emitter 生成解构行。
- *   eview-react TimeLine 需在调用 render 时传入当前项数据作为第二个参数。
+ * - **SlotNode content（循环模板）**：`(content, item)`，`item` 绑定到循环数据源（dataSource 参数），
+ *   jsx-emitter 生成 `const { approver, result, ... } = item;` 解构行。
+ *   eview-react TimeLine 需调用 `render(data[i].content, data[i])` 传入当前项作为第二个参数。
+ *   data 使用 `enrichScopedData` 保留原始项所有字段，确保 `item.approver` 等相对绑定可正确解析。
+ * - **SlotNode content（静态 children）**：`(content)`，binding 为 absolute，不需要 dataSource。
+ * - **文本/绑定 content**：rawExpr `(content) => <div>{content?.map(...)}</div>`
  *
  * ## 特殊逻辑
  *
  * - 同 Steps/Table 的"吞噬 children → data prop"模式
  * - A2UI 的 title/label 映射到 eview-react 的 title 字段
- * - eview-react 的 content 是对象数组 `{ title, text }` 格式
+ * - SlotNode 循环 content 时 render 签名 (content, item)，item 为 dataSource 解析相对绑定
+ * - 非 SlotNode content 时 render 为 rawExpr，content 字段保持数组格式
+ * - data 使用 enrichScopedData 保留原始项所有字段，供 item 解构
  * - icon 字面量用 resolveIcon 直出，DataBinding 走 ComputedValue
  * - render 函数是组件级别的（所有 item 共用一个 render）
  *
@@ -193,7 +193,7 @@ export function createTimelineMapping(pkg: string): MappingDef {
         outputProps.data = data as any
 
         // ─── render 函数 ───
-        // eview-react 对每个时间线项调用 render，传入该项的 content 数组
+        // eview-react 对每个时间线项调用 render，传入该项的 content
         if (hasSlotContent && slotChild) {
           // SlotNode content → render body 为 resolve 后的子树
           const resolvedContent = ctx.resolveNode(slotChild.props.content.node)
@@ -207,7 +207,7 @@ export function createTimelineMapping(pkg: string): MappingDef {
             })
           }
         } else {
-          // 文本/绑定 content → render 使用 rawExpr 渲染 content 数组中的文本
+          // 文本/绑定 content → render 使用 rawExpr 遍历 content 数组渲染文本
           outputProps.render = Value.rawExpr({
             value: '(content) => <div>{content?.map((item, i) => <span key={i}>{item.text || item.title}</span>)}</div>',
           })
@@ -240,14 +240,11 @@ export function createTimelineMapping(pkg: string): MappingDef {
 
         // ─── data prop ───
         if (f.contentIsSlot && resolvedSlot) {
-          // SlotNode content → render 函数通过 item 参数访问当前项数据，
-          // 需要保留原始数据的所有字段（如 approver、result 等）。
-          // enrichScopedData 会 structuredClone 原始项 + 应用 relative CV enrichment，
-          // 保证 data 中的项包含所有原始字段 + icon 等 enrichment 字段。
-          // 额外补充 title/content 等标准字段。
+          // SlotNode content → render 签名 (content, item)，item 为 dataSource。
+          // data 使用 enrichScopedData 保留原始项所有字段 + CV enrichment，
+          // 使 item.approver 等相对绑定可正确解析。
+          // content 保持标准数组格式（eview-react 兼容）。
           const scopedData = enrichScopedData(dataBinding, [resolvedSlot])
-          // 在 enrichScopedData 的基础上补充 eview-react 标准字段（title/content/iconType）
-          // 需要合并：先 enrich（保留原始字段），再覆盖/补充标准字段
           outputProps.data = Value.computed({
             path: dataBinding.path,
             pathType: dataBinding.pathType ?? 'absolute',
@@ -260,21 +257,19 @@ export function createTimelineMapping(pkg: string): MappingDef {
               // 先走 enrichScopedData 的 transform（保留所有原始字段 + CV enrichment）
               const enriched = scopedData.transform(rawData, cvCtx)
               if (!Array.isArray(enriched)) return []
-              // 再补充 eview-react 标准字段
-              return enriched.map((enrichedItem: any, idx: number) => {
-                // title/label → eview-react title（即使原始数据有 step 字段，也需要 title 字段）
+              return enriched.map((enrichedItem: any) => {
+                // title/label → eview-react title
                 if (f.titleField) {
                   enrichedItem.title = enrichedItem[f.titleField] ?? ''
                 } else if (f.titleValue) {
                   enrichedItem.title = f.titleValue
                 }
-                // content 数组（eview-react 标准 content 格式）
-                if (!enrichedItem.content) {
-                  const contentArr: any[] = []
-                  if (f.titleField) contentArr.push({ title: enrichedItem[f.titleField] ?? '' })
-                  else if (f.titleValue) contentArr.push({ title: f.titleValue })
-                  if (contentArr.length > 0) enrichedItem.content = contentArr
-                }
+                // content 保持标准数组格式（非 SlotNode 时也用此格式），
+                // render 的 content 参数接收 data[i].content，item 参数接收 data[i] 整体
+                const contentArr: any[] = []
+                if (f.titleField) contentArr.push({ title: enrichedItem[f.titleField] ?? '' })
+                else if (f.titleValue) contentArr.push({ title: f.titleValue })
+                if (contentArr.length > 0) enrichedItem.content = contentArr
                 // icon（字面量在 enrichScopedData 不处理，这里补充）
                 if (f.iconValue) {
                   const iconNode = rIcon(f.iconValue)
@@ -295,7 +290,7 @@ export function createTimelineMapping(pkg: string): MappingDef {
               if (!Array.isArray(rawData)) return []
               const rIcon = cvCtx?.resolveIcon ?? ctx.resolveIcon
 
-              return rawData.map((item: any, idx: number) => {
+              return rawData.map((item: any) => {
                 // 构建 content 数组
                 const contentArr: any[] = []
 
@@ -333,16 +328,16 @@ export function createTimelineMapping(pkg: string): MappingDef {
 
         // ─── render 函数 ───
         if (f.contentIsSlot && resolvedSlot) {
-          // SlotNode content → render body 为 resolve 后的子树
-          // 循环模板中的 SlotNode 子树可能含相对绑定，需要 dataSource 参数
-          // 让 state-builder 建立 RenderFnScope，jsx-emitter 生成解构行
-          // render 签名 (content, item)，eview-react 需在调用 render 时传当前项数据
+          // SlotNode content → render 签名 (content, item)
+          // content: 当前项的 content 字段值（标准数组），由 eview-react 传入
+          // item: 当前项的完整数据对象（dataSource），eview-react 需作为第二个参数传入
+          // jsx-emitter 生成 `const { approver, result, ... } = item;` 解构行
           outputProps.render = buildRenderFn(resolvedSlot, [
             { name: 'content' },
             { name: 'item', dataSource: dataBinding },
           ])
         } else {
-          // 文本/绑定 content → render 使用 rawExpr 渲染 content 数组中的文本
+          // 文本/绑定 content → render 使用 rawExpr 遍历 content 数组渲染文本
           outputProps.render = Value.rawExpr({
             value: '(content) => <div>{content?.map((item, i) => <span key={i}>{item.text || item.title}</span>)}</div>',
           })
