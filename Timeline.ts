@@ -16,33 +16,33 @@
  *
  * | A2UI TimelineItem prop | eview-react dataType | 处理方式 |
  * |------------------------|---------------------|---------|
- * | title / label（标题/步骤名） | title | 改名透传，放入 content |
- * | content（字面量） | content[{text}] | 放入 content 数组 |
+ * | title / label | title + content[{title}] | A2UI title/label → dataType.title，同时放入 content 数组 |
+ * | content（字面量） | content[{text}] | 与 title 合并到同一对象：{ title, text } |
  * | content（DataBinding） | content[{text}] | 同上，每项 item[path] 映射 |
- * | content（SlotNode） | render fn body | resolve 后作为 render 函数 body |
- * | icon（字面量） | icon | ctx.resolveIcon() |
- * | icon（DataBinding） | icon | ComputedValue + containsJSX |
+ * | content（SlotNode） | render fn body | 不放入 content 数组，resolve 后作为 render 函数 body |
+ * | icon（字面量，iconType 值） | iconType | 'success'/'error'/'default' → iconType |
+ * | icon（字面量，图标名） | icon | ctx.resolveIcon() |
+ * | icon（DataBinding） | iconType / icon | ComputedValue，运行时判断 iconType vs icon |
  *
  * ## render 函数
  *
- * eview-react TimeLine 对每个时间线项调用一次 render，签名因内容类型不同：
+ * eview-react TimeLine 组件需要 `render` prop：`(content?: { [key: string]: any }[]) => ReactNode`。
+ * 组件对每个时间线项调用 render，传入该项的 content 数组。render 只接收一个参数。
  *
- * - **SlotNode content（循环模板）**：`(content, item)`，`item` 绑定到循环数据源（dataSource 参数），
- *   jsx-emitter 生成 `const { approver, result, ... } = item;` 解构行。
- *   eview-react TimeLine 需调用 `render(data[i].content, data[i])` 传入当前项作为第二个参数。
- *   data 使用 `enrichScopedData` 保留原始项所有字段，确保 `item.approver` 等相对绑定可正确解析。
- * - **SlotNode content（静态 children）**：`(content)`，binding 为 absolute，不需要 dataSource。
- * - **文本/绑定 content**：rawExpr `(content) => <div>{content?.map(...)}</div>`
+ * - SlotNode content → render body 为 resolve 后的子树
+ *   相对绑定改写为 content?.[0]?.fieldName 的 rawExpr（因为 eview-react 只传 content 数组，
+ *   无法用 dataSource 解构——解构 const { field } = content 对数组无效）
+ *   data 项的 content 对象需包含所有相对绑定字段，供 render 通过 content[0] 访问
+ * - 文本/绑定 content → render 使用 rawExpr 渲染 content 数组中的 title 和 text
  *
  * ## 特殊逻辑
  *
  * - 同 Steps/Table 的"吞噬 children → data prop"模式
- * - A2UI 的 title/label 映射到 eview-react 的 title 字段
- * - SlotNode 循环 content 时 render 签名 (content, item)，item 为 dataSource 解析相对绑定
- * - 非 SlotNode content 时 render 为 rawExpr，content 字段保持数组格式
- * - data 使用 enrichScopedData 保留原始项所有字段，供 item 解构
- * - icon 字面量用 resolveIcon 直出，DataBinding 走 ComputedValue
+ * - eview-react 的 content 是对象数组 `{ title, text }` 格式（title 和 text 在同一对象）
+ * - icon 字面量区分 iconType（'success'/'error'/'default'）和自定义图标路径
+ * - icon DataBinding 走 ComputedValue，运行时自动分发 iconType vs icon
  * - render 函数是组件级别的（所有 item 共用一个 render）
+ * - SlotNode + loop 时，相对绑定改写为 content?.[0]?.field 引用（不走 dataSource 解构）
  *
  * 工厂化：接收目标组件库包名 `pkg`，构建 import 路径，便于多库复用。
  */
@@ -51,25 +51,16 @@ import type { MappingDef, TransformContext } from '../../../src/core/component-m
 import type { LoopNode } from '../../../src/core/node-types'
 import type { PropValue, BindingValue } from '../../../src/core/value-types'
 import { Value } from '../../../src/core/value-factory'
-import { buildRenderFn, enrichScopedData } from '../../../src/core/scoped-enrichment'
+
+/** iconType 预设值集合 */
+const ICON_TYPES = new Set(['success', 'error', 'default'])
 
 /** 从 TimelineItem 节点 props 中提取字段映射信息 */
 interface ItemFieldMap {
-  /** title/label 字段路径（相对绑定如 'step'） */
-  titleField: string | null
-  /** title/label 字面量值 */
-  titleValue: string | null
-  /** content 字段路径（相对绑定如 'projectInfo'） */
-  contentField: string | null
-  /** content 字面量值 */
-  contentValue: string | null
-  /** content 是否为 SlotNode */
-  contentIsSlot: boolean
-  /** icon 字段路径 */
-  iconField: string | null
-  /** icon 字面量值 */
-  iconValue: string | null
-  /** 是否包含 JSX（icon 相关） */
+  titleField: string | null; titleValue: string | null
+  labelField: string | null; labelValue: string | null
+  contentField: string | null; contentValue: string | null; contentIsSlot: boolean
+  iconField: string | null; iconValue: string | null; iconIsType: boolean
   hasJSX: boolean
 }
 
@@ -77,16 +68,22 @@ function extractFieldMap(item: any): ItemFieldMap {
   const p = item?.props || {}
   const m: ItemFieldMap = {
     titleField: null, titleValue: null,
+    labelField: null, labelValue: null,
     contentField: null, contentValue: null, contentIsSlot: false,
-    iconField: null, iconValue: null,
+    iconField: null, iconValue: null, iconIsType: false,
     hasJSX: false,
   }
 
-  // title / label（A2UI 中 title 存日期，label 存步骤名；统一映射到 eview-react title）
-  const titleProp = p.title || p.label
-  if (titleProp) {
-    if (titleProp.type === 'binding') m.titleField = titleProp.path
-    else if (typeof titleProp === 'string') m.titleValue = titleProp
+  // label（A2UI 新版用 label 代替 title，优先于 title）
+  if (p.label) {
+    if (p.label.type === 'binding') m.labelField = p.label.path
+    else if (typeof p.label === 'string') m.labelValue = p.label
+  }
+
+  // title（兼容旧版 A2UI，label 优先）
+  if (!m.labelField && !m.labelValue && p.title) {
+    if (p.title.type === 'binding') m.titleField = p.title.path
+    else if (typeof p.title === 'string') m.titleValue = p.title
   }
 
   // content（三分支：string / DataBinding / SlotNode）
@@ -99,10 +96,23 @@ function extractFieldMap(item: any): ItemFieldMap {
   // icon（string / DataBinding）
   if (p.icon) {
     if (p.icon.type === 'binding') { m.iconField = p.icon.path; m.hasJSX = true }
-    else if (typeof p.icon === 'string') { m.iconValue = p.icon; m.hasJSX = true }
+    else if (typeof p.icon === 'string') {
+      m.iconValue = p.icon; m.hasJSX = true
+      m.iconIsType = ICON_TYPES.has(p.icon)
+    }
   }
 
   return m
+}
+
+/** 获取有效的 title 字段名（label 优先于 title） */
+function getTitleField(f: ItemFieldMap): string | null {
+  return f.labelField ?? f.titleField
+}
+
+/** 获取有效的 title 字面值（label 优先于 title） */
+function getTitleValue(f: ItemFieldMap): string | null {
+  return f.labelValue ?? f.titleValue
 }
 
 /** 清除节点树中的 loopScope（断循环引用） */
@@ -113,9 +123,69 @@ function cleanLoopScope(n: any): void {
   if (n.kind === 'loop') { cleanLoopScope(n.template); n.template?.body?.forEach(cleanLoopScope) }
   if (n.props && typeof n.props === 'object') {
     for (const v of Object.values(n.props)) {
-      if (v && typeof v === 'object' && !(v as any).type) cleanLoopScope(v)
+      if (v && typeof v === "object" && !(v as any).type) cleanLoopScope(v)
     }
   }
+}
+
+/** 收集 SlotNode 子树中所有相对绑定的顶级字段名 */
+function collectRelativeBindingFields(node: any, fields: Set<string> = new Set()): Set<string> {
+  if (!node || typeof node !== 'object') return fields
+  // 检查是否为相对绑定值
+  if (node.type === 'binding' && node.pathType === 'relative' && typeof node.path === 'string') {
+    const topField = node.path.replace(/^\/?/, '').split('/')[0]
+    if (topField) fields.add(topField)
+  }
+  // TextNode：value 可能是 BindingValue（BuildTrees 将 HTML value 下沉为 TextNode）
+  if (node.kind === 'text' && node.value && typeof node.value === 'object') {
+    collectRelativeBindingFields(node.value, fields)
+  }
+  // 递归子节点
+  if (Array.isArray(node.children)) node.children.forEach((c: any) => collectRelativeBindingFields(c, fields))
+  if (node.kind === 'loop') { collectRelativeBindingFields(node.template, fields); node.template?.body?.forEach((c: any) => collectRelativeBindingFields(c, fields)) }
+  if (node.props && typeof node.props === 'object') {
+    for (const v of Object.values(node.props)) {
+      if (v && typeof v === 'object') collectRelativeBindingFields(v, fields)
+    }
+  }
+  if (node.body && Array.isArray(node.body)) node.body.forEach((c: any) => collectRelativeBindingFields(c, fields))
+  return fields
+}
+
+/**
+ * 将 SlotNode 子树中的相对绑定改写为 content?.[0]?.field 的 rawExpr 引用。
+ *
+ * eview-react TimeLine 的 render 只接收一个参数（content 数组），
+ * 无法用 dataSource 解构（const { field } = content 对数组无效），
+ * 所以将相对绑定改写为从 content 首个元素直接取值。
+ */
+function rewriteRelativeBindingsAsContentAccess(node: any): void {
+  if (!node || typeof node !== 'object') return
+
+  // Props 中：替换相对绑定为 rawExpr
+  if (node.props && typeof node.props === 'object') {
+    for (const key of Object.keys(node.props)) {
+      const val = node.props[key]
+      if (val && typeof val === 'object' && val.type === 'binding' && val.pathType === 'relative' && typeof val.path === 'string') {
+        // 保留 __node brand，将 BindingValue 替换为 RawExprValue
+        node.props[key] = Value.rawExpr({ value: `content?.[0]?.${val.path}` })
+      }
+    }
+  }
+
+  // TextNode：value 可能是相对 BindingValue（HTML value 下沉场景）
+  if (node.kind === 'text' && node.value && typeof node.value === 'object'
+    && node.value.type === 'binding' && node.value.pathType === 'relative' && typeof node.value.path === 'string') {
+    node.value = Value.rawExpr({ value: `content?.[0]?.${node.value.path}` })
+  }
+
+  // 递归子节点
+  if (Array.isArray(node.children)) node.children.forEach(rewriteRelativeBindingsAsContentAccess)
+  if (node.kind === 'loop') {
+    rewriteRelativeBindingsAsContentAccess(node.template)
+    node.template?.body?.forEach(rewriteRelativeBindingsAsContentAccess)
+  }
+  if (node.body && Array.isArray(node.body)) node.body.forEach(rewriteRelativeBindingsAsContentAccess)
 }
 
 export function createTimelineMapping(pkg: string): MappingDef {
@@ -147,37 +217,56 @@ export function createTimelineMapping(pkg: string): MappingDef {
           const child = children[i] as any
           const f = extractFieldMap(child)
 
-          // 构建 content 数组（eview-react 格式：{ title, text } 对象数组）
-          const contentArr: any[] = []
+          // 构建 content 数组（eview-react 格式：{ title, text } 合并对象）
+          const contentObj: Record<string, any> = {}
+          const titleVal = getTitleValue(f)
+          const titleField = getTitleField(f)
 
-          // title/label → content 中的 { title } 项
-          if (f.titleValue !== null) contentArr.push({ title: f.titleValue })
-          else if (f.titleField) contentArr.push({ title: (child.props.title || child.props.label) })  // BindingValue
+          // title/label → content 中的 title
+          if (titleVal !== null) contentObj.title = titleVal
+          else if (titleField) contentObj.title = child.props.label ?? child.props.title  // BindingValue
 
-          // content → content 中的 { text } 项
-          if (f.contentValue !== null) contentArr.push({ text: f.contentValue })
-          else if (f.contentField) contentArr.push({ text: child.props.content })  // BindingValue
+          // content → content 中的 text
+          if (f.contentValue !== null) contentObj.text = f.contentValue
+          else if (f.contentField) contentObj.text = child.props.content  // BindingValue
           // SlotNode content → 不放入 content 数组，由 render 函数直接渲染
 
-          const item: Record<string, any> = {
-            title: f.titleValue ?? '',
-          }
+          const contentArr: any[] = (Object.keys(contentObj).length > 0) ? [contentObj] : []
+
+          // 构建 data 项：A2UI title/label → dataType.title（不是 date）
+          const item: Record<string, any> = {}
+          if (titleVal !== null) item.title = titleVal
+          else if (titleField) item.title = child.props.label ?? child.props.title  // BindingValue
 
           if (contentArr.length > 0) item.content = contentArr
 
-          // icon
+          // icon 分发：iconType vs icon
           if (f.iconValue) {
-            const iconNode = ctx.resolveIcon(f.iconValue)
-            if (iconNode) item.icon = iconNode
+            if (f.iconIsType) {
+              item.iconType = f.iconValue
+            } else {
+              const iconNode = ctx.resolveIcon(f.iconValue)
+              if (iconNode) item.icon = iconNode
+            }
           } else if (f.iconField) {
+            // DataBinding icon：添加 iconType 和 icon 两个 ComputedValue
+            const iconBinding = child.props.icon
+            item.iconType = Value.computed({
+              path: iconBinding.path,
+              pathType: iconBinding.pathType ?? 'absolute',
+              accessPath: iconBinding.accessPath ? `${iconBinding.accessPath}IconType` : 'timelineIconType',
+              containsJSX: false,
+              transform: (raw: any) => (typeof raw === 'string' && ICON_TYPES.has(raw)) ? raw : undefined,
+            })
             item.icon = Value.computed({
-              path: (child.props.icon).path,
-              pathType: (child.props.icon).pathType ?? 'absolute',
-              accessPath: (child.props.icon).accessPath ?? 'timelineIcon',
+              path: iconBinding.path,
+              pathType: iconBinding.pathType ?? 'absolute',
+              accessPath: iconBinding.accessPath ?? 'timelineIcon',
               containsJSX: true,
               transform: (raw: any, cvCtx?: any) => {
                 const rIcon = cvCtx?.resolveIcon ?? ctx.resolveIcon
-                return typeof raw === 'string' ? rIcon(raw) : null
+                if (typeof raw === 'string' && !ICON_TYPES.has(raw)) return rIcon(raw)
+                return null
               },
             })
           }
@@ -193,23 +282,20 @@ export function createTimelineMapping(pkg: string): MappingDef {
         outputProps.data = data as any
 
         // ─── render 函数 ───
-        // eview-react 对每个时间线项调用 render，传入该项的 content
         if (hasSlotContent && slotChild) {
           // SlotNode content → render body 为 resolve 后的子树
           const resolvedContent = ctx.resolveNode(slotChild.props.content.node)
           if (resolvedContent) {
             cleanLoopScope(resolvedContent)
-            // 静态 children 不在循环中，SlotNode 子树中的 binding 是 absolute，
-            // 不需要 dataSource 参数（通过 stateRef 直接引用）
             outputProps.render = Value.renderFn({
               params: [{ name: 'content' }],
               body: resolvedContent,
             })
           }
         } else {
-          // 文本/绑定 content → render 使用 rawExpr 遍历 content 数组渲染文本
+          // 文本/绑定 content → render 使用 rawExpr 渲染 content 数组中的 title 和 text
           outputProps.render = Value.rawExpr({
-            value: '(content) => <div>{content?.map((item, i) => <span key={i}>{item.text || item.title}</span>)}</div>',
+            value: '(content) => <div>{content?.map((item, i) => <div key={i}>{item.title && <div>{item.title}</div>}{item.text && <div>{item.text}</div>}</div>)}</div>',
           })
         }
 
@@ -230,6 +316,16 @@ export function createTimelineMapping(pkg: string): MappingDef {
 
         const f = extractFieldMap(tmpl)
         const dataBinding = loop.data as BindingValue
+        const titleField = getTitleField(f)
+
+        // 收集 SlotNode 子树中的相对绑定字段（用于 content 对象构建）
+        let slotRelativeFields: Set<string> = new Set()
+        if (f.contentIsSlot) {
+          const slotNode = tmpl.props.content?.node
+          if (slotNode) {
+            slotRelativeFields = collectRelativeBindingFields(ctx.resolveNode(slotNode))
+          }
+        }
 
         // SlotNode content 预 resolve
         let resolvedSlot: any = null
@@ -238,108 +334,85 @@ export function createTimelineMapping(pkg: string): MappingDef {
           if (resolvedSlot) cleanLoopScope(resolvedSlot)
         }
 
-        // ─── data prop ───
-        if (f.contentIsSlot && resolvedSlot) {
-          // SlotNode content → render 签名 (content, item)，item 为 dataSource。
-          // data 使用 enrichScopedData 保留原始项所有字段 + CV enrichment，
-          // 使 item.approver 等相对绑定可正确解析。
-          // content 保持标准数组格式（eview-react 兼容）。
-          const scopedData = enrichScopedData(dataBinding, [resolvedSlot])
-          outputProps.data = Value.computed({
-            path: dataBinding.path,
-            pathType: dataBinding.pathType ?? 'absolute',
-            accessPath: dataBinding.accessPath ?? 'timelineData',
-            containsJSX: scopedData.containsJSX || f.hasJSX,
-            stateValue: dataBinding.stateValue,
-            transform: (rawData: any, cvCtx?: any) => {
-              if (!Array.isArray(rawData)) return []
-              const rIcon = cvCtx?.resolveIcon ?? ctx.resolveIcon
-              // 先走 enrichScopedData 的 transform（保留所有原始字段 + CV enrichment）
-              const enriched = scopedData.transform(rawData, cvCtx)
-              if (!Array.isArray(enriched)) return []
-              return enriched.map((enrichedItem: any) => {
-                // title/label → eview-react title
-                if (f.titleField) {
-                  enrichedItem.title = enrichedItem[f.titleField] ?? ''
-                } else if (f.titleValue) {
-                  enrichedItem.title = f.titleValue
+        outputProps.data = Value.computed({
+          path: dataBinding.path,
+          pathType: dataBinding.pathType ?? 'absolute',
+          accessPath: dataBinding.accessPath ?? 'timelineData',
+          containsJSX: f.hasJSX,
+          transform: (rawData: any, cvCtx?: any) => {
+            if (!Array.isArray(rawData)) return []
+            const rIcon = cvCtx?.resolveIcon ?? ctx.resolveIcon
+
+            return rawData.map((item: any) => {
+              // 构建 content 数组：合并 title + text 到同一对象
+              const contentObj: Record<string, any> = {}
+
+              // title/label → content 中的 title
+              if (titleField) contentObj.title = item[titleField] ?? ''
+              else if (getTitleValue(f)) contentObj.title = getTitleValue(f)
+
+              // content → content 中的 text
+              if (f.contentField) contentObj.text = item[f.contentField] ?? ''
+              else if (f.contentValue !== null) contentObj.text = f.contentValue
+              // SlotNode → 不放入 content 数组的 text 字段
+
+              // 如果是 SlotNode，把相对绑定的字段也放入 content 对象
+              // 供 render 函数通过 content[0].fieldName 访问
+              if (f.contentIsSlot) {
+                for (const field of slotRelativeFields) {
+                  if (item[field] !== undefined) contentObj[field] = item[field]
                 }
-                // content 保持标准数组格式（非 SlotNode 时也用此格式），
-                // render 的 content 参数接收 data[i].content，item 参数接收 data[i] 整体
-                const contentArr: any[] = []
-                if (f.titleField) contentArr.push({ title: enrichedItem[f.titleField] ?? '' })
-                else if (f.titleValue) contentArr.push({ title: f.titleValue })
-                if (contentArr.length > 0) enrichedItem.content = contentArr
-                // icon（字面量在 enrichScopedData 不处理，这里补充）
-                if (f.iconValue) {
-                  const iconNode = rIcon(f.iconValue)
-                  if (iconNode) enrichedItem.icon = iconNode
-                }
-                return enrichedItem
-              })
-            },
-          })
-        } else {
-          // 非 SlotNode content → 使用原有的 Value.computed 构建精简 data
-          outputProps.data = Value.computed({
-            path: dataBinding.path,
-            pathType: dataBinding.pathType ?? 'absolute',
-            accessPath: dataBinding.accessPath ?? 'timelineData',
-            containsJSX: f.hasJSX,
-            transform: (rawData: any, cvCtx?: any) => {
-              if (!Array.isArray(rawData)) return []
-              const rIcon = cvCtx?.resolveIcon ?? ctx.resolveIcon
+              }
 
-              return rawData.map((item: any) => {
-                // 构建 content 数组
-                const contentArr: any[] = []
+              const contentArr: any[] = (Object.keys(contentObj).length > 0) ? [contentObj] : []
 
-                // title/label → content 中的 { title } 项
-                if (f.titleField) contentArr.push({ title: item[f.titleField] ?? '' })
-                else if (f.titleValue) contentArr.push({ title: f.titleValue })
+              // 构建 data 项：A2UI title/label → dataType.title
+              const dataItem: Record<string, any> = {}
+              if (titleField) dataItem.title = item[titleField] ?? ''
+              else if (getTitleValue(f)) dataItem.title = getTitleValue(f)
 
-                // content → content 中的 { text } 项
-                if (f.contentField) contentArr.push({ text: item[f.contentField] ?? '' })
-                else if (f.contentValue !== null) contentArr.push({ text: f.contentValue })
+              if (contentArr.length > 0) dataItem.content = contentArr
 
-                const dataItem: Record<string, any> = {
-                  title: f.titleField ? (item[f.titleField] ?? '') : (f.titleValue ?? ''),
-                }
-
-                if (contentArr.length > 0) dataItem.content = contentArr
-
-                // icon
-                if (f.iconField) {
-                  const name = item[f.iconField]
-                  if (typeof name === 'string') {
+              // icon 分发：iconType vs icon
+              if (f.iconField) {
+                const name = item[f.iconField]
+                if (typeof name === 'string') {
+                  if (ICON_TYPES.has(name)) {
+                    dataItem.iconType = name
+                  } else {
                     const iconNode = rIcon(name)
                     if (iconNode) dataItem.icon = iconNode
                   }
-                } else if (f.iconValue) {
+                }
+              } else if (f.iconValue) {
+                if (f.iconIsType) {
+                  dataItem.iconType = f.iconValue
+                } else {
                   const iconNode = rIcon(f.iconValue)
                   if (iconNode) dataItem.icon = iconNode
                 }
+              }
 
-                return dataItem
-              })
-            },
-          })
-        }
+              return dataItem
+            })
+          },
+        })
 
         // ─── render 函数 ───
         if (f.contentIsSlot && resolvedSlot) {
-          // SlotNode content → render 签名 (content, item)
-          // content: 当前项的 content 字段值（标准数组），由 eview-react 传入
-          // item: 当前项的完整数据对象（dataSource），eview-react 需作为第二个参数传入
-          // jsx-emitter 生成 `const { approver, result, ... } = item;` 解构行
-          outputProps.render = buildRenderFn(resolvedSlot, [
-            { name: 'content' },
-            { name: 'item', dataSource: dataBinding },
-          ])
+          // SlotNode content → render body 为 resolve 后的子树
+          // eview-react 的 render 只接收 content 数组一个参数，无法用 dataSource 解构
+          // （const { field } = content 对数组无效），
+          // 所以将相对绑定改写为 content?.[0]?.field 的 rawExpr 引用
+          rewriteRelativeBindingsAsContentAccess(resolvedSlot)
+          outputProps.render = Value.renderFn({
+            params: [{ name: 'content' }],
+            body: resolvedSlot,
+          })
         } else {
-          // 文本/绑定 content → render 使用 rawExpr 遍历 content 数组渲染文本
+          // 文本/绑定 content → render 使用 rawExpr 渲染 content 数组中的 title 和 text
           outputProps.render = Value.rawExpr({
-            value: '(content) => <div>{content?.map((item, i) => <span key={i}>{item.text || item.title}</span>)}</div>',
+            value: '(content) => <div>{content?.map((item, i) => <div key={i}>{item.title && <div>{item.title}</div>}{item.text && <div>{item.text}</div>}</div>)}</div>',
           })
         }
 
