@@ -22,6 +22,7 @@
         "icon": "calendar-range"
       }
     ],
+    "checkboxChecked": true,
     "checkboxValues": [
       "option1",
       "option3"
@@ -225,6 +226,71 @@
         "salary": "26000"
       }
     ],
+    "sortFilterTableData": [
+      {
+        "key": "sf1",
+        "name": "张三",
+        "age": 28,
+        "department": "研发部",
+        "position": "前端工程师",
+        "salary": 25000,
+        "status": "在职"
+      },
+      {
+        "key": "sf2",
+        "name": "李四",
+        "age": 32,
+        "department": "市场部",
+        "position": "产品经理",
+        "salary": 30000,
+        "status": "在职"
+      },
+      {
+        "key": "sf3",
+        "name": "王五",
+        "age": 26,
+        "department": "设计部",
+        "position": "UI设计师",
+        "salary": 20000,
+        "status": "休假"
+      },
+      {
+        "key": "sf4",
+        "name": "赵六",
+        "age": 35,
+        "department": "研发部",
+        "position": "后端工程师",
+        "salary": 28000,
+        "status": "在职"
+      },
+      {
+        "key": "sf5",
+        "name": "孙七",
+        "age": 29,
+        "department": "运营部",
+        "position": "运营主管",
+        "salary": 26000,
+        "status": "离职"
+      },
+      {
+        "key": "sf6",
+        "name": "周八",
+        "age": 24,
+        "department": "市场部",
+        "position": "市场专员",
+        "salary": 18000,
+        "status": "在职"
+      },
+      {
+        "key": "sf7",
+        "name": "吴九",
+        "age": 38,
+        "department": "研发部",
+        "position": "架构师",
+        "salary": 35000,
+        "status": "在职"
+      }
+    ],
     "dropdownMenu": [
       {
         "label": "编辑",
@@ -372,7 +438,12 @@
         "status": "休假",
         "detail": "王五，2022年加入公司，擅长用户界面设计与交互体验优化。"
       }
-    ]
+    ],
+    "paginationCurrent": 3,
+    "paginationTotal": 85,
+    "modalBasicOpen": false,
+    "modalNoMaskOpen": false,
+    "modalFooterOpen": false
   },
   "rootId": "pageRoot",
   "elements": [
@@ -430,7 +501,8 @@
         "buttonRowColors",
         "buttonRowSizes",
         "buttonRowTypes",
-        "buttonRowIcons"
+        "buttonRowIcons",
+        "buttonRowDisabled"
       ]
     },
     {
@@ -562,7 +634,6 @@
         "size": "small"
       }
     },
-
     {
       "id": "buttonRowTypes",
       "component": "div",
@@ -681,6 +752,46 @@
       }
     },
     {
+      "id": "buttonRowDisabled",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "buttonRowDisabledLabel",
+        "buttonRowDisabledContent"
+      ]
+    },
+    {
+      "id": "buttonRowDisabledLabel",
+      "component": "span",
+      "props": {
+        "value": "禁用状态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "buttonRowDisabledContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-3 flex-wrap"
+      },
+      "children": [
+        "btnDisabledIcon"
+      ]
+    },
+    {
+      "id": "btnDisabledIcon",
+      "component": "Button",
+      "props": {
+        "value": "搜索",
+        "icon": "search",
+        "iconPlacement": "start",
+        "color": "primary",
+        "disabled": true
+      }
+    },
+    {
       "id": "sectionDataDisplay",
       "component": "div",
       "props": {
@@ -718,10 +829,9 @@
         "tagRowDefault",
         "tagRowSizes",
         "tagRowIcons",
-        "tagRowTypes2.0",
-        "tagRowTypes",
-        "tagRowColors",
-        "tagRowDarkColors"
+        "tagRowSolid",
+        "tagRowFilledAlert",
+        "tagRowFilledColors"
       ]
     },
     {
@@ -767,257 +877,6 @@
       "props": {
         "value": "默认",
         "color": "default"
-      }
-    },
-
-    {
-      "id": "tagRowTypes2.0",
-      "component": "div",
-      "props": {
-        "className": "flex flex-col gap-2"
-      },
-      "children": [
-        "tagRowTypesLabel2.0",
-        "tagRowTypesContent2.0"
-      ]
-    },
-    {
-      "id": "tagRowTypesLabel2.0",
-      "component": "span",
-      "props": {
-        "value": "2.0告警色(color)",
-        "className": "text-sm text-on-surface-variant"
-      }
-    },
-    {
-      "id": "tagRowTypesContent2.0",
-      "component": "div",
-      "props": {
-        "className": "flex items-center gap-3 flex-wrap"
-      },
-      "children": [
-        "tagPrimary2.0",
-        "tagSuccess2.0",
-        "tagError2.0",
-        "tagProcessing2.0",
-        "tagWarning2.0",
-        "tagInfo2.0",
-        "tagSuccess2.0_Dark"
-      ]
-    },
-    {
-      "id": "tagPrimary2.0",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "计划中",
-        "color": "#4eaff5"
-      }
-    },
-    {
-      "id": "tagSuccess2.0",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "已完成(明亮主题)",
-        "color": "#5ccbb1"
-      }
-    },
-    {
-      "id": "tagSuccess2.0_Dark",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "已完成(暗黑主题)",
-        "color": "#51b59e"
-      }
-    },
-    {
-      "id": "tagError2.0",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "发生错误",
-        "color": "#e54545"
-      }
-    },
-    {
-      "id": "tagProcessing2.0",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "进行中",
-        "color": "#ff8000"
-      }
-    },
-    {
-      "id": "tagWarning2.0",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "待开始",
-        "color": "#ffbb33"
-      }
-    },
-    {
-      "id": "tagInfo2.0",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "关机",
-        "color": "#999999"
-      }
-    },
-
-    {
-      "id": "tagRowTypes",
-      "component": "div",
-      "props": {
-        "className": "flex flex-col gap-2"
-      },
-      "children": [
-        "tagRowTypesLabel",
-        "tagRowTypesContent"
-      ]
-    },
-    {
-      "id": "tagRowTypesLabel",
-      "component": "span",
-      "props": {
-        "value": "3.0告警色(variant)",
-        "className": "text-sm text-on-surface-variant"
-      }
-    },
-    {
-      "id": "tagRowTypesContent",
-      "component": "div",
-      "props": {
-        "className": "flex items-center gap-3 flex-wrap"
-      },
-      "children": [
-        "tagPrimary",
-        "tagSuccess",
-        "tagError",
-        "tagProcessing",
-        "tagWarning",
-        "tagInfo",
-        "filledText",
-        "tagPrimary2",
-        "tagSuccess2",
-        "tagError2",
-        "tagProcessing2",
-        "tagWarning2",
-        "tagInfo2"
-      ]
-    },
-    {
-      "id": "tagPrimary",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "计划中",
-        "color": "primary"
-      }
-    },
-    {
-      "id": "tagSuccess",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "已完成",
-        "color": "success"
-      }
-    },
-    {
-      "id": "tagError",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "发生错误",
-        "color": "error"
-      }
-    },
-    {
-      "id": "tagProcessing",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "进行中",
-        "color": "processing"
-      }
-    },
-    {
-      "id": "tagWarning",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "待开始",
-        "color": "warning"
-      }
-    },
-    {
-      "id": "tagInfo",
-      "component": "Tag",
-      "props": {
-        "variant": "solid",
-        "value": "关机",
-        "color": "info"
-      }
-    },
-    {
-      "id": "filledText",
-      "component": "span",
-      "props": {
-        "value": "filled 形态：",
-        "className": "text-sm text-on-surface-variant"
-      }
-    },
-    {
-      "id": "tagPrimary2",
-      "component": "Tag",
-      "props": {
-        "value": "计划中",
-        "color": "primary"
-      }
-    },
-    {
-      "id": "tagSuccess2",
-      "component": "Tag",
-      "props": {
-        "value": "已完成",
-        "color": "success"
-      }
-    },
-    {
-      "id": "tagError2",
-      "component": "Tag",
-      "props": {
-        "value": "发生错误",
-        "color": "error"
-      }
-    },
-    {
-      "id": "tagProcessing2",
-      "component": "Tag",
-      "props": {
-        "value": "进行中",
-        "color": "processing"
-      }
-    },
-    {
-      "id": "tagWarning2",
-      "component": "Tag",
-      "props": {
-        "value": "待开始",
-        "color": "warning"
-      }
-    },
-    {
-      "id": "tagInfo2",
-      "component": "Tag",
-      "props": {
-        "value": "关机",
-        "color": "info"
       }
     },
     {
@@ -1128,319 +987,267 @@
       }
     },
     {
-      "id": "tagRowColors",
+      "id": "tagRowSolid",
       "component": "div",
       "props": {
         "className": "flex flex-col gap-2"
       },
       "children": [
-        "tagRowColorsLabel",
-        "tagRowColorsContent"
+        "tagRowSolidLabel",
+        "tagRowSolidContent"
       ]
     },
     {
-      "id": "tagRowColorsLabel",
+      "id": "tagRowSolidLabel",
       "component": "span",
       "props": {
-        "value": "彩色标签-明亮主题(暗黑主题忽略)",
+        "value": "solid 状态色",
         "className": "text-sm text-on-surface-variant"
       }
     },
     {
-      "id": "tagRowColorsContent",
+      "id": "tagRowSolidContent",
       "component": "div",
       "props": {
         "className": "flex items-center gap-3 flex-wrap"
       },
       "children": [
-        "tagColor1",
-        "tagColor2",
-        "tagColor3",
-        "tagColor4",
-        "tagColor5",
-        "tagColor6",
-        "tagColor7",
-        "tagColor8",
-        "tagColor9",
-        "tagColor10",
-        "tagColor11",
-        "tagColor12",
-        "tagColor13"
+        "tagSolidInfo",
+        "tagSolidError",
+        "tagSolidAlert",
+        "tagSolidWarning",
+        "tagSolidSuccess",
+        "tagSolidDisabled"
       ]
     },
     {
-      "id": "tagColor1",
+      "id": "tagSolidInfo",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#1f55b5",
-        "variant": "filled"
+        "value": "info",
+        "variant": "solid",
+        "color": "info"
       }
     },
     {
-      "id": "tagColor2",
+      "id": "tagSolidError",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#036142",
-        "variant": "filled"
+        "value": "error",
+        "variant": "solid",
+        "color": "error"
       }
     },
     {
-      "id": "tagColor3",
+      "id": "tagSolidAlert",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#614500",
-        "variant": "filled"
+        "value": "alert",
+        "variant": "solid",
+        "color": "alert"
       }
     },
     {
-      "id": "tagColor4",
+      "id": "tagSolidWarning",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#954304",
-        "variant": "filled"
+        "value": "warning",
+        "variant": "solid",
+        "color": "warning"
       }
     },
     {
-      "id": "tagColor5",
+      "id": "tagSolidSuccess",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#c7000b",
-        "variant": "filled"
+        "value": "success",
+        "variant": "solid",
+        "color": "success"
       }
     },
     {
-      "id": "tagColor6",
+      "id": "tagSolidDisabled",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#393939",
-        "variant": "filled"
+        "value": "disabled",
+        "variant": "solid",
+        "color": "disabled"
       }
     },
     {
-      "id": "tagColor7",
-      "component": "Tag",
-      "props": {
-        "value": "状态标签",
-        "color": "#281675",
-        "variant": "filled"
-      }
-    },
-    {
-      "id": "tagColor8",
-      "component": "Tag",
-      "props": {
-        "value": "状态标签",
-        "color": "#9f1c8d",
-        "variant": "filled"
-      }
-    },
-    {
-      "id": "tagColor9",
-      "component": "Tag",
-      "props": {
-        "value": "状态标签",
-        "color": "#036142",
-        "variant": "filled"
-      }
-    },
-    {
-      "id": "tagColor10",
-      "component": "Tag",
-      "props": {
-        "value": "状态标签",
-        "color": "#c40054",
-        "variant": "filled"
-      }
-    },
-    {
-      "id": "tagColor11",
-      "component": "Tag",
-      "props": {
-        "value": "状态标签",
-        "color": "#094c57",
-        "variant": "filled"
-      }
-    },
-    {
-      "id": "tagColor12",
-      "component": "Tag",
-      "props": {
-        "value": "状态标签",
-        "color": "#8a2ebc",
-        "variant": "filled"
-      }
-    },
-    {
-      "id": "tagColor13",
-      "component": "Tag",
-      "props": {
-        "value": "状态标签",
-        "color": "#004ea8",
-        "variant": "filled"
-      }
-    },
-    {
-      "id": "tagRowDarkColors",
+      "id": "tagRowFilledAlert",
       "component": "div",
       "props": {
         "className": "flex flex-col gap-2"
       },
       "children": [
-        "tagRowDarkColorsLabel",
-        "tagRowDarkColorsContent"
+        "tagRowFilledAlertLabel",
+        "tagRowFilledAlertContent"
       ]
     },
     {
-      "id": "tagRowDarkColorsLabel",
+      "id": "tagRowFilledAlertLabel",
       "component": "span",
       "props": {
-        "value": "彩色标签-暗黑主题(明亮主题忽略)",
+        "value": "filled 状态色",
         "className": "text-sm text-on-surface-variant"
       }
     },
     {
-      "id": "tagRowDarkColorsContent",
+      "id": "tagRowFilledAlertContent",
       "component": "div",
       "props": {
         "className": "flex items-center gap-3 flex-wrap"
       },
       "children": [
-        "tagDarkColor1",
-        "tagDarkColor2",
-        "tagDarkColor3",
-        "tagDarkColor4",
-        "tagDarkColor5",
-        "tagDarkColor6",
-        "tagDarkColor7",
-        "tagDarkColor8",
-        "tagDarkColor9",
-        "tagDarkColor10",
-        "tagDarkColor11",
-        "tagDarkColor12",
-        "tagDarkColor13"
+        "tagFilledInfo",
+        "tagFilledError",
+        "tagFilledAlert",
+        "tagFilledWarning",
+        "tagFilledSuccess",
+        "tagFilledDisabled"
       ]
     },
     {
-      "id": "tagDarkColor1",
+      "id": "tagFilledInfo",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#8ca3fa",
-        "variant": "filled"
+        "value": "info",
+        "variant": "filled",
+        "color": "info"
       }
     },
     {
-      "id": "tagDarkColor2",
+      "id": "tagFilledError",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#36c18d",
-        "variant": "filled"
+        "value": "error",
+        "variant": "filled",
+        "color": "error"
       }
     },
     {
-      "id": "tagDarkColor3",
+      "id": "tagFilledAlert",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#fcc800",
-        "variant": "filled"
+        "value": "alert",
+        "variant": "filled",
+        "color": "alert"
       }
     },
     {
-      "id": "tagDarkColor4",
+      "id": "tagFilledWarning",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#f69e39",
-        "variant": "filled"
+        "value": "warning",
+        "variant": "filled",
+        "color": "warning"
       }
     },
     {
-      "id": "tagDarkColor5",
+      "id": "tagFilledSuccess",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#e7434a",
-        "variant": "filled"
+        "value": "success",
+        "variant": "filled",
+        "color": "success"
       }
     },
     {
-      "id": "tagDarkColor6",
+      "id": "tagFilledDisabled",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#aeaeae",
-        "variant": "filled"
+        "value": "disabled",
+        "variant": "filled",
+        "color": "disabled"
       }
     },
     {
-      "id": "tagDarkColor7",
-      "component": "Tag",
+      "id": "tagRowFilledColors",
+      "component": "div",
       "props": {
-        "value": "状态标签",
-        "color": "#a89ff9",
-        "variant": "filled"
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tagRowFilledColorsLabel",
+        "tagRowFilledColorsContent"
+      ]
+    },
+    {
+      "id": "tagRowFilledColorsLabel",
+      "component": "span",
+      "props": {
+        "value": "filled 彩色标签",
+        "className": "text-sm text-on-surface-variant"
       }
     },
     {
-      "id": "tagDarkColor8",
+      "id": "tagRowFilledColorsContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-3 flex-wrap"
+      },
+      "children": [
+        "tagFilledGreen",
+        "tagFilledRose",
+        "tagFilledPink",
+        "tagFilledPurple",
+        "tagFilledIndigo",
+        "tagFilledCyan"
+      ]
+    },
+    {
+      "id": "tagFilledGreen",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#eb74df",
-        "variant": "filled"
+        "value": "green",
+        "variant": "filled",
+        "color": "green"
       }
     },
     {
-      "id": "tagDarkColor9",
+      "id": "tagFilledRose",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#36c18d",
-        "variant": "filled"
+        "value": "rose",
+        "variant": "filled",
+        "color": "rose"
       }
     },
     {
-      "id": "tagDarkColor10",
+      "id": "tagFilledPink",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#f470ab",
-        "variant": "filled"
+        "value": "pink",
+        "variant": "filled",
+        "color": "pink"
       }
     },
     {
-      "id": "tagDarkColor11",
+      "id": "tagFilledPurple",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#55ccd9",
-        "variant": "filled"
+        "value": "purple",
+        "variant": "filled",
+        "color": "purple"
       }
     },
     {
-      "id": "tagDarkColor12",
+      "id": "tagFilledIndigo",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#cb8efb",
-        "variant": "filled"
+        "value": "indigo",
+        "variant": "filled",
+        "color": "indigo"
       }
     },
     {
-      "id": "tagDarkColor13",
+      "id": "tagFilledCyan",
       "component": "Tag",
       "props": {
-        "value": "状态标签",
-        "color": "#5ca2e9",
-        "variant": "filled"
+        "value": "cyan",
+        "variant": "filled",
+        "color": "cyan"
       }
     },
     {
@@ -1622,10 +1429,7 @@
       },
       "children": [
         "badgeStatusError",
-        "badgeStatusProcessing",
-        "badgeStatusSuccess",
-        "badgeStatusWarning",
-        "badgeStatusDefault"
+        "badgeStatusProcessing"
       ]
     },
     {
@@ -1643,7 +1447,7 @@
       "id": "badgeStatusSuccessText",
       "component": "div",
       "props": {
-        "className":"bg-[#f2f2f2] rounded-sm w-8 h-8"
+        "className": "bg-[#f2f2f2] rounded-sm w-8 h-8"
       }
     },
     {
@@ -1661,7 +1465,7 @@
       "id": "badgeStatusProcessingText",
       "component": "div",
       "props": {
-        "className":"bg-[#f2f2f2] rounded-sm w-8 h-8"
+        "className": "bg-[#f2f2f2] rounded-sm w-8 h-8"
       }
     },
     {
@@ -1679,7 +1483,7 @@
       "id": "badgeStatusErrorText",
       "component": "div",
       "props": {
-        "className":"bg-[#f2f2f2] rounded-sm w-8 h-8"
+        "className": "bg-[#f2f2f2] rounded-sm w-8 h-8"
       }
     },
     {
@@ -1697,7 +1501,7 @@
       "id": "badgeStatusWarningText",
       "component": "div",
       "props": {
-        "className":"bg-[#f2f2f2] rounded-sm w-8 h-8"
+        "className": "bg-[#f2f2f2] rounded-sm w-8 h-8"
       }
     },
     {
@@ -1715,7 +1519,7 @@
       "id": "badgeStatusDefaultText",
       "component": "div",
       "props": {
-        "className":"bg-[#f2f2f2] rounded-sm w-8 h-8"
+        "className": "bg-[#f2f2f2] rounded-sm w-8 h-8"
       }
     },
     {
@@ -1830,7 +1634,8 @@
       },
       "children": [
         "collapseCardTitle",
-        "collapseRowDefault"
+        "collapseRowDefault",
+        "collapseRowIconLeft"
       ]
     },
     {
@@ -1897,6 +1702,65 @@
         "key": "panel3",
         "label": "教育背景",
         "content": "2016-2020年，北京大学，计算机科学与技术专业。"
+      }
+    },
+    {
+      "id": "collapseRowIconLeft",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "collapseRowIconLeftLabel",
+        "collapseIconLeft"
+      ]
+    },
+    {
+      "id": "collapseRowIconLeftLabel",
+      "component": "span",
+      "props": {
+        "value": "展开图标在左侧",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "collapseIconLeft",
+      "component": "Collapse",
+      "props": {
+        "activeKey": "iconPanel1",
+        "expandIconPlacement": "start"
+      },
+      "children": [
+        "collapseIconItem1",
+        "collapseIconItem2",
+        "collapseIconItem3"
+      ]
+    },
+    {
+      "id": "collapseIconItem1",
+      "component": "CollapseItem",
+      "props": {
+        "key": "iconPanel1",
+        "label": "基础信息",
+        "content": "姓名：李四，年龄：32岁，部门：产品部。"
+      }
+    },
+    {
+      "id": "collapseIconItem2",
+      "component": "CollapseItem",
+      "props": {
+        "key": "iconPanel2",
+        "label": "工作经历",
+        "content": "2018年至今，就职于XYZ互联网公司，担任产品经理。"
+      }
+    },
+    {
+      "id": "collapseIconItem3",
+      "component": "CollapseItem",
+      "props": {
+        "key": "iconPanel3",
+        "label": "教育背景",
+        "content": "2014-2018年，清华大学，工业设计专业。"
       }
     },
     {
@@ -2053,7 +1917,10 @@
       "children": [
         "segmentedCardTitle",
         "segmentedRowSizes",
-        "segmentedRowBlock"
+        "segmentedRowTextIcon",
+        "segmentedRowIcon",
+        "segmentedRowBlock",
+        "segmentedRowDisabled"
       ]
     },
     {
@@ -2090,24 +1957,10 @@
         "className": "flex items-center gap-4 flex-wrap"
       },
       "children": [
-        "segmentedLarge",
-        "segmentedMedium",
-        "segmentedSmall"
+        "segmentedMedium"
       ]
     },
-    {
-      "id": "segmentedLarge",
-      "component": "Segmented",
-      "props": {
-        "value": "选项一",
-        "options": [
-          "选项一",
-          "选项二",
-          "选项三"
-        ],
-        "size": "large"
-      }
-    },
+
     {
       "id": "segmentedMedium",
       "component": "Segmented",
@@ -2122,16 +1975,87 @@
       }
     },
     {
-      "id": "segmentedSmall",
+      "id": "segmentedRowTextIcon",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "segmentedRowTextIconLabel",
+        "segmentedRowTextIconContent"
+      ]
+    },
+    {
+      "id": "segmentedRowTextIconLabel",
+      "component": "span",
+      "props": {
+        "value": "文字带图标",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "segmentedRowTextIconContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "segmentedTextIcon"
+      ]
+    },
+    {
+      "id": "segmentedTextIcon",
       "component": "Segmented",
       "props": {
-        "value": "选项一",
+        "value": "list",
         "options": [
-          "选项一",
-          "选项二",
-          "选项三"
+          { "label": "列表", "value": "list", "icon": "list" },
+          { "label": "卡片", "value": "card", "icon": "layout-grid" },
+          { "label": "表格", "value": "table", "icon": "table" }
         ],
-        "size": "small"
+        "size": "medium"
+      }
+    },
+    {
+      "id": "segmentedRowIcon",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "segmentedRowIconLabel",
+        "segmentedRowIconContent"
+      ]
+    },
+    {
+      "id": "segmentedRowIconLabel",
+      "component": "span",
+      "props": {
+        "value": "纯图标",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "segmentedRowIconContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "segmentedIcon"
+      ]
+    },
+    {
+      "id": "segmentedIcon",
+      "component": "Segmented",
+      "props": {
+        "value": "list",
+        "options": [
+          { "label": "", "value": "list", "icon": "list" },
+          { "label": "", "value": "card", "icon": "layout-grid" },
+          { "label": "", "value": "table", "icon": "table" }
+        ],
+        "size": "medium"
       }
     },
     {
@@ -2164,6 +2088,64 @@
           "选项三"
         ],
         "block": true
+      }
+    },
+    {
+      "id": "segmentedRowDisabled",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "segmentedRowDisabledLabel",
+        "segmentedRowDisabledContent"
+      ]
+    },
+    {
+      "id": "segmentedRowDisabledLabel",
+      "component": "span",
+      "props": {
+        "value": "禁用状态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "segmentedRowDisabledContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "segmentedDisabledTextIcon",
+        "segmentedDisabledIcon"
+      ]
+    },
+    {
+      "id": "segmentedDisabledTextIcon",
+      "component": "Segmented",
+      "props": {
+        "value": "list",
+        "options": [
+          { "label": "列表", "value": "list", "icon": "list" },
+          { "label": "卡片", "value": "card", "icon": "layout-grid" },
+          { "label": "表格", "value": "table", "icon": "table" }
+        ],
+        "size": "medium",
+        "disabled": true
+      }
+    },
+    {
+      "id": "segmentedDisabledIcon",
+      "component": "Segmented",
+      "props": {
+        "value": "list",
+        "options": [
+          { "value": "list", "icon": "list" },
+          { "value": "card", "icon": "layout-grid" },
+          { "value": "table", "icon": "table" }
+        ],
+        "size": "medium",
+        "disabled": true
       }
     },
     {
@@ -2483,7 +2465,8 @@
       "children": [
         "tableCardTitle",
         "tableRowDefault",
-        "tableRowExpandable"
+        "tableRowExpandable",
+        "tableRowSortFilter"
       ]
     },
     {
@@ -2521,6 +2504,7 @@
       },
       "children": [
         "sectionDataEntryTitle",
+        "checkboxCard",
         "checkboxGroupCard",
         "radioGroupCard",
         "datePickerCard",
@@ -2543,6 +2527,173 @@
       }
     },
     {
+      "id": "checkboxCard",
+      "component": "div",
+      "props": {
+        "className": "bg-surface-container-highest rounded-xl shadow-sm p-6 flex flex-col gap-5"
+      },
+      "children": [
+        "checkboxCardTitle",
+        "checkboxRowDefault",
+        "checkboxRowDisabled",
+        "checkboxRowIndeterminate"
+      ]
+    },
+    {
+      "id": "checkboxCardTitle",
+      "component": "span",
+      "props": {
+        "value": "Checkbox 复选框",
+        "className": "text-lg font-semibold text-on-surface"
+      }
+    },
+    {
+      "id": "checkboxRowDefault",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "checkboxRowDefaultLabel",
+        "checkboxRowDefaultContent"
+      ]
+    },
+    {
+      "id": "checkboxRowDefaultLabel",
+      "component": "span",
+      "props": {
+        "value": "基础用法",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "checkboxRowDefaultContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "checkboxDefault",
+        "checkboxChecked"
+      ]
+    },
+    {
+      "id": "checkboxDefault",
+      "component": "Checkbox",
+      "props": {
+        "label": "未选中",
+        "checked": false
+      }
+    },
+    {
+      "id": "checkboxChecked",
+      "component": "Checkbox",
+      "props": {
+        "label": "已选中",
+        "checked": {
+          "type": "state",
+          "path": "checkboxChecked"
+        }
+      }
+    },
+    {
+      "id": "checkboxRowDisabled",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "checkboxRowDisabledLabel",
+        "checkboxRowDisabledContent"
+      ]
+    },
+    {
+      "id": "checkboxRowDisabledLabel",
+      "component": "span",
+      "props": {
+        "value": "禁用状态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "checkboxRowDisabledContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "checkboxDisabledOff",
+        "checkboxDisabledOn"
+      ]
+    },
+    {
+      "id": "checkboxDisabledOff",
+      "component": "Checkbox",
+      "props": {
+        "label": "禁用-未选中",
+        "checked": false,
+        "disabled": true
+      }
+    },
+    {
+      "id": "checkboxDisabledOn",
+      "component": "Checkbox",
+      "props": {
+        "label": "禁用-已选中",
+        "checked": true,
+        "disabled": true
+      }
+    },
+    {
+      "id": "checkboxRowIndeterminate",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "checkboxRowIndeterminateLabel",
+        "checkboxRowIndeterminateContent"
+      ]
+    },
+    {
+      "id": "checkboxRowIndeterminateLabel",
+      "component": "span",
+      "props": {
+        "value": "半选状态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "checkboxRowIndeterminateContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "checkboxIndeterminate",
+        "checkboxIndeterminateDisabled"
+      ]
+    },
+    {
+      "id": "checkboxIndeterminate",
+      "component": "Checkbox",
+      "props": {
+        "label": "半选",
+        "checked": false,
+        "indeterminate": true
+      }
+    },
+    {
+      "id": "checkboxIndeterminateDisabled",
+      "component": "Checkbox",
+      "props": {
+        "label": "半选-禁用",
+        "checked": false,
+        "indeterminate": true,
+        "disabled": true
+      }
+    },
+    {
       "id": "checkboxGroupCard",
       "component": "div",
       "props": {
@@ -2550,7 +2701,9 @@
       },
       "children": [
         "checkboxGroupCardTitle",
-        "checkboxGroupRow"
+        "checkboxGroupRow",
+        "checkboxGroupRowDisabled",
+        "checkboxGroupRowIndeterminate"
       ]
     },
     {
@@ -2602,6 +2755,112 @@
             "value": "option3"
           }
         ]
+      }
+    },
+    {
+      "id": "checkboxGroupRowDisabled",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "checkboxGroupRowDisabledLabel",
+        "checkboxGroupRowDisabledContent"
+      ]
+    },
+    {
+      "id": "checkboxGroupRowDisabledLabel",
+      "component": "span",
+      "props": {
+        "value": "禁用状态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "checkboxGroupRowDisabledContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "checkboxGroupDisabled"
+      ]
+    },
+    {
+      "id": "checkboxGroupDisabled",
+      "component": "CheckboxGroup",
+      "props": {
+        "value": [
+          "option1"
+        ],
+        "options": [
+          {
+            "label": "选项一",
+            "value": "option1"
+          },
+          {
+            "label": "选项二",
+            "value": "option2"
+          },
+          {
+            "label": "选项三",
+            "value": "option3"
+          }
+        ],
+        "disabled": true
+      }
+    },
+    {
+      "id": "checkboxGroupRowIndeterminate",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "checkboxGroupRowIndeterminateLabel",
+        "checkboxGroupRowIndeterminateContent"
+      ]
+    },
+    {
+      "id": "checkboxGroupRowIndeterminateLabel",
+      "component": "span",
+      "props": {
+        "value": "半选状态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "checkboxGroupRowIndeterminateContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "checkboxGroupIndeterminate"
+      ]
+    },
+    {
+      "id": "checkboxGroupIndeterminate",
+      "component": "CheckboxGroup",
+      "props": {
+        "value": [
+          "option1"
+        ],
+        "options": [
+          {
+            "label": "选项一",
+            "value": "option1"
+          },
+          {
+            "label": "选项二",
+            "value": "option2"
+          },
+          {
+            "label": "选项三",
+            "value": "option3"
+          }
+        ],
+        "indeterminate": true
       }
     },
     {
@@ -2716,7 +2975,6 @@
             "value": "guangzhou"
           }
         ],
-        "optionType": "button",
         "size": "large"
       }
     },
@@ -2739,7 +2997,6 @@
             "value": "guangzhou"
           }
         ],
-        "optionType": "button",
         "size": "medium"
       }
     },
@@ -2762,7 +3019,6 @@
             "value": "guangzhou"
           }
         ],
-        "optionType": "button",
         "size": "small"
       }
     },
@@ -2817,7 +3073,8 @@
         "datePickerCardTitle",
         "datePickerRowSingle",
         "datePickerRowRange",
-        "datePickerRowSizes"
+        "datePickerRowSizes",
+        "datePickerRowDisabled"
       ]
     },
     {
@@ -2851,7 +3108,7 @@
       "id": "datePickerSingle",
       "component": "DatePicker",
       "props": {
-        "value": "2026-06-23",
+        "value": "",
         "placeholder": "请选择日期",
         "format": "YYYY-MM-DD"
       }
@@ -2946,6 +3203,45 @@
         "value": "2026-06-23",
         "size": "small",
         "placeholder": "小尺寸"
+      }
+    },
+    {
+      "id": "datePickerRowDisabled",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "datePickerRowDisabledLabel",
+        "datePickerRowDisabledContent"
+      ]
+    },
+    {
+      "id": "datePickerRowDisabledLabel",
+      "component": "span",
+      "props": {
+        "value": "禁用状态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "datePickerRowDisabledContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-4 flex-wrap"
+      },
+      "children": [
+        "datePickerDisabled"
+      ]
+    },
+    {
+      "id": "datePickerDisabled",
+      "component": "DatePicker",
+      "props": {
+        "value": "2026-06-23",
+        "placeholder": "请选择日期",
+        "format": "YYYY-MM-DD",
+        "disabled": true
       }
     },
     {
@@ -3171,6 +3467,7 @@
       "component": "TextArea",
       "props": {
         "value": "这是一个多行文本输入框的示例内容，可以输入较长的文本。",
+        "maxLength": 1000,
         "placeholder": "请输入内容"
       }
     },
@@ -3198,6 +3495,7 @@
       "component": "TextArea",
       "props": {
         "value": "自适应高度的文本域，会根据内容自动调整高度。",
+        "maxLength": 100,
         "autoSize": true
       }
     },
@@ -3209,8 +3507,7 @@
       },
       "children": [
         "inputNumberCardTitle",
-        "inputNumberRowDefault",
-        "inputNumberRowControls"
+        "inputNumberRowDefault"
       ]
     },
     {
@@ -3249,34 +3546,6 @@
       }
     },
     {
-      "id": "inputNumberRowControls",
-      "component": "div",
-      "props": {
-        "className": "flex flex-col gap-2"
-      },
-      "children": [
-        "inputNumberRowControlsLabel",
-        "inputNumberControls"
-      ]
-    },
-    {
-      "id": "inputNumberRowControlsLabel",
-      "component": "span",
-      "props": {
-        "value": "无控制器",
-        "className": "text-sm text-on-surface-variant"
-      }
-    },
-    {
-      "id": "inputNumberControls",
-      "component": "InputNumber",
-      "props": {
-        "value": 10,
-        "controls": false,
-        "step": 5
-      }
-    },
-    {
       "id": "timePickerCard",
       "component": "div",
       "props": {
@@ -3286,7 +3555,7 @@
         "timePickerCardTitle",
         "timePickerRowDefault",
         "timePickerRowRange",
-        "timePickerRowSizes"
+        "timePickerRowDisabled"
       ]
     },
     {
@@ -3320,7 +3589,6 @@
       "id": "timePickerDefault",
       "component": "TimePicker",
       "props": {
-        "value": "2023-10-01 14:30:00",
         "placeholder": "请选择时间"
       }
     },
@@ -3347,10 +3615,6 @@
       "id": "timePickerRange",
       "component": "TimePicker",
       "props": {
-        "value": [
-          "2023-10-01 08:00:00",
-          "2023-10-01 18:00:00"
-        ],
         "range": true,
         "placeholder": [
           "开始时间",
@@ -3359,61 +3623,40 @@
       }
     },
     {
-      "id": "timePickerRowSizes",
+      "id": "timePickerRowDisabled",
       "component": "div",
       "props": {
         "className": "flex flex-col gap-2"
       },
       "children": [
-        "timePickerRowSizesLabel",
-        "timePickerRowSizesContent"
+        "timePickerRowDisabledLabel",
+        "timePickerRowDisabledContent"
       ]
     },
     {
-      "id": "timePickerRowSizesLabel",
+      "id": "timePickerRowDisabledLabel",
       "component": "span",
       "props": {
-        "value": "尺寸变体",
+        "value": "禁用状态",
         "className": "text-sm text-on-surface-variant"
       }
     },
     {
-      "id": "timePickerRowSizesContent",
+      "id": "timePickerRowDisabledContent",
       "component": "div",
       "props": {
-        "className": "flex items-center gap-3 flex-wrap"
+        "className": "flex items-center gap-4 flex-wrap"
       },
       "children": [
-        "timePickerLarge",
-        "timePickerMedium",
-        "timePickerSmall"
+        "timePickerDisabled"
       ]
     },
     {
-      "id": "timePickerLarge",
+      "id": "timePickerDisabled",
       "component": "TimePicker",
       "props": {
-        "value": "2023-10-01 14:30:00",
-        "size": "large",
-        "placeholder": "大尺寸"
-      }
-    },
-    {
-      "id": "timePickerMedium",
-      "component": "TimePicker",
-      "props": {
-        "value": "2023-10-01 14:30:00",
-        "size": "medium",
-        "placeholder": "中尺寸"
-      }
-    },
-    {
-      "id": "timePickerSmall",
-      "component": "TimePicker",
-      "props": {
-        "value": "2023-10-01 14:30:00",
-        "size": "small",
-        "placeholder": "小尺寸"
+        "placeholder": "请选择时间",
+        "disabled": true
       }
     },
     {
@@ -3773,7 +4016,7 @@
         "switchRowDefault",
         "switchRowText",
         "switchRowIcon",
-        "switchRowSizes"
+        "switchRowDisabled"
       ]
     },
     {
@@ -3885,34 +4128,50 @@
       }
     },
     {
-      "id": "switchRowSizes",
+      "id": "switchRowDisabled",
       "component": "div",
       "props": {
         "className": "flex flex-col gap-2"
       },
       "children": [
-        "switchRowSizesLabel",
-        "switchRowSizesContent"
+        "switchRowDisabledLabel",
+        "switchRowDisabledContent"
       ]
     },
     {
-      "id": "switchRowSizesLabel",
+      "id": "switchRowDisabledLabel",
       "component": "span",
       "props": {
-        "value": "尺寸变体",
+        "value": "禁用状态",
         "className": "text-sm text-on-surface-variant"
       }
     },
     {
-      "id": "switchRowSizesContent",
+      "id": "switchRowDisabledContent",
       "component": "div",
       "props": {
-        "className": "flex items-center gap-4"
+        "className": "flex items-center gap-4 flex-wrap"
       },
       "children": [
-        "switchMedium",
-        "switchSmall"
+        "switchDisabledOn",
+        "switchDisabledOff"
       ]
+    },
+    {
+      "id": "switchDisabledOn",
+      "component": "Switch",
+      "props": {
+        "value": true,
+        "disabled": true
+      }
+    },
+    {
+      "id": "switchDisabledOff",
+      "component": "Switch",
+      "props": {
+        "value": false,
+        "disabled": true
+      }
     },
     {
       "id": "switchMedium",
@@ -4047,6 +4306,7 @@
         "dropdownCard",
         "tabsCard",
         "stepsCard",
+        "paginationCard",
         "menuCard"
       ]
     },
@@ -4235,7 +4495,6 @@
       "component": "Button",
       "props": {
         "value": "点击展开",
-        "color": "primary",
         "icon": "chevron-down",
         "iconPlacement": "end"
       }
@@ -4288,7 +4547,14 @@
         "tabsCardTitle",
         "tabsRowLine",
         "tabsRowCard",
-        "tabsRowPlacement"
+        "tabsRowSeparator",
+        "tabsRowLineEditable",
+        "tabsRowEditableCard",
+        "tabsRowSize",
+        "tabsRowDisabled",
+        "tabsRowOverflow",
+        "tabsRowOverflowCard",
+        "tabsRowOverflowSeparator"
       ]
     },
     {
@@ -4337,7 +4603,7 @@
       "props": {
         "key": "tab1",
         "label": "概述",
-        "icon": "info",
+        "icon": "home",
         "content": "这是概述页面的内容，包含项目的整体介绍和关键信息摘要。"
       }
     },
@@ -4347,7 +4613,7 @@
       "props": {
         "key": "tab2",
         "label": "详情",
-        "icon": "file-text",
+        "icon": "file",
         "content": "这是详情页面的内容，包含项目的详细说明和技术规格参数。"
       }
     },
@@ -4359,6 +4625,133 @@
         "label": "设置",
         "icon": "settings",
         "content": "这是设置页面的内容，包含各项配置选项。"
+      }
+    },
+    {
+      "id": "tabsRowLineEditable",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tabsRowLineEditableLabel",
+        "tabsLineEditable"
+      ]
+    },
+    {
+      "id": "tabsRowLineEditableLabel",
+      "component": "span",
+      "props": {
+        "value": "删除形态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsLineEditable",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "line"
+      },
+      "children": [
+        "tabLineEditable1",
+        "tabLineEditable2",
+        "tabLineEditable3"
+      ]
+    },
+    {
+      "id": "tabLineEditable1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "概述",
+        "icon": "home",
+        "closable": true,
+        "content": "可删除的线条标签页概述内容。"
+      }
+    },
+    {
+      "id": "tabLineEditable2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "详情",
+        "icon": "file",
+        "closable": true,
+        "content": "可删除的线条标签页详情内容。"
+      }
+    },
+    {
+      "id": "tabLineEditable3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "设置",
+        "icon": "settings",
+        "closable": true,
+        "content": "可删除的线条标签页设置内容。"
+      }
+    },
+    {
+      "id": "tabsRowSeparator",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tabsRowSeparatorLabel",
+        "tabsSeparator"
+      ]
+    },
+    {
+      "id": "tabsRowSeparatorLabel",
+      "component": "span",
+      "props": {
+        "value": "分割线样式",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsSeparator",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "stab1",
+        "types": "separator"
+      },
+      "children": [
+        "tabSep1",
+        "tabSep2",
+        "tabSep3"
+      ]
+    },
+    {
+      "id": "tabSep1",
+      "component": "TabItem",
+      "props": {
+        "key": "stab1",
+        "label": "概述",
+        "icon": "home",
+        "content": "这是分割线样式概述页面的内容。"
+      }
+    },
+    {
+      "id": "tabSep2",
+      "component": "TabItem",
+      "props": {
+        "key": "stab2",
+        "label": "详情",
+        "icon": "file",
+        "content": "这是分割线样式详情页面的内容。"
+      }
+    },
+    {
+      "id": "tabSep3",
+      "component": "TabItem",
+      "props": {
+        "key": "stab3",
+        "label": "设置",
+        "icon": "settings",
+        "content": "这是分割线样式设置页面的内容。"
       }
     },
     {
@@ -4421,55 +4814,946 @@
       }
     },
     {
-      "id": "tabsRowPlacement",
+      "id": "tabsRowEditableCard",
       "component": "div",
       "props": {
         "className": "flex flex-col gap-2"
       },
       "children": [
-        "tabsRowPlacementLabel",
-        "tabsPlacement"
+        "tabsRowEditableCardLabel",
+        "tabsEditableCard"
       ]
     },
     {
-      "id": "tabsRowPlacementLabel",
+      "id": "tabsRowEditableCardLabel",
       "component": "span",
       "props": {
-        "value": "左侧标签",
+        "value": "可编辑卡片样式",
         "className": "text-sm text-on-surface-variant"
       }
     },
     {
-      "id": "tabsPlacement",
+      "id": "tabsEditableCard",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "card"
+      },
+      "children": [
+        "tabEditableCard1",
+        "tabEditableCard2",
+        "tabEditableCard3"
+      ]
+    },
+    {
+      "id": "tabEditableCard1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "文档一",
+        "closable": true,
+        "content": "可编辑卡片文档一的内容"
+      }
+    },
+    {
+      "id": "tabEditableCard2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "文档二",
+        "closable": true,
+        "content": "可编辑卡片文档二的内容"
+      }
+    },
+    {
+      "id": "tabEditableCard3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "文档三",
+        "closable": true,
+        "content": "可编辑卡片文档三的内容"
+      }
+    },
+    {
+      "id": "tabsRowSize",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tabsRowSizeLabel",
+        "tabsRowSizeContent"
+      ]
+    },
+    {
+      "id": "tabsRowSizeLabel",
+      "component": "span",
+      "props": {
+        "value": "尺寸变体（结合类型）",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsRowSizeContent",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-6"
+      },
+      "children": [
+        "tabsSizeLineGroup",
+        "tabsSizeCardGroup",
+        "tabsSizeSeparatorGroup"
+      ]
+    },
+    {
+      "id": "tabsSizeLineGroup",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-3"
+      },
+      "children": [
+        "tabsSizeLineGroupLabel",
+        "tabsSizeLineGroupContent"
+      ]
+    },
+    {
+      "id": "tabsSizeLineGroupLabel",
+      "component": "span",
+      "props": {
+        "value": "line 线条",
+        "className": "text-xs text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsSizeLineGroupContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-start gap-4 flex-wrap"
+      },
+      "children": [
+        "tabsSizeLineLarge",
+        "tabsSizeLineMedium",
+        "tabsSizeLineSmall"
+      ]
+    },
+    {
+      "id": "tabsSizeLineLarge",
       "component": "Tabs",
       "props": {
         "activeKey": "tab1",
         "types": "line",
-        "tabPlacement": "start"
+        "size": "large"
       },
       "children": [
-        "tabPlacement1",
-        "tabPlacement2"
+        "tabSizeLineL1",
+        "tabSizeLineL2",
+        "tabSizeLineL3"
       ]
     },
     {
-      "id": "tabPlacement1",
+      "id": "tabSizeLineL1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "大尺寸",
+        "icon": "home",
+        "content": "大尺寸线条标签页内容"
+      }
+    },
+    {
+      "id": "tabSizeLineL2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "详情",
+        "icon": "file",
+        "content": "大尺寸线条标签二内容"
+      }
+    },
+    {
+      "id": "tabSizeLineL3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "设置",
+        "icon": "settings",
+        "content": "大尺寸线条标签三内容"
+      }
+    },
+    {
+      "id": "tabsSizeLineMedium",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "line",
+        "size": "medium"
+      },
+      "children": [
+        "tabSizeLineM1",
+        "tabSizeLineM2",
+        "tabSizeLineM3"
+      ]
+    },
+    {
+      "id": "tabSizeLineM1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "中尺寸",
+        "icon": "home",
+        "content": "中尺寸线条标签页内容"
+      }
+    },
+    {
+      "id": "tabSizeLineM2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "详情",
+        "icon": "file",
+        "content": "中尺寸线条标签二内容"
+      }
+    },
+    {
+      "id": "tabSizeLineM3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "设置",
+        "icon": "settings",
+        "content": "中尺寸线条标签三内容"
+      }
+    },
+    {
+      "id": "tabsSizeLineSmall",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "line",
+        "size": "small"
+      },
+      "children": [
+        "tabSizeLineS1",
+        "tabSizeLineS2",
+        "tabSizeLineS3"
+      ]
+    },
+    {
+      "id": "tabSizeLineS1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "小尺寸",
+        "icon": "home",
+        "content": "小尺寸线条标签页内容"
+      }
+    },
+    {
+      "id": "tabSizeLineS2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "详情",
+        "icon": "file",
+        "content": "小尺寸线条标签二内容"
+      }
+    },
+    {
+      "id": "tabSizeLineS3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "设置",
+        "icon": "settings",
+        "content": "小尺寸线条标签三内容"
+      }
+    },
+    {
+      "id": "tabsSizeCardGroup",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-3"
+      },
+      "children": [
+        "tabsSizeCardGroupLabel",
+        "tabsSizeCardGroupContent"
+      ]
+    },
+    {
+      "id": "tabsSizeCardGroupLabel",
+      "component": "span",
+      "props": {
+        "value": "card 卡片",
+        "className": "text-xs text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsSizeCardGroupContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-start gap-4 flex-wrap"
+      },
+      "children": [
+        "tabsSizeCardLarge",
+        "tabsSizeCardMedium",
+        "tabsSizeCardSmall"
+      ]
+    },
+    {
+      "id": "tabsSizeCardLarge",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "card",
+        "size": "large"
+      },
+      "children": [
+        "tabSizeCardL1",
+        "tabSizeCardL2",
+        "tabSizeCardL3"
+      ]
+    },
+    {
+      "id": "tabSizeCardL1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "大尺寸",
+        "content": "大尺寸卡片标签页内容"
+      }
+    },
+    {
+      "id": "tabSizeCardL2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "扩展信息",
+        "content": "大尺寸卡片标签二内容"
+      }
+    },
+    {
+      "id": "tabSizeCardL3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "历史记录",
+        "content": "大尺寸卡片标签三内容"
+      }
+    },
+    {
+      "id": "tabsSizeCardMedium",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "card",
+        "size": "medium"
+      },
+      "children": [
+        "tabSizeCardM1",
+        "tabSizeCardM2",
+        "tabSizeCardM3"
+      ]
+    },
+    {
+      "id": "tabSizeCardM1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "中尺寸",
+        "content": "中尺寸卡片标签页内容"
+      }
+    },
+    {
+      "id": "tabSizeCardM2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "扩展信息",
+        "content": "中尺寸卡片标签二内容"
+      }
+    },
+    {
+      "id": "tabSizeCardM3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "历史记录",
+        "content": "中尺寸卡片标签三内容"
+      }
+    },
+    {
+      "id": "tabsSizeCardSmall",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "card",
+        "size": "small"
+      },
+      "children": [
+        "tabSizeCardS1",
+        "tabSizeCardS2",
+        "tabSizeCardS3"
+      ]
+    },
+    {
+      "id": "tabSizeCardS1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "小尺寸",
+        "content": "小尺寸卡片标签页内容"
+      }
+    },
+    {
+      "id": "tabSizeCardS2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "扩展信息",
+        "content": "小尺寸卡片标签二内容"
+      }
+    },
+    {
+      "id": "tabSizeCardS3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "历史记录",
+        "content": "小尺寸卡片标签三内容"
+      }
+    },
+    {
+      "id": "tabsSizeSeparatorGroup",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-3"
+      },
+      "children": [
+        "tabsSizeSeparatorGroupLabel",
+        "tabsSizeSeparatorGroupContent"
+      ]
+    },
+    {
+      "id": "tabsSizeSeparatorGroupLabel",
+      "component": "span",
+      "props": {
+        "value": "separator 分割线",
+        "className": "text-xs text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsSizeSeparatorGroupContent",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-4"
+      },
+      "children": [
+        "tabsSizeSepLarge",
+        "tabsSizeSepMedium",
+        "tabsSizeSepSmall"
+      ]
+    },
+    {
+      "id": "tabsSizeSepLarge",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "separator",
+        
+        "size": "large"
+      },
+      "children": [
+        "tabSizeSepL1",
+        "tabSizeSepL2"
+      ]
+    },
+    {
+      "id": "tabSizeSepL1",
       "component": "TabItem",
       "props": {
         "key": "tab1",
         "label": "标签一",
-        "content": "标签一内容"
+        "icon": "settings",
+        "content": "大尺寸分割线标签一内容"
       }
     },
     {
-      "id": "tabPlacement2",
+      "id": "tabSizeSepL2",
       "component": "TabItem",
       "props": {
         "key": "tab2",
         "label": "标签二",
-        "content": "标签二内容"
+        "icon": "settings",
+        "content": "大尺寸分割线标签二内容"
       }
     },
+    {
+      "id": "tabsSizeSepMedium",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "separator",
+        
+        "size": "medium"
+      },
+      "children": [
+        "tabSizeSepM1",
+        "tabSizeSepM2"
+      ]
+    },
+    {
+      "id": "tabSizeSepM1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "标签一",
+        "icon": "settings",
+        "content": "中尺寸分割线标签一内容"
+      }
+    },
+    {
+      "id": "tabSizeSepM2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "标签二",
+        "icon": "settings",
+        "content": "中尺寸分割线标签二内容"
+      }
+    },
+    {
+      "id": "tabsSizeSepSmall",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "separator",
+        
+        "size": "small"
+      },
+      "children": [
+        "tabSizeSepS1",
+        "tabSizeSepS2"
+      ]
+    },
+    {
+      "id": "tabSizeSepS1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "标签一",
+        "icon": "settings",
+        "content": "小尺寸分割线标签一内容"
+      }
+    },
+    {
+      "id": "tabSizeSepS2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "标签二",
+        "icon": "settings",
+        "content": "小尺寸分割线标签二内容"
+      }
+    },
+    {
+      "id": "tabsRowDisabled",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tabsRowDisabledLabel",
+        "tabsDisabled",
+        "tabsDisabledCard"
+      ]
+    },
+    {
+      "id": "tabsRowDisabledLabel",
+      "component": "span",
+      "props": {
+        "value": "禁用状态",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsDisabled",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "line"
+      },
+      "children": [
+        "tabDisabled1",
+        "tabDisabled2",
+        "tabDisabled3"
+      ]
+    },
+    {
+      "id": "tabDisabled1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "可用",
+        "icon": "home",
+        "content": "这是可用的标签页内容。"
+      }
+    },
+    {
+      "id": "tabDisabled2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "禁用",
+        "disabled": true,
+        "icon": "file",
+        "content": "这是禁用的标签页内容。"
+      }
+    },
+    {
+      "id": "tabDisabled3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "可用",
+        "icon": "settings",
+        "content": "这是另一个可用的标签页内容。"
+      }
+    },
+    {
+      "id": "tabsDisabledCard",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "card"
+      },
+      "children": [
+        "tabDisabledCard1",
+        "tabDisabledCard2",
+        "tabDisabledCard3"
+      ]
+    },
+    {
+      "id": "tabDisabledCard1",
+      "component": "TabItem",
+      "props": {
+        "key": "tab1",
+        "label": "可用",
+        "icon": "home",
+        "content": "这是卡片形态可用的标签页内容。"
+      }
+    },
+    {
+      "id": "tabDisabledCard2",
+      "component": "TabItem",
+      "props": {
+        "key": "tab2",
+        "label": "禁用",
+        "disabled": true,
+        "icon": "file",
+        "content": "这是卡片形态禁用的标签页内容。"
+      }
+    },
+    {
+      "id": "tabDisabledCard3",
+      "component": "TabItem",
+      "props": {
+        "key": "tab3",
+        "label": "可用",
+        "icon": "settings",
+        "content": "这是卡片形态另一个可用的标签页内容。"
+      }
+    },
+    {
+      "id": "tabsRowOverflow",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tabsRowOverflowLabel",
+        "tabsOverflow"
+      ]
+    },
+    {
+      "id": "tabsRowOverflowLabel",
+      "component": "span",
+      "props": {
+        "value": "溢出更多",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsOverflow",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tab1",
+        "types": "line",
+        "maxVisible": 4
+      },
+      "children": [
+        "tabOverflow1",
+        "tabOverflow2",
+        "tabOverflow3",
+        "tabOverflow4",
+        "tabOverflow5",
+        "tabOverflow6"
+      ]
+    },
+    {
+      "id": "tabOverflow1",
+      "component": "TabItem",
+      "props": {
+        "key": "otab1",
+        "label": "标签一",
+        "icon": "home",
+        "content": "标签一的内容"
+      }
+    },
+    {
+      "id": "tabOverflow2",
+      "component": "TabItem",
+      "props": {
+        "key": "otab2",
+        "label": "标签二",
+        "icon": "file",
+        "content": "标签二的内容"
+      }
+    },
+    {
+      "id": "tabOverflow3",
+      "component": "TabItem",
+      "props": {
+        "key": "otab3",
+        "label": "标签三",
+        "icon": "settings",
+        "content": "标签三的内容"
+      }
+    },
+    {
+      "id": "tabOverflow4",
+      "component": "TabItem",
+      "props": {
+        "key": "otab4",
+        "label": "标签四",
+        "icon": "home",
+        "content": "标签四的内容"
+      }
+    },
+    {
+      "id": "tabOverflow5",
+      "component": "TabItem",
+      "props": {
+        "key": "otab5",
+        "label": "标签五",
+        "icon": "file",
+        "content": "标签五的内容"
+      }
+    },
+    {
+      "id": "tabOverflow6",
+      "component": "TabItem",
+      "props": {
+        "key": "otab6",
+        "label": "标签六",
+        "icon": "settings",
+        "content": "标签六的内容"
+      }
+    },
+    {
+      "id": "tabsRowOverflowCard",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tabsRowOverflowCardLabel",
+        "tabsOverflowCard"
+      ]
+    },
+    {
+      "id": "tabsRowOverflowCardLabel",
+      "component": "span",
+      "props": {
+        "value": "溢出更多-卡片",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsOverflowCard",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "coctab1",
+        "types": "card",
+        "maxVisible": 4
+      },
+      "children": [
+        "tabOverflowCard1",
+        "tabOverflowCard2",
+        "tabOverflowCard3",
+        "tabOverflowCard4",
+        "tabOverflowCard5",
+        "tabOverflowCard6"
+      ]
+    },
+    {
+      "id": "tabOverflowCard1",
+      "component": "TabItem",
+      "props": {
+        "key": "coctab1",
+        "label": "标签一",
+        "icon": "home",
+        "content": "卡片标签一的内容"
+      }
+    },
+    {
+      "id": "tabOverflowCard2",
+      "component": "TabItem",
+      "props": {
+        "key": "coctab2",
+        "label": "标签二",
+        "icon": "file",
+        "content": "卡片标签二的内容"
+      }
+    },
+    {
+      "id": "tabOverflowCard3",
+      "component": "TabItem",
+      "props": {
+        "key": "coctab3",
+        "label": "标签三",
+        "icon": "settings",
+        "content": "卡片标签三的内容"
+      }
+    },
+    {
+      "id": "tabOverflowCard4",
+      "component": "TabItem",
+      "props": {
+        "key": "coctab4",
+        "label": "标签四",
+        "icon": "home",
+        "content": "卡片标签四的内容"
+      }
+    },
+    {
+      "id": "tabOverflowCard5",
+      "component": "TabItem",
+      "props": {
+        "key": "coctab5",
+        "label": "标签五",
+        "icon": "file",
+        "content": "卡片标签五的内容"
+      }
+    },
+    {
+      "id": "tabOverflowCard6",
+      "component": "TabItem",
+      "props": {
+        "key": "coctab6",
+        "label": "标签六",
+        "icon": "settings",
+        "content": "卡片标签六的内容"
+      }
+    },
+    {
+      "id": "tabsRowOverflowSeparator",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tabsRowOverflowSeparatorLabel",
+        "tabsOverflowSeparator"
+      ]
+    },
+    {
+      "id": "tabsRowOverflowSeparatorLabel",
+      "component": "span",
+      "props": {
+        "value": "溢出更多-分割线",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tabsOverflowSeparator",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "sostab1",
+        "types": "separator",
+        "size": "medium",
+        "maxVisible": 4
+      },
+      "children": [
+        "tabOverflowSep1",
+        "tabOverflowSep2",
+        "tabOverflowSep3",
+        "tabOverflowSep4",
+        "tabOverflowSep5",
+        "tabOverflowSep6"
+      ]
+    },
+    {
+      "id": "tabOverflowSep1",
+      "component": "TabItem",
+      "props": {
+        "key": "sostab1",
+        "label": "标签一",
+        "icon": "home",
+        "content": "分割线标签一的内容"
+      }
+    },
+    {
+      "id": "tabOverflowSep2",
+      "component": "TabItem",
+      "props": {
+        "key": "sostab2",
+        "label": "标签二",
+        "icon": "file",
+        "content": "分割线标签二的内容"
+      }
+    },
+    {
+      "id": "tabOverflowSep3",
+      "component": "TabItem",
+      "props": {
+        "key": "sostab3",
+        "label": "标签三",
+        "icon": "settings",
+        "content": "分割线标签三的内容"
+      }
+    },
+    {
+      "id": "tabOverflowSep4",
+      "component": "TabItem",
+      "props": {
+        "key": "sostab4",
+        "label": "标签四",
+        "icon": "home",
+        "content": "分割线标签四的内容"
+      }
+    },
+    {
+      "id": "tabOverflowSep5",
+      "component": "TabItem",
+      "props": {
+        "key": "sostab5",
+        "label": "标签五",
+        "icon": "file",
+        "content": "分割线标签五的内容"
+      }
+    },
+    {
+      "id": "tabOverflowSep6",
+      "component": "TabItem",
+      "props": {
+        "key": "sostab6",
+        "label": "标签六",
+        "icon": "settings",
+        "content": "分割线标签六的内容"
+      }
+    },
+    
     {
       "id": "stepsCard",
       "component": "div",
@@ -4478,9 +5762,10 @@
       },
       "children": [
         "stepsCardTitle",
-        "stepsRowDefault",
         "stepsRowDot",
-        "stepsRowVertical"
+        "stepsRowVertical",
+        "stepsRowDefault",
+        "stepsRowPanel"
       ]
     },
     {
@@ -4506,7 +5791,7 @@
       "id": "stepsRowDefaultLabel",
       "component": "span",
       "props": {
-        "value": "默认步骤条",
+        "value": "自定义节点步骤条",
         "className": "text-sm text-on-surface-variant"
       }
     },
@@ -4681,6 +5966,72 @@
       }
     },
     {
+      "id": "stepsRowPanel",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "stepsRowPanelLabel",
+        "stepsPanel"
+      ]
+    },
+    {
+      "id": "stepsRowPanelLabel",
+      "component": "span",
+      "props": {
+        "value": "面板步骤条",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "stepsPanel",
+      "component": "Steps",
+      "props": {
+        "current": 1,
+        "types": "panel",
+        "className": "w-full"
+      },
+      "children": [
+        "stepPanelItem1",
+        "stepPanelItem2",
+        "stepPanelItem3",
+        "stepPanelItem4"
+      ]
+    },
+    {
+      "id": "stepPanelItem1",
+      "component": "StepItem",
+      "props": {
+        "title": "立项",
+        "status": "finish"
+      }
+    },
+    {
+      "id": "stepPanelItem2",
+      "component": "StepItem",
+      "props": {
+        "title": "开发",
+        "status": "process"
+      }
+    },
+    {
+      "id": "stepPanelItem3",
+      "component": "StepItem",
+      "props": {
+        "title": "测试",
+        "status": "wait"
+      }
+    },
+    {
+      "id": "stepPanelItem4",
+      "component": "StepItem",
+      "props": {
+        "title": "上线",
+        "status": "wait"
+      }
+    },
+    {
       "id": "sectionResponse",
       "component": "div",
       "props": {
@@ -4688,7 +6039,8 @@
       },
       "children": [
         "sectionResponseTitle",
-        "progressCard"
+        "progressCard",
+        "modalCard"
       ]
     },
     {
@@ -5034,6 +6386,178 @@
       }
     },
     {
+      "id": "tableRowSortFilter",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "tableRowSortFilterLabel",
+        "tableSortFilter"
+      ]
+    },
+    {
+      "id": "tableRowSortFilterLabel",
+      "component": "span",
+      "props": {
+        "value": "排序与筛选",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "tableSortFilter",
+      "component": "Table",
+      "props": {
+        "rowKey": "key",
+        "columns": [
+          {
+            "title": "姓名",
+            "dataIndex": "name",
+            "width": 100
+          },
+          {
+            "title": "年龄",
+            "dataIndex": "age",
+            "sort": true,
+            "minWidth": 80
+          },
+          {
+            "title": "部门",
+            "dataIndex": "department",
+            "filters": [
+              {
+                "text": "研发部",
+                "value": "研发部"
+              },
+              {
+                "text": "市场部",
+                "value": "市场部"
+              },
+              {
+                "text": "设计部",
+                "value": "设计部"
+              },
+              {
+                "text": "运营部",
+                "value": "运营部"
+              }
+            ],
+            "minWidth": 100
+          },
+          {
+            "title": "职位",
+            "dataIndex": "position",
+            "minWidth": 120
+          },
+          {
+            "title": "薪资",
+            "dataIndex": "salary",
+            "sort": true,
+            "minWidth": 100
+          },
+          {
+            "title": "状态",
+            "dataIndex": "status",
+            "filters": [
+              {
+                "text": "在职",
+                "value": "在职"
+              },
+              {
+                "text": "休假",
+                "value": "休假"
+              },
+              {
+                "text": "离职",
+                "value": "离职"
+              }
+            ],
+            "minWidth": 80
+          }
+        ],
+        "dataSource": {
+          "path": "/sortFilterTableData"
+        },
+        "pagination": false
+      },
+      "children": {
+        "componentId": "tableSortFilterRowTpl",
+        "path": "/sortFilterTableData"
+      }
+    },
+    {
+      "id": "tableSortFilterRowTpl",
+      "component": "TableRow",
+      "children": [
+        "sortFilterCellName",
+        "sortFilterCellAge",
+        "sortFilterCellDept",
+        "sortFilterCellPosition",
+        "sortFilterCellSalary",
+        "sortFilterCellStatus"
+      ]
+    },
+    {
+      "id": "sortFilterCellName",
+      "component": "span",
+      "props": {
+        "value": {
+          "path": "name"
+        },
+        "className": ""
+      }
+    },
+    {
+      "id": "sortFilterCellAge",
+      "component": "span",
+      "props": {
+        "value": {
+          "path": "age"
+        },
+        "className": ""
+      }
+    },
+    {
+      "id": "sortFilterCellDept",
+      "component": "span",
+      "props": {
+        "value": {
+          "path": "department"
+        },
+        "className": ""
+      }
+    },
+    {
+      "id": "sortFilterCellPosition",
+      "component": "span",
+      "props": {
+        "value": {
+          "path": "position"
+        },
+        "className": ""
+      }
+    },
+    {
+      "id": "sortFilterCellSalary",
+      "component": "span",
+      "props": {
+        "value": {
+          "path": "salary"
+        },
+        "className": ""
+      }
+    },
+    {
+      "id": "sortFilterCellStatus",
+      "component": "Tag",
+      "props": {
+        "value": {
+          "path": "status"
+        },
+        "color": "default"
+      }
+    },
+    {
       "id": "tableDefault",
       "component": "Table",
       "props": {
@@ -5209,6 +6733,53 @@
       }
     },
     {
+      "id": "paginationCard",
+      "component": "div",
+      "props": {
+        "className": "bg-surface-container-highest rounded-xl shadow-sm p-6 flex flex-col gap-5"
+      },
+      "children": [
+        "paginationCardTitle",
+        "paginationRowShowTotal"
+      ]
+    },
+    {
+      "id": "paginationCardTitle",
+      "component": "span",
+      "props": {
+        "value": "Pagination 分页",
+        "className": "text-lg font-semibold text-on-surface"
+      }
+    },
+    {
+      "id": "paginationRowShowTotal",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "paginationRowShowTotalLabel",
+        "paginationShowTotal"
+      ]
+    },
+    {
+      "id": "paginationRowShowTotalLabel",
+      "component": "span",
+      "props": {
+        "value": "显示总数",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "paginationShowTotal",
+      "component": "Pagination",
+      "props": {
+        "current": 3,
+        "total": 85,
+        "showTotal": true
+      }
+    },
+    {
       "id": "menuCard",
       "component": "div",
       "props": {
@@ -5254,10 +6825,12 @@
       "props": {
         "mode": "vertical",
         "selectedKeys": [
-          "home"
+          "userList"
         ],
         "openKeys": [
-          "system"
+          "system",
+          "content",
+          "user"
         ],
         "className": "w-54",
         "items": [
@@ -5273,11 +6846,31 @@
             "children": [
               {
                 "key": "user",
-                "title": "用户管理"
+                "title": "用户管理",
+                "children": [
+                  {
+                    "key": "userList",
+                    "title": "用户列表"
+                  },
+                  {
+                    "key": "userAudit",
+                    "title": "用户审核"
+                  }
+                ]
               },
               {
                 "key": "role",
-                "title": "角色管理"
+                "title": "角色管理",
+                "children": [
+                  {
+                    "key": "roleConfig",
+                    "title": "角色配置"
+                  },
+                  {
+                    "key": "roleAssign",
+                    "title": "角色分配"
+                  }
+                ]
               },
               {
                 "key": "permission",
@@ -5293,7 +6886,17 @@
               {
                 "key": "article",
                 "title": "文章管理",
-                "icon": "file-text"
+                "icon": "file-text",
+                "children": [
+                  {
+                    "key": "articlePublish",
+                    "title": "文章发布"
+                  },
+                  {
+                    "key": "articleAudit",
+                    "title": "文章审核"
+                  }
+                ]
               },
               {
                 "key": "category",
@@ -5423,6 +7026,356 @@
             "icon": "help-circle"
           }
         ]
+      }
+    },
+    {
+      "id": "modalCard",
+      "component": "div",
+      "props": {
+        "className": "bg-surface-container-highest rounded-xl shadow-sm p-6 flex flex-col gap-5"
+      },
+      "children": [
+        "modalCardTitle",
+        "modalRowBasic",
+        "modalRowNoMask",
+        "modalRowCustomFooter",
+        "modalBasic",
+        "modalNoMask",
+        "modalCustomFooter"
+      ]
+    },
+    {
+      "id": "modalCardTitle",
+      "component": "span",
+      "props": {
+        "value": "Modal 对话框",
+        "className": "text-lg font-semibold text-on-surface"
+      }
+    },
+    {
+      "id": "modalRowBasic",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "modalRowBasicLabel",
+        "modalRowBasicContent"
+      ]
+    },
+    {
+      "id": "modalRowBasicLabel",
+      "component": "span",
+      "props": {
+        "value": "基础对话框",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "modalRowBasicContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-3 flex-wrap"
+      },
+      "children": [
+        "modalOpenBasicBtn"
+      ]
+    },
+    {
+      "id": "modalOpenBasicBtn",
+      "component": "Button",
+      "props": {
+        "value": "打开对话框",
+        "color": "primary",
+        "icon": "external-link",
+        "iconPlacement": "start",
+        "onClick": {
+          "action": "setState",
+          "args": {
+            "path": "modalBasicOpen",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "id": "modalRowNoMask",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "modalRowNoMaskLabel",
+        "modalRowNoMaskContent"
+      ]
+    },
+    {
+      "id": "modalRowNoMaskLabel",
+      "component": "span",
+      "props": {
+        "value": "无遮罩（点击遮罩不关闭）",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "modalRowNoMaskContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-3 flex-wrap"
+      },
+      "children": [
+        "modalOpenNoMaskBtn"
+      ]
+    },
+    {
+      "id": "modalOpenNoMaskBtn",
+      "component": "Button",
+      "props": {
+        "value": "打开无遮罩对话框",
+        "color": "primary",
+        "icon": "external-link",
+        "iconPlacement": "start",
+        "onClick": {
+          "action": "setState",
+          "args": {
+            "path": "modalNoMaskOpen",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "id": "modalRowCustomFooter",
+      "component": "div",
+      "props": {
+        "className": "flex flex-col gap-2"
+      },
+      "children": [
+        "modalRowCustomFooterLabel",
+        "modalRowCustomFooterContent"
+      ]
+    },
+    {
+      "id": "modalRowCustomFooterLabel",
+      "component": "span",
+      "props": {
+        "value": "自定义底部按钮",
+        "className": "text-sm text-on-surface-variant"
+      }
+    },
+    {
+      "id": "modalRowCustomFooterContent",
+      "component": "div",
+      "props": {
+        "className": "flex items-center gap-3 flex-wrap"
+      },
+      "children": [
+        "modalOpenFooterBtn"
+      ]
+    },
+    {
+      "id": "modalOpenFooterBtn",
+      "component": "Button",
+      "props": {
+        "value": "打开自定义底部",
+        "color": "primary",
+        "icon": "external-link",
+        "iconPlacement": "start",
+        "onClick": {
+          "action": "setState",
+          "args": {
+            "path": "modalFooterOpen",
+            "value": true
+          }
+        }
+      }
+    },
+    {
+      "id": "modalBasic",
+      "component": "Modal",
+      "props": {
+        "open": { "path": "modalBasicOpen" },
+        "title": "基础对话框",
+        "width": 480,
+        "mask": true,
+        "onClose": {
+          "action": "setState",
+          "args": {
+            "path": "modalBasicOpen",
+            "value": false
+          }
+        },
+        "children": [{ "componentId": "modalBasicContent" }],
+        "footer": { "componentId": "modalBasicFooter" }
+      }
+    },
+    {
+      "id": "modalBasicContent",
+      "component": "span",
+      "props": {
+        "value": "这是一个基础对话框示例。点击遮罩层或右上角关闭按钮、按 ESC 键均可关闭对话框。",
+        "className": "text-sm text-on-surface-variant leading-relaxed block"
+      }
+    },
+    {
+      "id": "modalBasicFooter",
+      "component": "div",
+      "props": {
+        "className": "flex justify-end gap-3"
+      },
+      "children": [
+        "modalBasicFooterCancel",
+        "modalBasicFooterOk"
+      ]
+    },
+    {
+      "id": "modalBasicFooterCancel",
+      "component": "Button",
+      "props": {
+        "value": "取消",
+        "onClick": {
+          "action": "setState",
+          "args": {
+            "path": "modalBasicOpen",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "id": "modalBasicFooterOk",
+      "component": "Button",
+      "props": {
+        "value": "确定",
+        "color": "primary",
+        "onClick": {
+          "action": "setState",
+          "args": {
+            "path": "modalBasicOpen",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "id": "modalNoMask",
+      "component": "Modal",
+      "props": {
+        "open": { "path": "modalNoMaskOpen" },
+        "title": "无遮罩对话框",
+        "width": 480,
+        "mask": false,
+        "onClose": {
+          "action": "setState",
+          "args": {
+            "path": "modalNoMaskOpen",
+            "value": false
+          }
+        },
+        "children": [{ "componentId": "modalNoMaskContent" }],
+        "footer": { "componentId": "modalNoMaskFooter" }
+      }
+    },
+    {
+      "id": "modalNoMaskContent",
+      "component": "span",
+      "props": {
+        "value": "该对话框关闭了遮罩层，点击对话框外部区域不会自动关闭，只能通过关闭按钮或底部按钮关闭。",
+        "className": "text-sm text-on-surface-variant leading-relaxed block"
+      }
+    },
+    {
+      "id": "modalNoMaskFooter",
+      "component": "div",
+      "props": {
+        "className": "flex justify-end gap-3"
+      },
+      "children": [
+        "modalNoMaskFooterOk"
+      ]
+    },
+    {
+      "id": "modalNoMaskFooterOk",
+      "component": "Button",
+      "props": {
+        "value": "知道了",
+        "color": "primary",
+        "onClick": {
+          "action": "setState",
+          "args": {
+            "path": "modalNoMaskOpen",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "id": "modalCustomFooter",
+      "component": "Modal",
+      "props": {
+        "open": { "path": "modalFooterOpen" },
+        "title": "自定义底部按钮",
+        "width": 520,
+        "mask": true,
+        "onClose": {
+          "action": "setState",
+          "args": {
+            "path": "modalFooterOpen",
+            "value": false
+          }
+        },
+        "children": [{ "componentId": "modalCustomFooterContent" }],
+        "footer": { "componentId": "modalCustomFooterNode" }
+      }
+    },
+    {
+      "id": "modalCustomFooterContent",
+      "component": "span",
+      "props": {
+        "value": "该对话框演示了自定义底部按钮区域，底部包含“取消”与“确认”两个按钮，分别用于关闭对话框与提交操作。对话框内容可以放置任意子组件。",
+        "className": "text-sm text-on-surface-variant leading-relaxed block"
+      }
+    },
+    {
+      "id": "modalCustomFooterNode",
+      "component": "div",
+      "props": {
+        "className": "flex justify-end gap-3"
+      },
+      "children": [
+        "modalCustomFooterCancel",
+        "modalCustomFooterOk"
+      ]
+    },
+    {
+      "id": "modalCustomFooterCancel",
+      "component": "Button",
+      "props": {
+        "value": "取消",
+        "onClick": {
+          "action": "setState",
+          "args": {
+            "path": "modalFooterOpen",
+            "value": false
+          }
+        }
+      }
+    },
+    {
+      "id": "modalCustomFooterOk",
+      "component": "Button",
+      "props": {
+        "value": "确认",
+        "color": "primary",
+        "icon": "check",
+        "iconPlacement": "start",
+        "onClick": {
+          "action": "setState",
+          "args": {
+            "path": "modalFooterOpen",
+            "value": false
+          }
+        }
       }
     }
   ]
