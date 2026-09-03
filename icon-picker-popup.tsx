@@ -322,7 +322,7 @@ export function IconPickerPopup(props: {
             }>
               {/* online：icon-plus 网格 */}
               <Show when={iconStore.state.icons.length > 0} fallback={
-                <EmptyState text={iconStore.state.searching ? '搜索中…' : (iconStore.state.keyword ? '未找到匹配的图标' : '请输入关键词搜索')} />
+                <EmptyState text={iconStore.state.searching ? '搜索中…' : '未找到匹配的图标'} />
               }>
                 <div class="grid grid-cols-5 gap-2">
                   <For each={iconStore.state.icons}>

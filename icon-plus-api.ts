@@ -19,6 +19,15 @@ export const SOURCE_ID = 6
 export const ICON_TYPE = "icon"
 export const TOP_K = 25
 
+/** 搜索框为空时的预设关键词（25 个真实 lucide 图标名，逗号分隔批量搜索，topK=1 各取 1 个 = 25 个图标） */
+const PRESET_KEYWORDS = [
+  "file-text", "folder", "image", "search", "settings",
+  "user", "users", "house", "mail", "bell",
+  "calendar", "clock", "phone", "heart", "star",
+  "check", "plus", "menu", "trash-2", "download",
+  "upload", "pencil", "lock", "eye", "shopping-cart",
+].join(",")
+
 // ============ 类型 ============
 
 /** getConfig 中 colors 数组项：颜色按 style 分组，API 的 color 入参取 id */
@@ -254,6 +263,8 @@ export function createIconPlusStore() {
       }
     }
     setState("status", "ready")
+    // 预载 25 个图标（关键词为空走预设）
+    void search()
   }
 
   /** 构造 getIcon 所需的 size/style/color：size/style 由弹窗直传 API 值，color 仍按 config 解析 id */
@@ -274,15 +285,18 @@ export function createIconPlusStore() {
     if (!inStyle) setState("iconColor", firstHex(opts[0].value))
   }
 
-  /** getIconInfo + getIcon 搜索（tab/keyword 变更触发）；offline / 自定义 / 空关键词 不发请求 */
+  /** getIconInfo + getIcon 搜索（tab/keyword 变更触发）；offline / 自定义 不发请求；空关键词走预设 25 个 */
   async function search() {
-    if (!state.online || state.activeTab === "自定义" || !state.keyword.trim()) {
+    if (!state.online || state.activeTab === "自定义") {
       setState("icons", [])
       return
     }
+    const typed = state.keyword.trim()
+    const keyword = typed || PRESET_KEYWORDS
+    const topK = typed ? TOP_K : 1 // 预设 25 个关键词各取 1 个 = 25 个；单个关键词取 25 个
     setState("searching", true)
     setState("error", null)
-    const res = await fetchIconInfo({ keyword: state.keyword.trim(), tags: state.activeTab })
+    const res = await fetchIconInfo({ keyword, tags: state.activeTab, topK })
     if (!res.success) {
       setState("icons", [])
       setState("searching", false)
