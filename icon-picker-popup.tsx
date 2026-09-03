@@ -1,10 +1,10 @@
-import { For, Show, createMemo, onCleanup, onMount, type JSX } from "solid-js"
+import { For, Show, createSignal, createEffect, onCleanup, onMount, type JSX } from "solid-js"
 import { Portal } from "solid-js/web"
 import { createStore } from "solid-js/store"
 import { LUCIDE_ICONS } from "./lucide-icons"
 import { CustomSelect } from "./custom-select"
-import { ColorPicker, TEXT_COLOR_TOKENS, type ColorToken } from "./color-picker"
-import { createIconPlusStore, getColorOptions, firstHex } from "./icon-plus-api"
+import { createIconPlusStore } from "./icon-plus-api"
+import { iconColors, iconCssColor } from "./icon-colors"
 import noDataEmptySvg from "../../../assets/images/noDataEmpty.svg?url"
 import deleteSvg from "../../../assets/images/delete.svg?url"
 
@@ -12,7 +12,7 @@ const PANEL_W = 380
 const PANEL_H = 682
 const ACCENT = "#3D99FF"
 
-/** 图标来源 tab 兜底（接口返回前先用这份渲染，init 成功后由 store.tabs 覆盖） */
+/** 图标来源 tab 兜底：offline 或 tags 未返回前用这份渲染，tags 返回后由 store.tabs 覆盖 */
 const FALLBACK_TABS = [
   { label: '基础图标', value: '基础图标' },
   { label: '质感图标', value: '质感图标' },
@@ -39,7 +39,7 @@ const CATEGORY_OPTIONS = [
   { label: '通信安全', value: 'comm' },
 ]
 
-/** 底部线性筛选 */
+/** 底部风格筛选：value（中文标签）即 getIcon 的 style 入参 */
 const SHAPE_OPTIONS = [
   {
     key: "border",
@@ -88,7 +88,73 @@ function EmptyState(props: { text: string }) {
   )
 }
 
-/** 图标选择弹窗：筛选/搜索 + 五个来源 tab + 图标网格（60px，一行五个）+ 底部线性/尺寸筛选与确认取消按钮 */
+/** 图标颜色筛选：色板圆点(18px) + 名称，选项取自 icon-colors.ts 的 iconColors 语义色 */
+function IconColorSelect(props: { value: string; onChange: (key: string) => void }) {
+  const [open, setOpen] = createSignal(false)
+  const [pos, setPos] = createSignal({ x: 0, y: 0, w: 0 })
+  let btnRef!: HTMLButtonElement
+  let listRef!: HTMLDivElement
+  createEffect(() => {
+    if (!open()) return
+    const handler = (e: MouseEvent) => {
+      if (listRef && !listRef.contains(e.target as Node) && !btnRef.contains(e.target as Node)) setOpen(false)
+    }
+    const onScroll = (e: Event) => {
+      const t = e.target as Node
+      if (listRef && (t === listRef || listRef.contains(t))) return
+      setOpen(false)
+    }
+    if (btnRef) {
+      const r = btnRef.getBoundingClientRect()
+      setPos({ x: r.left, y: r.bottom + 4, w: r.width })
+      requestAnimationFrame(() => {
+        if (!listRef) return
+        const lr = listRef.getBoundingClientRect()
+        if (!lr.height) return
+        const fitsDown = r.bottom + 4 + lr.height <= window.innerHeight
+        const ay = fitsDown ? r.bottom + 4 : Math.max(4, r.top - 4 - lr.height)
+        setPos({ x: r.left, y: ay, w: r.width })
+      })
+    }
+    document.addEventListener('mousedown', handler)
+    window.addEventListener('scroll', onScroll, true)
+    onCleanup(() => {
+      document.removeEventListener('mousedown', handler)
+      window.removeEventListener('scroll', onScroll, true)
+    })
+  })
+  const swatch = (k: string) => iconCssColor(k)
+  return (
+    <div class="relative flex-1">
+      <button ref={btnRef} type="button" onClick={() => setOpen(!open())}
+        class="flex h-9 w-full items-center gap-1 rounded-[36px] border border-transparent bg-[#F2F3F5] px-2 text-left text-[12px] text-[#333333] outline-none">
+        <span class="h-[18px] w-[18px] shrink-0 rounded-full" style={{ background: swatch(props.value) }} />
+        <span class="flex-1 truncate" style={{ color: '#191919' }}>{props.value}</span>
+        <svg class="ml-1 h-3 w-3 shrink-0 text-slate-400" viewBox="0 0 8 5" fill="none"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+      <Show when={open()}>
+        <Portal mount={document.body}>
+          <div ref={listRef} data-custom-select-list class="icon-picker-scroll fixed z-[2147483646] max-h-[260px] overflow-y-auto rounded-lg border border-[#e5e7eb] py-1"
+            style={{ left: pos().x + 'px', top: pos().y + 'px', 'min-width': pos().w + 'px', background: '#fff', 'box-shadow': '0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04)' }}
+            onClick={() => setOpen(false)}>
+            <For each={Object.keys(iconColors)}>
+              {(k) => (
+                <div onClick={() => props.onChange(k)}
+                  class="flex cursor-pointer items-center gap-1 whitespace-nowrap bg-white px-[10px] py-[6px] text-[11px] text-slate-700 hover:bg-[#f3f4f6]"
+                  classList={{ 'bg-[#E6F2FD] font-medium text-primary': k === props.value }}>
+                  <span class="h-[18px] w-[18px] shrink-0 rounded-full" style={{ background: swatch(k) }} />
+                  <span style={{ color: '#191919' }}>{k}</span>
+                </div>
+              )}
+            </For>
+          </div>
+        </Portal>
+      </Show>
+    </div>
+  )
+}
+
+/** 图标选择弹窗：筛选/搜索 + 来源 tab + 图标网格（60px，一行五个）+ 底部线性/尺寸/颜色筛选与确认取消按钮 */
 export function IconPickerPopup(props: {
   current: string
   /** 触发按钮元素：弹窗锚定在其左侧，点外部（含锚点）关闭 */
@@ -100,25 +166,19 @@ export function IconPickerPopup(props: {
 }): JSX.Element {
   const [state, setState] = createStore({
     category: 'all',
+    iconColorKey: 'default',
     customIcons: [] as string[],
     selected: props.current,
     tip: null as { name: string; x: number; y: number } | null,
     uploadTip: null as { x: number; y: number; cx: number } | null,
     pos: { x: 0, y: 0 },
   })
-  /** icon-plus 服务：打开弹窗即并行拉 getConfig + tags，用 tags 重建 tab 列表（末尾固定"自定义"） */
+  /** icon-plus 服务：打开弹窗即拉 getConfig（联通再取 tags），用 tags 重建 tab 列表（末尾固定"自定义"）；不联通回退 lucide */
   const iconStore = createIconPlusStore()
-  onMount(() => { void iconStore.init() })
+  onMount(() => { void iconStore.init(); iconStore.setColor(iconCssColor('default')) })
   onCleanup(() => iconStore.dispose())
   /** tabs：接口返回前用兜底，返回后用 store 数据 */
   const tabs = () => iconStore.state.tabs.length ? iconStore.state.tabs : FALLBACK_TABS
-  /** 颜色色板：online 时按当前 shape 的 config.colors 生成；offline/config 未就绪时用兜底文本色 */
-  const colorTokens = createMemo<ColorToken[]>(() => {
-    if (!iconStore.state.online) return TEXT_COLOR_TOKENS
-    const opts = getColorOptions(iconStore.state.config, iconStore.state.shape)
-    if (!opts.length) return TEXT_COLOR_TOKENS
-    return opts.map(c => ({ color: firstHex(c.value), opacity: '100%', name: c.id, displayName: c.key }))
-  })
   let popupRef: HTMLDivElement | undefined
   let fileRef: HTMLInputElement | undefined
 
@@ -136,7 +196,7 @@ export function IconPickerPopup(props: {
     const t = e.target as Node
     if (popupRef?.contains(t)) return
     if (props.anchor?.contains(t)) return
-    if ((t as HTMLElement).closest?.('[data-custom-select-list], [data-color-picker-panel]')) return
+    if ((t as HTMLElement).closest?.('[data-custom-select-list]')) return
     props.onClose()
   }
   window.addEventListener('mousedown', onOutside)
@@ -163,7 +223,7 @@ export function IconPickerPopup(props: {
     )
   }
 
-  /** 渲染 24px 网格图标预览（容器 60px 高，居中展示）；底部筛选仅作用于当前选中的图标 */
+  /** 渲染 24px 网格图标预览（容器 60px 高，居中展示）；底部 shape/color 仅作用于当前选中的图标 */
   const GridIcon = (svg: string, s: string = 'outline', c: string = '#191919') => {
     const strokeEl = (w: number, style?: string) => (
       <svg width={w} height={w} viewBox="0 0 24 24" fill="none" stroke={c} stroke-width="2"
@@ -277,7 +337,7 @@ export function IconPickerPopup(props: {
             }} />
         </div>
 
-        {/* 五个来源 tab：选中 #0A59F7 文字 + 10% 透明度背景，未选中 #777777 纯文字 */}
+        {/* 来源 tab：选中 #0A59F7 文字 + 10% 透明度背景，未选中 #777777 纯文字 */}
         <div class="mt-4 flex shrink-0 items-center gap-0 px-4">
           <For each={tabs()}>
             {(t) => (
@@ -397,8 +457,9 @@ export function IconPickerPopup(props: {
               <CustomSelect value={iconStore.state.iconSize} options={SIZE_OPTIONS} onChange={v => iconStore.setSize(v)}
                 class="[&>button]:h-9 [&>button]:rounded-[36px] [&>button]:text-[12px]" />
             </div>
-            <div class="min-w-0 flex-1 [&>div>button]:h-9 [&>div>button]:rounded-[36px] [&>div>button]:bg-[#F2F3F5] [&>div>button]:text-[12px]">
-              <ColorPicker value={iconStore.state.iconColor} onChange={v => iconStore.setColor(v)} label="颜色" tokens={colorTokens()} />
+            <div class="min-w-0 flex-1">
+              <IconColorSelect value={state.iconColorKey}
+                onChange={v => { setState('iconColorKey', v); iconStore.setColor(iconCssColor(v)) }} />
             </div>
           </div>
           <div class="mt-4 flex items-center justify-end gap-2">

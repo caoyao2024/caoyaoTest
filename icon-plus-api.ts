@@ -2,13 +2,13 @@
  * icon-plus 图标服务逻辑层
  *
  * 接口流程（见 D:\60096960\icon-plus.md）：
- *   1. getConfig   取尺寸/风格/类别/颜色/文件类型配置
+ *   1. getConfig   取尺寸/风格/颜色等配置（兼作 online 探测）
  *   2. tags        取标签列表（用于弹窗 TABS）
- *   3. getIconInfo 按关键词搜索图标（topK=25、source_id=6、type=icon、tags）
+ *   3. getIconInfo 按关键词搜索图标（topK=25、source_id=6、type=icon、tags；支持逗号分隔批量）
  *   4. getIcon     按图标 url 批量取 svg 文本（size/style/color/fileType/url）
  *
- * 基址复用 lib-resource-service 域名，请求风格对齐 pattern-resource.ts（原生 fetch + octo-vs-token 头，{success,data} 信封）。
- * 注意：getConfig.json 的真实字段文档未给，IconPlusConfig 与 mapSizeToKey/mapColorToId 联调首跑后按真实返回校准。
+ * 基址复用 lib-resource-service 域名，请求风格对齐 pattern-resource.ts（原生 fetch，{success,data} 信封）。
+ * size/style 由弹窗直传 API 值；color 经 mapColorToId 解析为 config.colors 的 id（后端要 id）。
  */
 import { createStore, produce } from "solid-js/store"
 
@@ -40,7 +40,7 @@ export type IconColorOption = {
   style?: string
 }
 
-/** getConfig 返回（按真实 getConfig.json 校准；size/style 弹窗已直传 API 值，此处仅留 colors） */
+/** getConfig 返回（弹窗 size/style 直传 API 值；color 需经 mapColorToId 解析为 config id） */
 export type IconPlusConfig = {
   colors?: IconColorOption[]
   [key: string]: unknown
@@ -175,24 +175,8 @@ export async function fetchIconContent(params: IconContentParams): Promise<Resul
 
 // ============ 映射函数 ============
 
-/** 取颜色的首个 hex（value 可能是逗号分隔的多色串，如 "#D756A8,#F081C4,#FFE1F1"） */
-export function firstHex(value: string): string {
-  return (value?.split(",")[0] ?? "").trim()
-}
-
-/** 取当前 style 下的颜色选项（供 UI 构造色板） */
-export function getColorOptions(
-  config: IconPlusConfig | null | undefined,
-  shapeLabel?: string,
-): IconColorOption[] {
-  const colors = config?.colors
-  if (!colors?.length) return []
-  if (!shapeLabel) return colors
-  const pool = colors.filter(c => c.style === shapeLabel)
-  return pool.length ? pool : colors
-}
-
-/** iconColor(hex) → config.colors 的 id；按当前 style 过滤，hex 命中 value 的任一色，否则取该 style 首个 id */
+/** iconColor → config.colors 的 id；按当前 style 过滤，命中 value 任一色，否则取该 style 首个 id
+ *  注：弹窗色板为 icon-colors.ts 的语义色 hex，通常不命中 config 的 hex，故实际回退到该 style 首个 id（仍为有效 id） */
 export function mapColorToId(
   iconColor: string,
   config: IconPlusConfig | null | undefined,
@@ -252,7 +236,6 @@ export function createIconPlusStore() {
     }
     setState("online", true)
     setState("config", cfg.data)
-    syncColorToStyle()
     const tags = await fetchIconTags()
     if (tags.success) {
       setState("tags", tags.data)
@@ -267,22 +250,13 @@ export function createIconPlusStore() {
     void search()
   }
 
-  /** 构造 getIcon 所需的 size/style/color：size/style 由弹窗直传 API 值，color 仍按 config 解析 id */
+  /** 构造 getIcon 所需的 size/style/color：size/style 直传；color 经 mapColorToId 解析为 config id（后端要 id） */
   function buildIconContentParams(): Pick<IconContentParams, "size" | "style" | "color"> {
     return {
       size: state.iconSize,
       style: state.shape,
       color: mapColorToId(state.iconColor, state.config, state.shape) ?? "",
     }
-  }
-
-  /** 当 shape/style 变更后，若当前 iconColor 不属于该 style 的色板，回落到该 style 首个颜色 */
-  function syncColorToStyle() {
-    const opts = getColorOptions(state.config, state.shape)
-    if (!opts.length) return
-    const lc = state.iconColor.toLowerCase()
-    const inStyle = opts.some(c => (c.value ?? "").toLowerCase().split(",").includes(lc))
-    if (!inStyle) setState("iconColor", firstHex(opts[0].value))
   }
 
   /** getIconInfo + getIcon 搜索（tab/keyword 变更触发）；offline / 自定义 不发请求；空关键词走预设 25 个 */
@@ -366,7 +340,6 @@ export function createIconPlusStore() {
   }
   function setShape(v: string) {
     setState("shape", v)
-    syncColorToStyle()
     void refreshSvgs()
   }
   function setSize(v: string) {
