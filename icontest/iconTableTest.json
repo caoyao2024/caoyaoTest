@@ -1,0 +1,67 @@
+{
+  "rootId": "tablePageRoot",
+  "elements": [
+    {
+      "id": "tablePageRoot",
+      "component": "div",
+      "props": { "className": "p-4 flex flex-col gap-6" },
+      "children": ["iconTable"]
+    },
+
+    {
+      "id": "iconTable",
+      "component": "Table",
+      "props": {
+        "rowKey": "key",
+        "columns": [
+          { "title": "名称", "dataIndex": "name" },
+          { "title": "状态", "dataIndex": "status" },
+          { "title": "类型", "dataIndex": "type" }
+        ],
+        "dataSource": { "path": "/tableRows" },
+        "pagination": true,
+        "size": "medium"
+      },
+      "children": { "componentId": "rowTpl", "path": "/tableRows" }
+    },
+
+    {
+      "id": "rowTpl",
+      "component": "TableRow",
+      "children": ["cellName", "cellStatus", "cellType"]
+    },
+
+    {
+      "id": "cellName",
+      "component": "div",
+      "props": { "value": { "path": "name" } }
+    },
+
+    {
+      "id": "cellStatus",
+      "component": "Tag",
+      "props": {
+        "value": { "path": "status" },
+        "color": "success",
+        "icon": { "path": "statusIcon" }
+      }
+    },
+
+    {
+      "id": "cellType",
+      "component": "Tag",
+      "props": {
+        "value": { "path": "type" },
+        "color": "primary",
+        "icon": "tag"
+      }
+    }
+  ],
+  "state": {
+    "tableRows": [
+      { "key": "1", "name": "张三", "status": "在职", "statusIcon": "check-circle", "type": "管理员" },
+      { "key": "2", "name": "李四", "status": "休假", "statusIcon": "clock", "type": "访客" },
+      { "key": "3", "name": "王五", "status": "离职", "statusIcon": "x-circle", "type": "访客" }
+    ]
+  }
+}

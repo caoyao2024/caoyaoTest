@@ -1,0 +1,92 @@
+{
+  "rootId": "tabsPageRoot",
+  "elements": [
+    {
+      "id": "tabsPageRoot",
+      "component": "div",
+      "props": { "className": "p-4 flex flex-col gap-6" },
+      "children": ["tabsFromState", "tabsFromChildren"]
+    },
+
+    {
+      "id": "tabsFromState",
+      "component": "Tabs",
+      "props": {
+        "activeKey": { "path": "/activeTab" },
+        "types": "line",
+        "size": "medium"
+      },
+      "children": { "path": "/stateTabItems", "componentId": "dynTabItem" }
+    },
+
+    {
+      "id": "dynTabItem",
+      "component": "TabItem",
+      "props": {
+        "key": { "path": "key" },
+        "label": { "path": "label" },
+        "icon": { "path": "icon" },
+        "content": { "componentId": "dynTabContent" }
+      }
+    },
+
+    {
+      "id": "dynTabContent",
+      "component": "div",
+      "props": { "className": "p-4", "value": { "path": "content" } }
+    },
+
+    {
+      "id": "tabsFromChildren",
+      "component": "Tabs",
+      "props": {
+        "activeKey": "tabA",
+        "types": "line",
+        "size": "medium"
+      },
+      "children": ["staticTabA", "staticTabB"]
+    },
+
+    {
+      "id": "staticTabA",
+      "component": "TabItem",
+      "props": {
+        "key": "tabA",
+        "label": "首页",
+        "icon": "home",
+        "content": { "componentId": "staticTabAContent" }
+      }
+    },
+
+    {
+      "id": "staticTabB",
+      "component": "TabItem",
+      "props": {
+        "key": "tabB",
+        "label": "设置",
+        "icon": "settings",
+        "content": { "componentId": "staticTabBContent" }
+      }
+    },
+
+    {
+      "id": "staticTabAContent",
+      "component": "div",
+      "props": { "className": "p-4", "value": "首页内容（静态 TabItem，icon 在 children）" }
+    },
+
+    {
+      "id": "staticTabBContent",
+      "component": "div",
+      "props": { "className": "p-4", "value": "设置内容（静态 TabItem，icon 在 children）" }
+    }
+  ],
+  "state": {
+    "activeTab": "tabA",
+    "stateTabItems": [
+      { "key": "tabA", "label": "首页", "icon": "home", "content": "首页内容（DataBinding，icon 在 state）" },
+      { "key": "tabB", "label": "设置", "icon": "settings", "content": "设置内容（DataBinding，icon 在 state）" },
+      { "key": "tabC", "label": "权限", "icon": "shield", "content": "权限内容（DataBinding，icon 在 state）" }
+    ]
+  }
+}

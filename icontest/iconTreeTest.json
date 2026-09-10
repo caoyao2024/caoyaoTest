@@ -1,0 +1,88 @@
+{
+  "rootId": "treePageRoot",
+  "elements": [
+    {
+      "id": "treePageRoot",
+      "component": "div",
+      "props": { "className": "p-4 flex flex-col gap-6" },
+      "children": ["treeFromState", "treeFromChildren"]
+    },
+
+    {
+      "id": "treeFromState",
+      "component": "Tree",
+      "props": {
+        "checkable": true,
+        "defaultExpandedKeys": [],
+        "defaultSelectedKeys": [],
+        "options": { "path": "/stateTreeOptions" },
+        "className": "rounded-lg border p-3 w-64"
+      }
+    },
+
+    {
+      "id": "treeFromChildren",
+      "component": "Tree",
+      "props": {
+        "checkable": true,
+        "defaultExpandedKeys": [],
+        "defaultSelectedKeys": [],
+        "options": [
+          {
+            "title": "总部",
+            "key": "hq",
+            "icon": "building-2",
+            "children": [
+              {
+                "title": "研发部",
+                "key": "rd",
+                "icon": "code-2",
+                "children": [
+                  { "title": "前端组", "key": "fe", "icon": "monitor" },
+                  { "title": "后端组", "key": "be", "icon": "server" }
+                ]
+              },
+              {
+                "title": "市场部",
+                "key": "mkt",
+                "icon": "megaphone",
+                "children": [
+                  { "title": "品牌组", "key": "brand", "icon": "palette" }
+                ]
+              }
+            ]
+          }
+        ],
+        "className": "rounded-lg border p-3 w-64"
+      }
+    }
+  ],
+  "state": {
+    "stateTreeOptions": [
+      {
+        "title": "总部",
+        "key": "hq",
+        "icon": "building-2",
+        "children": [
+          {
+            "title": "研发部",
+            "key": "rd",
+            "icon": "code-2",
+            "children": [
+              { "title": "前端组", "key": "fe", "icon": "monitor" },
+              { "title": "后端组", "key": "be", "icon": "server" }
+            ]
+          },
+          {
+            "title": "市场部",
+            "key": "mkt",
+            "icon": "megaphone",
+            "children": [
+              { "title": "品牌组", "key": "brand", "icon": "palette" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

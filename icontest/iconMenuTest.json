@@ -1,0 +1,92 @@
+{
+  "rootId": "menuPageRoot",
+  "elements": [
+    {
+      "id": "menuPageRoot",
+      "component": "div",
+      "props": { "className": "p-4 flex flex-col gap-6" },
+      "children": ["menuFromState", "menuFromChildren"]
+    },
+
+    {
+      "id": "menuFromState",
+      "component": "Menu",
+      "props": {
+        "mode": "vertical",
+        "inlineCollapsed": false,
+        "selectedKeys": [],
+        "items": { "path": "/stateMenuItems" },
+        "className": "w-64"
+      }
+    },
+
+    {
+      "id": "menuFromChildren",
+      "component": "Menu",
+      "props": {
+        "mode": "vertical",
+        "inlineCollapsed": false,
+        "selectedKeys": [],
+        "items": [
+          { "key": "dashboard", "title": "仪表盘", "icon": "home" },
+          {
+            "key": "system",
+            "title": "系统管理",
+            "icon": "settings",
+            "children": [
+              { "key": "users", "title": "用户管理", "icon": "users" },
+              { "key": "roles", "title": "角色管理", "icon": "shield" }
+            ]
+          },
+          {
+            "key": "content",
+            "title": "内容管理",
+            "icon": "file-text",
+            "children": [
+              { "key": "articles", "title": "文章管理" },
+              {
+                "key": "publish",
+                "title": "发布管理",
+                "icon": "upload",
+                "children": [
+                  { "key": "schedule", "title": "定时发布", "icon": "clock" }
+                ]
+              }
+            ]
+          }
+        ],
+        "className": "w-64"
+      }
+    }
+  ],
+  "state": {
+    "stateMenuItems": [
+      {
+        "key": "dashboard",
+        "title": "仪表盘",
+        "icon": "home",
+        "children": [
+          { "key": "analytics", "title": "数据分析", "icon": "bar-chart" },
+          { "key": "reports", "title": "报表" }
+        ]
+      },
+      {
+        "key": "system",
+        "title": "系统管理",
+        "icon": "settings",
+        "children": [
+          {
+            "key": "users",
+            "title": "用户管理",
+            "icon": "users",
+            "children": [
+              { "key": "userList", "title": "用户列表", "icon": "list" },
+              { "key": "userDetail", "title": "用户详情" }
+            ]
+          },
+          { "key": "roles", "title": "角色管理", "icon": "shield" }
+        ]
+      }
+    ]
+  }
+}
