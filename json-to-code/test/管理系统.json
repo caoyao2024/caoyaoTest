@@ -1,0 +1,2718 @@
+{
+  "planner": {
+    "rootId": "appRoot",
+    "elements": [
+      {
+        "id": "appRoot",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col min-h-screen bg-surface-container-lowest"
+        },
+        "children": [
+          "genHeaderContainer",
+          "mainContentArea"
+        ]
+      },
+      {
+        "id": "genHeaderContainer",
+        "component": "header",
+        "props": {
+          "className": "flex items-center justify-between h-12 pl-[50px] pr-[42px] bg-surface-container-highest shadow-sm"
+        },
+        "children": [
+          "genHeaderLeftSection",
+          "genHeaderMiddleMenu",
+          "genHeaderRightSection"
+        ]
+      },
+      {
+        "id": "mainContentArea",
+        "component": "main",
+        "props": {
+          "className": "flex-1 p-page flex flex-col gap-section overflow-auto"
+        },
+        "children": [
+          "overviewMetricsGrid",
+          "sysManageCardContainer"
+        ]
+      },
+      {
+        "id": "overviewMetricsGrid",
+        "component": "div",
+        "props": {
+          "className": "grid grid-cols-2 gap-gutter"
+        },
+        "children": [
+          "metricCard_0",
+          "metricCard_1",
+          "metricCard_2",
+          "metricCard_3"
+        ]
+      },
+      {
+        "id": "sysManageCardContainer",
+        "component": "div",
+        "props": {
+          "className": "bg-surface-container-highest rounded-md"
+        },
+        "children": [
+          "sysManageInner"
+        ]
+      },
+      {
+        "id": "genHeaderLeftSection",
+        "component": "div",
+        "props": {
+          "className": "flex items-center"
+        },
+        "children": [
+          "genHeaderLogoImg",
+          "genDividerLine",
+          "genHeaderDropIcon",
+          "genHeaderDropdown"
+        ]
+      },
+      {
+        "id": "genHeaderLogoImg",
+        "component": "img",
+        "props": {
+          "src": {
+            "path": "/genLogoImage"
+          },
+          "alt": "Logo",
+          "className": "h-8 w-auto"
+        }
+      },
+      {
+        "id": "genDividerLine",
+        "component": "div",
+        "props": {
+          "className": "w-px h-6 bg-[#f3f3f3] ml-[25px] mr-[14px]"
+        }
+      },
+      {
+        "id": "genHeaderDropIcon",
+        "component": "Icon",
+        "props": {
+          "name": "management",
+          "className": "w-5 h-5 mr-[8px]"
+        }
+      },
+      {
+        "id": "genHeaderDropdown",
+        "component": "Dropdown",
+        "props": {
+          "placement": "bottomLeft",
+          "trigger": [
+            "click"
+          ],
+          "menu": [
+            {
+              "label": "系统管理",
+              "key": "system"
+            },
+            {
+              "label": "个人设置",
+              "key": "profile"
+            },
+            {
+              "label": "退出登录",
+              "key": "logout"
+            }
+          ]
+        },
+        "children": [
+          "genHeaderDropdownTrigger"
+        ]
+      },
+      {
+        "id": "genHeaderDropdownTrigger",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-1 cursor-pointer text-on-surface transition-colors"
+        },
+        "children": [
+          "genHeaderDropdownText",
+          "genHeaderDropdownIcon"
+        ]
+      },
+      {
+        "id": "genHeaderDropdownIcon",
+        "component": "Icon",
+        "props": {
+          "name": "chevron-up",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "genHeaderDropdownText",
+        "component": "span",
+        "props": {
+          "value": "下拉菜单文本",
+          "className": ""
+        }
+      },
+      {
+        "id": "genHeaderMiddleMenu",
+        "component": "Menu",
+        "props": {
+          "mode": "horizontal",
+          "selectedKeys": {
+            "path": "/genSelectedMenuKeys"
+          },
+          "items": {
+            "path": "/genMenuItems"
+          },
+          "className": "flex-1 flex justify-center border-0 bg-transparent"
+        }
+      },
+      {
+        "id": "genHeaderRightSection",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-6"
+        },
+        "children": [
+          "genHeaderSearchBtn",
+          "genHeaderBellBtn",
+          "genHeaderHelpBtn",
+          "genHeaderHeadphonesBtn",
+          "genHeaderGlobeBtn",
+          "genHeaderMoonBtn",
+          "genHeaderUserBtn"
+        ]
+      },
+      {
+        "id": "genHeaderSearchBtn",
+        "component": "Button",
+        "props": {
+          "icon": "search",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderBellBtn",
+        "component": "Button",
+        "props": {
+          "icon": "bell",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderHelpBtn",
+        "component": "Button",
+        "props": {
+          "icon": "help-circle",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderHeadphonesBtn",
+        "component": "Button",
+        "props": {
+          "icon": "headphones",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderGlobeBtn",
+        "component": "Button",
+        "props": {
+          "icon": "languages",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderMoonBtn",
+        "component": "Button",
+        "props": {
+          "icon": "moon",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderUserBtn",
+        "component": "Button",
+        "props": {
+          "icon": "user",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "metricCard_0",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-4 bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "metricIconWrap_0",
+          "metricTextSection_0",
+          "metricTrendSection_0"
+        ]
+      },
+      {
+        "id": "metricIconWrap_0",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-center w-12 h-12 rounded-lg bg-primary-container shrink-0"
+        },
+        "children": [
+          "metricIcon_0"
+        ]
+      },
+      {
+        "id": "metricIcon_0",
+        "component": "Icon",
+        "props": {
+          "name": "users",
+          "color": "primary",
+          "className": "w-6 h-6"
+        }
+      },
+      {
+        "id": "metricTextSection_0",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col flex-1 min-w-0"
+        },
+        "children": [
+          "metricValue_0",
+          "metricName_0"
+        ]
+      },
+      {
+        "id": "metricValue_0",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface tracking-tight",
+          "value": "128,473"
+        }
+      },
+      {
+        "id": "metricName_0",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant mt-0.5",
+          "value": "总用户数"
+        }
+      },
+      {
+        "id": "metricTrendSection_0",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col items-end shrink-0"
+        },
+        "children": [
+          "metricTrendIcon_0",
+          "metricChangeRate_0",
+          "metricCompareText_0"
+        ]
+      },
+      {
+        "id": "metricTrendIcon_0",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "color": "success",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "metricChangeRate_0",
+        "component": "span",
+        "props": {
+          "className": "text-sm font-semibold text-success mt-0.5",
+          "value": "+5.2%"
+        }
+      },
+      {
+        "id": "metricCompareText_0",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-on-surface-variant",
+          "value": "较上月"
+        }
+      },
+      {
+        "id": "metricCard_1",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-4 bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "metricIconWrap_1",
+          "metricTextSection_1",
+          "metricTrendSection_1"
+        ]
+      },
+      {
+        "id": "metricIconWrap_1",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-center w-12 h-12 rounded-lg bg-primary-container shrink-0"
+        },
+        "children": [
+          "metricIcon_1"
+        ]
+      },
+      {
+        "id": "metricIcon_1",
+        "component": "Icon",
+        "props": {
+          "name": "activity",
+          "color": "primary",
+          "className": "w-6 h-6"
+        }
+      },
+      {
+        "id": "metricTextSection_1",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col flex-1 min-w-0"
+        },
+        "children": [
+          "metricValue_1",
+          "metricName_1"
+        ]
+      },
+      {
+        "id": "metricValue_1",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface tracking-tight",
+          "value": "23,891"
+        }
+      },
+      {
+        "id": "metricName_1",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant mt-0.5",
+          "value": "今日活跃用户"
+        }
+      },
+      {
+        "id": "metricTrendSection_1",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col items-end shrink-0"
+        },
+        "children": [
+          "metricTrendIcon_1",
+          "metricChangeRate_1",
+          "metricCompareText_1"
+        ]
+      },
+      {
+        "id": "metricTrendIcon_1",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "color": "success",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "metricChangeRate_1",
+        "component": "span",
+        "props": {
+          "className": "text-sm font-semibold text-success mt-0.5",
+          "value": "+12.7%"
+        }
+      },
+      {
+        "id": "metricCompareText_1",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-on-surface-variant",
+          "value": "较昨日"
+        }
+      },
+      {
+        "id": "metricCard_2",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-4 bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "metricIconWrap_2",
+          "metricTextSection_2",
+          "metricTrendSection_2"
+        ]
+      },
+      {
+        "id": "metricIconWrap_2",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-center w-12 h-12 rounded-lg shrink-0",
+          "style": "background-color: rgba(239, 68, 68, 0.12);"
+        },
+        "children": [
+          "metricIcon_2"
+        ]
+      },
+      {
+        "id": "metricIcon_2",
+        "component": "Icon",
+        "props": {
+          "name": "alert-triangle",
+          "color": "error",
+          "className": "w-6 h-6"
+        }
+      },
+      {
+        "id": "metricTextSection_2",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col flex-1 min-w-0"
+        },
+        "children": [
+          "metricValue_2",
+          "metricName_2"
+        ]
+      },
+      {
+        "id": "metricValue_2",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface tracking-tight",
+          "value": "7"
+        }
+      },
+      {
+        "id": "metricName_2",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant mt-0.5",
+          "value": "系统告警数"
+        }
+      },
+      {
+        "id": "metricTrendSection_2",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col items-end shrink-0"
+        },
+        "children": [
+          "metricTrendIcon_2",
+          "metricChangeRate_2",
+          "metricCompareText_2"
+        ]
+      },
+      {
+        "id": "metricTrendIcon_2",
+        "component": "Icon",
+        "props": {
+          "name": "trending-down",
+          "color": "error",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "metricChangeRate_2",
+        "component": "span",
+        "props": {
+          "className": "text-sm font-semibold text-error mt-0.5",
+          "value": "-3.1%"
+        }
+      },
+      {
+        "id": "metricCompareText_2",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-on-surface-variant",
+          "value": "较昨日"
+        }
+      },
+      {
+        "id": "metricCard_3",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-4 bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "metricIconWrap_3",
+          "metricTextSection_3",
+          "metricTrendSection_3"
+        ]
+      },
+      {
+        "id": "metricIconWrap_3",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-center w-12 h-12 rounded-lg bg-success-container shrink-0"
+        },
+        "children": [
+          "metricIcon_3"
+        ]
+      },
+      {
+        "id": "metricIcon_3",
+        "component": "Icon",
+        "props": {
+          "name": "shield-check",
+          "color": "success",
+          "className": "w-6 h-6"
+        }
+      },
+      {
+        "id": "metricTextSection_3",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col flex-1 min-w-0"
+        },
+        "children": [
+          "metricValue_3",
+          "metricName_3"
+        ]
+      },
+      {
+        "id": "metricValue_3",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface tracking-tight",
+          "value": "99.97%"
+        }
+      },
+      {
+        "id": "metricName_3",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant mt-0.5",
+          "value": "服务可用率"
+        }
+      },
+      {
+        "id": "metricTrendSection_3",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col items-end shrink-0"
+        },
+        "children": [
+          "metricTrendIcon_3",
+          "metricChangeRate_3",
+          "metricCompareText_3"
+        ]
+      },
+      {
+        "id": "metricTrendIcon_3",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "color": "success",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "metricChangeRate_3",
+        "component": "span",
+        "props": {
+          "className": "text-sm font-semibold text-success mt-0.5",
+          "value": "+0.01%"
+        }
+      },
+      {
+        "id": "metricCompareText_3",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-on-surface-variant",
+          "value": "较上月"
+        }
+      },
+      {
+        "id": "sysManageInner",
+        "component": "div",
+        "props": {
+          "className": "p-6 flex flex-col gap-4"
+        },
+        "children": [
+          "sysManageBreadcrumb",
+          "sysManageTitle",
+          "sysManageToolbarRow",
+          "sysManageWorkorderTable"
+        ]
+      },
+      {
+        "id": "sysManageTitle",
+        "component": "span",
+        "props": {
+          "value": "系统规格管理",
+          "className": "text-2xl text-on-surface"
+        }
+      },
+      {
+        "id": "sysManageToolbarRow",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-between"
+        },
+        "children": [
+          "sysManageToolbarLeft",
+          "sysManageToolbarRight"
+        ]
+      },
+      {
+        "id": "sysManageToolbarLeft",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-6"
+        },
+        "children": [
+          "sysManageSearchInput"
+        ]
+      },
+      {
+        "id": "sysManageSearchInput",
+        "component": "Input",
+        "props": {
+          "value": {
+            "path": "/twoSearchValue"
+          },
+          "placeholder": "请输入搜索内容",
+          "suffix": "search",
+          "size": "medium",
+          "className": "w-74"
+        }
+      },
+      {
+        "id": "sysManageToolbarRight",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-2"
+        },
+        "children": [
+          "sysManageDeleteBtn",
+          "sysManageRefreshIcon",
+          "sysManageCreateBtn"
+        ]
+      },
+      {
+        "id": "twoCardDivider",
+        "component": "Divider",
+        "props": {
+          "orientation": "vertical",
+          "className": "mx-2 w-px"
+        }
+      },
+      {
+        "id": "sysManageCreateBtn",
+        "component": "Button",
+        "props": {
+          "value": "创建",
+          "color": "primary"
+        }
+      },
+      {
+        "id": "sysManageRefreshIcon",
+        "component": "Icon",
+        "props": {
+          "name": "refresh-cw",
+          "shape": "outline",
+          "className": "w-4 h-4 text-on-surface-variant cursor-pointer ml-2"
+        }
+      },
+      {
+        "id": "sysManageWorkorderTable",
+        "component": "Table",
+        "props": {
+          "rowKey": "key",
+          "dataSource": {
+            "path": "/twoWorkorderList"
+          },
+          "columns": [
+            {
+              "title": "子系统",
+              "dataIndex": "subsystem",
+              "minWidth": 60
+            },
+            {
+              "title": "状态",
+              "dataIndex": "status",
+              "minWidth": 50,
+              "sort": true
+            },
+            {
+              "title": "配置",
+              "dataIndex": "configuration",
+              "minWidth": 180
+            },
+            {
+              "title": "配置项值",
+              "dataIndex": "configurationValue",
+              "minWidth": 60
+            },
+            {
+              "title": "默认值",
+              "dataIndex": "defaultVal",
+              "minWidth": 50
+            },
+            {
+              "title": "描述",
+              "dataIndex": "describe",
+              "minWidth": 260
+            },
+            {
+              "title": "重启微服务",
+              "dataIndex": "microservice",
+              "minWidth": 50
+            },
+            {
+              "title": "操作",
+              "dataIndex": "actions",
+              "minWidth": 50
+            }
+          ],
+          "pagination": true,
+          "className": "mb-4"
+        },
+        "children": {
+          "path": "/twoWorkorderList",
+          "componentId": "sysManageTableRow"
+        }
+      },
+      {
+        "id": "sysManageTableRow",
+        "component": "TableRow",
+        "children": [
+          "sysManageSubsystemCell",
+          "sysManageStatusCell",
+          "sysManageConfigurationCell",
+          "sysManageConfigurationValueCell",
+          "sysManageDefaultValCell",
+          "sysManageDescribeCell",
+          "sysManageMicroserviceCell",
+          "sysManageActionsCell"
+        ],
+        "props": {}
+      },
+      {
+        "id": "sysManageSubsystemCell",
+        "component": "span",
+        "props": {
+          "className": "truncate inline-block max-w-full",
+          "value": {
+            "path": "subsystem"
+          }
+        }
+      },
+      {
+        "id": "sysManageStatusCell",
+        "component": "Tag",
+        "props": {
+          "value": {
+            "path": "status/text"
+          },
+          "color": {
+            "path": "status/color"
+          },
+          "size": "small"
+        }
+      },
+      {
+        "id": "sysManageConfigurationCell",
+        "component": "div",
+        "props": {
+          "value": {
+            "path": "configuration"
+          },
+          "className": "flex items-center w-full"
+        }
+      },
+      {
+        "id": "sysManageConfigurationValueCell",
+        "component": "div",
+        "props": {
+          "value": {
+            "path": "configurationValue"
+          },
+          "className": "flex items-center w-full"
+        }
+      },
+      {
+        "id": "sysManageDefaultValCell",
+        "component": "span",
+        "props": {
+          "className": "truncate inline-block max-w-full",
+          "value": {
+            "path": "defaultVal"
+          }
+        }
+      },
+      {
+        "id": "sysManageDescribeCell",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "describe"
+          }
+        }
+      },
+      {
+        "id": "sysManageMicroserviceCell",
+        "component": "Tag",
+        "props": {
+          "value": {
+            "path": "microservice"
+          },
+          "color": {
+            "path": "microserviceColor"
+          },
+          "size": "small"
+        }
+      },
+      {
+        "id": "sysManageActionsCell",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-5"
+        },
+        "children": [
+          "sysManageActionDetailBtn"
+        ]
+      },
+      {
+        "id": "sysManageBreadcrumb",
+        "component": "Breadcrumb",
+        "props": {
+          "items": [
+            {
+              "title": "首页"
+            },
+            {
+              "title": "系统管理"
+            },
+            {
+              "title": "系统规格管理"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sysManageDeleteBtn",
+        "component": "Button",
+        "props": {
+          "value": "删除",
+          "icon": "trash-2",
+          "color": "error"
+        }
+      },
+      {
+        "id": "sysManageActionDetailBtn",
+        "component": "Button",
+        "props": {
+          "value": "查看详情",
+          "types": "link",
+          "size": "small",
+          "className": "text-interactive-link"
+        }
+      }
+    ],
+    "state": {
+      "genLogoImage": "/history/ses_04e687870ffeB07mPvHuASe952/uploads/3369090faab10df7.svg",
+      "genMenuItems": [
+        {
+          "title": "资源中心",
+          "key": "1"
+        },
+        {
+          "title": "任务中心",
+          "key": "2"
+        },
+        {
+          "title": "系统任务",
+          "key": "3"
+        }
+      ],
+      "genSelectedMenuKeys": [
+        "1"
+      ],
+      "metricCards": [
+        {
+          "metricIcon": "Users",
+          "metricName": "总用户数",
+          "metricValue": "128,473",
+          "trendIcon": "TrendingUp",
+          "trendColor": "success",
+          "changeRate": "+5.2%",
+          "compareText": "较上月"
+        },
+        {
+          "metricIcon": "Activity",
+          "metricName": "今日活跃用户",
+          "metricValue": "23,891",
+          "trendIcon": "TrendingUp",
+          "trendColor": "success",
+          "changeRate": "+12.7%",
+          "compareText": "较昨日"
+        },
+        {
+          "metricIcon": "AlertTriangle",
+          "metricName": "系统告警数",
+          "metricValue": "7",
+          "trendIcon": "TrendingDown",
+          "trendColor": "error",
+          "changeRate": "-3.1%",
+          "compareText": "较昨日"
+        },
+        {
+          "metricIcon": "ShieldCheck",
+          "metricName": "服务可用率",
+          "metricValue": "99.97%",
+          "trendIcon": "TrendingUp",
+          "trendColor": "success",
+          "changeRate": "+0.01%",
+          "compareText": "较上月"
+        }
+      ],
+      "twoSearchValue": "",
+      "twoCardAutoRefreshSwitchValue": false,
+      "twoWorkorderList": [
+        {
+          "key": 1,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核通过",
+            "color": "success"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_TIMES",
+          "configurationValue": "0",
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "是",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "success"
+        },
+        {
+          "key": 2,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证失败",
+            "color": "error"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_INTERVAL",
+          "configurationValue": 100,
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "是",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "success"
+        },
+        {
+          "key": 3,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放失败",
+            "color": "error"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_TASK_FOR_DE.",
+          "configurationValue": 200,
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 4,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核驳回",
+            "color": "warning"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 5,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚失败",
+            "color": "#FA541C"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 6,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 7,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 20,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 8,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚中",
+            "color": "#13C2C2"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 9,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 10,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 50,
+          "defaultVal": 150,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 11,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核通过",
+            "color": "success"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_TIMES",
+          "configurationValue": "0",
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 12,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证失败",
+            "color": "error"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_INTERVAL",
+          "configurationValue": 100,
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 13,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放失败",
+            "color": "error"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_TASK_FOR_DE.",
+          "configurationValue": 200,
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 14,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核驳回",
+            "color": "warning"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 15,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚失败",
+            "color": "#FA541C"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 16,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 17,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 20,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 18,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚中",
+            "color": "#13C2C2"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 19,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 20,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 50,
+          "defaultVal": 150,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        }
+      ]
+    }
+  },
+  "mergedA2UI": {
+    "rootId": "appRoot",
+    "elements": [
+      {
+        "id": "appRoot",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col min-h-screen bg-surface-container-lowest"
+        },
+        "children": [
+          "genHeaderContainer",
+          "mainContentArea"
+        ]
+      },
+      {
+        "id": "genHeaderContainer",
+        "component": "header",
+        "props": {
+          "className": "flex items-center justify-between h-12 pl-[50px] pr-[42px] bg-surface-container-highest shadow-sm"
+        },
+        "children": [
+          "genHeaderLeftSection",
+          "genHeaderMiddleMenu",
+          "genHeaderRightSection"
+        ]
+      },
+      {
+        "id": "mainContentArea",
+        "component": "main",
+        "props": {
+          "className": "flex-1 p-page flex flex-col gap-section overflow-auto"
+        },
+        "children": [
+          "overviewMetricsGrid",
+          "sysManageCardContainer"
+        ]
+      },
+      {
+        "id": "overviewMetricsGrid",
+        "component": "div",
+        "props": {
+          "className": "grid grid-cols-2 gap-gutter"
+        },
+        "children": [
+          "metricCard_0",
+          "metricCard_1",
+          "metricCard_2",
+          "metricCard_3"
+        ]
+      },
+      {
+        "id": "sysManageCardContainer",
+        "component": "div",
+        "props": {
+          "className": "bg-surface-container-highest rounded-md"
+        },
+        "children": [
+          "sysManageInner"
+        ]
+      },
+      {
+        "id": "genHeaderLeftSection",
+        "component": "div",
+        "props": {
+          "className": "flex items-center"
+        },
+        "children": [
+          "genHeaderLogoImg",
+          "genDividerLine",
+          "genHeaderDropIcon",
+          "genHeaderDropdown"
+        ]
+      },
+      {
+        "id": "genHeaderLogoImg",
+        "component": "img",
+        "props": {
+          "src": {
+            "path": "/genLogoImage"
+          },
+          "alt": "Logo",
+          "className": "h-8 w-auto"
+        }
+      },
+      {
+        "id": "genDividerLine",
+        "component": "div",
+        "props": {
+          "className": "w-px h-6 bg-[#f3f3f3] ml-[25px] mr-[14px]"
+        }
+      },
+      {
+        "id": "genHeaderDropIcon",
+        "component": "Icon",
+        "props": {
+          "name": "management",
+          "className": "w-5 h-5 mr-[8px]"
+        }
+      },
+      {
+        "id": "genHeaderDropdown",
+        "component": "Dropdown",
+        "props": {
+          "placement": "bottomLeft",
+          "trigger": [
+            "click"
+          ],
+          "menu": [
+            {
+              "label": "系统管理",
+              "key": "system"
+            },
+            {
+              "label": "个人设置",
+              "key": "profile"
+            },
+            {
+              "label": "退出登录",
+              "key": "logout"
+            }
+          ]
+        },
+        "children": [
+          "genHeaderDropdownTrigger"
+        ]
+      },
+      {
+        "id": "genHeaderDropdownTrigger",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-1 cursor-pointer text-on-surface transition-colors"
+        },
+        "children": [
+          "genHeaderDropdownText",
+          "genHeaderDropdownIcon"
+        ]
+      },
+      {
+        "id": "genHeaderDropdownIcon",
+        "component": "Icon",
+        "props": {
+          "name": "chevron-up",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "genHeaderDropdownText",
+        "component": "span",
+        "props": {
+          "value": "下拉菜单文本",
+          "className": ""
+        }
+      },
+      {
+        "id": "genHeaderMiddleMenu",
+        "component": "Menu",
+        "props": {
+          "mode": "horizontal",
+          "selectedKeys": {
+            "path": "/genSelectedMenuKeys"
+          },
+          "items": {
+            "path": "/genMenuItems"
+          },
+          "className": "flex-1 flex justify-center border-0 bg-transparent"
+        }
+      },
+      {
+        "id": "genHeaderRightSection",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-6"
+        },
+        "children": [
+          "genHeaderSearchBtn",
+          "genHeaderBellBtn",
+          "genHeaderHelpBtn",
+          "genHeaderHeadphonesBtn",
+          "genHeaderGlobeBtn",
+          "genHeaderMoonBtn",
+          "genHeaderUserBtn"
+        ]
+      },
+      {
+        "id": "genHeaderSearchBtn",
+        "component": "Button",
+        "props": {
+          "icon": "search",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderBellBtn",
+        "component": "Button",
+        "props": {
+          "icon": "bell",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderHelpBtn",
+        "component": "Button",
+        "props": {
+          "icon": "help-circle",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderHeadphonesBtn",
+        "component": "Button",
+        "props": {
+          "icon": "headphones",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderGlobeBtn",
+        "component": "Button",
+        "props": {
+          "icon": "languages",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderMoonBtn",
+        "component": "Button",
+        "props": {
+          "icon": "moon",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "genHeaderUserBtn",
+        "component": "Button",
+        "props": {
+          "icon": "user",
+          "shape": "circle",
+          "size": "large"
+        }
+      },
+      {
+        "id": "metricCard_0",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-4 bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "metricIconWrap_0",
+          "metricTextSection_0",
+          "metricTrendSection_0"
+        ]
+      },
+      {
+        "id": "metricIconWrap_0",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-center w-12 h-12 rounded-lg bg-primary-container shrink-0"
+        },
+        "children": [
+          "metricIcon_0"
+        ]
+      },
+      {
+        "id": "metricIcon_0",
+        "component": "Icon",
+        "props": {
+          "name": "users",
+          "color": "primary",
+          "className": "w-6 h-6"
+        }
+      },
+      {
+        "id": "metricTextSection_0",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col flex-1 min-w-0"
+        },
+        "children": [
+          "metricValue_0",
+          "metricName_0"
+        ]
+      },
+      {
+        "id": "metricValue_0",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface tracking-tight",
+          "value": "128,473"
+        }
+      },
+      {
+        "id": "metricName_0",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant mt-0.5",
+          "value": "总用户数"
+        }
+      },
+      {
+        "id": "metricTrendSection_0",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col items-end shrink-0"
+        },
+        "children": [
+          "metricTrendIcon_0",
+          "metricChangeRate_0",
+          "metricCompareText_0"
+        ]
+      },
+      {
+        "id": "metricTrendIcon_0",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "color": "success",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "metricChangeRate_0",
+        "component": "span",
+        "props": {
+          "className": "text-sm font-semibold text-success mt-0.5",
+          "value": "+5.2%"
+        }
+      },
+      {
+        "id": "metricCompareText_0",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-on-surface-variant",
+          "value": "较上月"
+        }
+      },
+      {
+        "id": "metricCard_1",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-4 bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "metricIconWrap_1",
+          "metricTextSection_1",
+          "metricTrendSection_1"
+        ]
+      },
+      {
+        "id": "metricIconWrap_1",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-center w-12 h-12 rounded-lg bg-primary-container shrink-0"
+        },
+        "children": [
+          "metricIcon_1"
+        ]
+      },
+      {
+        "id": "metricIcon_1",
+        "component": "Icon",
+        "props": {
+          "name": "activity",
+          "color": "primary",
+          "className": "w-6 h-6"
+        }
+      },
+      {
+        "id": "metricTextSection_1",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col flex-1 min-w-0"
+        },
+        "children": [
+          "metricValue_1",
+          "metricName_1"
+        ]
+      },
+      {
+        "id": "metricValue_1",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface tracking-tight",
+          "value": "23,891"
+        }
+      },
+      {
+        "id": "metricName_1",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant mt-0.5",
+          "value": "今日活跃用户"
+        }
+      },
+      {
+        "id": "metricTrendSection_1",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col items-end shrink-0"
+        },
+        "children": [
+          "metricTrendIcon_1",
+          "metricChangeRate_1",
+          "metricCompareText_1"
+        ]
+      },
+      {
+        "id": "metricTrendIcon_1",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "color": "success",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "metricChangeRate_1",
+        "component": "span",
+        "props": {
+          "className": "text-sm font-semibold text-success mt-0.5",
+          "value": "+12.7%"
+        }
+      },
+      {
+        "id": "metricCompareText_1",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-on-surface-variant",
+          "value": "较昨日"
+        }
+      },
+      {
+        "id": "metricCard_2",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-4 bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "metricIconWrap_2",
+          "metricTextSection_2",
+          "metricTrendSection_2"
+        ]
+      },
+      {
+        "id": "metricIconWrap_2",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-center w-12 h-12 rounded-lg shrink-0",
+          "style": "background-color: rgba(239, 68, 68, 0.12);"
+        },
+        "children": [
+          "metricIcon_2"
+        ]
+      },
+      {
+        "id": "metricIcon_2",
+        "component": "Icon",
+        "props": {
+          "name": "alert-triangle",
+          "color": "error",
+          "className": "w-6 h-6"
+        }
+      },
+      {
+        "id": "metricTextSection_2",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col flex-1 min-w-0"
+        },
+        "children": [
+          "metricValue_2",
+          "metricName_2"
+        ]
+      },
+      {
+        "id": "metricValue_2",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface tracking-tight",
+          "value": "7"
+        }
+      },
+      {
+        "id": "metricName_2",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant mt-0.5",
+          "value": "系统告警数"
+        }
+      },
+      {
+        "id": "metricTrendSection_2",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col items-end shrink-0"
+        },
+        "children": [
+          "metricTrendIcon_2",
+          "metricChangeRate_2",
+          "metricCompareText_2"
+        ]
+      },
+      {
+        "id": "metricTrendIcon_2",
+        "component": "Icon",
+        "props": {
+          "name": "trending-down",
+          "color": "error",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "metricChangeRate_2",
+        "component": "span",
+        "props": {
+          "className": "text-sm font-semibold text-error mt-0.5",
+          "value": "-3.1%"
+        }
+      },
+      {
+        "id": "metricCompareText_2",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-on-surface-variant",
+          "value": "较昨日"
+        }
+      },
+      {
+        "id": "metricCard_3",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-4 bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "metricIconWrap_3",
+          "metricTextSection_3",
+          "metricTrendSection_3"
+        ]
+      },
+      {
+        "id": "metricIconWrap_3",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-center w-12 h-12 rounded-lg bg-success-container shrink-0"
+        },
+        "children": [
+          "metricIcon_3"
+        ]
+      },
+      {
+        "id": "metricIcon_3",
+        "component": "Icon",
+        "props": {
+          "name": "shield-check",
+          "color": "success",
+          "className": "w-6 h-6"
+        }
+      },
+      {
+        "id": "metricTextSection_3",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col flex-1 min-w-0"
+        },
+        "children": [
+          "metricValue_3",
+          "metricName_3"
+        ]
+      },
+      {
+        "id": "metricValue_3",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface tracking-tight",
+          "value": "99.97%"
+        }
+      },
+      {
+        "id": "metricName_3",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant mt-0.5",
+          "value": "服务可用率"
+        }
+      },
+      {
+        "id": "metricTrendSection_3",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col items-end shrink-0"
+        },
+        "children": [
+          "metricTrendIcon_3",
+          "metricChangeRate_3",
+          "metricCompareText_3"
+        ]
+      },
+      {
+        "id": "metricTrendIcon_3",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "color": "success",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "metricChangeRate_3",
+        "component": "span",
+        "props": {
+          "className": "text-sm font-semibold text-success mt-0.5",
+          "value": "+0.01%"
+        }
+      },
+      {
+        "id": "metricCompareText_3",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-on-surface-variant",
+          "value": "较上月"
+        }
+      },
+      {
+        "id": "sysManageInner",
+        "component": "div",
+        "props": {
+          "className": "p-6 flex flex-col gap-4"
+        },
+        "children": [
+          "sysManageBreadcrumb",
+          "sysManageTitle",
+          "sysManageToolbarRow",
+          "sysManageWorkorderTable"
+        ]
+      },
+      {
+        "id": "sysManageTitle",
+        "component": "span",
+        "props": {
+          "value": "系统规格管理",
+          "className": "text-2xl text-on-surface"
+        }
+      },
+      {
+        "id": "sysManageToolbarRow",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-between"
+        },
+        "children": [
+          "sysManageToolbarLeft",
+          "sysManageToolbarRight"
+        ]
+      },
+      {
+        "id": "sysManageToolbarLeft",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-6"
+        },
+        "children": [
+          "sysManageSearchInput"
+        ]
+      },
+      {
+        "id": "sysManageSearchInput",
+        "component": "Input",
+        "props": {
+          "value": {
+            "path": "/twoSearchValue"
+          },
+          "placeholder": "请输入搜索内容",
+          "suffix": "search",
+          "size": "medium",
+          "className": "w-74"
+        }
+      },
+      {
+        "id": "sysManageToolbarRight",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-2"
+        },
+        "children": [
+          "sysManageDeleteBtn",
+          "sysManageRefreshIcon",
+          "sysManageCreateBtn"
+        ]
+      },
+      {
+        "id": "twoCardDivider",
+        "component": "Divider",
+        "props": {
+          "orientation": "vertical",
+          "className": "mx-2 w-px"
+        }
+      },
+      {
+        "id": "sysManageCreateBtn",
+        "component": "Button",
+        "props": {
+          "value": "创建",
+          "color": "primary"
+        }
+      },
+      {
+        "id": "sysManageRefreshIcon",
+        "component": "Icon",
+        "props": {
+          "name": "refresh-cw",
+          "shape": "outline",
+          "className": "w-4 h-4 text-on-surface-variant cursor-pointer ml-2"
+        }
+      },
+      {
+        "id": "sysManageWorkorderTable",
+        "component": "Table",
+        "props": {
+          "rowKey": "key",
+          "dataSource": {
+            "path": "/twoWorkorderList"
+          },
+          "columns": [
+            {
+              "title": "子系统",
+              "dataIndex": "subsystem",
+              "minWidth": 60
+            },
+            {
+              "title": "状态",
+              "dataIndex": "status",
+              "minWidth": 50,
+              "sort": true
+            },
+            {
+              "title": "配置",
+              "dataIndex": "configuration",
+              "minWidth": 180
+            },
+            {
+              "title": "配置项值",
+              "dataIndex": "configurationValue",
+              "minWidth": 60
+            },
+            {
+              "title": "默认值",
+              "dataIndex": "defaultVal",
+              "minWidth": 50
+            },
+            {
+              "title": "描述",
+              "dataIndex": "describe",
+              "minWidth": 260
+            },
+            {
+              "title": "重启微服务",
+              "dataIndex": "microservice",
+              "minWidth": 50
+            },
+            {
+              "title": "操作",
+              "dataIndex": "actions",
+              "minWidth": 50
+            }
+          ],
+          "pagination": true,
+          "className": "mb-4"
+        },
+        "children": {
+          "path": "/twoWorkorderList",
+          "componentId": "sysManageTableRow"
+        }
+      },
+      {
+        "id": "sysManageTableRow",
+        "component": "TableRow",
+        "children": [
+          "sysManageSubsystemCell",
+          "sysManageStatusCell",
+          "sysManageConfigurationCell",
+          "sysManageConfigurationValueCell",
+          "sysManageDefaultValCell",
+          "sysManageDescribeCell",
+          "sysManageMicroserviceCell",
+          "sysManageActionsCell"
+        ],
+        "props": {}
+      },
+      {
+        "id": "sysManageSubsystemCell",
+        "component": "span",
+        "props": {
+          "className": "truncate inline-block max-w-full",
+          "value": {
+            "path": "subsystem"
+          }
+        }
+      },
+      {
+        "id": "sysManageStatusCell",
+        "component": "Tag",
+        "props": {
+          "value": {
+            "path": "status/text"
+          },
+          "color": {
+            "path": "status/color"
+          },
+          "size": "small"
+        }
+      },
+      {
+        "id": "sysManageConfigurationCell",
+        "component": "div",
+        "props": {
+          "value": {
+            "path": "configuration"
+          },
+          "className": "flex items-center w-full"
+        }
+      },
+      {
+        "id": "sysManageConfigurationValueCell",
+        "component": "div",
+        "props": {
+          "value": {
+            "path": "configurationValue"
+          },
+          "className": "flex items-center w-full"
+        }
+      },
+      {
+        "id": "sysManageDefaultValCell",
+        "component": "span",
+        "props": {
+          "className": "truncate inline-block max-w-full",
+          "value": {
+            "path": "defaultVal"
+          }
+        }
+      },
+      {
+        "id": "sysManageDescribeCell",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "describe"
+          }
+        }
+      },
+      {
+        "id": "sysManageMicroserviceCell",
+        "component": "Tag",
+        "props": {
+          "value": {
+            "path": "microservice"
+          },
+          "color": {
+            "path": "microserviceColor"
+          },
+          "size": "small"
+        }
+      },
+      {
+        "id": "sysManageActionsCell",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-5"
+        },
+        "children": [
+          "sysManageActionDetailBtn"
+        ]
+      },
+      {
+        "id": "sysManageBreadcrumb",
+        "component": "Breadcrumb",
+        "props": {
+          "items": [
+            {
+              "title": "首页"
+            },
+            {
+              "title": "系统管理"
+            },
+            {
+              "title": "系统规格管理"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sysManageDeleteBtn",
+        "component": "Button",
+        "props": {
+          "value": "删除",
+          "icon": "trash-2",
+          "color": "error"
+        }
+      },
+      {
+        "id": "sysManageActionDetailBtn",
+        "component": "Button",
+        "props": {
+          "value": "查看详情",
+          "types": "link",
+          "size": "small",
+          "className": "text-interactive-link"
+        }
+      }
+    ],
+    "state": {
+      "genLogoImage": "/history/ses_04e687870ffeB07mPvHuASe952/uploads/3369090faab10df7.svg",
+      "genMenuItems": [
+        {
+          "title": "资源中心",
+          "key": "1"
+        },
+        {
+          "title": "任务中心",
+          "key": "2"
+        },
+        {
+          "title": "系统任务",
+          "key": "3"
+        }
+      ],
+      "genSelectedMenuKeys": [
+        "1"
+      ],
+      "metricCards": [
+        {
+          "metricIcon": "Users",
+          "metricName": "总用户数",
+          "metricValue": "128,473",
+          "trendIcon": "TrendingUp",
+          "trendColor": "success",
+          "changeRate": "+5.2%",
+          "compareText": "较上月"
+        },
+        {
+          "metricIcon": "Activity",
+          "metricName": "今日活跃用户",
+          "metricValue": "23,891",
+          "trendIcon": "TrendingUp",
+          "trendColor": "success",
+          "changeRate": "+12.7%",
+          "compareText": "较昨日"
+        },
+        {
+          "metricIcon": "AlertTriangle",
+          "metricName": "系统告警数",
+          "metricValue": "7",
+          "trendIcon": "TrendingDown",
+          "trendColor": "error",
+          "changeRate": "-3.1%",
+          "compareText": "较昨日"
+        },
+        {
+          "metricIcon": "ShieldCheck",
+          "metricName": "服务可用率",
+          "metricValue": "99.97%",
+          "trendIcon": "TrendingUp",
+          "trendColor": "success",
+          "changeRate": "+0.01%",
+          "compareText": "较上月"
+        }
+      ],
+      "twoSearchValue": "",
+      "twoCardAutoRefreshSwitchValue": false,
+      "twoWorkorderList": [
+        {
+          "key": 1,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核通过",
+            "color": "success"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_TIMES",
+          "configurationValue": "0",
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "是",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "success"
+        },
+        {
+          "key": 2,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证失败",
+            "color": "error"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_INTERVAL",
+          "configurationValue": 100,
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "是",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "success"
+        },
+        {
+          "key": 3,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放失败",
+            "color": "error"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_TASK_FOR_DE.",
+          "configurationValue": 200,
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 4,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核驳回",
+            "color": "warning"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 5,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚失败",
+            "color": "#FA541C"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 6,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 7,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 20,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 8,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚中",
+            "color": "#13C2C2"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 9,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 10,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 50,
+          "defaultVal": 150,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 11,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核通过",
+            "color": "success"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_TIMES",
+          "configurationValue": "0",
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 12,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证失败",
+            "color": "error"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_INTERVAL",
+          "configurationValue": 100,
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 13,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放失败",
+            "color": "error"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_TASK_FOR_DE.",
+          "configurationValue": 200,
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 14,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核驳回",
+            "color": "warning"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 15,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚失败",
+            "color": "#FA541C"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 16,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 17,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 20,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 18,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚中",
+            "color": "#13C2C2"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 19,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        },
+        {
+          "key": 20,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 50,
+          "defaultVal": 150,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ],
+          "microserviceColor": "error"
+        }
+      ]
+    }
+  }
+}

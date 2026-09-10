@@ -1,0 +1,2673 @@
+// .gitignore
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw? 
+
+
+
+// index.html
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generated App</title>
+  </head>
+  <body class="aui3_1">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+
+// package.json
+{
+  "name": "generated-app-eview-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@nce/eview-react": "^3.10.16",
+    "@nce/icon-plus": "file:hui-icon-plus-1.0.9.tgz",
+    "@nce/charts": "file:hui-charts-0.3.6.tgz",
+    "lodash": "^4.18.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-intl": "^10.1.5",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "less": "^4.8.0",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.10"
+  }
+}
+
+// src/App.tsx
+import { Outlet } from 'react-router-dom';
+
+export default function App() {
+  return <Outlet />;
+}
+
+
+// src/main.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { IntlProvider } from 'react-intl';
+import { RouterProvider } from 'react-router-dom';
+import { ThemeProvider } from './theme/useTheme';
+import componentsLocales from '@nce/eview-react/locales';
+import router from './routes';
+import '@nce/eview-react/styles/aui3_1.css';
+import './styles/global.less';
+import './styles/base.css';
+import './styles/hui-base.css';
+import './styles/hui-base-dark.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <ThemeProvider>
+    <IntlProvider locale="zh" messages={componentsLocales.zh}>
+      <RouterProvider router={router} />
+    </IntlProvider>
+  </ThemeProvider>
+);
+
+
+// src/shared/TableFilter.less
+/* TableFilter 样式 */
+
+.ev-custom-table-filter-wrapper {
+    width: 296px;
+    background-color: var(--color-bg-4);
+    border-radius: var(--radius-base);
+
+    .checkbox-wrapper {
+        padding: var(--space-base);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-base);
+    }
+
+    .checkbox-item-wrapper {
+        padding-left: var(--space-2x);
+
+        &:hover {
+            border-radius: var(--radius-base);
+            background-color: var(--color-fill-2);
+        }
+    }
+
+    .button-wrapper {
+        text-align: right;
+        padding: var(--space-2x) 0;
+    }
+}
+
+// src/shared/TableFilter.tsx
+/**
+ * TableFilter 公共组件（eview-react shared）
+ *
+ * import: import TableFilter from '@/shared/TableFilter'
+ */
+
+import React, { useState, useCallback } from 'react'
+import Button from '@nce/eview-react/Button'
+import Divider from '@nce/eview-react/Divider'
+import Checkbox from '@nce/eview-react/Checkbox'
+import './TableFilter.less'
+
+export interface TableFilterOption {
+  text: string
+  value: string
+}
+
+export interface TableFilterProps {
+  /** 过滤选项列表，每项 { text, value }，必填 */
+  data: TableFilterOption[]
+  /** 选中值变化回调，参数为当前选中的 value 数组 */
+  onFilter?: (value: string[]) => void
+}
+
+export default function TableFilter(props: TableFilterProps) {
+  const { data, onFilter } = props
+
+  const [checkedValue, setCheckedValue] = useState<Set<string>>(new Set())
+
+  const handleChange = useCallback((value: string, checked: boolean) => {
+    const newSet = new Set([...checkedValue])
+    if (checked) {
+      newSet.add(value)
+    } else {
+      newSet.delete(value)
+    }
+    setCheckedValue(newSet)
+  }, [checkedValue])
+
+  const reset = useCallback(() => {
+    setCheckedValue(new Set())
+  }, [])
+
+  if (!data.length) return null
+
+  return (
+    <div className="ev-custom-table-filter-wrapper">
+      <div className="checkbox-wrapper">
+        {data.map((item) => (
+          <div className="checkbox-item-wrapper" key={item.value}>
+            <Checkbox
+              value={item.value}
+              label={item.text}
+              checked={checkedValue.has(item.value)}
+              onChange={handleChange}
+            />
+          </div>
+        ))}
+      </div>
+      <Divider style={{ margin: 'unset' }} />
+      <div className="button-wrapper">
+        <Button
+          style={{ padding: 'unset', minWidth: 'unset' }}
+          disabled={checkedValue.size === 0}
+          status="text"
+          onClick={reset}
+        >
+          重置
+        </Button>
+        <Button
+          style={{ padding: '0 var(--space-3x)', minWidth: 'unset' }}
+          status="text"
+          onClick={() => onFilter?.([...checkedValue])}
+        >
+          筛选
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+
+// src/styles/base.css
+:root {
+  /* ==========================================================================
+     1. 基础色阶 (Primitive Colors)
+     ========================================================================== */
+  /* brand */
+  --brand-05: #E6F2FD;
+  --brand-10: #B8D9F9;
+  --brand-20: #8ABEF3;
+  --brand-30: #5CA2E9;
+  --brand-40: #2E86DE;
+  --brand-50: #0067D1;
+  --brand-60: #004EA8;
+  --brand-70: #003D83;
+  --brand-80: #002E6A;
+  --brand-90: #00214B;
+
+  /* gray */
+   --gray-0: #FFFFFF;
+   --gray-05: #F3F3F3;
+   --gray-10: #DFDFDF;
+   --gray-20: #C9C9C9; 
+   --gray-30: #AEAEAE;
+   --gray-40: #939393;
+   --gray-50: #777777;
+   --gray-60: #595959;
+   --gray-70: #393939;
+   --gray-80: #2A2A2A;
+   --gray-90: #191919;
+   --gray-100: #000000;
+
+   /* red */
+   --red-05: #FEE7E8;
+   --red-10: #FABDC1;
+   --red-20: #F59297;
+   --red-30: #EE696F;
+   --red-40: #E7434A;
+   --red-50: #E02128;
+   --red-60: #C7000B;
+   --red-70: #850F12;
+   --red-80: #59080A;
+   --red-90: #350305;
+
+   /* rose */
+   --rose-05: #FEE5F2;
+   --rose-10: #FCC3E0;
+   --rose-20: #F99AC7;
+   --rose-30: #F470AB;
+   --rose-40: #ED448A;
+   --rose-50: #E61866;
+   --rose-60: #C40054;
+   --rose-70: #811439;
+   --rose-80: #540D24;
+   --rose-90: #330614;
+
+   /* orange */
+   --orange-05: #FEF5E8;
+   --orange-10: #FDE2BD;
+   --orange-20: #FCCE92;
+   --orange-30: #F9B766;
+   --orange-40: #F69E39;
+   --orange-50: #F4840C;
+   --orange-60: #C76207;
+   --orange-70: #954304;
+   --orange-80: #642802;
+   --orange-90: #3D1601;
+
+   /* yellow */
+   --yellow-05: #FEFCE0;
+   --yellow-10: #FEF8B8;
+   --yellow-20: #FEF08A;
+   --yellow-30: #FDE55C;
+   --yellow-40: #FCD72E;
+   --yellow-50: #FCC800;
+   --yellow-60: #D19F00;
+   --yellow-70: #9E7400;
+   --yellow-80: #614500;
+   --yellow-90: #2E1F00;
+
+   /* green */
+   --green-05: #F2FBE9;
+   --green-10: #DFF4CC;
+   --green-20: #C6E9A8;
+   --green-30: #A8DB81;
+   --green-40: #87C859;
+   --green-50: #62B42E;
+   --green-60: #488E20;
+   --green-70: #316614;
+   --green-80: #1B3E0A;
+   --green-90: #0C2004;
+
+   /* mint */
+   --mint-05: #E7FBF2;
+   --mint-10: #BCF2DB;
+   --mint-20: #8FE5C2;
+   --mint-30: #63D5A8;
+   --mint-40: #36C18D;
+   --mint-50: #09AA71;
+   --mint-60: #058358;
+   --mint-70: #036142;
+   --mint-80: #02422E;
+   --mint-90: #00291D;
+
+   /* cyan */
+   --cyan-05: #E8FCFD;
+   --cyan-10: #C9F6F9;
+   --cyan-20: #A4ECF1;
+   --cyan-30: #7DDFE7;
+   --cyan-40: #55CCD9;
+   --cyan-50: #2CB8C9;
+   --cyan-60: #1C94A4;
+   --cyan-70: #127180;
+   --cyan-80: #094C57;
+   --cyan-90: #04282F;
+
+   /* blue */
+   --blue-05: #EEF3FE;
+   --blue-10: #D0D8FD;
+   --blue-20: #B0BFFD;
+   --blue-30: #8CA3FA;
+   --blue-40: #668CF7;
+   --blue-50: #2070F3;
+   --blue-60: #1F55B5;
+   --blue-70: #1B3F86;
+   --blue-80: #112857;
+   --blue-90: #081635;
+
+   /* indigo */
+   --indigo-05: #EEEEFE;
+   --indigo-10: #D5D3FD;
+   --indigo-20: #BFB9FA;
+   --indigo-30: #A89FF9;
+   --indigo-40: #8E81F4;
+   --indigo-50: #715AFB;
+   --indigo-60: #5531EB;
+   --indigo-70: #3F21B5;
+   --indigo-80: #281675;
+   --indigo-90: #160B48;
+
+   /* purple */
+   --purple-05: #F7EDFE;
+   --purple-10: #E8CFFE;
+   --purple-20: #D9B1FD;
+   --purple-30: #CB8EFB;
+   --purple-40: #BF68FA;
+   --purple-50: #B62BF7;
+   --purple-60: #8A21BC;
+   --purple-70: #651B8B;
+   --purple-80: #41125A;
+   --purple-90: #260937;
+
+   /* pink */
+   --pink-05: #FDE6FC;
+   --pink-10: #F9C5F6;
+   --pink-20: #F39DEC;
+   --pink-30: #EB74DF;
+   --pink-40: #E049CE;
+   --pink-50: #D41DBC;
+   --pink-60: #9F1C8D;
+   --pink-70: #751868;
+   --pink-80: #4C0F43;
+   --pink-90: #2E0728;
+
+
+
+  /* ==========================================================================
+     3. 尺寸与形状变量 (Sizes & Shapes)
+     ========================================================================== */
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-base: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 999px;
+
+  /* ==========================================================================
+     4. 文本排版 (Typography)
+     ========================================================================== */
+  /* Font Family */
+  --font-family: 'HarmonyOS Sans', 'Microsoft YaHei', Arial, 'PingFang SC', 'San Francisco', sans-serif;
+
+  /* Font Size */
+  --font-size-sm: 10px;
+  --font-size-base: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 28px;
+  --font-size-5xl: 30px;
+  --font-size-6xl: 32px;
+  --font-size-7xl: 36px;
+  --font-size-8xl: 40px;
+  --font-size-12xl: 48px;
+  --font-size-16xl: 56px;
+  --font-size-18xl: 60px;
+  --font-size-24xl: 72px;
+
+  /* Line Height */
+  --line-height-xs: 2;
+  --line-height-sm: 1.625;
+  --line-height-md: 1.5;
+  --line-height-lg: 1.5;
+  --line-height-xl: 1.5;
+  --line-height-2xl: 1.375;
+  --line-height-3xl: 1.375;
+  --line-height-4xl: 1.375;
+  --line-height-5xl: 1.375;
+  --line-height-6xl: 1.375;
+  --line-height-7xl: 1.25;
+  --line-height-8xl: 1.25;
+  --line-height-9xl: 1.25;
+
+ 
+
+  /* Font Weight */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+
+  /* ==========================================================================
+     5. 间距 (Spacing)
+     ========================================================================== */
+  --spacing-0: 0px;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-2-5: 0.625rem;
+  --spacing-3: 0.75rem;
+  --spacing-3-5: 0.875rem;
+  --spacing-4: 1rem;
+  --spacing-4-5: 1.125rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+  --spacing-14: 3.5rem;
+  --spacing-15: 3.75rem;
+  --spacing-16: 4rem;
+  --spacing-17: 4.25rem;
+  --spacing-18: 4.5rem;
+  --spacing-19: 4.75rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-28: 7rem;
+  --spacing-32: 8rem;
+  --spacing-36: 9rem;
+  --spacing-40: 10rem;
+  --spacing-44: 11rem;
+  --spacing-48: 12rem;
+  --spacing-52: 13rem;
+  --spacing-56: 14rem;
+  --spacing-60: 15rem;
+  --spacing-64: 16rem;
+  --spacing-72: 18rem;
+  --spacing-80: 20rem;
+  --spacing-96: 24rem;
+}
+
+// src/styles/global.less
+/* 全局样式 — 由 json-to-react 工具生成 */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: 16px;
+}
+
+
+// src/styles/hui-base-dark.css
+body.theme-dark {
+  /* 品牌色 */
+  --color-brand: var(--brand-50);
+  --color-brand-hover: var(--brand-40);
+  --color-brand-focus: var(--brand-50);
+  --color-brand-active: var(--brand-60);
+  --color-brand-disabled: var(--brand-70);
+  /* 文本色 */
+  --color-text-primary: var(--gray-0);
+  --color-text-secondary: var(--gray-20);
+  --color-text-placeholder: var(--gray-40);
+  --color-text-disabled: var(--gray-40);
+  --color-text-inverse: var(--gray-0);
+  --color-text-inverse-disabled: rgb(from var(--gray-05) r g b / 0.3);
+  --color-text-on: var(--gray-0);
+  --color-link: var(--brand-30);
+  --color-link-hover: var(--brand-20);
+  --color-link-active: var(--brand-40);
+  --color-link-visited: var(--indigo-50);
+  --color-link-disabled: var(--brand-60);
+  /* 背景色 */
+  --color-bg-1: var(--gray-100);
+  --color-bg-2: var(--gray-90);
+  --color-bg-3: var(--gray-80);
+  --color-bg-4: var(--gray-70);
+  --color-bg-5: rgb(from var(--gray-05) r g b / 0.1);
+  --color-bg-6: rgb(from var(--gray-05) r g b / 0.1);
+  --color-bg-mask: rgb(from var(--gray-0) r g b / 0.7);
+  /* 填充色 */
+  --color-fill-disabled: var(--gray-60);
+  --color-hover: rgb(from var(--gray-05) r g b / 0.2);
+  --color-fill-disabled-subtle: rgb(from var(--gray-05) r g b / 0.2);
+  --color-fill: rgb(from var(--gray-05) r g b / 0.2);
+  --color-select: rgb(from var(--brand-50) r g b / 0.4);
+  --color-fill-subtle: rgb(from var(--gray-100) r g b / 0);
+
+  /* 图标色 */
+  --color-icon-primary: var(--gray-10);
+  --color-icon-secondary: var(--gray-30);
+  --color-icon-tertiary: var(--gray-50);
+  --color-icon-placeholder: var(--gray-40);
+  --color-icon-disabled: var(--gray-40);
+  --color-icon-inverse: var(--gray-0);
+  --color-icon-hover: var(--brand-20);
+  --color-icon-focus: var(--brand-30);
+  --color-icon-active: var(--brand-40);
+  /* 边框色 */
+  --color-border: var(--gray-50);
+  --color-border-hover: var(--gray-05);
+  --color-border-focus: var(--brand-40);
+  --color-border-active: var(--brand-80);
+  --color-border-disabled: var(--gray-60);
+  --color-border-separator: rgb(from var(--gray-05) r g b / 0.15);
+  --color-border-separator-sbutle: rgb(from var(--gray-05) r g b / 0.1);
+  /* 功能色-错误 */
+  --color-error: var(--red-40);
+  --color-error-hover: var(--red-30);
+  --color-error-active: var(--red-50);
+  --color-error-disabled: var(--red-80);
+  --color-error-subtle: var(--red-60);
+  --color-error-subtler: var(--red-80);
+  /* 功能色-告警 */
+  --color-alert: var(--orange-50);
+  --color-alert-hover: var(--orange-40);
+  --color-alert-active: var(--orange-60);
+  --color-alert-disabled: var(--orange-80);
+  --color-alert-subtle: var(--orange-60);
+  --color-alert-subtler: var(--orange-80);
+  /* 功能色-提醒 */
+  --color-warning: var(--yellow-40);
+  --color-warning-hover: var(--yellow-30);
+  --color-warning-active: var(--yellow-50);
+  --color-warning-disabled: var(--yellow-80);
+  --color-warning-bold: var(--yellow-60);
+  --color-warning-subtle: var(--yellow-60);
+  --color-warning-subtler: var(--yellow-80);
+  /* 功能色-成功 */
+  --color-success: var(--mint-60);
+  --color-success-hover: var(--mint-50);
+  --color-success-active: var(--mint-60);
+  --color-success-disabled: var(--mint-80);
+  --color-success-subtle: var(--mint-60);
+  --color-success-subtler: var(--mint-80);
+  /* 功能色-信息 */
+  --color-info-primary: var(--blue-50);
+  --color-info-primary-subtle: var(--blue-60);
+  --color-info-primary-subtler: var(--blue-80);
+  --color-info-secondary: var(--blue-60);
+  --color-info-secondary-hover: var(--blue-40);
+  --color-info-secondary-active: var(--blue-60);
+  --color-info-secondary-disabled: var(--blue-80);
+  --color-info-secondary-subtle: var(--blue-80);
+  /* 功能色-失效 */
+  --color-none: var(--gray-60);
+  --color-none-hover: rgb(from var(--gray-05) r g b / 0.2);
+  --color-none-active: var(--gray-50);
+  --color-none-disabled: var(--gray-90);
+  --color-none-subtle: var(--gray-90);
+  /* 推荐图表色 */
+  --color-chart-1: var(--blue-50);
+  --color-chart-2: var(--green-50);
+  --color-chart-3: var(--indigo-50);
+  --color-chart-4: var(--cyan-50);
+  --color-chart-5: var(--orange-40);
+  --color-chart-6: var(--brand-30);
+  --color-chart-7: var(--purple-60);
+  --color-chart-8: var(--rose-60);
+  --color-chart-9: var(--indigo-60);
+  --color-chart-10: var(--yellow-60);
+  --color-chart-11: var(--brand-60);
+  --color-chart-12: var(--green-60);
+  --color-chart-13: var(--purple-70);
+  --color-chart-14: var(--cyan-60);
+  --color-chart-15: var(--orange-70);
+  --color-chart-16: var(--rose-60);
+  --color-chart-17: var(--cyan-70);
+  --color-chart-18: var(--blue-60);
+  --color-chart-19: var(--green-70);
+  --color-chart-20: var(--indigo-70);
+  --color-chart-21: var(--rose-70);
+  --color-chart-22: var(--cyan-30);
+  --color-chart-23: var(--yellow-70);
+  --color-chart-24: var(--purple-50);
+  --color-chart-25: var(--mint-70);
+  /* 特殊场景 */
+  --color-scrollbar: var(--gray-60);
+  --color-scrollbar-hover: var(--gray-40);
+  --color-card-gray-disabled: rgb(from var(--gray-40) r g b / 0.05);
+  --color-card-white-disabled: rgb(from var(--gray-40) r g b / 0.1);
+  --color-sidenav-bg: var(--gray-70);
+  --color-table-header: rgb(from var(--gray-05) r g b / 0.1);
+  --color-table-zebra: rgb(from var(--gray-50) r g b / 0.15);
+  --color-message-bg-info: rgb(from var(--blue-50) r g b / 0.15);
+  --color-message-bg-success: rgb(from var(--mint-60) r g b / 0.15);
+  --color-message-bg-warning: rgb(from var(--yellow-40) r g b / 0.15);
+  --color-message-bg-alert: rgb(from var(--orange-50) r g b / 0.15);
+  --color-message-bg-error: rgb(from var(--red-40) r g b / 0.15);
+
+  /* ICT3.0 3.0告警色 */
+  --color-alert-urgent: #F43146;
+  --color-alert-primary: #EC6F1A;
+  --color-alert-secondary: #EEBA18;
+  --color-alert-success: #0D9458;
+  --color-alert-running: #5990FD;
+  --color-alert-none: #818181;
+  /* ICT3.1 表格 */
+  --color-table-1: rgb(from var(--brand-50) r g b / 0.2);
+  --color-table-2: rgb(from var(--brand-50) r g b / 0.4);
+  --color-table-sticky-1: var(--brand-80);
+  --color-table-sticky-2: var(--brand-70);
+  --color-table-sticky-bg: var(--gray-70);
+  --color-table-sticky-header: var(--gray-70);
+  /* 标签配色 */
+  --color-tag-text-purple: var(--purple-30);
+  --color-tag-bg-purple: rgb(from var(--purple-30) r g b / 0.15);
+  --color-tag-text-cyan: var(--cyan-40);
+  --color-tag-bg-cyan: rgb(from var(--cyan-50) r g b / 0.15);
+  --color-tag-text-rose: var(--rose-30);
+  --color-tag-bg-rose: rgb(from var(--rose-30) r g b / 0.15);
+  --color-tag-text-green: var(--green-50);
+  --color-tag-bg-green: rgb(from var(--green-40) r g b / 0.15);
+  --color-tag-text-pink: var(--pink-30);
+  --color-tag-bg-pink: rgb(from var(--pink-30) r g b / 0.15);
+  --color-tag-text-indigo: var(--indigo-30);
+  --color-tag-bg-indigo: rgb(from var(--indigo-30) r g b / 0.15);
+  --color-tag-text-none: var(--gray-30);
+  --color-tag-bg-none: rgb(from var(--gray-30) r g b / 0.15);
+  --color-tag-text-error: var(--red-40);
+  --color-tag-bg-error: rgb(from var(--red-30) r g b / 0.15);
+  --color-tag-text-alert: var(--orange-40);
+  --color-tag-bg-alert: rgb(from var(--orange-50) r g b / 0.15);
+  --color-tag-text-warning: var(--yellow-50);
+  --color-tag-bg-warning: rgb(from var(--yellow-30) r g b / 0.15);
+  --color-tag-text-success: var(--mint-40);
+  --color-tag-bg-success: rgb(from var(--mint-50) r g b / 0.15);
+  --color-tag-text-info: var(--blue-30);
+  --color-tag-bg-info: rgb(from var(--blue-40) r g b / 0.15);
+
+  /* Border */
+  --border: var(--gray-50);
+  --border-light: rgb(from var(--gray-05) r g b / 0.15);
+  --border-primary: var(--brand-30);
+  --border-success: var(--mint-20);
+  --border-warning: var(--yellow-20);
+  --border-alert: var(--orange-20);
+  --border-error: var(--red-20);
+
+  /* Icon */
+  --icon-primary: var(--brand-30);
+  --icon-success: var(--mint-30);
+  --icon-warning: var(--yellow-30);
+  --icon-critical: var(--orange-30);
+  --icon-alert: var(--orange-30);
+  --icon-error: var(--red-30);
+
+
+  /* Shadow (暗色模式下阴影更强) */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.5);
+  --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-r-sm: 1px 0 6px 0 rgba(0, 0, 0, 0.5);
+  --shadow-t-sm: 0 -1px 6px rgba(0, 0, 0, 0.5);
+  --shadow-l-base: -2px 0 12px 0 rgba(0, 0, 0, 0.5);
+  --shadow-l-md: -2px 0 24px 0 rgba(0, 0, 0, 0.5);
+
+
+  /* ==========================================================================
+  eview react 样式覆盖
+  ========================================================================== */
+
+  color: var(--color-text-primary);
+
+  .ev_tag.default {
+    color: var(--gray-30) !important;
+    background: rgb(from var(--gray-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  /* tag solid */
+  .ev_tag.info,
+  .aui3_1_dark .ev_tag.info {
+    color: var(--gray-0) !important;
+    background: var(--blue-50) !important;
+    border-color: transparent;
+  }
+
+  .ev_tag.error,
+  .aui3_1_dark .ev_tag.error {
+    color: var(--gray-0);
+    background: var(--red-50);
+    border-color: transparent;
+  }
+
+  .ev_tag.alert,
+  .aui3_1_dark .ev_tag.alert {
+    color: var(--gray-0);
+    background: var(--orange-50);
+    border-color: transparent;
+  }
+
+  .ev_tag.warning,
+  .aui3_1_dark .ev_tag.warning {
+    color: var(--gray-0);
+    background: var(--yellow-50);
+    border-color: transparent;
+  }
+
+  .ev_tag.success,
+  .aui3_1_dark .ev_tag.success {
+    color: var(--gray-0);
+    background: var(--mint-50);
+    border-color: transparent;
+  }
+
+  .ev_tag.disabled,
+  .aui3_1_dark .ev_tag.disabled {
+    color: var(--gray-0);
+    background: var(--gray-30);
+    border-color: transparent;
+  }
+
+  /* fill */
+  .ev_tag.info.ev_tag_fill {
+    color: var(--brand-30) !important;
+    background: rgb(from var(--brand-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.error.ev_tag_fill {
+    color: var(--red-40) !important;
+    background: rgb(from var(--red-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.alert.ev_tag_fill {
+    color: var(--orange-40) !important;
+    background: rgb(from var(--orange-50) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.warning.ev_tag_fill {
+    color: var(--yellow-50) !important;
+    background: rgb(from var(--yellow-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.success.ev_tag_fill {
+    color: var(--mint-40) !important;
+    background: rgb(from var(--mint-50) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.disabled.ev_tag_fill {
+    color: var(--gray-30) !important;
+    background: rgb(from var(--gray-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.green {
+    color: var(--mint-40) !important;
+    background: rgb(from var(--green-40) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.rose {
+    color: var(--rose-30) !important;
+    background: rgb(from var(--rose-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.pink {
+    color: var(--pink-30) !important;
+    background: rgb(from var(--pink-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.purple {
+    color: var(--purple-30) !important;
+    background: rgb(from var(--purple-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.indigo {
+    color: var(--indigo-30) !important;
+    background: rgb(from var(--indigo-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.cyan {
+    color: var(--cyan-40) !important;
+    background: rgb(from var(--cyan-50) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+}
+
+// src/styles/hui-base.css
+:root {
+  /* 品牌色 */
+  --color-brand: var(--brand-50);
+  --color-brand-hover: var(--brand-40);
+  --color-brand-focus: var(--brand-50);
+  --color-brand-active: var(--brand-60);
+  --color-brand-disabled: var(--brand-20);
+  /* 文本色 */
+  --color-text-primary: var(--gray-90);
+  --color-text-secondary: var(--gray-50);
+  --color-text-placeholder: var(--gray-30);
+  --color-text-disabled: var(--gray-20);
+  --color-text-inverse: var(--gray-0);
+  --color-text-inverse-disabled: var(--gray-0);
+  --color-text-on: var(--brand-50);
+  --color-link: var(--brand-50);
+  --color-link-hover: var(--brand-40);
+  --color-link-active: var(--brand-60);
+  --color-link-visited: var(--indigo-50);
+  --color-link-disabled: var(--brand-20);
+  /* 背景色 */
+  --color-bg-1: var(--gray-05);
+  --color-bg-2: var(--gray-0);
+  --color-bg-3: var(--gray-0);
+  --color-bg-4: var(--gray-0);
+  --color-bg-5: var(--gray-0);
+  --color-bg-6: rgb(from var(--gray-20) r g b / 0.2);
+  --color-bg-mask: rgb(from var(--gray-90) r g b / 0.3);
+  /* 填充色 */
+  --color-fill-disabled: var(--gray-10);
+  --color-hover: rgb(from var(--gray-90) r g b / 0.05);
+  --color-fill-disabled-subtle: rgb(from var(--gray-90) r g b / 0.05);
+  --color-fill: rgb(from var(--gray-90) r g b / 0.05);
+  --color-select: var(--brand-05);
+  --color-fill-subtle: var(--gray-0);
+
+  /* 图标色 */
+  --color-icon-primary: var(--gray-90);
+  --color-icon-secondary: var(--gray-50);
+  --color-icon-tertiary: var(--gray-40);
+  --color-icon-placeholder: var(--gray-30);
+  --color-icon-disabled: var(--gray-20);
+  --color-icon-inverse: var(--gray-0);
+  --color-icon-hover: var(--brand-40);
+  --color-icon-focus: var(--brand-50);
+  --color-icon-active: var(--brand-60);
+  /* 边框色 */
+  --color-border: var(--gray-20);
+  --color-border-hover: var(--gray-90);
+  --color-border-focus: var(--brand-50);
+  --color-border-active: var(--brand-10);
+  --color-border-disabled: var(--gray-20);
+  --color-border-separator: var(--gray-10);
+  --color-border-separator-sbutle: var(--gray-05);
+  /* 功能色-错误 */
+  --color-error: var(--red-50);
+  --color-error-hover: var(--red-40);
+  --color-error-active: var(--red-60);
+  --color-error-disabled: var(--red-10);
+  --color-error-subtle: var(--red-20);
+  --color-error-subtler: var(--red-05);
+  /* 功能色-告警 */
+  --color-alert: var(--orange-50);
+  --color-alert-hover: var(--orange-40);
+  --color-alert-active: var(--orange-60);
+  --color-alert-disabled: var(--orange-10);
+  --color-alert-subtle: var(--orange-20);
+  --color-alert-subtler: var(--orange-05);
+  /* 功能色-提醒 */
+  --color-warning: var(--yellow-50);
+  --color-warning-hover: var(--yellow-40);
+  --color-warning-active: var(--yellow-60);
+  --color-warning-disabled: var(--yellow-10);
+  --color-warning-bold: var(--yellow-60);
+  --color-warning-subtle: var(--yellow-20);
+  --color-warning-subtler: var(--yellow-05);
+  /* 功能色-成功 */
+  --color-success: var(--mint-50);
+  --color-success-hover: var(--mint-40);
+  --color-success-active: var(--mint-60);
+  --color-success-disabled: var(--mint-10);
+  --color-success-subtle: var(--mint-20);
+  --color-success-subtler: var(--mint-05);
+  /* 功能色-信息 */
+  --color-info-primary: var(--blue-50);
+  --color-info-primary-subtle: var(--blue-30);
+  --color-info-primary-subtler: var(--blue-05);
+  --color-info-secondary: var(--blue-30);
+  --color-info-secondary-hover: var(--blue-20);
+  --color-info-secondary-active: var(--blue-40);
+  --color-info-secondary-disabled: var(--blue-10);
+  --color-info-secondary-subtle: var(--blue-05);
+  /* 功能色-失效 */
+  --color-none: var(--gray-30);
+  --color-none-hover: var(--gray-20);
+  --color-none-active: var(--gray-40);
+  --color-none-disabled: var(--gray-10);
+  --color-none-subtle: var(--gray-05);
+  /* 推荐图表色 */
+  --color-chart-1: var(--blue-50);
+  --color-chart-2: var(--green-50);
+  --color-chart-3: var(--indigo-50);
+  --color-chart-4: var(--cyan-50);
+  --color-chart-5: var(--orange-40);
+  --color-chart-6: var(--brand-30);
+  --color-chart-7: var(--purple-40);
+  --color-chart-8: var(--rose-40);
+  --color-chart-9: var(--indigo-20);
+  --color-chart-10: var(--yellow-60);
+  --color-chart-11: var(--brand-10);
+  --color-chart-12: var(--green-60);
+  --color-chart-13: var(--purple-20);
+  --color-chart-14: var(--cyan-60);
+  --color-chart-15: var(--orange-20);
+  --color-chart-16: var(--rose-60);
+  --color-chart-17: var(--cyan-20);
+  --color-chart-18: var(--blue-60);
+  --color-chart-19: var(--green-20);
+  --color-chart-20: var(--indigo-70);
+  --color-chart-21: var(--rose-10);
+  --color-chart-22: var(--cyan-70);
+  --color-chart-23: var(--yellow-20);
+  --color-chart-24: var(--purple-70);
+  --color-chart-25: var(--mint-20);
+  /* 特殊场景 */
+  --color-scrollbar: var(--gray-10);
+  --color-scrollbar-hover: var(--gray-30);
+  --color-card-gray-disabled: rgb(from var(--gray-30) r g b / 0.05);
+  --color-card-white-disabled: rgb(from var(--gray-0) r g b / 0.5);
+  --color-sidenav-bg: rgb(from var(--gray-05) r g b / 0.5);
+  --color-table-header: rgb(from var(--gray-90) r g b / 0.05);
+  --color-table-zebra: rgb(from var(--gray-40) r g b / 0.05);
+  --color-message-bg-info: var(--blue-05);
+  --color-message-bg-success: var(--mint-05);
+  --color-message-bg-warning: var(--yellow-05);
+  --color-message-bg-alert: var(--orange-05);
+  --color-message-bg-error: var(--red-05);
+ 
+  /* ICT3.0 3.0告警色 */
+  --color-alert-urgent: #F43146;
+  --color-alert-primary: #EC6F1A;
+  --color-alert-secondary: #EEBA18;
+  --color-alert-success: #2DA769;
+  --color-alert-running: #5990FD;
+  --color-alert-none: #939393;
+  /* ICT3.1 表格 */
+  --color-table-1: var(--brand-05);
+  --color-table-2: var(--brand-10);
+  --color-table-sticky-1: var(--brand-05);
+  --color-table-sticky-2: var(--brand-10);
+  --color-table-sticky-bg: var(--gray-0);
+  --color-table-sticky-header: var(--gray-05);
+  /* 标签配色 */
+  --color-tag-text-purple: var(--purple-60);
+  --color-tag-bg-purple: rgb(from var(--purple-10) r g b / 0.6);
+  --color-tag-text-cyan: var(--cyan-80);
+  --color-tag-bg-cyan: rgb(from var(--cyan-60) r g b / 0.15);
+  --color-tag-text-rose: var(--rose-60);
+  --color-tag-bg-rose: var(--rose-05);
+  --color-tag-text-green: var(--green-70);
+  --color-tag-bg-green: var(--green-10);
+  --color-tag-text-pink: var(--pink-60);
+  --color-tag-bg-pink: var(--pink-05);
+  --color-tag-text-indigo: var(--indigo-80);
+  --color-tag-bg-indigo: rgb(from var(--indigo-10) r g b / 0.6);
+  --color-tag-text-none: var(--gray-70);
+  --color-tag-bg-none: rgb(from var(--gray-90) r g b / 0.05);
+  --color-tag-text-error: var(--red-60);
+  --color-tag-bg-error: var(--red-05);
+  --color-tag-text-alert: var(--orange-70);
+  --color-tag-bg-alert: var(--orange-10);
+  --color-tag-text-warning: var(--yellow-80);
+  --color-tag-bg-warning: rgb(from var(--yellow-30) r g b / 0.6);
+  --color-tag-text-success: var(--mint-70);
+  --color-tag-bg-success: rgb(from var(--mint-10) r g b / 0.6);
+  --color-tag-text-info: var(--blue-60);
+  --color-tag-bg-info: rgb(from var(--blue-10) r g b / 0.5);
+
+
+   /* Border */
+   --border: var(--gray-20);
+   --border-light: var(--gray-10);
+   --border-primary: var(--brand-50);
+   --border-success: var(--mint-20);
+   --border-warning: var(--yellow-20);
+   --border-alert: var(--orange-20);
+   --border-error: var(--red-20);
+
+   /* Icon */
+   --icon-primary: var(--brand-50);
+   --icon-success: var(--mint-50);
+   --icon-warning: var(--yellow-50);
+   --icon-critical: var(--orange-50);
+   --icon-alert: var(--orange-50);
+   --icon-error: var(--red-50);
+
+   /* ==========================================================================
+     尺寸与形状变量 (Sizes & Shapes)
+     ========================================================================== */
+   /* Shadow */
+   --shadow-none: none;
+   --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.08);
+   --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.16);
+   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+   --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+   --shadow-r-sm: 1px 0 6px 0 rgba(0, 0, 0, 0.08);
+   --shadow-t-sm: 0 -1px 6px rgba(0, 0, 0, 0.08);
+   --shadow-l-base: -2px 0 12px 0 rgba(0, 0, 0, 0.08);
+   --shadow-l-md: -2px 0 24px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+  eview react 样式覆盖
+  ========================================================================== */
+.ev_tag.default {
+  color: var(--gray-70) !important;
+  background: rgb(from var(--gray-90) r g b / 0.05) !important;
+  border-color: transparent !important;
+}
+  /* tag solid */
+.ev_tag.info,
+.aui3_1 .ev_tag.info {
+  color: var(--gray-0) !important;
+  background: var(--blue-50) !important;
+  border-color: transparent !important;
+}
+.ev_tag.error,
+.aui3_1 .ev_tag.error {
+  color: var(--gray-0);
+  background: var(--red-50);
+  border-color: transparent;
+}
+.ev_tag.alert,
+.aui3_1 .ev_tag.alert {
+  color: var(--gray-0);
+  background: var(--orange-50);
+  border-color: transparent;
+}
+.ev_tag.warning,
+.aui3_1 .ev_tag.warning {
+  color: var(--gray-0);
+  background: var(--yellow-50);
+  border-color: transparent;
+}
+.ev_tag.success,
+.aui3_1 .ev_tag.success {
+  color: var(--gray-0);
+  background: var(--mint-50);
+  border-color: transparent;
+}
+.ev_tag.disabled,
+.aui3_1 .ev_tag.disabled {
+  color: var(--gray-0);
+  background: var(--gray-30);
+  border-color: transparent;
+}
+
+/* fill */
+.ev_tag.info.ev_tag_fill {
+  color: var(--brand-60) !important;
+  background: var(--brand-05) !important;
+  border-color: transparent !important;
+}
+.ev_tag.error.ev_tag_fill {
+  color: var(--red-60) !important;
+  background: var(--red-05) !important;
+  border-color: transparent !important;
+}
+.ev_tag.alert.ev_tag_fill {
+  color: var(--orange-70) !important;
+  background: var(--orange-10) !important;
+  border-color: transparent !important;
+}
+.ev_tag.warning.ev_tag_fill {
+  color: var(--yellow-80) !important;
+  background: rgb(from var(--yellow-30) r g b / 0.6) !important;
+  border-color: transparent !important;
+}
+.ev_tag.success.ev_tag_fill {
+  color: var(--mint-70) !important;
+  background: rgb(from var(--mint-10) r g b / 0.6) !important;
+  border-color: transparent !important;
+}
+.ev_tag.disabled.ev_tag_fill {
+  color: var(--gray-70) !important;
+  background: rgb(from var(--gray-90) r g b / 0.05) !important;
+  border-color: transparent !important;
+}
+
+.ev_tag.green { 
+  color: var(--mint-70) !important;
+  background: var(--green-10) !important;
+  border-color: transparent !important;
+}
+.ev_tag.rose {
+  color: var(--rose-60) !important;
+  background: var(--rose-05) !important;
+  border-color: transparent !important;;
+}
+
+.ev_tag.pink {
+  color: var(--pink-60) !important;
+  background: var(--pink-05) !important;
+  border-color: transparent !important;
+}
+
+.ev_tag.purple {
+  color: var(--purple-60) !important;
+  background: rgb(from var(--purple-10) r g b / 0.6) !important;
+  border-color: transparent !important;
+}
+
+.ev_tag.indigo {
+  color: var(--indigo-80) !important;
+  background: rgb(from var(--indigo-10) r g b / 0.6) !important;
+  border-color: transparent !important;
+}
+
+.ev_tag.cyan {
+  color: var(--cyan-80) !important;
+  background: rgb(from var(--cyan-60) r g b / 0.15) !important;
+  border-color: transparent !important;
+}
+
+
+
+
+// src/theme/useTheme.tsx
+import React, { useState, useEffect, createContext, useContext, ReactNode, useCallback } from "react";
+import { DEFAULT_THEME } from './config';
+
+const THEME = {
+    LIGHT: "light",
+    DARK: "dark"
+} as const;
+
+type ThemeType = typeof THEME[keyof typeof THEME];
+
+interface ThemeContextProps {
+    theme: ThemeType;
+    setTheme: (theme: ThemeType) => void;
+    toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
+    const [currentTheme, setCurrentTheme] = useState<ThemeType>(DEFAULT_THEME);
+
+    const setTheme = useCallback((theme: ThemeType) => {
+        setCurrentTheme(theme);
+    }, []);
+
+    const toggleTheme = useCallback(() => {
+        setCurrentTheme(prevTheme => prevTheme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT);
+    }, []);
+
+    // 同步 body 类名：dark → 加 theme-dark + aui3_1_dark，否则移除
+    // （theme-dark 驱动 hui-base-dark.css 的 body.theme-dark 变量块；
+    //  aui3_1_dark 驱动 eview-react 组件暗色样式覆盖，如 .aui3_1_dark .ev_tag.info）
+    useEffect(() => {
+        const body = document.body;
+        if (currentTheme === THEME.DARK) {
+            body.classList.add('theme-dark', 'aui3_1_dark');
+        } else {
+            body.classList.remove('theme-dark', 'aui3_1_dark');
+        }
+    }, [currentTheme]);
+
+    return (
+        <ThemeContext.Provider
+            value={{
+                theme: currentTheme,
+                setTheme,
+                toggleTheme
+            }}>
+            {children}
+        </ThemeContext.Provider>
+    )
+}
+
+export function useTheme(): ThemeContextProps {
+    const context = useContext(ThemeContext);
+    if (!context) {
+        throw new Error("useTheme must be used within a ThemeProvider");
+    }
+    return context;
+}
+
+
+// src/vite-env.d.ts
+/// <reference types="vite/client" />
+
+
+// tsconfig.app.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+} 
+
+
+
+// tsconfig.json
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+} 
+
+
+// tsconfig.node.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+} 
+
+
+
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 4080
+  },
+});
+
+
+// src/routes/index.tsx
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import App from '../App';
+
+import PageProductContainerPage from '../pages/pageProductContainer';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      { index: true, element: <Navigate to="/pageProductContainer" replace /> },
+      { path: 'pageProductContainer', element: <PageProductContainerPage /> },
+    ],
+  },
+]);
+
+export default router;
+
+// src/pages/pageProductContainer/state.ts
+export const initialState = {
+    pageTitle: "商品管理",
+    statsTotalProducts: 12,
+    statsActiveProducts: 9,
+    statsInactiveProducts: 1,
+    statsSoldOutProducts: 2,
+    statsLowStockProducts: 3,
+    searchKeyword: "",
+    categoryFilter: "",
+    categoryOptions: [
+      {
+        value: "",
+        text: "全部类目"
+      },
+      {
+        value: "digital",
+        text: "数码电子"
+      },
+      {
+        value: "clothing",
+        text: "服装鞋帽"
+      },
+      {
+        value: "food",
+        text: "食品饮料"
+      },
+      {
+        value: "home",
+        text: "家居用品"
+      },
+      {
+        value: "beauty",
+        text: "美妆护肤"
+      }
+    ],
+    statusFilter: "all",
+    statusOptions: [
+      {
+        value: "all",
+        text: "全部状态"
+      },
+      {
+        value: "active",
+        text: "上架"
+      },
+      {
+        value: "inactive",
+        text: "下架"
+      },
+      {
+        value: "soldOut",
+        text: "售罄"
+      }
+    ],
+    isAddDrawerOpen: false,
+    productList: [
+      {
+        id: "P001",
+        code: "DG-10001",
+        name: "Apple MacBook Pro 14英寸 M3芯片",
+        category: "数码电子",
+        price: 14999,
+        stock: 86,
+        sales: 352,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-03-15"
+      },
+      {
+        id: "P002",
+        code: "DG-10002",
+        name: "Samsung Galaxy S24 Ultra",
+        category: "数码电子",
+        price: 9699,
+        stock: 23,
+        sales: 1287,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-01-20"
+      },
+      {
+        id: "P003",
+        code: "CL-20001",
+        name: "Nike Air Max 270 运动鞋",
+        category: "服装鞋帽",
+        price: 1199,
+        stock: 0,
+        sales: 2436,
+        status: "soldOut",
+        statusLabel: "售罄",
+        statusColor: "error",
+        createdAt: "2025-11-08"
+      },
+      {
+        id: "P004",
+        code: "CL-20002",
+        name: "优衣库男士轻薄羽绒服",
+        category: "服装鞋帽",
+        price: 599,
+        stock: 340,
+        sales: 892,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-06-01"
+      },
+      {
+        id: "P005",
+        code: "FD-30001",
+        name: "三只松鼠坚果礼盒大礼包",
+        category: "食品饮料",
+        price: 168,
+        stock: 1200,
+        sales: 5678,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-04-22"
+      },
+      {
+        id: "P006",
+        code: "FD-30002",
+        name: "元气森林白桃味苏打气泡水",
+        category: "食品饮料",
+        price: 5,
+        stock: 5000,
+        sales: 15320,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-02-14"
+      },
+      {
+        id: "P007",
+        code: "HM-40001",
+        name: "IKEA拉克边桌 39x39cm",
+        category: "家居用品",
+        price: 129,
+        stock: 560,
+        sales: 3241,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-05-30"
+      },
+      {
+        id: "P008",
+        code: "HM-40002",
+        name: "小米空气净化器4 Pro",
+        category: "家居用品",
+        price: 1999,
+        stock: 0,
+        sales: 765,
+        status: "soldOut",
+        statusLabel: "售罄",
+        statusColor: "error",
+        createdAt: "2025-09-12"
+      },
+      {
+        id: "P009",
+        code: "BT-50001",
+        name: "兰蔻小黑瓶精华肌底液",
+        category: "美妆护肤",
+        price: 1080,
+        stock: 45,
+        sales: 2103,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-03-01"
+      },
+      {
+        id: "P010",
+        code: "BT-50002",
+        name: "SK-II 神仙水230ml",
+        category: "美妆护肤",
+        price: 1590,
+        stock: 12,
+        sales: 987,
+        status: "inactive",
+        statusLabel: "下架",
+        statusColor: "default",
+        createdAt: "2025-07-18"
+      },
+      {
+        id: "P011",
+        code: "DG-10003",
+        name: "Sony WH-1000XM5 降噪耳机",
+        category: "数码电子",
+        price: 2499,
+        stock: 78,
+        sales: 1567,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-05-10"
+      },
+      {
+        id: "P012",
+        code: "CL-20003",
+        name: "Zara 女装夏季连衣裙",
+        category: "服装鞋帽",
+        price: 459,
+        stock: 230,
+        sales: 4321,
+        status: "active",
+        statusLabel: "上架",
+        statusColor: "success",
+        createdAt: "2026-06-15"
+      }
+    ],
+    selectedRowKeys: [],
+    addFormCode: "",
+    addFormName: "",
+    addFormCategory: "",
+    addFormPrice: 0,
+    addFormStock: 0,
+    addFormStatus: "active",
+    addFormDesc: "",
+    isEditDrawerOpen: false,
+    editFormCode: "",
+    editFormName: "",
+    editFormCategory: "",
+    editFormPrice: 0,
+    editFormStock: 0,
+    editFormStatus: "active",
+    editFormDesc: "",
+    isDeleteModalOpen: false
+  };
+
+export default initialState;
+
+// src/pages/pageProductContainer/shared-state.ts
+
+import { useSyncExternalStore } from 'react' 
+import { initialState } from './state'
+
+function createSharedStore(init: Record<string, any>) {
+  let state = init
+  const listeners = new Set<() => void>()
+  return {
+    subscribe: (l: () => void) => {
+      listeners.add(l)
+      return () => { listeners.delete(l) }
+    },
+    get: () => state,
+    set: (key: string, value: any) => {
+      state = { ...state, [key]: value }
+      listeners.forEach((l) => l())
+    },
+  }
+}
+
+const sharedStore = createSharedStore({
+  isAddDrawerOpen: initialState.isAddDrawerOpen,
+  isDeleteModalOpen: initialState.isDeleteModalOpen,
+  isEditDrawerOpen: initialState.isEditDrawerOpen,
+})
+
+export function useSharedState(key: string): [any, (value: any) => void] {
+  const value = useSyncExternalStore(sharedStore.subscribe, () => sharedStore.get()[key])
+  const setter = (value: any) => sharedStore.set(key, value)
+  return [value, setter]
+}
+
+export function setSharedState(key: string, value: any) {
+  sharedStore.set(key, value)
+}
+
+
+// src/pages/pageProductContainer/index.tsx
+/**
+ * pageProductContainer 页面（自动生成，请勿手动修改）
+ */
+
+import React, { useState } from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@nce/icon-plus';
+import Button from '@nce/eview-react/Button';
+import Dialog from '@nce/eview-react/Dialog';
+import Drawer from '@nce/eview-react/Drawer';
+import IconButton from '@nce/eview-react/IconButton';
+import Select from '@nce/eview-react/Select';
+import Spinner from '@nce/eview-react/Spinner';
+import Table from '@nce/eview-react/Table';
+import Tag from '@nce/eview-react/Tag';
+import TextArea from '@nce/eview-react/TextArea';
+import TextField from '@nce/eview-react/TextField';
+import initialState from './state';
+import styles from './styles/PageProductContainer.module.less';
+import { setSharedState, useSharedState } from './shared-state';
+
+const { addFormCategory, addFormCode, addFormDesc, addFormName, addFormPrice, addFormStatus, addFormStock, categoryFilter, categoryOptions, editFormCategory, editFormCode, editFormDesc, editFormName, editFormPrice, editFormStatus, editFormStock, pageTitle, productList, searchKeyword, selectedRowKeys, statsActiveProducts, statsInactiveProducts, statsLowStockProducts, statsSoldOutProducts, statsTotalProducts, statusFilter, statusOptions } = initialState;
+
+const tableColumns = [
+  {
+    key: "code",
+    title: "商品编号",
+    render: (cellValue, rowData, options, row) => {
+      const { code } = row.rawData;
+      return (
+        <span id="pageProductRowCode" className={styles.pageProductRowCode}>
+          {code}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 140
+  },
+  {
+    key: "name",
+    title: "商品名称",
+    render: (cellValue, rowData, options, row) => {
+      const { name } = row.rawData;
+      return (
+        <span id="pageProductRowName" className={styles.pageProductRowName}>
+          {name}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 200
+  },
+  {
+    key: "category",
+    title: "类目",
+    render: (cellValue, rowData, options, row) => {
+      const { category } = row.rawData;
+      return (
+        <Tag id="pageProductRowCategory" color={"default"} fill={"solid"}>
+          {category}
+        </Tag>
+      )
+    },
+    allowSort: false,
+    width: 100
+  },
+  {
+    key: "price",
+    title: "价格",
+    render: (cellValue, rowData, options, row) => {
+      const { price } = row.rawData;
+      return (
+        <span id="pageProductRowPrice" className={styles.pageProductRowPrice}>
+          {price}
+        </span>
+      )
+    },
+    allowSort: false,
+    align: "right",
+    width: 100
+  },
+  {
+    key: "stock",
+    title: "库存",
+    render: (cellValue, rowData, options, row) => {
+      const { stock } = row.rawData;
+      return (
+        <span id="pageProductRowStock" className={styles.pageProductRowStock}>
+          {stock}
+        </span>
+      )
+    },
+    allowSort: false,
+    align: "right",
+    width: 80
+  },
+  {
+    key: "sales",
+    title: "销量",
+    render: (cellValue, rowData, options, row) => {
+      const { sales } = row.rawData;
+      return (
+        <span id="pageProductRowSales" className={styles.pageProductRowSales}>
+          {sales}
+        </span>
+      )
+    },
+    allowSort: false,
+    align: "right",
+    width: 80
+  },
+  {
+    key: "status",
+    title: "状态",
+    render: (cellValue, rowData, options, row) => {
+      const { statusColor, statusLabel } = row.rawData;
+      return (
+        <Tag id="pageProductRowStatus" color={statusColor} fill={"outline"}>
+          {statusLabel}
+        </Tag>
+      )
+    },
+    allowSort: false,
+    align: "center",
+    width: 90
+  },
+  {
+    key: "createdAt",
+    title: "上架时间",
+    render: (cellValue, rowData, options, row) => {
+      const { createdAt } = row.rawData;
+      return (
+        <span id="pageProductRowCreatedAt" className={styles.pageProductRowCreatedAt}>
+          {createdAt}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 120
+  },
+  {
+    key: "action",
+    title: "操作",
+    render: (cellValue, rowData, options, row) => (
+      <div id="pageProductRowAction" className={styles.pageProductRowAction}>
+        <Button id="pageProductRowActionEdit" text={"编辑"} status={"text"} size={"small"} onClick={() => setSharedState('isEditDrawerOpen', true)} />
+        <Button id="pageProductRowActionDelete" text={"删除"} status={"text"} size={"small"} onClick={() => setSharedState('isDeleteModalOpen', true)} />
+      </div>
+    ),
+    allowSort: false,
+    align: "center",
+    width: 180
+  }
+];
+
+export default function PageProductContainerPage() {
+
+  const [inputValuePageProductSearchInput, setInputValuePageProductSearchInput] = useState(searchKeyword);
+  const [selectValuePageProductCategorySelect, setSelectValuePageProductCategorySelect] = useState(categoryFilter);
+  const [selectValuePageProductStatusSelect, setSelectValuePageProductStatusSelect] = useState(statusFilter);
+  const [tableCheckedRowsPageProductTable, setTableCheckedRowsPageProductTable] = useState(selectedRowKeys);
+  const [drawerVisiblePageProductAddDrawer, setDrawerVisiblePageProductAddDrawer] = useSharedState('isAddDrawerOpen');
+  const [inputValuePageProductAddFormCodeInput, setInputValuePageProductAddFormCodeInput] = useState(addFormCode);
+  const [inputValuePageProductAddFormNameInput, setInputValuePageProductAddFormNameInput] = useState(addFormName);
+  const [selectValuePageProductAddFormCategorySelect, setSelectValuePageProductAddFormCategorySelect] = useState(addFormCategory);
+  const [inputNumberValuePageProductAddFormPriceInput, setInputNumberValuePageProductAddFormPriceInput] = useState(addFormPrice);
+  const [inputNumberValuePageProductAddFormStockInput, setInputNumberValuePageProductAddFormStockInput] = useState(addFormStock);
+  const [selectValuePageProductAddFormStatusSelect, setSelectValuePageProductAddFormStatusSelect] = useState(addFormStatus);
+  const [textAreaValuePageProductAddFormDescInput, setTextAreaValuePageProductAddFormDescInput] = useState(addFormDesc);
+  const [drawerVisiblePageProductEditDrawer, setDrawerVisiblePageProductEditDrawer] = useSharedState('isEditDrawerOpen');
+  const [inputValuePageProductEditFormCodeInput, setInputValuePageProductEditFormCodeInput] = useState(editFormCode);
+  const [inputValuePageProductEditFormNameInput, setInputValuePageProductEditFormNameInput] = useState(editFormName);
+  const [selectValuePageProductEditFormCategorySelect, setSelectValuePageProductEditFormCategorySelect] = useState(editFormCategory);
+  const [inputNumberValuePageProductEditFormPriceInput, setInputNumberValuePageProductEditFormPriceInput] = useState(editFormPrice);
+  const [inputNumberValuePageProductEditFormStockInput, setInputNumberValuePageProductEditFormStockInput] = useState(editFormStock);
+  const [selectValuePageProductEditFormStatusSelect, setSelectValuePageProductEditFormStatusSelect] = useState(editFormStatus);
+  const [textAreaValuePageProductEditFormDescInput, setTextAreaValuePageProductEditFormDescInput] = useState(editFormDesc);
+  const [modalIsOpenPageProductDeleteModal, setModalIsOpenPageProductDeleteModal] = useSharedState('isDeleteModalOpen');
+
+  return (
+    <div id="pageProductContainer" className={styles.pageProductContainer}>
+      <header id="pageProductHeader" className={styles.pageProductHeader}>
+        <div id="pageProductHeaderTitle" className={styles.pageProductHeaderTitle}>
+          <IconPlusIcPublicTransverseRectangleTemplate id="pageProductHeaderIcon" className={styles.pageProductHeaderIcon} iconSize={20} />
+          <span id="pageProductHeaderText" className={styles.pageProductHeaderText}>
+            {pageTitle}
+          </span>
+        </div>
+        <div id="pageProductHeaderActions" className={styles.pageProductHeaderActions}>
+          <IconButton id="pageProductHeaderRefreshBtn" iconName={<IconPlusIcPublicTransverseRectangleTemplate iconColor={["#0067D1"]} className={styles.pageProductHeaderRefreshBtn} />} onClick={(e) => {}} />
+        </div>
+      </header>
+      <div id="pageProductMain" className={styles.pageProductMain}>
+        <div id="pageProductStatsBar" className={styles.pageProductStatsBar}>
+          <div id="pageProductStatsTotal" className={styles.pageProductStatsTotal}>
+            <div id="pageProductStatsTotalIcon" className={styles.pageProductStatsTotalIcon}>
+              <IconPlusIcPublicTransverseRectangleTemplate id="pageProductStatsTotalIconInner" className={styles.pageProductStatsTotalIconInner} iconSize={20} />
+            </div>
+            <div id="pageProductStatsTotalInfo" className={styles.pageProductStatsTotalInfo}>
+              <span id="pageProductStatsTotalValue" className={styles.pageProductStatsTotalValue}>
+                {statsTotalProducts}
+              </span>
+              <span id="pageProductStatsTotalLabel" className={styles.pageProductStatsTotalLabel}>
+                全部商品
+              </span>
+            </div>
+          </div>
+          <div id="pageProductStatsActive" className={styles.pageProductStatsActive}>
+            <div id="pageProductStatsActiveIcon" className={styles.pageProductStatsActiveIcon}>
+              <IconPlusIcPublicTransverseRectangleTemplate id="pageProductStatsActiveIconInner" className={styles.pageProductStatsActiveIconInner} iconSize={20} />
+            </div>
+            <div id="pageProductStatsActiveInfo" className={styles.pageProductStatsActiveInfo}>
+              <span id="pageProductStatsActiveValue" className={styles.pageProductStatsActiveValue}>
+                {statsActiveProducts}
+              </span>
+              <span id="pageProductStatsActiveLabel" className={styles.pageProductStatsActiveLabel}>
+                上架中
+              </span>
+            </div>
+          </div>
+          <div id="pageProductStatsInactive" className={styles.pageProductStatsInactive}>
+            <div id="pageProductStatsInactiveIcon" className={styles.pageProductStatsInactiveIcon}>
+              <IconPlusIcPublicTransverseRectangleTemplate id="pageProductStatsInactiveIconInner" className={styles.pageProductStatsInactiveIconInner} iconSize={20} />
+            </div>
+            <div id="pageProductStatsInactiveInfo" className={styles.pageProductStatsInactiveInfo}>
+              <span id="pageProductStatsInactiveValue" className={styles.pageProductStatsInactiveValue}>
+                {statsInactiveProducts}
+              </span>
+              <span id="pageProductStatsInactiveLabel" className={styles.pageProductStatsInactiveLabel}>
+                已下架
+              </span>
+            </div>
+          </div>
+          <div id="pageProductStatsSoldOut" className={styles.pageProductStatsSoldOut}>
+            <div id="pageProductStatsSoldOutIcon" className={styles.pageProductStatsSoldOutIcon}>
+              <IconPlusIcPublicTransverseRectangleTemplate id="pageProductStatsSoldOutIconInner" className={styles.pageProductStatsSoldOutIconInner} iconSize={20} />
+            </div>
+            <div id="pageProductStatsSoldOutInfo" className={styles.pageProductStatsSoldOutInfo}>
+              <span id="pageProductStatsSoldOutValue" className={styles.pageProductStatsSoldOutValue}>
+                {statsSoldOutProducts}
+              </span>
+              <span id="pageProductStatsSoldOutLabel" className={styles.pageProductStatsSoldOutLabel}>
+                已售罄
+              </span>
+            </div>
+          </div>
+          <div id="pageProductStatsLowStock" className={styles.pageProductStatsLowStock}>
+            <div id="pageProductStatsLowStockIcon" className={styles.pageProductStatsLowStockIcon}>
+              <IconPlusIcPublicTransverseRectangleTemplate id="pageProductStatsLowStockIconInner" className={styles.pageProductStatsLowStockIconInner} iconSize={20} />
+            </div>
+            <div id="pageProductStatsLowStockInfo" className={styles.pageProductStatsLowStockInfo}>
+              <span id="pageProductStatsLowStockValue" className={styles.pageProductStatsLowStockValue}>
+                {statsLowStockProducts}
+              </span>
+              <span id="pageProductStatsLowStockLabel" className={styles.pageProductStatsLowStockLabel}>
+                库存预警
+              </span>
+            </div>
+          </div>
+        </div>
+        <div id="pageProductContentCard" className={styles.pageProductContentCard}>
+          <div id="pageProductToolbar" className={styles.pageProductToolbar}>
+            <div id="pageProductToolbarLeft" className={styles.pageProductToolbarLeft}>
+              <TextField id="pageProductSearchInput" onChange={(val) => setInputValuePageProductSearchInput(val)} value={inputValuePageProductSearchInput} placeholder={"搜索商品名称或编号"} inputStyle={{ width: "256px" }} />
+              <Select id="pageProductCategorySelect" onChange={(val) => setSelectValuePageProductCategorySelect(val)} value={selectValuePageProductCategorySelect} options={categoryOptions} defaultLabel={"全部分类"} selectStyle={{ width: "160px" }} />
+              <Select id="pageProductStatusSelect" onChange={(val) => setSelectValuePageProductStatusSelect(val)} value={selectValuePageProductStatusSelect} options={statusOptions} defaultLabel={"全部状态"} selectStyle={{ width: "128px" }} />
+            </div>
+            <div id="pageProductToolbarRight" className={styles.pageProductToolbarRight}>
+              <Button id="pageProductBatchDeleteBtn" leftIcon={<IconPlusIcPublicTransverseRectangleTemplate iconColor={["#fff"]} />} text={"批量删除"} status={"risk"} onClick={(e) => {}} />
+              <Button id="pageProductAddBtn" leftIcon={<IconPlusIcPublicTransverseRectangleTemplate iconColor={["#fff"]} />} text={"新增商品"} status={"primary"} onClick={() => setSharedState('isAddDrawerOpen', true)} />
+            </div>
+          </div>
+          <Table id="pageProductTable" dataset={productList} columns={tableColumns} rowKey={"id"} enablePagination={true} recordCount={productList.length} checkType={"multi"} enableCheckBox={true} onRowCheck={(_, checkedRows) => setTableCheckedRowsPageProductTable(checkedRows)} checkedRows={tableCheckedRowsPageProductTable} />
+        </div>
+      </div>
+      <Drawer id="pageProductAddDrawer" onClose={() => setDrawerVisiblePageProductAddDrawer(false)} visible={drawerVisiblePageProductAddDrawer} placement={"right"} showMask={true} title={"新增商品"}>
+        <div id="pageProductAddDrawerBody" className={styles.pageProductAddDrawerBody}>
+          <div id="pageProductAddFormCode" className={styles.pageProductAddFormCode}>
+            <span id="pageProductAddFormCodeLabel" className={styles.pageProductAddFormCodeLabel}>
+              商品编号
+            </span>
+            <TextField id="pageProductAddFormCodeInput" onChange={(val) => setInputValuePageProductAddFormCodeInput(val)} value={inputValuePageProductAddFormCodeInput} placeholder={"如：DG-10004"} className={styles.pageProductAddFormCodeInput} />
+          </div>
+          <div id="pageProductAddFormName" className={styles.pageProductAddFormName}>
+            <span id="pageProductAddFormNameLabel" className={styles.pageProductAddFormNameLabel}>
+              商品名称
+            </span>
+            <TextField id="pageProductAddFormNameInput" onChange={(val) => setInputValuePageProductAddFormNameInput(val)} value={inputValuePageProductAddFormNameInput} placeholder={"请输入商品名称"} className={styles.pageProductAddFormNameInput} />
+          </div>
+          <div id="pageProductAddFormCategory" className={styles.pageProductAddFormCategory}>
+            <span id="pageProductAddFormCategoryLabel" className={styles.pageProductAddFormCategoryLabel}>
+              所属类目
+            </span>
+            <Select id="pageProductAddFormCategorySelect" onChange={(val) => setSelectValuePageProductAddFormCategorySelect(val)} value={selectValuePageProductAddFormCategorySelect} options={[{ value: "数码电子", text: "数码电子" }, { value: "服装鞋帽", text: "服装鞋帽" }, { value: "食品饮料", text: "食品饮料" }, { value: "家居用品", text: "家居用品" }, { value: "美妆护肤", text: "美妆护肤" }]} defaultLabel={"请选择类目"} className={styles.pageProductAddFormCategorySelect} />
+          </div>
+          <div id="pageProductAddFormPrice" className={styles.pageProductAddFormPrice}>
+            <span id="pageProductAddFormPriceLabel" className={styles.pageProductAddFormPriceLabel}>
+              销售价格（元）
+            </span>
+            <Spinner id="pageProductAddFormPriceInput" onChange={(val) => setInputNumberValuePageProductAddFormPriceInput(val)} value={inputNumberValuePageProductAddFormPriceInput} min={0} step={0.01} className={styles.pageProductAddFormPriceInput} />
+          </div>
+          <div id="pageProductAddFormStock" className={styles.pageProductAddFormStock}>
+            <span id="pageProductAddFormStockLabel" className={styles.pageProductAddFormStockLabel}>
+              库存数量
+            </span>
+            <Spinner id="pageProductAddFormStockInput" onChange={(val) => setInputNumberValuePageProductAddFormStockInput(val)} value={inputNumberValuePageProductAddFormStockInput} min={0} step={1} className={styles.pageProductAddFormStockInput} />
+          </div>
+          <div id="pageProductAddFormStatus" className={styles.pageProductAddFormStatus}>
+            <span id="pageProductAddFormStatusLabel" className={styles.pageProductAddFormStatusLabel}>
+              商品状态
+            </span>
+            <Select id="pageProductAddFormStatusSelect" onChange={(val) => setSelectValuePageProductAddFormStatusSelect(val)} value={selectValuePageProductAddFormStatusSelect} options={[{ value: "active", text: "上架" }, { value: "inactive", text: "下架" }]} defaultLabel={"请选择状态"} className={styles.pageProductAddFormStatusSelect} />
+          </div>
+          <div id="pageProductAddFormDesc" className={styles.pageProductAddFormDesc}>
+            <span id="pageProductAddFormDescLabel" className={styles.pageProductAddFormDescLabel}>
+              商品描述
+            </span>
+            <TextArea id="pageProductAddFormDescInput" onChange={(val) => setTextAreaValuePageProductAddFormDescInput(val)} value={textAreaValuePageProductAddFormDescInput} placeholder={"请输入商品描述信息"} sizeAuto={true} className={styles.pageProductAddFormDescInput} />
+          </div>
+        </div>
+        <div id="pageProductAddDrawerFooter" className={styles.pageProductAddDrawerFooter}>
+          <Button id="pageProductAddDrawerCancel" text={"取消"} onClick={() => setSharedState('isAddDrawerOpen', false)} />
+          <Button id="pageProductAddDrawerSubmit" text={"确认新增"} status={"primary"} onClick={() => setSharedState('isAddDrawerOpen', false)} />
+        </div>
+      </Drawer>
+      <Drawer id="pageProductEditDrawer" onClose={() => setDrawerVisiblePageProductEditDrawer(false)} visible={drawerVisiblePageProductEditDrawer} placement={"right"} showMask={true} title={"编辑商品"}>
+        <div id="pageProductEditDrawerBody" className={styles.pageProductEditDrawerBody}>
+          <div id="pageProductEditFormCode" className={styles.pageProductEditFormCode}>
+            <span id="pageProductEditFormCodeLabel" className={styles.pageProductEditFormCodeLabel}>
+              商品编号
+            </span>
+            <TextField id="pageProductEditFormCodeInput" onChange={(val) => setInputValuePageProductEditFormCodeInput(val)} value={inputValuePageProductEditFormCodeInput} placeholder={"请输入商品编号"} className={styles.pageProductEditFormCodeInput} />
+          </div>
+          <div id="pageProductEditFormName" className={styles.pageProductEditFormName}>
+            <span id="pageProductEditFormNameLabel" className={styles.pageProductEditFormNameLabel}>
+              商品名称
+            </span>
+            <TextField id="pageProductEditFormNameInput" onChange={(val) => setInputValuePageProductEditFormNameInput(val)} value={inputValuePageProductEditFormNameInput} placeholder={"请输入商品名称"} className={styles.pageProductEditFormNameInput} />
+          </div>
+          <div id="pageProductEditFormCategory" className={styles.pageProductEditFormCategory}>
+            <span id="pageProductEditFormCategoryLabel" className={styles.pageProductEditFormCategoryLabel}>
+              所属类目
+            </span>
+            <Select id="pageProductEditFormCategorySelect" onChange={(val) => setSelectValuePageProductEditFormCategorySelect(val)} value={selectValuePageProductEditFormCategorySelect} options={[{ value: "数码电子", text: "数码电子" }, { value: "服装鞋帽", text: "服装鞋帽" }, { value: "食品饮料", text: "食品饮料" }, { value: "家居用品", text: "家居用品" }, { value: "美妆护肤", text: "美妆护肤" }]} defaultLabel={"请选择类目"} className={styles.pageProductEditFormCategorySelect} />
+          </div>
+          <div id="pageProductEditFormPrice" className={styles.pageProductEditFormPrice}>
+            <span id="pageProductEditFormPriceLabel" className={styles.pageProductEditFormPriceLabel}>
+              销售价格（元）
+            </span>
+            <Spinner id="pageProductEditFormPriceInput" onChange={(val) => setInputNumberValuePageProductEditFormPriceInput(val)} value={inputNumberValuePageProductEditFormPriceInput} min={0} step={0.01} className={styles.pageProductEditFormPriceInput} />
+          </div>
+          <div id="pageProductEditFormStock" className={styles.pageProductEditFormStock}>
+            <span id="pageProductEditFormStockLabel" className={styles.pageProductEditFormStockLabel}>
+              库存数量
+            </span>
+            <Spinner id="pageProductEditFormStockInput" onChange={(val) => setInputNumberValuePageProductEditFormStockInput(val)} value={inputNumberValuePageProductEditFormStockInput} min={0} step={1} className={styles.pageProductEditFormStockInput} />
+          </div>
+          <div id="pageProductEditFormStatus" className={styles.pageProductEditFormStatus}>
+            <span id="pageProductEditFormStatusLabel" className={styles.pageProductEditFormStatusLabel}>
+              商品状态
+            </span>
+            <Select id="pageProductEditFormStatusSelect" onChange={(val) => setSelectValuePageProductEditFormStatusSelect(val)} value={selectValuePageProductEditFormStatusSelect} options={[{ value: "active", text: "上架" }, { value: "inactive", text: "下架" }]} defaultLabel={"请选择状态"} className={styles.pageProductEditFormStatusSelect} />
+          </div>
+          <div id="pageProductEditFormDesc" className={styles.pageProductEditFormDesc}>
+            <span id="pageProductEditFormDescLabel" className={styles.pageProductEditFormDescLabel}>
+              商品描述
+            </span>
+            <TextArea id="pageProductEditFormDescInput" onChange={(val) => setTextAreaValuePageProductEditFormDescInput(val)} value={textAreaValuePageProductEditFormDescInput} placeholder={"请输入商品描述信息"} sizeAuto={true} className={styles.pageProductEditFormDescInput} />
+          </div>
+        </div>
+        <div id="pageProductEditDrawerFooter" className={styles.pageProductEditDrawerFooter}>
+          <Button id="pageProductEditDrawerCancel" text={"取消"} onClick={() => setSharedState('isEditDrawerOpen', false)} />
+          <Button id="pageProductEditDrawerSubmit" text={"保存修改"} status={"primary"} onClick={() => setSharedState('isEditDrawerOpen', false)} />
+        </div>
+      </Drawer>
+      <Dialog id="pageProductDeleteModal" onClose={() => setModalIsOpenPageProductDeleteModal(false)} isOpen={modalIsOpenPageProductDeleteModal} modal={true} title={"确认删除"}>
+        <span id="pageProductDeleteBody" className={styles.pageProductDeleteBody}>
+          确定要删除该商品吗？删除后不可恢复。
+        </span>
+        <div id="pageProductDeleteFooter" className={styles.pageProductDeleteFooter}>
+          <Button id="pageProductDeleteCancel" text={"取消"} onClick={() => setSharedState('isDeleteModalOpen', false)} />
+          <Button id="pageProductDeleteConfirm" text={"确认删除"} status={"risk"} onClick={() => setSharedState('isDeleteModalOpen', false)} />
+        </div>
+      </Dialog>
+    </div>
+  )
+}
+
+
+// src/theme/config.ts
+export const DEFAULT_THEME = "light"
+
+
+// src/pages/pageProductContainer/styles/PageProductContainer.module.less
+// Auto-generated by a2ui-transformer
+
+.pageProductContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-bg-1);
+}
+
+.pageProductHeader {
+  height: 48px;
+  background-color: var(--color-bg-2);
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--color-border-separator);
+  flex-shrink: 0;
+}
+
+.pageProductHeaderTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pageProductHeaderIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-brand);
+}
+
+.pageProductHeaderText {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.pageProductHeaderActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pageProductHeaderRefreshBtn {
+  color: var(--color-text-secondary);
+}
+
+.pageProductMain {
+  flex: 1;
+  overflow: auto;
+  padding: 2rem;
+}
+
+.pageProductStatsBar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pageProductStatsTotal {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pageProductStatsTotalIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: var(--color-info-primary-subtler);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pageProductStatsTotalIconInner {
+  width: 20px;
+  height: 20px;
+  color: var(--color-brand);
+}
+
+.pageProductStatsTotalInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageProductStatsTotalValue {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.pageProductStatsTotalLabel {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.pageProductStatsActive {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pageProductStatsActiveIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: var(--color-message-bg-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pageProductStatsActiveIconInner {
+  width: 20px;
+  height: 20px;
+  color: var(--color-success);
+}
+
+.pageProductStatsActiveInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageProductStatsActiveValue {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.pageProductStatsActiveLabel {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.pageProductStatsInactive {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pageProductStatsInactiveIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: var(--color-message-bg-warning);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pageProductStatsInactiveIconInner {
+  width: 20px;
+  height: 20px;
+  color: var(--color-warning);
+}
+
+.pageProductStatsInactiveInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageProductStatsInactiveValue {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.pageProductStatsInactiveLabel {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.pageProductStatsSoldOut {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pageProductStatsSoldOutIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: var(--color-message-bg-error);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pageProductStatsSoldOutIconInner {
+  width: 20px;
+  height: 20px;
+  color: var(--color-error);
+}
+
+.pageProductStatsSoldOutInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageProductStatsSoldOutValue {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.pageProductStatsSoldOutLabel {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.pageProductStatsLowStock {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pageProductStatsLowStockIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: var(--color-message-bg-alert);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pageProductStatsLowStockIconInner {
+  width: 20px;
+  height: 20px;
+  color: var(--color-alert);
+}
+
+.pageProductStatsLowStockInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageProductStatsLowStockValue {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.pageProductStatsLowStockLabel {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.pageProductContentCard {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.pageProductToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  padding-bottom: 0px;
+}
+
+.pageProductToolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.pageProductToolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pageProductAddDrawerBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+}
+
+.pageProductAddFormCode {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductAddFormCodeLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductAddFormCodeInput {
+  width: 100%;
+}
+
+.pageProductAddFormName {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductAddFormNameLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductAddFormNameInput {
+  width: 100%;
+}
+
+.pageProductAddFormCategory {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductAddFormCategoryLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductAddFormCategorySelect {
+  width: 100%;
+}
+
+.pageProductAddFormPrice {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductAddFormPriceLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductAddFormPriceInput {
+  width: 100%;
+}
+
+.pageProductAddFormStock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductAddFormStockLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductAddFormStockInput {
+  width: 100%;
+}
+
+.pageProductAddFormStatus {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductAddFormStatusLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductAddFormStatusSelect {
+  width: 100%;
+}
+
+.pageProductAddFormDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductAddFormDescLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductAddFormDescInput {
+  width: 100%;
+}
+
+.pageProductAddDrawerFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.pageProductEditDrawerBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+}
+
+.pageProductEditFormCode {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductEditFormCodeLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductEditFormCodeInput {
+  width: 100%;
+}
+
+.pageProductEditFormName {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductEditFormNameLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductEditFormNameInput {
+  width: 100%;
+}
+
+.pageProductEditFormCategory {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductEditFormCategoryLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductEditFormCategorySelect {
+  width: 100%;
+}
+
+.pageProductEditFormPrice {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductEditFormPriceLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductEditFormPriceInput {
+  width: 100%;
+}
+
+.pageProductEditFormStock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductEditFormStockLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductEditFormStockInput {
+  width: 100%;
+}
+
+.pageProductEditFormStatus {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductEditFormStatusLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductEditFormStatusSelect {
+  width: 100%;
+}
+
+.pageProductEditFormDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pageProductEditFormDescLabel {
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.pageProductEditFormDescInput {
+  width: 100%;
+}
+
+.pageProductEditDrawerFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.pageProductDeleteBody {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.pageProductDeleteFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.pageProductRowCode {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+}
+
+.pageProductRowName {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.pageProductRowPrice {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  font-variant-numeric:    tabular-nums ;
+}
+
+.pageProductRowStock {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  font-variant-numeric:    tabular-nums ;
+}
+
+.pageProductRowSales {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  font-variant-numeric:    tabular-nums ;
+}
+
+.pageProductRowCreatedAt {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.pageProductRowAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}

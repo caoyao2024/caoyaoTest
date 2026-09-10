@@ -1,0 +1,3685 @@
+// .gitignore
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw? 
+
+
+
+// index.html
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generated App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+
+// package.json
+{
+  "name": "generated-app-eview-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@cloudsop/eview-ui": "7.1.16",
+    "@hui/icon-plus": "file:hui-icon-plus-1.0.9.tgz",
+    "@hui/charts": "file:hui-charts-0.3.6.tgz",
+    "lodash": "^4.18.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "less": "^4.8.0",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.10"
+  }
+}
+
+// public/icons/placeholder.svg
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 48 48" fill="none" pluginData="%7B%22pluginID%22%3A%22mLPblskg8N2dCg5ADiieuw%22%2C%22key%22%3A%22__hiconInfo__%22%2C%22value%22%3A%22%7B%5C%22iconSize%5C%22%3A40%2C%5C%22defaultIconSize%5C%22%3A40%2C%5C%22storkeWidth%5C%22%3A2.4%2C%5C%22iconState%5C%22%3A%5C%22border%5C%22%2C%5C%22color1%5C%22%3A%5C%22%23191919%5C%22%2C%5C%22color2%5C%22%3A%5C%22%5C%22%2C%5C%22color3%5C%22%3A%5C%22%5C%22%2C%5C%22strokeWidth%5C%22%3A2.4%2C%5C%22model%5C%22%3A%5C%22border%5C%22%2C%5C%22type%5C%22%3A%5C%22iconPlus%5C%22%2C%5C%22version%5C%22%3A%5C%221.0.1%5C%22%2C%5C%22typeValue%5C%22%3A%5C%22universal%5C%22%2C%5C%22background%5C%22%3A%5C%22%5C%22%7D%22%7D">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip553_3175">
+			<rect width="48.000000" height="48.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<clipPath id="clip553_3174">
+			<rect width="48.000000" height="48.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<rect width="48.000000" height="48.000000" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip553_3174)">
+		<g clip-path="url(#clip553_3175)">
+			<path d="M0 23.98C0 20.23 -0.01 16.48 0 12.73C-0.01 10.91 0.22 9.1 0.66 7.35C1.64 3.63 4.06 1.41 7.79 0.56C9.64 0.16 11.56 -0.03 13.46 0C20.64 0 27.83 0 35.04 0C36.85 -0.01 38.66 0.18 40.43 0.62C44.26 1.55 46.56 3.97 47.43 7.8C47.83 9.6 48.01 11.43 47.99 13.29C47.99 20.56 47.99 27.83 47.99 35.09C48 36.89 47.8 38.68 47.37 40.43C46.43 44.27 44 46.55 40.18 47.43C38.31 47.83 36.41 48.02 34.51 47.99C27.35 47.99 20.18 47.99 13.03 47.99C11.2 48.01 9.37 47.8 7.6 47.38C3.75 46.45 1.43 44.01 0.56 40.16C0.12 38.22 0 36.27 0 34.3C0 30.86 0 27.41 0 23.98Z" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd"/>
+			<circle cx="24.000000" cy="24.000000" r="24.000000" fill="#FFFFFF" fill-opacity="0"/>
+		</g>
+		<path d="M21 21L12.25 21C7.41 21 3.5 17.08 3.5 12.25C3.5 7.41 7.41 3.5 12.25 3.5C17.08 3.5 21 7.41 21 12.25L21 21Z" stroke="#191919" stroke-opacity="1.000000" stroke-width="2.4" stroke-linejoin="round"/>
+		<path d="M21 27L21 35.75C21 40.58 17.08 44.5 12.25 44.5C7.41 44.5 3.5 40.58 3.5 35.75C3.5 30.91 7.41 27 12.25 27L21 27Z" stroke="#191919" stroke-opacity="1.000000" stroke-width="2.4" stroke-linejoin="round"/>
+		<path d="M35.75 27C40.58 27 44.5 30.91 44.5 35.75C44.5 40.58 40.58 44.5 35.75 44.5C30.91 44.5 27 40.58 27 35.75L27 27L35.75 27Z" stroke="#191919" stroke-opacity="1.000000" stroke-width="2.4" stroke-linejoin="round"/>
+		<path d="M27 21L27 12.25C27 7.41 30.91 3.5 35.75 3.5C40.58 3.5 44.5 7.41 44.5 12.25C44.5 17.08 40.58 21 35.75 21L27 21Z" stroke="#191919" stroke-opacity="1.000000" stroke-width="2.4" stroke-linejoin="round"/>
+		<path d="M22.5 21L22.5 12.25C22.5 6.58 17.91 2 12.25 2C6.58 2 2 6.58 2 12.25C2 17.91 6.58 22.5 12.25 22.5L21 22.5C21.82 22.5 22.5 21.82 22.5 21Z" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd"/>
+		<path d="M22.5 35.75L22.5 27C22.5 26.17 21.82 25.5 21 25.5L12.25 25.5C6.58 25.5 2 30.08 2 35.75C2 41.41 6.58 46 12.25 46C17.91 46 22.5 41.41 22.5 35.75Z" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd"/>
+		<path d="M46 35.75C46 30.08 41.41 25.5 35.75 25.5L27 25.5C26.17 25.5 25.5 26.17 25.5 27L25.5 35.75C25.5 41.41 30.08 46 35.75 46C41.41 46 46 41.41 46 35.75Z" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd"/>
+		<path d="M35.75 22.5C41.41 22.5 46 17.91 46 12.25C46 6.58 41.41 2 35.75 2C30.08 2 25.5 6.58 25.5 12.25L25.5 21C25.5 21.82 26.17 22.5 27 22.5L35.75 22.5Z" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd"/>
+		<path d="M35.75 22.5C41.41 22.5 46 17.91 46 12.25C46 6.58 41.41 2 35.75 2C30.08 2 25.5 6.58 25.5 12.25L25.5 21C25.5 21.82 26.17 22.5 27 22.5L35.75 22.5Z" fill="#FFFFFF" fill-opacity="0" fill-rule="evenodd"/>
+	</g>
+</svg>
+
+// src/App.tsx
+import { Outlet } from 'react-router-dom';
+
+export default function App() {
+  return <Outlet />;
+}
+
+
+// src/main.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { ThemeProvider } from './theme/useTheme';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes';
+import '@cloudsop/eview-ui/style/aui3.1.less';
+import './styles/global.less';
+import './styles/base.css';
+import './styles/hui-base.css';
+import './styles/hui-base-dark.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+);
+
+
+// src/shared/Badge.tsx
+/**
+ * Badge 公共组件（eview-ui shared）
+ *
+ * eview-ui 无 Badge 组件，此处手动实现对齐 eview-react Badge 接口（md/eview-react/Badge.md）。
+ * 映射层（api/config/mappings/eview-react/Badge.ts 工厂，eview-ui 复用）产出的 props：
+ * content / max / status / badgeStyle / dot / offset / showZero / className / children。
+ *
+ * import: import Badge from '@/shared/Badge'
+ */
+
+import React from 'react'
+
+type BadgeStatus = 'default' | 'success' | 'error' | 'warning' | 'off'
+
+export interface BadgeProps {
+  /** 徽标内容：number / string / ReactNode；为 null/undefined/'' 时不显示 */
+  content?: React.ReactNode | number
+  /** 最大值，超过显示 {max}+（仅 content 为数字时有效），默认 99 */
+  max?: number
+  /** 不展示数字，只显示小红点 */
+  dot?: boolean
+  /** 状态点模式（配合 text 显示状态点及文本） */
+  status?: BadgeStatus
+  /** 状态点文本（设置 status 后有效） */
+  text?: React.ReactNode
+  /** 徽标偏移量 [水平, 垂直] */
+  offset?: [number, number]
+  /** 数值为 0 时是否展示 */
+  showZero?: boolean
+  /** 徽标自定义样式 */
+  badgeStyle?: React.CSSProperties
+  /** 徽标自定义类名 */
+  badgeClassName?: string
+  className?: string
+  style?: React.CSSProperties
+  id?: string
+  /** 包裹的目标元素 */
+  children?: React.ReactNode
+}
+
+const STATUS_COLOR: Record<BadgeStatus, string> = {
+  default: '#8a8a8a',
+  success: '#52c41a',
+  error: '#ff4d4f',
+  warning: '#faad14',
+  off: '#d9d9d9',
+}
+
+export default function Badge(props: BadgeProps) {
+  const {
+    content, max = 99, dot, status, text, offset, showZero,
+    badgeStyle, badgeClassName, className, style, id, children,
+  } = props
+
+  // ─── 状态点模式：dot + text ───
+  if (status) {
+    return (
+      <span
+        id={id}
+        className={className}
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 6, ...style }}
+      >
+        <span
+          className={badgeClassName}
+          style={{
+            width: 6, height: 6, borderRadius: '50%',
+            background: STATUS_COLOR[status] ?? STATUS_COLOR.default,
+            ...badgeStyle,
+          }}
+        />
+        {text != null && <span>{text}</span>}
+      </span>
+    )
+  }
+
+  // ─── 数字 / 内容徽标 ───
+  const isNum = typeof content === 'number'
+  let display: React.ReactNode = null
+  if (dot) {
+    display = '' // 只显示红点
+  } else if (content == null || content === '') {
+    display = null
+  } else if (isNum) {
+    if (content === 0 && !showZero) {
+      display = null
+    } else if (content > max) {
+      display = `${max}+`
+    } else {
+      display = content
+    }
+  } else {
+    display = content
+  }
+
+  const showBadge = dot || display != null
+
+  const badgeCss: React.CSSProperties = {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    transform: 'translate(50%, -50%)',
+    minWidth: 16,
+    height: 16,
+    padding: '0 4px',
+    borderRadius: 8,
+    background: '#ff4d4f',
+    color: '#fff',
+    fontSize: 10,
+    lineHeight: '16px',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap',
+    ...(dot ? { width: 6, height: 6, minWidth: 0, padding: 0, borderRadius: '50%' } : {}),
+    ...(offset ? { top: offset[1], right: offset[0] } : {}),
+    ...badgeStyle,
+  }
+
+  return (
+    <span
+      id={id}
+      className={className}
+      style={{ position: 'relative', display: 'inline-block', ...style }}
+    >
+      {children}
+      {showBadge && (
+        <sup className={badgeClassName} style={badgeCss}>
+          {dot ? '' : display}
+        </sup>
+      )}
+    </span>
+  )
+}
+
+
+// src/shared/Chart.tsx
+/**
+ * Chart 公共组件（eview-ui shared）
+ *
+ * eview-ui 无 Chart 组件，此处手动实现对齐 eview-react Chart 接口，内部用 @hui/charts（HuiCharts）渲染。
+ * 映射层（api/config/mappings/eview-react/Chart.ts 工厂，eview-ui 复用）产出的 props：
+ *   - name：图表类型字符串（LineChart / BarChart / PieChart / GaugeChart / RadarChart / ProcessChart / BubbleChart …）
+ *     —— 即 A2UI 图表组件名，直接作为 HuiCharts 的 chartType
+ *   - option：图表配置对象（含 a2:true、theme、数据等，由 buildChartOption 构建）
+ *   - className / id
+ *
+ * HuiCharts 用法：
+ *   const ins = new HuiCharts()
+ *   ins.init(containerDom)
+ *   ins.setSimpleOption(chartType, option)
+ *   ins.render()
+ *
+ * import: import Chart from '@/shared/Chart'
+ */
+
+import React, { useEffect, useRef } from 'react'
+// @ts-ignore — @hui/charts 来自 tgz，无类型声明
+import HuiCharts from '@hui/charts'
+
+export interface ChartProps {
+  /** 图表类型（A2UI 图表组件名，作为 HuiCharts chartType） */
+  name: string
+  /** 图表配置对象 */
+  option: Record<string, any>
+  className?: string
+  id?: string
+  style?: React.CSSProperties
+}
+
+export default function Chart(props: ChartProps) {
+  const { name, option, className, id, style } = props
+  const containerRef = useRef<HTMLDivElement>(null)
+  // HuiCharts 实例（无类型声明，用 any）
+  const chartRef = useRef<any>(null)
+
+  // 挂载：创建实例 + init（仅一次）
+  useEffect(() => {
+    const dom = containerRef.current
+    if (!dom) return
+    const ins = new HuiCharts()
+    ins.init(dom)
+    chartRef.current = ins
+    return () => {
+      // 卸载：释放（若库支持 dispose）
+      const cur = chartRef.current
+      if (cur) {
+        try {
+          cur.dispose?.()
+        } catch {
+          // ignore
+        }
+      }
+      chartRef.current = null
+    }
+  }, [])
+
+  // name / option 变化（含初始）：setSimpleOption + render
+  useEffect(() => {
+    const ins = chartRef.current
+    if (!ins) return
+    ins.setSimpleOption(name, option)
+    ins.render()
+  }, [name, option])
+
+  return (
+    <div
+      id={id}
+      className={className}
+      ref={containerRef}
+      // 图表容器需要明确尺寸：默认宽度 100%、高度 300px，可被 style/className 覆盖
+      style={{ width: '100%', height: 300, ...style }}
+    />
+  )
+}
+
+
+// src/shared/Divider.tsx
+/**
+ * Divider 公共组件（eview-ui shared）
+ *
+ * eview-ui 无 Divider 组件，此处手动实现对齐 eview-react Divider 接口（md/eview-react/Divider.md）。
+ * 映射层（api/config/mappings/eview-react/Divider.ts 工厂，eview-ui 复用）产出的 props：
+ * type / dashed / orientation / className / children。
+ *
+ * import: import Divider from '@/shared/Divider'
+ */
+
+import React from 'react'
+
+export interface DividerProps {
+  /** 分割线方向：horizontal / vertical，默认 horizontal */
+  type?: 'horizontal' | 'vertical'
+  /** 是否虚线 */
+  dashed?: boolean
+  /** 标题位置（仅 children 有内容时生效）：left / right / center */
+  orientation?: 'left' | 'right' | 'center'
+  className?: string
+  style?: React.CSSProperties
+  id?: string
+  /** 分割线标题内容（设置后中间显示文字） */
+  children?: React.ReactNode
+}
+
+export default function Divider(props: DividerProps) {
+  const {
+    type = 'horizontal',
+    dashed,
+    orientation = 'center',
+    className,
+    style,
+    id,
+    children,
+  } = props
+
+  const borderStyle = dashed ? 'dashed' : 'solid'
+  const lineColor = 'var(--color-border-separator)'
+
+  // ─── 垂直分割线（行内） ───
+  if (type === 'vertical') {
+    return (
+      <span
+        id={id}
+        className={className}
+        style={{
+          display: 'inline-block',
+          width: 0,
+          height: '1em',
+          margin: '0 8px',
+          borderLeft: `1px ${borderStyle} ${lineColor}`,
+          verticalAlign: 'middle',
+          ...style,
+        }}
+      />
+    )
+  }
+
+  // ─── 水平分割线 ───
+  const hasText = children != null
+  const lineStyle: React.CSSProperties = {
+    flex: 1,
+    borderTop: `1px ${borderStyle} ${lineColor}`,
+  }
+  const textStyle: React.CSSProperties = { padding: '0 12px', color: 'inherit' }
+
+  return (
+    <div
+      id={id}
+      className={className}
+      style={{ display: 'flex', alignItems: 'center', margin: '12px 0', ...style }}
+    >
+      {(orientation === 'right' || orientation === 'center') && <span style={lineStyle} />}
+      {hasText && <span style={textStyle}>{children}</span>}
+      {(orientation === 'left' || orientation === 'center') && <span style={lineStyle} />}
+    </div>
+  )
+}
+
+
+// src/shared/Empty.tsx
+/**
+ * Empty 公共组件（eview-ui shared）
+ *
+ * eview-ui 无 Empty 组件，此处手动实现对齐 eview-react Empty 接口（md/eview-react/Empty.md）。
+ * 映射层（api/config/mappings/eview-react/Empty.ts 工厂，eview-ui 复用）产出的 props：
+ * description / icon / imgSrc / className（type 不注入，走默认 fail）。
+ *
+ * 图标显示优先级：icon > imgSrc > 默认占位图（由 type 决定）。
+ * 描述文本优先级：description > type 默认文本（fail→"暂无数据"，success→"数据为 0"）。
+ *
+ * import: import Empty from '@/shared/Empty'
+ */
+
+import React from 'react'
+
+export interface EmptyProps {
+  /** 描述文本，未设置时按 type 显示默认描述 */
+  description?: React.ReactNode
+  /** 自定义图标（优先级高于 imgSrc 与默认图标） */
+  icon?: React.ReactNode
+  /** 自定义图片 URL（优先级高于默认图标，低于 icon） */
+  imgSrc?: string
+  /** 预设空状态类型：fail 显示失败占位+"暂无数据"，success 显示成功占位+"数据为 0"，默认 fail */
+  type?: 'success' | 'fail'
+  className?: string
+  style?: React.CSSProperties
+  id?: string
+}
+
+// type → 默认描述文本
+const DEFAULT_DESCRIPTION: Record<'success' | 'fail', string> = {
+  fail: '暂无数据',
+  success: '数据为 0',
+}
+
+// 默认占位图（type 区分）：简单内联 SVG，对齐 eview-react Empty 的"无数据/为零"语义
+function DefaultImage({ type }: { type: 'success' | 'fail' }) {
+  const stroke = type === 'success' ? 'var(--color-success, #52c41a)' : 'var(--color-text-disabled, #bfbfbf)'
+  return (
+    <svg width={64} height={41} viewBox="0 0 64 41" fill="none" aria-hidden>
+      <ellipse cx={32} cy={33} rx={32} ry={8} fill={stroke} opacity={0.08} />
+      <g stroke={stroke} strokeWidth={2} fill="none">
+        <path d="M16 30V8a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v22" />
+        <path d="M12 30h40" strokeLinecap="round" />
+        <path d="M24 14h16M24 20h10" strokeLinecap="round" />
+      </g>
+    </svg>
+  )
+}
+
+export default function Empty(props: EmptyProps) {
+  const {
+    description,
+    icon,
+    imgSrc,
+    type = 'fail',
+    className,
+    style,
+    id,
+  } = props
+
+  // 图标优先级：icon > imgSrc > 默认占位图
+  const imageNode = icon ?? (imgSrc ? <img src={imgSrc} alt="" /> : <DefaultImage type={type} />)
+  const descNode = description ?? DEFAULT_DESCRIPTION[type]
+
+  return (
+    <div
+      id={id}
+      className={className}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 8,
+        padding: '16px 0',
+        color: 'var(--color-text-secondary, #8c8c8c)',
+        fontSize: 14,
+        ...style,
+      }}
+    >
+      {imageNode}
+      <span>{descNode}</span>
+    </div>
+  )
+}
+
+
+// src/shared/TableFilter.less
+/* TableFilter 样式 */
+
+.eui-custom-table-filter-wrapper {
+    width: 296px;
+    background-color: var(--color-bg-4);
+    border-radius: var(--radius-base);
+
+    .checkbox-wrapper {
+        padding: var(--space-base);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-base);
+    }
+
+    .checkbox-item-wrapper {
+        padding-left: var(--space-2x);
+
+        &:hover {
+            border-radius: var(--radius-base);
+            background-color: var(--color-fill-2);
+        }
+    }
+
+    .button-wrapper {
+        text-align: right;
+        padding: var(--space-3x) 0;
+    }
+}
+
+
+// src/shared/TableFilter.tsx
+/**
+ * TableFilter 公共组件（eview-ui shared）
+ *
+ * import: import TableFilter from '@/shared/TableFilter'
+ */
+
+import React, { useState, useCallback } from 'react'
+import Checkbox from '@cloudsop/eview-ui/Checkbox'
+import TextButton from '@cloudsop/eview-ui/TextButton'
+import Divider from './Divider'
+import './TableFilter.less'
+
+export interface TableFilterOption {
+  text: string
+  value: string
+}
+
+export interface TableFilterProps {
+  /** 过滤选项列表，每项 { text, value }，必填 */
+  data: TableFilterOption[]
+  /** 选中值变化回调，参数为当前选中的 value 数组 */
+  onFilter?: (value: string[]) => void
+}
+
+export default function TableFilter(props: TableFilterProps) {
+  const { data, onFilter } = props
+
+  const [checkedValue, setCheckedValue] = useState<Set<string>>(new Set())
+
+  const handleChange = useCallback((value: string, checked: boolean) => {
+    const newSet = new Set([...checkedValue])
+    if (checked) {
+      newSet.add(value)
+    } else {
+      newSet.delete(value)
+    }
+    setCheckedValue(newSet)
+  }, [checkedValue])
+
+  const reset = useCallback(() => {
+    setCheckedValue(new Set())
+  }, [])
+
+  if (!data.length) return null
+
+  return (
+    <div className="eui-custom-table-filter-wrapper">
+      <div className="checkbox-wrapper">
+        {data.map((item) => (
+          <div className="checkbox-item-wrapper" key={item.value}>
+            <Checkbox
+              value={item.value}
+              label={item.text}
+              checked={checkedValue.has(item.value)}
+              onChange={handleChange}
+            />
+          </div>
+        ))}
+      </div>
+      <Divider style={{ margin: 'unset' }} />
+      <div className="button-wrapper">
+        <TextButton
+          disabled={checkedValue.size === 0}
+          onClick={reset}
+          text="重置"
+        />
+        <TextButton
+          style={{ padding: '0 var(--space-3x)' }}
+          onClick={() => onFilter?.([...checkedValue])}
+          text="筛选"
+        />
+      </div>
+    </div>
+  )
+}
+
+
+// src/styles/base.css
+:root {
+  /* ==========================================================================
+     1. 基础色阶 (Primitive Colors)
+     ========================================================================== */
+  /* brand */
+  --brand-05: #E6F2FD;
+  --brand-10: #B8D9F9;
+  --brand-20: #8ABEF3;
+  --brand-30: #5CA2E9;
+  --brand-40: #2E86DE;
+  --brand-50: #0067D1;
+  --brand-60: #004EA8;
+  --brand-70: #003D83;
+  --brand-80: #002E6A;
+  --brand-90: #00214B;
+
+  /* gray */
+   --gray-0: #FFFFFF;
+   --gray-05: #F3F3F3;
+   --gray-10: #DFDFDF;
+   --gray-20: #C9C9C9; 
+   --gray-30: #AEAEAE;
+   --gray-40: #939393;
+   --gray-50: #777777;
+   --gray-60: #595959;
+   --gray-70: #393939;
+   --gray-80: #2A2A2A;
+   --gray-90: #191919;
+   --gray-100: #000000;
+
+   /* red */
+   --red-05: #FEE7E8;
+   --red-10: #FABDC1;
+   --red-20: #F59297;
+   --red-30: #EE696F;
+   --red-40: #E7434A;
+   --red-50: #E02128;
+   --red-60: #C7000B;
+   --red-70: #850F12;
+   --red-80: #59080A;
+   --red-90: #350305;
+
+   /* rose */
+   --rose-05: #FEE5F2;
+   --rose-10: #FCC3E0;
+   --rose-20: #F99AC7;
+   --rose-30: #F470AB;
+   --rose-40: #ED448A;
+   --rose-50: #E61866;
+   --rose-60: #C40054;
+   --rose-70: #811439;
+   --rose-80: #540D24;
+   --rose-90: #330614;
+
+   /* orange */
+   --orange-05: #FEF5E8;
+   --orange-10: #FDE2BD;
+   --orange-20: #FCCE92;
+   --orange-30: #F9B766;
+   --orange-40: #F69E39;
+   --orange-50: #F4840C;
+   --orange-60: #C76207;
+   --orange-70: #954304;
+   --orange-80: #642802;
+   --orange-90: #3D1601;
+
+   /* yellow */
+   --yellow-05: #FEFCE0;
+   --yellow-10: #FEF8B8;
+   --yellow-20: #FEF08A;
+   --yellow-30: #FDE55C;
+   --yellow-40: #FCD72E;
+   --yellow-50: #FCC800;
+   --yellow-60: #D19F00;
+   --yellow-70: #9E7400;
+   --yellow-80: #614500;
+   --yellow-90: #2E1F00;
+
+   /* green */
+   --green-05: #F2FBE9;
+   --green-10: #DFF4CC;
+   --green-20: #C6E9A8;
+   --green-30: #A8DB81;
+   --green-40: #87C859;
+   --green-50: #62B42E;
+   --green-60: #488E20;
+   --green-70: #316614;
+   --green-80: #1B3E0A;
+   --green-90: #0C2004;
+
+   /* mint */
+   --mint-05: #E7FBF2;
+   --mint-10: #BCF2DB;
+   --mint-20: #8FE5C2;
+   --mint-30: #63D5A8;
+   --mint-40: #36C18D;
+   --mint-50: #09AA71;
+   --mint-60: #058358;
+   --mint-70: #036142;
+   --mint-80: #02422E;
+   --mint-90: #00291D;
+
+   /* cyan */
+   --cyan-05: #E8FCFD;
+   --cyan-10: #C9F6F9;
+   --cyan-20: #A4ECF1;
+   --cyan-30: #7DDFE7;
+   --cyan-40: #55CCD9;
+   --cyan-50: #2CB8C9;
+   --cyan-60: #1C94A4;
+   --cyan-70: #127180;
+   --cyan-80: #094C57;
+   --cyan-90: #04282F;
+
+   /* blue */
+   --blue-05: #EEF3FE;
+   --blue-10: #D0D8FD;
+   --blue-20: #B0BFFD;
+   --blue-30: #8CA3FA;
+   --blue-40: #668CF7;
+   --blue-50: #2070F3;
+   --blue-60: #1F55B5;
+   --blue-70: #1B3F86;
+   --blue-80: #112857;
+   --blue-90: #081635;
+
+   /* indigo */
+   --indigo-05: #EEEEFE;
+   --indigo-10: #D5D3FD;
+   --indigo-20: #BFB9FA;
+   --indigo-30: #A89FF9;
+   --indigo-40: #8E81F4;
+   --indigo-50: #715AFB;
+   --indigo-60: #5531EB;
+   --indigo-70: #3F21B5;
+   --indigo-80: #281675;
+   --indigo-90: #160B48;
+
+   /* purple */
+   --purple-05: #F7EDFE;
+   --purple-10: #E8CFFE;
+   --purple-20: #D9B1FD;
+   --purple-30: #CB8EFB;
+   --purple-40: #BF68FA;
+   --purple-50: #B62BF7;
+   --purple-60: #8A21BC;
+   --purple-70: #651B8B;
+   --purple-80: #41125A;
+   --purple-90: #260937;
+
+   /* pink */
+   --pink-05: #FDE6FC;
+   --pink-10: #F9C5F6;
+   --pink-20: #F39DEC;
+   --pink-30: #EB74DF;
+   --pink-40: #E049CE;
+   --pink-50: #D41DBC;
+   --pink-60: #9F1C8D;
+   --pink-70: #751868;
+   --pink-80: #4C0F43;
+   --pink-90: #2E0728;
+
+
+
+  /* ==========================================================================
+     3. 尺寸与形状变量 (Sizes & Shapes)
+     ========================================================================== */
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-base: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 999px;
+
+  /* ==========================================================================
+     4. 文本排版 (Typography)
+     ========================================================================== */
+  /* Font Family */
+  --font-family: 'HarmonyOS Sans', 'Microsoft YaHei', Arial, 'PingFang SC', 'San Francisco', sans-serif;
+
+  /* Font Size */
+  --font-size-sm: 10px;
+  --font-size-base: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 28px;
+  --font-size-5xl: 30px;
+  --font-size-6xl: 32px;
+  --font-size-7xl: 36px;
+  --font-size-8xl: 40px;
+  --font-size-12xl: 48px;
+  --font-size-16xl: 56px;
+  --font-size-18xl: 60px;
+  --font-size-24xl: 72px;
+
+  /* Line Height */
+  --line-height-xs: 2;
+  --line-height-sm: 1.625;
+  --line-height-md: 1.5;
+  --line-height-lg: 1.5;
+  --line-height-xl: 1.5;
+  --line-height-2xl: 1.375;
+  --line-height-3xl: 1.375;
+  --line-height-4xl: 1.375;
+  --line-height-5xl: 1.375;
+  --line-height-6xl: 1.375;
+  --line-height-7xl: 1.25;
+  --line-height-8xl: 1.25;
+  --line-height-9xl: 1.25;
+
+ 
+
+  /* Font Weight */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+
+  /* ==========================================================================
+     5. 间距 (Spacing)
+     ========================================================================== */
+  --spacing-0: 0px;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-2-5: 0.625rem;
+  --spacing-3: 0.75rem;
+  --spacing-3-5: 0.875rem;
+  --spacing-4: 1rem;
+  --spacing-4-5: 1.125rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+  --spacing-14: 3.5rem;
+  --spacing-15: 3.75rem;
+  --spacing-16: 4rem;
+  --spacing-17: 4.25rem;
+  --spacing-18: 4.5rem;
+  --spacing-19: 4.75rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-28: 7rem;
+  --spacing-32: 8rem;
+  --spacing-36: 9rem;
+  --spacing-40: 10rem;
+  --spacing-44: 11rem;
+  --spacing-48: 12rem;
+  --spacing-52: 13rem;
+  --spacing-56: 14rem;
+  --spacing-60: 15rem;
+  --spacing-64: 16rem;
+  --spacing-72: 18rem;
+  --spacing-80: 20rem;
+  --spacing-96: 24rem;
+}
+
+// src/styles/global.less
+/* 全局样式 — 由 json-to-react 工具生成 */
+* {
+  margin: 0;
+  padding: 0;
+  border:0 solid;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: 16px;
+}
+
+
+// src/styles/hui-base-dark.css
+body.theme-dark {
+  /* 品牌色 */
+  --color-brand: var(--brand-50);
+  --color-brand-hover: var(--brand-40);
+  --color-brand-focus: var(--brand-50);
+  --color-brand-active: var(--brand-60);
+  --color-brand-disabled: var(--brand-70);
+  /* 文本色 */
+  --color-text-primary: var(--gray-0);
+  --color-text-secondary: var(--gray-20);
+  --color-text-placeholder: var(--gray-40);
+  --color-text-disabled: var(--gray-40);
+  --color-text-inverse: var(--gray-0);
+  --color-text-inverse-disabled: rgb(from var(--gray-05) r g b / 0.3);
+  --color-text-on: var(--gray-0);
+  --color-link: var(--brand-30);
+  --color-link-hover: var(--brand-20);
+  --color-link-active: var(--brand-40);
+  --color-link-visited: var(--indigo-50);
+  --color-link-disabled: var(--brand-60);
+  /* 背景色 */
+  --color-bg-1: var(--gray-100);
+  --color-bg-2: var(--gray-90);
+  --color-bg-3: var(--gray-80);
+  --color-bg-4: var(--gray-70);
+  --color-bg-5: rgb(from var(--gray-05) r g b / 0.1);
+  --color-bg-6: rgb(from var(--gray-05) r g b / 0.1);
+  --color-bg-mask: rgb(from var(--gray-0) r g b / 0.7);
+  /* 填充色 */
+  --color-fill-disabled: var(--gray-60);
+  --color-hover: rgb(from var(--gray-05) r g b / 0.2);
+  --color-fill-disabled-subtle: rgb(from var(--gray-05) r g b / 0.2);
+  --color-fill: rgb(from var(--gray-05) r g b / 0.2);
+  --color-select: rgb(from var(--brand-50) r g b / 0.4);
+  --color-fill-subtle: rgb(from var(--gray-100) r g b / 0);
+
+  /* 图标色 */
+  --color-icon-primary: var(--gray-10);
+  --color-icon-secondary: var(--gray-30);
+  --color-icon-tertiary: var(--gray-50);
+  --color-icon-placeholder: var(--gray-40);
+  --color-icon-disabled: var(--gray-40);
+  --color-icon-inverse: var(--gray-0);
+  --color-icon-hover: var(--brand-20);
+  --color-icon-focus: var(--brand-30);
+  --color-icon-active: var(--brand-40);
+  /* 边框色 */
+  --color-border: var(--gray-50);
+  --color-border-hover: var(--gray-05);
+  --color-border-focus: var(--brand-40);
+  --color-border-active: var(--brand-80);
+  --color-border-disabled: var(--gray-60);
+  --color-border-separator: rgb(from var(--gray-05) r g b / 0.15);
+  --color-border-separator-sbutle: rgb(from var(--gray-05) r g b / 0.1);
+  /* 功能色-错误 */
+  --color-error: var(--red-40);
+  --color-error-hover: var(--red-30);
+  --color-error-active: var(--red-50);
+  --color-error-disabled: var(--red-80);
+  --color-error-subtle: var(--red-60);
+  --color-error-subtler: var(--red-80);
+  /* 功能色-告警 */
+  --color-alert: var(--orange-50);
+  --color-alert-hover: var(--orange-40);
+  --color-alert-active: var(--orange-60);
+  --color-alert-disabled: var(--orange-80);
+  --color-alert-subtle: var(--orange-60);
+  --color-alert-subtler: var(--orange-80);
+  /* 功能色-提醒 */
+  --color-warning: var(--yellow-40);
+  --color-warning-hover: var(--yellow-30);
+  --color-warning-active: var(--yellow-50);
+  --color-warning-disabled: var(--yellow-80);
+  --color-warning-bold: var(--yellow-60);
+  --color-warning-subtle: var(--yellow-60);
+  --color-warning-subtler: var(--yellow-80);
+  /* 功能色-成功 */
+  --color-success: var(--mint-60);
+  --color-success-hover: var(--mint-50);
+  --color-success-active: var(--mint-60);
+  --color-success-disabled: var(--mint-80);
+  --color-success-subtle: var(--mint-60);
+  --color-success-subtler: var(--mint-80);
+  /* 功能色-信息 */
+  --color-info-primary: var(--blue-50);
+  --color-info-primary-subtle: var(--blue-60);
+  --color-info-primary-subtler: var(--blue-80);
+  --color-info-secondary: var(--blue-60);
+  --color-info-secondary-hover: var(--blue-40);
+  --color-info-secondary-active: var(--blue-60);
+  --color-info-secondary-disabled: var(--blue-80);
+  --color-info-secondary-subtle: var(--blue-80);
+  /* 功能色-失效 */
+  --color-none: var(--gray-60);
+  --color-none-hover: rgb(from var(--gray-05) r g b / 0.2);
+  --color-none-active: var(--gray-50);
+  --color-none-disabled: var(--gray-90);
+  --color-none-subtle: var(--gray-90);
+  /* 推荐图表色 */
+  --color-chart-1: var(--blue-50);
+  --color-chart-2: var(--green-50);
+  --color-chart-3: var(--indigo-50);
+  --color-chart-4: var(--cyan-50);
+  --color-chart-5: var(--orange-40);
+  --color-chart-6: var(--brand-30);
+  --color-chart-7: var(--purple-60);
+  --color-chart-8: var(--rose-60);
+  --color-chart-9: var(--indigo-60);
+  --color-chart-10: var(--yellow-60);
+  --color-chart-11: var(--brand-60);
+  --color-chart-12: var(--green-60);
+  --color-chart-13: var(--purple-70);
+  --color-chart-14: var(--cyan-60);
+  --color-chart-15: var(--orange-70);
+  --color-chart-16: var(--rose-60);
+  --color-chart-17: var(--cyan-70);
+  --color-chart-18: var(--blue-60);
+  --color-chart-19: var(--green-70);
+  --color-chart-20: var(--indigo-70);
+  --color-chart-21: var(--rose-70);
+  --color-chart-22: var(--cyan-30);
+  --color-chart-23: var(--yellow-70);
+  --color-chart-24: var(--purple-50);
+  --color-chart-25: var(--mint-70);
+  /* 特殊场景 */
+  --color-scrollbar: var(--gray-60);
+  --color-scrollbar-hover: var(--gray-40);
+  --color-card-gray-disabled: rgb(from var(--gray-40) r g b / 0.05);
+  --color-card-white-disabled: rgb(from var(--gray-40) r g b / 0.1);
+  --color-sidenav-bg: var(--gray-70);
+  --color-table-header: rgb(from var(--gray-05) r g b / 0.1);
+  --color-table-zebra: rgb(from var(--gray-50) r g b / 0.15);
+  --color-message-bg-info: rgb(from var(--blue-50) r g b / 0.15);
+  --color-message-bg-success: rgb(from var(--mint-60) r g b / 0.15);
+  --color-message-bg-warning: rgb(from var(--yellow-40) r g b / 0.15);
+  --color-message-bg-alert: rgb(from var(--orange-50) r g b / 0.15);
+  --color-message-bg-error: rgb(from var(--red-40) r g b / 0.15);
+
+  /* ICT3.0 3.0告警色 */
+  --color-alert-urgent: #F43146;
+  --color-alert-primary: #EC6F1A;
+  --color-alert-secondary: #EEBA18;
+  --color-alert-success: #0D9458;
+  --color-alert-running: #5990FD;
+  --color-alert-none: #818181;
+  /* ICT3.1 表格 */
+  --color-table-1: rgb(from var(--brand-50) r g b / 0.2);
+  --color-table-2: rgb(from var(--brand-50) r g b / 0.4);
+  --color-table-sticky-1: var(--brand-80);
+  --color-table-sticky-2: var(--brand-70);
+  --color-table-sticky-bg: var(--gray-70);
+  --color-table-sticky-header: var(--gray-70);
+  /* 标签配色 */
+  --color-tag-text-purple: var(--purple-30);
+  --color-tag-bg-purple: rgb(from var(--purple-30) r g b / 0.15);
+  --color-tag-text-cyan: var(--cyan-40);
+  --color-tag-bg-cyan: rgb(from var(--cyan-50) r g b / 0.15);
+  --color-tag-text-rose: var(--rose-30);
+  --color-tag-bg-rose: rgb(from var(--rose-30) r g b / 0.15);
+  --color-tag-text-green: var(--green-50);
+  --color-tag-bg-green: rgb(from var(--green-40) r g b / 0.15);
+  --color-tag-text-pink: var(--pink-30);
+  --color-tag-bg-pink: rgb(from var(--pink-30) r g b / 0.15);
+  --color-tag-text-indigo: var(--indigo-30);
+  --color-tag-bg-indigo: rgb(from var(--indigo-30) r g b / 0.15);
+  --color-tag-text-none: var(--gray-30);
+  --color-tag-bg-none: rgb(from var(--gray-30) r g b / 0.15);
+  --color-tag-text-error: var(--red-40);
+  --color-tag-bg-error: rgb(from var(--red-30) r g b / 0.15);
+  --color-tag-text-alert: var(--orange-40);
+  --color-tag-bg-alert: rgb(from var(--orange-50) r g b / 0.15);
+  --color-tag-text-warning: var(--yellow-50);
+  --color-tag-bg-warning: rgb(from var(--yellow-30) r g b / 0.15);
+  --color-tag-text-success: var(--mint-40);
+  --color-tag-bg-success: rgb(from var(--mint-50) r g b / 0.15);
+  --color-tag-text-info: var(--blue-30);
+  --color-tag-bg-info: rgb(from var(--blue-40) r g b / 0.15);
+
+  /* Border */
+  --border: var(--gray-50);
+  --border-light: rgb(from var(--gray-05) r g b / 0.15);
+  --border-primary: var(--brand-30);
+  --border-success: var(--mint-20);
+  --border-warning: var(--yellow-20);
+  --border-alert: var(--orange-20);
+  --border-error: var(--red-20);
+
+  /* Icon */
+  --icon-primary: var(--brand-30);
+  --icon-success: var(--mint-30);
+  --icon-warning: var(--yellow-30);
+  --icon-critical: var(--orange-30);
+  --icon-alert: var(--orange-30);
+  --icon-error: var(--red-30);
+
+
+  /* Shadow (暗色模式下阴影更强) */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.5);
+  --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-r-sm: 1px 0 6px 0 rgba(0, 0, 0, 0.5);
+  --shadow-t-sm: 0 -1px 6px rgba(0, 0, 0, 0.5);
+  --shadow-l-base: -2px 0 12px 0 rgba(0, 0, 0, 0.5);
+  --shadow-l-md: -2px 0 24px 0 rgba(0, 0, 0, 0.5);
+
+  color: var(--color-text-primary);
+
+  /* Tag solid 样式（暗色模式下 solid 背景保持不变） */
+  .eui_tag.eui_tag_default {
+    color: var(--gray-30) !important;
+    background: rgb(from var(--gray-30) r g b / 0.15) !important;
+  }
+  .eui_tag.eui_tag_info {
+    color: var(--gray-0) !important;
+    background: var(--blue-50) !important;
+  }
+  .eui_tag.eui_tag_error {
+    color: var(--gray-0) !important;
+    background: var(--red-50) !important;
+  }
+  .eui_tag.eui_tag_alert {
+    color: var(--gray-0) !important;
+    background: var(--orange-50) !important;
+  }
+  .eui_tag.eui_tag_warning {
+    color: var(--gray-0) !important;
+    background: var(--yellow-50) !important;
+  }
+  .eui_tag.eui_tag_success {
+    color: var(--gray-0) !important;
+    background: var(--mint-50) !important;
+  }
+  .eui_tag.eui_tag_disabled {
+    color: var(--gray-0) !important;
+    background: var(--gray-30) !important;
+  }
+  .eui_tag.eui_tag_green {
+    color: var(--gray-0) !important;
+    background: var(--green-50) !important;
+  }
+  .eui_tag.eui_tag_rose {
+    color: var(--gray-0) !important;
+    background: var(--rose-50) !important;
+  }
+  .eui_tag.eui_tag_pink {
+    color: var(--gray-0) !important;
+    background: var(--pink-50) !important;
+  }
+  .eui_tag.eui_tag_purple {
+    color: var(--gray-0) !important;
+    background: var(--purple-50) !important;
+  }
+  .eui_tag.eui_tag_indigo {
+    color: var(--gray-0) !important;
+    background: var(--indigo-50) !important;
+  }
+  .eui_tag.eui_tag_cyan {
+    color: var(--gray-0) !important;
+    background: var(--cyan-50) !important;
+  }
+
+  /* Tag filled（outline/淡底）样式（暗色模式，对齐 eview-react hui-base-dark.css） */
+  /* default 颜色不受 variant 影响，无 .eui_tag.filled.eui_tag_default */
+  .eui_tag.filled.eui_tag_info {
+    color: var(--brand-30) !important;
+    background: rgb(from var(--brand-30) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_error {
+    color: var(--red-40) !important;
+    background: rgb(from var(--red-30) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_alert {
+    color: var(--orange-40) !important;
+    background: rgb(from var(--orange-50) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_warning {
+    color: var(--yellow-50) !important;
+    background: rgb(from var(--yellow-30) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_success {
+    color: var(--mint-40) !important;
+    background: rgb(from var(--mint-50) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_disabled {
+    color: var(--gray-30) !important;
+    background: rgb(from var(--gray-30) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_green {
+    color: var(--mint-40) !important;
+    background: rgb(from var(--green-40) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_rose {
+    color: var(--rose-30) !important;
+    background: rgb(from var(--rose-30) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_pink {
+    color: var(--pink-30) !important;
+    background: rgb(from var(--pink-30) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_purple {
+    color: var(--purple-30) !important;
+    background: rgb(from var(--purple-30) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_indigo {
+    color: var(--indigo-30) !important;
+    background: rgb(from var(--indigo-30) r g b / 0.15) !important;
+  }
+  .eui_tag.filled.eui_tag_cyan {
+    color: var(--cyan-40) !important;
+    background: rgb(from var(--cyan-50) r g b / 0.15) !important;
+  }
+}
+
+// src/styles/hui-base.css
+:root {
+  /* 品牌色 */
+  --color-brand: var(--brand-50);
+  --color-brand-hover: var(--brand-40);
+  --color-brand-focus: var(--brand-50);
+  --color-brand-active: var(--brand-60);
+  --color-brand-disabled: var(--brand-20);
+  /* 文本色 */
+  --color-text-primary: var(--gray-90);
+  --color-text-secondary: var(--gray-50);
+  --color-text-placeholder: var(--gray-30);
+  --color-text-disabled: var(--gray-20);
+  --color-text-inverse: var(--gray-0);
+  --color-text-inverse-disabled: var(--gray-0);
+  --color-text-on: var(--brand-50);
+  --color-link: var(--brand-50);
+  --color-link-hover: var(--brand-40);
+  --color-link-active: var(--brand-60);
+  --color-link-visited: var(--indigo-50);
+  --color-link-disabled: var(--brand-20);
+  /* 背景色 */
+  --color-bg-1: var(--gray-05);
+  --color-bg-2: var(--gray-0);
+  --color-bg-3: var(--gray-0);
+  --color-bg-4: var(--gray-0);
+  --color-bg-5: var(--gray-0);
+  --color-bg-6: rgb(from var(--gray-20) r g b / 0.2);
+  --color-bg-mask: rgb(from var(--gray-90) r g b / 0.3);
+  /* 填充色 */
+  --color-fill-disabled: var(--gray-10);
+  --color-hover: rgb(from var(--gray-90) r g b / 0.05);
+  --color-fill-disabled-subtle: rgb(from var(--gray-90) r g b / 0.05);
+  --color-fill: rgb(from var(--gray-90) r g b / 0.05);
+  --color-select: var(--brand-05);
+  --color-fill-subtle: var(--gray-0);
+
+  /* 图标色 */
+  --color-icon-primary: var(--gray-90);
+  --color-icon-secondary: var(--gray-50);
+  --color-icon-tertiary: var(--gray-40);
+  --color-icon-placeholder: var(--gray-30);
+  --color-icon-disabled: var(--gray-20);
+  --color-icon-inverse: var(--gray-0);
+  --color-icon-hover: var(--brand-40);
+  --color-icon-focus: var(--brand-50);
+  --color-icon-active: var(--brand-60);
+  /* 边框色 */
+  --color-border: var(--gray-20);
+  --color-border-hover: var(--gray-90);
+  --color-border-focus: var(--brand-50);
+  --color-border-active: var(--brand-10);
+  --color-border-disabled: var(--gray-20);
+  --color-border-separator: var(--gray-10);
+  --color-border-separator-sbutle: var(--gray-05);
+  /* 功能色-错误 */
+  --color-error: var(--red-50);
+  --color-error-hover: var(--red-40);
+  --color-error-active: var(--red-60);
+  --color-error-disabled: var(--red-10);
+  --color-error-subtle: var(--red-20);
+  --color-error-subtler: var(--red-05);
+  /* 功能色-告警 */
+  --color-alert: var(--orange-50);
+  --color-alert-hover: var(--orange-40);
+  --color-alert-active: var(--orange-60);
+  --color-alert-disabled: var(--orange-10);
+  --color-alert-subtle: var(--orange-20);
+  --color-alert-subtler: var(--orange-05);
+  /* 功能色-提醒 */
+  --color-warning: var(--yellow-50);
+  --color-warning-hover: var(--yellow-40);
+  --color-warning-active: var(--yellow-60);
+  --color-warning-disabled: var(--yellow-10);
+  --color-warning-bold: var(--yellow-60);
+  --color-warning-subtle: var(--yellow-20);
+  --color-warning-subtler: var(--yellow-05);
+  /* 功能色-成功 */
+  --color-success: var(--mint-50);
+  --color-success-hover: var(--mint-40);
+  --color-success-active: var(--mint-60);
+  --color-success-disabled: var(--mint-10);
+  --color-success-subtle: var(--mint-20);
+  --color-success-subtler: var(--mint-05);
+  /* 功能色-信息 */
+  --color-info-primary: var(--blue-50);
+  --color-info-primary-subtle: var(--blue-30);
+  --color-info-primary-subtler: var(--blue-05);
+  --color-info-secondary: var(--blue-30);
+  --color-info-secondary-hover: var(--blue-20);
+  --color-info-secondary-active: var(--blue-40);
+  --color-info-secondary-disabled: var(--blue-10);
+  --color-info-secondary-subtle: var(--blue-05);
+  /* 功能色-失效 */
+  --color-none: var(--gray-30);
+  --color-none-hover: var(--gray-20);
+  --color-none-active: var(--gray-40);
+  --color-none-disabled: var(--gray-10);
+  --color-none-subtle: var(--gray-05);
+  /* 推荐图表色 */
+  --color-chart-1: var(--blue-50);
+  --color-chart-2: var(--green-50);
+  --color-chart-3: var(--indigo-50);
+  --color-chart-4: var(--cyan-50);
+  --color-chart-5: var(--orange-40);
+  --color-chart-6: var(--brand-30);
+  --color-chart-7: var(--purple-40);
+  --color-chart-8: var(--rose-40);
+  --color-chart-9: var(--indigo-20);
+  --color-chart-10: var(--yellow-60);
+  --color-chart-11: var(--brand-10);
+  --color-chart-12: var(--green-60);
+  --color-chart-13: var(--purple-20);
+  --color-chart-14: var(--cyan-60);
+  --color-chart-15: var(--orange-20);
+  --color-chart-16: var(--rose-60);
+  --color-chart-17: var(--cyan-20);
+  --color-chart-18: var(--blue-60);
+  --color-chart-19: var(--green-20);
+  --color-chart-20: var(--indigo-70);
+  --color-chart-21: var(--rose-10);
+  --color-chart-22: var(--cyan-70);
+  --color-chart-23: var(--yellow-20);
+  --color-chart-24: var(--purple-70);
+  --color-chart-25: var(--mint-20);
+  /* 特殊场景 */
+  --color-scrollbar: var(--gray-10);
+  --color-scrollbar-hover: var(--gray-30);
+  --color-card-gray-disabled: rgb(from var(--gray-30) r g b / 0.05);
+  --color-card-white-disabled: rgb(from var(--gray-0) r g b / 0.5);
+  --color-sidenav-bg: rgb(from var(--gray-05) r g b / 0.5);
+  --color-table-header: rgb(from var(--gray-90) r g b / 0.05);
+  --color-table-zebra: rgb(from var(--gray-40) r g b / 0.05);
+  --color-message-bg-info: var(--blue-05);
+  --color-message-bg-success: var(--mint-05);
+  --color-message-bg-warning: var(--yellow-05);
+  --color-message-bg-alert: var(--orange-05);
+  --color-message-bg-error: var(--red-05);
+ 
+  /* ICT3.0 3.0告警色 */
+  --color-alert-urgent: #F43146;
+  --color-alert-primary: #EC6F1A;
+  --color-alert-secondary: #EEBA18;
+  --color-alert-success: #2DA769;
+  --color-alert-running: #5990FD;
+  --color-alert-none: #939393;
+  /* ICT3.1 表格 */
+  --color-table-1: var(--brand-05);
+  --color-table-2: var(--brand-10);
+  --color-table-sticky-1: var(--brand-05);
+  --color-table-sticky-2: var(--brand-10);
+  --color-table-sticky-bg: var(--gray-0);
+  --color-table-sticky-header: var(--gray-05);
+  /* 标签配色 */
+  --color-tag-text-purple: var(--purple-60);
+  --color-tag-bg-purple: rgb(from var(--purple-10) r g b / 0.6);
+  --color-tag-text-cyan: var(--cyan-80);
+  --color-tag-bg-cyan: rgb(from var(--cyan-60) r g b / 0.15);
+  --color-tag-text-rose: var(--rose-60);
+  --color-tag-bg-rose: var(--rose-05);
+  --color-tag-text-green: var(--green-70);
+  --color-tag-bg-green: var(--green-10);
+  --color-tag-text-pink: var(--pink-60);
+  --color-tag-bg-pink: var(--pink-05);
+  --color-tag-text-indigo: var(--indigo-80);
+  --color-tag-bg-indigo: rgb(from var(--indigo-10) r g b / 0.6);
+  --color-tag-text-none: var(--gray-70);
+  --color-tag-bg-none: rgb(from var(--gray-90) r g b / 0.05);
+  --color-tag-text-error: var(--red-60);
+  --color-tag-bg-error: var(--red-05);
+  --color-tag-text-alert: var(--orange-70);
+  --color-tag-bg-alert: var(--orange-10);
+  --color-tag-text-warning: var(--yellow-80);
+  --color-tag-bg-warning: rgb(from var(--yellow-30) r g b / 0.6);
+  --color-tag-text-success: var(--mint-70);
+  --color-tag-bg-success: rgb(from var(--mint-10) r g b / 0.6);
+  --color-tag-text-info: var(--blue-60);
+  --color-tag-bg-info: rgb(from var(--blue-10) r g b / 0.5);
+
+
+   /* Border */
+   --border: var(--gray-20);
+   --border-light: var(--gray-10);
+   --border-primary: var(--brand-50);
+   --border-success: var(--mint-20);
+   --border-warning: var(--yellow-20);
+   --border-alert: var(--orange-20);
+   --border-error: var(--red-20);
+
+   /* Icon */
+   --icon-primary: var(--brand-50);
+   --icon-success: var(--mint-50);
+   --icon-warning: var(--yellow-50);
+   --icon-critical: var(--orange-50);
+   --icon-alert: var(--orange-50);
+   --icon-error: var(--red-50);
+
+   /* ==========================================================================
+     尺寸与形状变量 (Sizes & Shapes)
+     ========================================================================== */
+   /* Shadow */
+   --shadow-none: none;
+   --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.08);
+   --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.16);
+   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+   --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+   --shadow-r-sm: 1px 0 6px 0 rgba(0, 0, 0, 0.08);
+   --shadow-t-sm: 0 -1px 6px rgba(0, 0, 0, 0.08);
+   --shadow-l-base: -2px 0 12px 0 rgba(0, 0, 0, 0.08);
+   --shadow-l-md: -2px 0 24px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+  Tag 样式覆盖
+  eview-ui Tag 默认 type 生成 .eui_tag，color 生成 .eui_tag_{color}
+  .filled className 由映射层追加（variant: filled/outlined），对应 eview-react 的 ev_tag_fill
+  ========================================================================== */
+
+/* --- 默认（solid/实心）样式 --- */
+.eui_tag.eui_tag_default {
+  color: var(--gray-70) !important;
+  background: rgb(from var(--gray-90) r g b / 0.05) !important;
+}
+.eui_tag.eui_tag_info {
+  color: var(--gray-0) !important;
+  background: var(--blue-50) !important;
+}
+.eui_tag.eui_tag_error {
+  color: var(--gray-0) !important;
+  background: var(--red-50) !important;
+}
+.eui_tag.eui_tag_alert {
+  color: var(--gray-0) !important;
+  background: var(--orange-50) !important;
+}
+.eui_tag.eui_tag_warning {
+  color: var(--gray-0) !important;
+  background: var(--yellow-50) !important;
+}
+.eui_tag.eui_tag_success {
+  color: var(--gray-0) !important;
+  background: var(--mint-50) !important;
+}
+.eui_tag.eui_tag_disabled {
+  color: var(--gray-0) !important;
+  background: var(--gray-30) !important;
+}
+.eui_tag.eui_tag_green {
+  color: var(--gray-0) !important;
+  background: var(--green-50) !important;
+}
+.eui_tag.eui_tag_rose {
+  color: var(--gray-0) !important;
+  background: var(--rose-50) !important;
+}
+.eui_tag.eui_tag_pink {
+  color: var(--gray-0) !important;
+  background: var(--pink-50) !important;
+}
+.eui_tag.eui_tag_purple {
+  color: var(--gray-0) !important;
+  background: var(--purple-50) !important;
+}
+.eui_tag.eui_tag_indigo {
+  color: var(--gray-0) !important;
+  background: var(--indigo-50) !important;
+}
+.eui_tag.eui_tag_cyan {
+  color: var(--gray-0) !important;
+  background: var(--cyan-50) !important;
+}
+
+/* --- filled（outline/淡底）样式 --- */
+/* default 颜色不受 variant 影响，无 .eui_tag.filled.eui_tag_default */
+.eui_tag.filled.eui_tag_info {
+  color: var(--brand-60) !important;
+  background: var(--brand-05) !important;
+}
+.eui_tag.filled.eui_tag_error {
+  color: var(--red-60) !important;
+  background: var(--red-05) !important;
+}
+.eui_tag.filled.eui_tag_alert {
+  color: var(--orange-70) !important;
+  background: var(--orange-10) !important;
+}
+.eui_tag.filled.eui_tag_warning {
+  color: var(--yellow-80) !important;
+  background: rgb(from var(--yellow-30) r g b / 0.6) !important;
+}
+.eui_tag.filled.eui_tag_success {
+  color: var(--mint-70) !important;
+  background: rgb(from var(--mint-10) r g b / 0.6) !important;
+}
+.eui_tag.filled.eui_tag_disabled {
+  color: var(--gray-70) !important;
+  background: rgb(from var(--gray-90) r g b / 0.05) !important;
+}
+.eui_tag.filled.eui_tag_green {
+  color: var(--mint-70) !important;
+  background: var(--green-10) !important;
+}
+.eui_tag.filled.eui_tag_rose {
+  color: var(--rose-60) !important;
+  background: var(--rose-05) !important;
+}
+.eui_tag.filled.eui_tag_pink {
+  color: var(--pink-60) !important;
+  background: var(--pink-05) !important;
+}
+.eui_tag.filled.eui_tag_purple {
+  color: var(--purple-60) !important;
+  background: rgb(from var(--purple-10) r g b / 0.6) !important;
+}
+.eui_tag.filled.eui_tag_indigo {
+  color: var(--indigo-80) !important;
+  background: rgb(from var(--indigo-10) r g b / 0.6) !important;
+}
+.eui_tag.filled.eui_tag_cyan {
+  color: var(--cyan-80) !important;
+  background: rgb(from var(--cyan-60) r g b / 0.15) !important;
+}
+
+
+// src/theme/useTheme.tsx
+import React, { useState, useEffect, createContext, useContext, ReactNode, useCallback, useMemo } from "react";
+import { DEFAULT_THEME } from './config';
+import { ConfigProvider } from '@cloudsop/eview-ui';
+
+const THEME = {
+    LIGHT: "light",
+    DARK: "dark"
+} as const;
+
+const EUI_THEME = {
+    [THEME.LIGHT]: "lightday",
+    [THEME.DARK]: "evening"
+} as const;
+
+type ThemeType = typeof THEME[keyof typeof THEME];
+
+type EuiThemeType = typeof EUI_THEME[keyof typeof EUI_THEME];
+
+interface ThemeContextProps {
+    theme: ThemeType;
+    setTheme: (theme: ThemeType) => void;
+    toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
+    const [currentTheme, setCurrentTheme] = useState<ThemeType>(DEFAULT_THEME);
+
+    const euiTheme = useMemo<EuiThemeType>(() => EUI_THEME[currentTheme], [currentTheme]);
+
+    const setTheme = useCallback((theme: ThemeType) => {
+        setCurrentTheme(theme);
+    }, []);
+
+    const toggleTheme = useCallback(() => {
+        setCurrentTheme(prevTheme => prevTheme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT);
+    }, []);
+
+    // 同步 body 类名：dark → 加 theme-dark，否则移除（驱动 hui-base-dark.css 的 body.theme-dark 变量块）
+    useEffect(() => {
+        const body = document.body;
+        if (currentTheme === THEME.DARK) {
+            body.classList.add('theme-dark');
+        } else {
+            body.classList.remove('theme-dark');
+        }
+    }, [currentTheme]);
+
+    return (
+        <ThemeContext.Provider
+            value={{
+                theme: currentTheme,
+                setTheme,
+                toggleTheme
+            }}>
+            <ConfigProvider locale="zh" version="aui3-1" theme={euiTheme}>
+                {children}
+            </ConfigProvider>
+        </ThemeContext.Provider>
+    )
+}
+
+export function useTheme(): ThemeContextProps {
+    const context = useContext(ThemeContext);
+    if (!context) {
+        throw new Error("useTheme must be used within a ThemeProvider");
+    }
+    return context;
+}
+
+
+// src/vite-env.d.ts
+/// <reference types="vite/client" />
+
+
+// tsconfig.app.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+} 
+
+
+
+// tsconfig.json
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+} 
+
+
+// tsconfig.node.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+} 
+
+
+
+// vite.config.ts
+import { defineConfig, Plugin } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+function tildeImportPlugin(): Plugin {
+  return {
+    name: 'tilde-import',
+    resolveId(source) {
+      if (source.startsWith('~')) {
+        return source.slice(1);
+      }
+    },
+  };
+}
+
+export default defineConfig({
+  plugins: [react(), tildeImportPlugin()],
+  resolve: {
+    alias: [
+      {
+        find: /^~(.+)/,
+        replacement: '$1',
+      },
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, 'src'),
+      }
+    ]
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        paths: [path.resolve(__dirname, 'node_modules')],
+      },
+    },
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 4080
+  },
+});
+
+
+// src/routes/index.tsx
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import App from '../App';
+
+import RootPage from '../pages/root';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      { index: true, element: <Navigate to="/root" replace /> },
+      { path: 'root', element: <RootPage /> },
+    ],
+  },
+]);
+
+export default router;
+
+// src/pages/root/state.ts
+export const initialState = {
+    masLogoImage: "/assets/3a8ea61746c464ce.svg",
+    masPlatformName: "IMaster NCE-Campus",
+    masSelectedMenuKeys: 0,
+    masNavItems_masHdrNavMenuEnriched: [
+      {
+        title: "工作台",
+        key: "layout-dashboard",
+        icon: "/icons/house.svg"
+      },
+      {
+        title: "大屏",
+        key: "monitor",
+        icon: "/icons/monitor.svg"
+      }
+    ],
+    masQuickLinks: [
+      "开局",
+      "资源中心",
+      "任务中心",
+      "系统"
+    ],
+    masUserName: "Admin",
+    masAvatarImage: "/assets/1d40d700d4f4ae78.svg",
+    esbMenuItems: [
+      {
+        title: "数据分析",
+        value: "dashboard",
+        icon: "/icons/layout-dashboard.svg",
+        children: [
+          {
+            title: "概览",
+            value: "overview"
+          },
+          {
+            title: "分析",
+            value: "analytics"
+          },
+          {
+            title: "报告",
+            value: "reports"
+          }
+        ]
+      },
+      {
+        title: "用户管理",
+        value: "user",
+        icon: "/icons/users.svg",
+        children: [
+          {
+            title: "用户列表",
+            value: "list"
+          },
+          {
+            title: "角色管理",
+            value: "roles"
+          },
+          {
+            title: "权限设置",
+            value: "permissions"
+          }
+        ]
+      },
+      {
+        title: "订单管理",
+        value: "order",
+        icon: "/icons/shopping-cart.svg",
+        children: [
+          {
+            title: "全部订单",
+            value: "all"
+          },
+          {
+            title: "待处理",
+            value: "pending"
+          },
+          {
+            title: "历史订单",
+            value: "history"
+          }
+        ]
+      },
+      {
+        title: "商品管理",
+        value: "product",
+        icon: "/icons/package.svg",
+        children: [
+          {
+            title: "商品目录",
+            value: "catalog"
+          },
+          {
+            title: "分类管理",
+            value: "categories"
+          },
+          {
+            title: "品牌管理",
+            value: "brands"
+          }
+        ]
+      },
+      {
+        title: "财务管理",
+        value: "finance",
+        icon: "/icons/dollar-sign.svg",
+        children: [
+          {
+            title: "交易记录",
+            value: "transactions"
+          },
+          {
+            title: "发票管理",
+            value: "invoices"
+          },
+          {
+            title: "预算管理",
+            value: "budget"
+          }
+        ]
+      },
+      {
+        title: "内容管理",
+        value: "content",
+        icon: "/icons/file-text.svg",
+        children: [
+          {
+            title: "文章管理",
+            value: "articles"
+          },
+          {
+            title: "页面管理",
+            value: "pages"
+          },
+          {
+            title: "评论管理",
+            value: "comments"
+          }
+        ]
+      },
+      {
+        title: "营销推广",
+        value: "marketing",
+        icon: "/icons/megaphone.svg",
+        children: [
+          {
+            title: "活动管理",
+            value: "campaigns"
+          },
+          {
+            title: "优惠券",
+            value: "coupons"
+          },
+          {
+            title: "SEO设置",
+            value: "seo"
+          }
+        ]
+      },
+      {
+        title: "系统设置",
+        value: "system",
+        icon: "/icons/settings.svg",
+        children: [
+          {
+            title: "基本设置",
+            value: "general"
+          },
+          {
+            title: "安全设置",
+            value: "security"
+          },
+          {
+            title: "操作日志",
+            value: "logs"
+          }
+        ]
+      },
+      {
+        title: "工具",
+        value: "tools",
+        icon: "/icons/wrench.svg",
+        children: [
+          {
+            title: "数据库管理",
+            value: "database"
+          },
+          {
+            title: "缓存管理",
+            value: "cache"
+          },
+          {
+            title: "任务调度",
+            value: "scheduler"
+          }
+        ]
+      },
+      {
+        title: "帮助中心",
+        value: "help",
+        icon: "/icons/life-buoy.svg",
+        children: [
+          {
+            title: "常见问题",
+            value: "faq"
+          },
+          {
+            title: "文档",
+            value: "docs"
+          },
+          {
+            title: "技术支持",
+            value: "support"
+          }
+        ]
+      }
+    ],
+    esbSelectedMenuKeys: "",
+    stlActiveTabKey: 3,
+    stlTabs: [
+      {
+        key: "controlplane",
+        label: "控制面节点"
+      },
+      {
+        key: "virtual",
+        label: "虚拟交换机"
+      },
+      {
+        key: "tracing",
+        label: "Flow Tracing"
+      },
+      {
+        key: "addressPair",
+        label: "Allowed-address-pair"
+      }
+    ],
+    stlActiveTabTabItemKey: 1,
+    stlTabsItemType: "sub",
+    stlTabsItemTabs: [
+      {
+        key: "survey",
+        label: "探测"
+      },
+      {
+        key: "packet",
+        label: "报文"
+      }
+    ],
+    stlSearchValue: "",
+    stlCardAutoRefreshSwitchValue: false,
+    stlTableItems: [
+      {
+        id: 1001,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "未部署",
+          color: "default"
+        },
+        autoRenewal: {
+          checked: false,
+          loading: false
+        }
+      },
+      {
+        id: 1002,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "已部署",
+          color: "success"
+        },
+        autoRenewal: {
+          checked: true,
+          loading: false
+        }
+      },
+      {
+        id: 1003,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "已部署",
+          color: "success"
+        },
+        autoRenewal: {
+          checked: true,
+          loading: false
+        }
+      },
+      {
+        id: 1004,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "部署中",
+          color: "default"
+        },
+        autoRenewal: {
+          checked: true,
+          loading: false
+        }
+      },
+      {
+        id: 1005,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "未部署",
+          color: "default"
+        },
+        autoRenewal: {
+          checked: false,
+          loading: false
+        }
+      },
+      {
+        id: 1006,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "未部署",
+          color: "default"
+        },
+        autoRenewal: {
+          checked: false,
+          loading: false
+        }
+      },
+      {
+        id: 1007,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "已部署",
+          color: "success"
+        },
+        autoRenewal: {
+          checked: true,
+          loading: false
+        }
+      },
+      {
+        id: 1008,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "未部署",
+          color: "default"
+        },
+        autoRenewal: {
+          checked: false,
+          loading: false
+        }
+      },
+      {
+        id: 1009,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "已部署",
+          color: "success"
+        },
+        autoRenewal: {
+          checked: true,
+          loading: false
+        }
+      },
+      {
+        id: 1010,
+        stationNo: {
+          text: "100.99.99.100/32",
+          href: "/100.99.99.100/32"
+        },
+        totalEnergy: "fa:16:3e:5d:9b:7t",
+        detailInfo: "2026/1/6 15:00:00",
+        deviceIp: "172.28.48.3",
+        portId: "7e1e2ef7-c016-4035-",
+        l2Vni: "10010",
+        statusTag: {
+          text: "已部署",
+          color: "success"
+        },
+        autoRenewal: {
+          checked: true,
+          loading: false
+        }
+      }
+    ],
+    stlSelectedRowKeys: [],
+    drfSelectedPolicy: "standard",
+    drfPolicyOptions: [
+      {
+        value: "standard",
+        text: "且"
+      },
+      {
+        value: "deep_packet",
+        text: "深度包检测"
+      },
+      {
+        value: "shallow",
+        text: "浅层匹配"
+      }
+    ],
+    drfCheckboxValues: [
+      "source_addr",
+      "dest_addr",
+      "source_sec_domain",
+      "dest_sec_domain",
+      "service",
+      "protocol",
+      "source_port",
+      "dest_port"
+    ],
+    drfCheckboxOptions: [
+      {
+        value: "source_addr",
+        text: "源地址"
+      },
+      {
+        value: "dest_addr",
+        text: "目的地址"
+      },
+      {
+        value: "source_sec_domain",
+        text: "源安全域"
+      },
+      {
+        value: "dest_sec_domain",
+        text: "目的安全域"
+      },
+      {
+        value: "service",
+        text: "服务"
+      },
+      {
+        value: "protocol",
+        text: "协议"
+      },
+      {
+        value: "source_port",
+        text: "源端口"
+      },
+      {
+        value: "dest_port",
+        text: "目的端口"
+      }
+    ],
+    drfSearchValue: "",
+    drfTableData: [
+      {
+        id: "1",
+        protocol: "TCP",
+        port: "22 (SSH)",
+        portDataButtonText: "查看明细",
+        description: "--"
+      },
+      {
+        id: "2",
+        protocol: "TCP",
+        port: "3389 (RDP)",
+        portDataButtonText: "查看明细",
+        description: "--"
+      },
+      {
+        id: "3",
+        protocol: "UDP",
+        port: "53 (DNS)",
+        portDataButtonText: "查看明细",
+        description: "--"
+      },
+      {
+        id: "4",
+        protocol: "TCP",
+        port: "445 (SMB)",
+        portDataButtonText: "查看明细",
+        description: "--"
+      }
+    ],
+    drfSelectedTableKeys: []
+  };
+
+export default initialState;
+
+// src/pages/root/index.tsx
+/**
+ * root 页面（自动生成，请勿手动修改）
+ */
+
+import React from 'react';
+import AuditLogTable from './modules/AuditLogTable.tsx';
+import MasHeader from './modules/MasHeader.tsx';
+import OverviewMetrics from './modules/OverviewMetrics.tsx';
+import PolicyConfigForm from './modules/PolicyConfigForm.tsx';
+import SideNav from './modules/SideNav.tsx';
+import styles from './styles/Root.module.less';
+
+export default function RootPage() {
+  return (
+    <div id="root" className={styles.root}>
+      <header id="maskHeaderZoneWrapper" className={styles.maskHeaderZoneWrapper}>
+        <MasHeader />
+      </header>
+      <div id="mainBody" className={styles.mainBody}>
+        <SideNav />
+        <main id="mainContent" className={styles.mainContent}>
+          <OverviewMetrics />
+          <div id="auditLogFormWrapper" className={styles.auditLogFormWrapper}>
+            <AuditLogTable />
+            <PolicyConfigForm />
+          </div>
+        </main>
+      </div>
+    </div>
+  )
+}
+
+
+// src/pages/root/modules/MasHeader.tsx
+import React, { useState } from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@hui/icon-plus';
+import Tab, { TabItem } from '@cloudsop/eview-ui/Tab';
+import initialState from '../state';
+import styles from '../styles/MasHeader.module.less';
+
+const { masAvatarImage, masLogoImage, masNavItems_masHdrNavMenuEnriched, masPlatformName, masSelectedMenuKeys, masUserName } = initialState;
+
+export default function MasHeader() {
+
+  const [menuSelectedIndexMasHdrNavMenu, setMenuSelectedIndexMasHdrNavMenu] = useState(masSelectedMenuKeys);
+
+  return (
+    <div id="masHeaderZone" className={styles.masHeaderZone}>
+      <div id="masHdrLeftSection" className={styles.masHdrLeftSection}>
+        <IconPlusIcPublicTransverseRectangleTemplate id="masHdrMenuIcon" className={styles.masHdrMenuIcon} iconSize={20} type={"lined"} />
+        <img id="masHdrLogoImg" src={masLogoImage} alt={"NCE-Campus Logo"} className={styles.masHdrLogoImg} />
+        <span id="masHdrPlatformName" className={styles.masHdrPlatformName}>
+          {masPlatformName}
+        </span>
+        <div id="masHdrVerticalDivider" className={styles.masHdrVerticalDivider} />
+        <Tab id="masHdrNavMenu" onClick={(index) => setMenuSelectedIndexMasHdrNavMenu(index)} selectedIndex={menuSelectedIndexMasHdrNavMenu} lazyLoad={true} className={styles.masHdrNavMenu}>
+          {(masNavItems_masHdrNavMenuEnriched || []).map((item, idx) => {
+            const { icon, title } = item;
+            return (
+              <TabItem key={idx} title={title} icon={icon} />
+            );
+          })}
+        </Tab>
+      </div>
+      <div id="masHdrSpacer" className={styles.masHdrSpacer} />
+      <div id="masHdrRightSection" className={styles.masHdrRightSection}>
+        <div id="masHdrQuickLinksGroup" className={styles.masHdrQuickLinksGroup}>
+          <span id="masHdrQuickLink1" className={styles.masHdrQuickLink1}>
+            {initialState.masQuickLinks[0]}
+          </span>
+          <span id="masHdrQuickLink2" className={styles.masHdrQuickLink2}>
+            {initialState.masQuickLinks[1]}
+          </span>
+          <span id="masHdrQuickLink3" className={styles.masHdrQuickLink3}>
+            {initialState.masQuickLinks[2]}
+          </span>
+          <span id="masHdrQuickLink4" className={styles.masHdrQuickLink4}>
+            {initialState.masQuickLinks[3]}
+          </span>
+        </div>
+        <div id="masHdrIconsGroup" className={styles.masHdrIconsGroup}>
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrThemeIcon" className={styles.masHdrThemeIcon} iconSize={20} type={"lined"} />
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrLangIcon" className={styles.masHdrLangIcon} iconSize={20} type={"lined"} />
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrHistoryIcon" className={styles.masHdrHistoryIcon} iconSize={20} type={"lined"} />
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrHelpIcon" className={styles.masHdrHelpIcon} iconSize={20} type={"lined"} />
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrUserIcon" className={styles.masHdrUserIcon} iconSize={20} type={"lined"} />
+        </div>
+        <div id="masHdrUserInfoGroup" className={styles.masHdrUserInfoGroup}>
+          <span id="masHdrUserName" className={styles.masHdrUserName}>
+            {masUserName}
+          </span>
+          <img id="masHdrAvatarImg" src={masAvatarImage} alt={"用户头像"} className={styles.masHdrAvatarImg} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+// src/pages/root/modules/SideNav.tsx
+import React, { useState } from 'react';
+import Accordion from '@cloudsop/eview-ui/Accordion';
+import Button from '@cloudsop/eview-ui/Button';
+import initialState from '../state';
+import styles from '../styles/SideNav.module.less';
+
+const { esbMenuItems, esbSelectedMenuKeys } = initialState;
+
+export default function SideNav() {
+
+  const [menuSelectedValueEsbSidebarMenu, setMenuSelectedValueEsbSidebarMenu] = useState(esbSelectedMenuKeys);
+
+  return (
+    <aside id="esbSidebarContainer" className={styles.esbSidebarContainer}>
+      <div id="esbSidebarMenuWrapper" className={styles.esbSidebarMenuWrapper}>
+        <Accordion id="esbSidebarMenu" hideTitleBar={true} enableMultiOpen={true} enableExpand={false} data={esbMenuItems} onClick={(node) => setMenuSelectedValueEsbSidebarMenu(node.value)} selectedValue={menuSelectedValueEsbSidebarMenu} className={styles.esbSidebarMenu} />
+      </div>
+      <div id="esbSidebarFooter" className={styles.esbSidebarFooter}>
+        <Button id="esbSidebarRecycleBtn" leftIcon={"/icons/menu_expansion.svg"} className={styles.esbSidebarRecycleBtn} onClick={(e) => {}} />
+      </div>
+    </aside>
+  )
+}
+
+
+// src/pages/root/modules/OverviewMetrics.tsx
+import React from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@hui/icon-plus';
+import styles from '../styles/OverviewMetrics.module.less';
+
+export default function OverviewMetrics() {
+  return (
+    <section id="overviewMetricsZone" className={styles.overviewMetricsZone}>
+      <div id="ovMetCard0" className={styles.ovMetCard0}>
+        <span id="ovMetCard0Title" className={styles.ovMetCard0Title}>
+          在线设备数
+        </span>
+        <div id="ovMetCard0ValueRow" className={styles.ovMetCard0ValueRow}>
+          <span id="ovMetCard0Value" className={styles.ovMetCard0Value}>
+            {2847}
+          </span>
+          <IconPlusIcPublicTransverseRectangleTemplate id="ovMetCard0Icon0" iconColor={["#09AA71"]} className={styles.ovMetCard0Icon0} iconSize={20} />
+        </div>
+        <div id="ovMetCard0CompareRow" className={styles.ovMetCard0CompareRow}>
+          <span id="ovMetCard0Change" className={styles.ovMetCard0Change}>
+            +5.2%
+          </span>
+          <span id="ovMetCard0CompareText" className={styles.ovMetCard0CompareText}>
+            较昨日同期
+          </span>
+        </div>
+      </div>
+      <div id="ovMetCard1" className={styles.ovMetCard1}>
+        <span id="ovMetCard1Title" className={styles.ovMetCard1Title}>
+          今日告警总数
+        </span>
+        <div id="ovMetCard1ValueRow" className={styles.ovMetCard1ValueRow}>
+          <span id="ovMetCard1Value" className={styles.ovMetCard1Value}>
+            {138}
+          </span>
+          <IconPlusIcPublicTransverseRectangleTemplate id="ovMetCard1Icon1" iconColor={["critical"]} className={styles.ovMetCard1Icon1} iconSize={20} type={"lined"} />
+        </div>
+        <div id="ovMetCard1CompareRow" className={styles.ovMetCard1CompareRow}>
+          <span id="ovMetCard1Change" className={styles.ovMetCard1Change}>
+            -12.7%
+          </span>
+          <span id="ovMetCard1CompareText" className={styles.ovMetCard1CompareText}>
+            较昨日同期
+          </span>
+        </div>
+      </div>
+      <div id="ovMetCard2" className={styles.ovMetCard2}>
+        <span id="ovMetCard2Title" className={styles.ovMetCard2Title}>
+          审计事件总数
+        </span>
+        <div id="ovMetCard2ValueRow" className={styles.ovMetCard2ValueRow}>
+          <span id="ovMetCard2Value" className={styles.ovMetCard2Value}>
+            {15932}
+          </span>
+          <IconPlusIcPublicTransverseRectangleTemplate id="ovMetCard2Icon2" iconColor={["#0067D1"]} className={styles.ovMetCard2Icon2} iconSize={20} />
+        </div>
+        <div id="ovMetCard2CompareRow" className={styles.ovMetCard2CompareRow}>
+          <span id="ovMetCard2Change" className={styles.ovMetCard2Change}>
+            +3.8%
+          </span>
+          <span id="ovMetCard2CompareText" className={styles.ovMetCard2CompareText}>
+            较昨日同期
+          </span>
+        </div>
+      </div>
+      <div id="ovMetCard3" className={styles.ovMetCard3}>
+        <span id="ovMetCard3Title" className={styles.ovMetCard3Title}>
+          系统运行状态
+        </span>
+        <div id="ovMetCard3ValueRow" className={styles.ovMetCard3ValueRow}>
+          <span id="ovMetCard3Value" className={styles.ovMetCard3Value}>
+            正常
+          </span>
+          <IconPlusIcPublicTransverseRectangleTemplate id="ovMetCard3Icon3" iconColor={["#09AA71"]} className={styles.ovMetCard3Icon3} iconSize={20} type={"round-bg"} />
+        </div>
+        <div id="ovMetCard3CompareRow" className={styles.ovMetCard3CompareRow}>
+          <span id="ovMetCard3Change" className={styles.ovMetCard3Change}>
+            99.98%
+          </span>
+          <span id="ovMetCard3CompareText" className={styles.ovMetCard3CompareText}>
+            系统可用率
+          </span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+// src/pages/root/modules/AuditLogTable.tsx
+import React, { useState } from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@hui/icon-plus';
+import Divider from '@/shared/Divider';
+import Button from '@cloudsop/eview-ui/Button';
+import Dropdown from '@cloudsop/eview-ui/Dropdown';
+import Menu from '@cloudsop/eview-ui/Menu';
+import Tab, { TabItem } from '@cloudsop/eview-ui/Tab';
+import Table from '@cloudsop/eview-ui/Table';
+import Tag from '@cloudsop/eview-ui/Tag';
+import TextField from '@cloudsop/eview-ui/TextField';
+import Toggle from '@cloudsop/eview-ui/Toggle';
+import initialState from '../state';
+import styles from '../styles/AuditLogTable.module.less';
+
+const { stlActiveTabKey, stlActiveTabTabItemKey, stlCardAutoRefreshSwitchValue, stlSearchValue, stlSelectedRowKeys, stlTableItems, stlTabs, stlTabsItemTabs, stlTabsItemType } = initialState;
+
+const tableColumnsStlTable = [
+  {
+    key: "stationNo",
+    title: "Allowed-address-pair地址",
+    render: (cellValue, rowData, options, row) => {
+      const { stationNo } = row._org;
+      return (
+        <a id="stlCellStationNo" href={stationNo.href} className={styles.stlCellStationNo}>
+          {stationNo.text}
+        </a>
+      )
+    },
+    allowSort: false,
+    width: 160
+  },
+  {
+    key: "totalEnergy",
+    title: "AAPMac地址",
+    render: (cellValue, rowData, options, row) => {
+      const { totalEnergy } = row._org;
+      return (
+        <span id="stlCellCustomer" className={styles.stlCellCustomer}>
+          {totalEnergy}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 120
+  },
+  {
+    key: "detailInfo",
+    title: "生成时间",
+    render: (cellValue, rowData, options, row) => {
+      const { detailInfo } = row._org;
+      return (
+        <div id="stlCellDetail" className={styles.stlCellDetail}>
+          <span id="stlCellDetailLine" className={styles.stlCellDetailLine}>
+            {detailInfo}
+          </span>
+        </div>
+      )
+    },
+    allowSort: false,
+    width: 240
+  },
+  {
+    key: "deviceIp",
+    title: "设备IP",
+    render: (cellValue, rowData, options, row) => {
+      const { deviceIp } = row._org;
+      return (
+        <span id="stlCellDeviceIP" className={styles.stlCellDeviceIP}>
+          {deviceIp}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 160
+  },
+  {
+    key: "portId",
+    title: "端口Id",
+    render: (cellValue, rowData, options, row) => {
+      const { portId } = row._org;
+      return (
+        <span id="stlCellPortId" className={styles.stlCellPortId}>
+          {portId}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 120
+  },
+  {
+    key: "l2Vni",
+    title: "L2Vni",
+    render: (cellValue, rowData, options, row) => {
+      const { l2Vni } = row._org;
+      return (
+        <span id="stlCellL2Vni" className={styles.stlCellL2Vni}>
+          {l2Vni}
+        </span>
+      )
+    },
+    allowSort: false,
+    align: "center"
+  },
+  {
+    key: "statusTag",
+    title: "状态",
+    render: (cellValue, rowData, options, row) => {
+      const { statusTag } = row._org;
+      return (
+        <Tag id="stlCellStatus" color={statusTag.color}>
+          {statusTag.text}
+        </Tag>
+      )
+    },
+    allowSort: false,
+    align: "center"
+  },
+  {
+    key: "autoRenewal",
+    title: "操作",
+    render: (cellValue, rowData, options, row) => {
+      const { autoRenewal } = row._org;
+      return (
+        <Toggle id="stlCellRenewal" toggled={autoRenewal.checked} />
+      )
+    },
+    allowSort: false,
+    align: "center"
+  }
+];
+
+export default function AuditLogTable() {
+
+  const [tabsSelectedIndexStlTabs, setTabsSelectedIndexStlTabs] = useState(stlActiveTabKey);
+  const [tabsSelectedIndexStlTabsItemTabs, setTabsSelectedIndexStlTabsItemTabs] = useState(stlActiveTabTabItemKey);
+  const [inputValueStlCardSecSearchInput, setInputValueStlCardSecSearchInput] = useState(stlSearchValue);
+  const [switchToggledStlCardAutoRefreshSwitch, setSwitchToggledStlCardAutoRefreshSwitch] = useState(stlCardAutoRefreshSwitchValue);
+  const [tableCheckedRowsStlTable, setTableCheckedRowsStlTable] = useState(stlSelectedRowKeys);
+
+  return (
+    <div id="stlCard" className={styles.stlCard}>
+      <Tab id="stlTabs" onClick={(index) => setTabsSelectedIndexStlTabs(Number(index))} selectedIndex={tabsSelectedIndexStlTabs} className={styles.stlTabs}>
+        {(stlTabs || []).map((item, idx) => {
+          const { label } = item;
+          return (
+            <TabItem key={idx} id="stlTabItem" title={label}>
+              <div id="stlTabContent" className={styles.stlTabContent}>
+                <Tab id="stlTabsItemTabs" onClick={(index) => setTabsSelectedIndexStlTabsItemTabs(Number(index))} selectedIndex={tabsSelectedIndexStlTabsItemTabs} type={stlTabsItemType} className={styles.stlTabsItemTabs}>
+                  {(stlTabsItemTabs || []).map((item, idx) => {
+                    const { label } = item;
+                    return (
+                      <TabItem key={idx} id="stlTabsItemTabItem" title={label}>
+                        <div id="stlTabItemContent" className={styles.stlTabItemContent}>
+                          <div id="stlToolbarRow" className={styles.stlToolbarRow}>
+                            <div id="stlCardSecToolbarLeft" className={styles.stlCardSecToolbarLeft}>
+                              <TextField id="stlCardSecSearchInput" onChange={(val) => setInputValueStlCardSecSearchInput(val)} value={inputValueStlCardSecSearchInput} placeholder={"请输入搜索内容"} suffix={"/icons/search.svg"} inputStyle={{ width: "296px" }} />
+                              <Dropdown id="stlCardSecFilterDropdown" overlay={<Menu>
+                                <Menu.Item key={"all"}>
+                                  全部线索
+                                </Menu.Item>
+                                <Menu.Item key={"byType"}>
+                                  按线索类型
+                                </Menu.Item>
+                                <Menu.Item key={"byPriority"}>
+                                  按线索优先级
+                                </Menu.Item>
+                                <Menu.Item key={"byStatus"}>
+                                  按线索状态
+                                </Menu.Item>
+                              </Menu>} placement={"bottomLeft"} trigger={"click"}>
+                                <div id="stlCardSecFilterTrigger" className={styles.stlCardSecFilterTrigger}>
+                                  <span id="stlCardSecFilterText" className={styles.stlCardSecFilterText}>
+                                    高级筛选
+                                  </span>
+                                  <IconPlusIcPublicTransverseRectangleTemplate id="stlCardSecFilterIcon" className={styles.stlCardSecFilterIcon} iconSize={16} type={"lined"} />
+                                </div>
+                              </Dropdown>
+                            </div>
+                            <div id="stlCardSecToolbarRight" className={styles.stlCardSecToolbarRight}>
+                              <div id="stlCardAutoRefresh" className={styles.stlCardAutoRefresh}>
+                                <div id="stlCardAutoRefreshText" className={styles.stlCardAutoRefreshText}>
+                                  自动刷新
+                                </div>
+                                <Toggle id="stlCardAutoRefreshSwitch" onToggle={() => {}} toggled={switchToggledStlCardAutoRefreshSwitch} />
+                              </div>
+                              <Divider id="stlCardDivider" type={"vertical"} className={styles.stlCardDivider} />
+                              <Button id="stlCardSecExportBtn" text={"导出"} onClick={(e) => {}} />
+                              <Button id="stlCardSecCreateBtn" text={"创建"} status={"primary"} onClick={(e) => {}} />
+                              <IconPlusIcPublicTransverseRectangleTemplate id="stlCardSecRefreshIcon" className={styles.stlCardSecRefreshIcon} iconSize={16} type={"lined"} />
+                            </div>
+                          </div>
+                          <Table id="stlTable" dataset={stlTableItems} columns={tableColumnsStlTable} rowKey={"id"} enablePagination={true} recordCount={stlTableItems.length} checkType={"multi"} enableCheckBox={true} onRowCheck={(_, checkedRows) => setTableCheckedRowsStlTable(checkedRows)} checkedRows={tableCheckedRowsStlTable} />
+                        </div>
+                      </TabItem>
+                    );
+                  })}
+                </Tab>
+              </div>
+            </TabItem>
+          );
+        })}
+      </Tab>
+    </div>
+  )
+}
+
+
+// src/pages/root/modules/PolicyConfigForm.tsx
+import React, { useState } from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@hui/icon-plus';
+import Button from '@cloudsop/eview-ui/Button';
+import CheckboxGroup from '@cloudsop/eview-ui/CheckboxGroup';
+import Select from '@cloudsop/eview-ui/Select';
+import Table from '@cloudsop/eview-ui/Table';
+import TextButton from '@cloudsop/eview-ui/TextButton';
+import TextField from '@cloudsop/eview-ui/TextField';
+import initialState from '../state';
+import styles from '../styles/PolicyConfigForm.module.less';
+
+const { drfCheckboxOptions, drfCheckboxValues, drfPolicyOptions, drfSearchValue, drfSelectedPolicy, drfSelectedTableKeys, drfTableData } = initialState;
+
+const tableColumnsDrfPolCardHighRiskTable = [
+  {
+    key: "protocol",
+    title: "协议",
+    render: (cellValue, rowData, options, row) => {
+      const { protocol } = row._org;
+      return (
+        <span id="drfPolCardProtocolCell" className={styles.drfPolCardProtocolCell}>
+          {protocol}
+        </span>
+      )
+    },
+    allowSort: false
+  },
+  {
+    key: "port",
+    title: "端口",
+    render: (cellValue, rowData, options, row) => {
+      const { port } = row._org;
+      return (
+        <span id="drfPolCardPortCell" className={styles.drfPolCardPortCell}>
+          {port}
+        </span>
+      )
+    },
+    allowSort: false
+  },
+  {
+    key: "portDataButtonText",
+    title: "端口数据",
+    render: (cellValue, rowData, options, row) => {
+      const { portDataButtonText } = row._org;
+      return (
+        <TextButton id="drfPolCardPortDataCell" text={portDataButtonText} onClick={(e) => {}} />
+      )
+    },
+    allowSort: false
+  },
+  {
+    key: "description",
+    title: "描述",
+    render: (cellValue, rowData, options, row) => {
+      const { description } = row._org;
+      return (
+        <span id="drfPolCardDescCell" className={styles.drfPolCardDescCell}>
+          {description}
+        </span>
+      )
+    },
+    allowSort: false
+  }
+];
+
+export default function PolicyConfigForm() {
+
+  const [selectValueDrfPolCardDropdownSelect, setSelectValueDrfPolCardDropdownSelect] = useState(drfSelectedPolicy);
+  const [checkboxGroupValueDrfPolCardCheckboxGroup, setCheckboxGroupValueDrfPolCardCheckboxGroup] = useState(drfCheckboxValues);
+  const [inputValueDrfPolCardSearchInput, setInputValueDrfPolCardSearchInput] = useState(drfSearchValue);
+  const [tableCheckedRowsDrfPolCardHighRiskTable, setTableCheckedRowsDrfPolCardHighRiskTable] = useState(drfSelectedTableKeys);
+
+  return (
+    <div id="drfShellPolicyCard" className={styles.drfShellPolicyCard}>
+      <div id="drfPolCardInnerWrap" className={styles.drfPolCardInnerWrap}>
+        <div id="drfPolCardTitleRow" className={styles.drfPolCardTitleRow}>
+          <span id="drfPolCardTitleText" className={styles.drfPolCardTitleText}>
+            细则填写
+          </span>
+          <IconPlusIcPublicTransverseRectangleTemplate id="drfPolCardTitleHelpIcon" iconColor={["#0067D1"]} className={styles.drfPolCardTitleHelpIcon} iconSize={16} type={"lined"} />
+        </div>
+        <div id="drfPolCardLenientSection" className={styles.drfPolCardLenientSection}>
+          <div id="drfPolCardLenientTitleRow" className={styles.drfPolCardLenientTitleRow}>
+            <div id="drfPolCardLenientTitleLeft" className={styles.drfPolCardLenientTitleLeft}>
+              <span id="drfPolCardLenientTitleText" className={styles.drfPolCardLenientTitleText}>
+                宽松检查
+              </span>
+              <IconPlusIcPublicTransverseRectangleTemplate id="drfPolCardLenientHelpIcon" className={styles.drfPolCardLenientHelpIcon} iconSize={16} type={"lined"} />
+            </div>
+            <div id="drfPolCardLenientBtns" className={styles.drfPolCardLenientBtns}>
+              <TextButton id="drfPolCardSelectAllBtn" text={"一键全选"} onClick={(e) => {}} />
+              <TextButton id="drfPolCardClearAllBtn" text={"一键清除"} onClick={(e) => {}} />
+            </div>
+          </div>
+          <div id="drfPolCardLenientContentBg" className={styles.drfPolCardLenientContentBg}>
+            <div id="drfPolCardLenientDropdownRow" className={styles.drfPolCardLenientDropdownRow}>
+              <span id="drfPolCardDropdownLabel" className={styles.drfPolCardDropdownLabel}>
+                检查项间逻辑关系
+              </span>
+              <Select id="drfPolCardDropdownSelect" onChange={(val) => setSelectValueDrfPolCardDropdownSelect(val)} value={selectValueDrfPolCardDropdownSelect} options={drfPolicyOptions} defaultLabel={"请选择匹配策略"} selectStyle={{ width: "112px" }} />
+              <span id="drfPolCardDropdownHint" className={styles.drfPolCardDropdownHint}>
+                “且”指满足全部选择项，“或”指满足选择项中其中一个即可
+              </span>
+            </div>
+            <div id="drfPolCardLenientCheckboxRow" className={styles.drfPolCardLenientCheckboxRow}>
+              <span id="drfPolCardCheckboxLabel" className={styles.drfPolCardCheckboxLabel}>
+                检查项
+              </span>
+              <CheckboxGroup id="drfPolCardCheckboxGroup" onChange={(val) => setCheckboxGroupValueDrfPolCardCheckboxGroup(val)} value={checkboxGroupValueDrfPolCardCheckboxGroup} data={drfCheckboxOptions} />
+            </div>
+          </div>
+        </div>
+        <div id="drfPolCardHighRiskSection" className={styles.drfPolCardHighRiskSection}>
+          <div id="drfPolCardHighRiskTitleRow" className={styles.drfPolCardHighRiskTitleRow}>
+            <span id="drfPolCardHighRiskTitleText" className={styles.drfPolCardHighRiskTitleText}>
+              高危端口
+            </span>
+            <IconPlusIcPublicTransverseRectangleTemplate id="drfPolCardHighRiskHelpIcon" className={styles.drfPolCardHighRiskHelpIcon} iconSize={16} type={"lined"} />
+          </div>
+          <div id="drfPolCardHighRiskToolbar" className={styles.drfPolCardHighRiskToolbar}>
+            <TextField id="drfPolCardSearchInput" onChange={(val) => setInputValueDrfPolCardSearchInput(val)} value={inputValueDrfPolCardSearchInput} placeholder={"请输入端口号"} suffix={"/icons/search.svg"} inputStyle={{ width: "374px" }} />
+            <div id="drfPolCardToolbarBtns" className={styles.drfPolCardToolbarBtns}>
+              <Button id="drfPolCardDeleteBtn" text={"删除"} onClick={(e) => {}} />
+              <Button id="drfPolCardAddBtn" text={"添加"} status={"primary"} onClick={(e) => {}} />
+            </div>
+          </div>
+          <Table id="drfPolCardHighRiskTable" dataset={drfTableData} columns={tableColumnsDrfPolCardHighRiskTable} rowKey={"id"} enablePagination={true} recordCount={drfTableData.length} checkType={"multi"} enableCheckBox={true} onRowCheck={(_, checkedRows) => setTableCheckedRowsDrfPolCardHighRiskTable(checkedRows)} checkedRows={tableCheckedRowsDrfPolCardHighRiskTable} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+// src/theme/config.ts
+export const DEFAULT_THEME = "light"
+
+
+// src/pages/root/styles/Root.module.less
+// Auto-generated by a2ui-transformer
+
+.root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-1);
+}
+
+.maskHeaderZoneWrapper {
+  flex-shrink: 0;
+}
+
+.mainBody {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.mainContent {
+  flex: 1;
+  overflow: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auditLogFormWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+// src/pages/root/styles/MasHeader.module.less
+// Auto-generated by a2ui-transformer
+
+.masHeaderZone {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg-2);
+  box-shadow: var(--shadow-sm);
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.masHdrLeftSection {
+  display: flex;
+  align-items: center;
+}
+
+.masHdrMenuIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.masHdrLogoImg {
+  width: 19px;
+  height: auto;
+  object-fit: contain;
+  margin-left: 12px;
+  margin-right: 6px;
+}
+
+.masHdrPlatformName {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.masHdrVerticalDivider {
+  width: 1px;
+  height: 16px;
+  background-color: var(--color-border-separator);
+  margin-left: 16px;
+}
+
+.masHdrNavMenu {
+  border-style: solid;
+  border-width: 0px;
+  background-color: transparent;
+}
+
+.masHdrSpacer {
+  flex: 1;
+}
+
+.masHdrRightSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.masHdrQuickLinksGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.masHdrQuickLink1 {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media (hover: hover) {
+  .masHdrQuickLink1:hover {
+    color: var(--color-brand);
+  }
+}
+
+.masHdrQuickLink2 {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media (hover: hover) {
+  .masHdrQuickLink2:hover {
+    color: var(--color-brand);
+  }
+}
+
+.masHdrQuickLink3 {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media (hover: hover) {
+  .masHdrQuickLink3:hover {
+    color: var(--color-brand);
+  }
+}
+
+.masHdrQuickLink4 {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media (hover: hover) {
+  .masHdrQuickLink4:hover {
+    color: var(--color-brand);
+  }
+}
+
+.masHdrIconsGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.masHdrThemeIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrLangIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrHistoryIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrHelpIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrUserIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrUserInfoGroup {
+  display: flex;
+  align-items: center;
+  margin-left: -12px;
+}
+
+.masHdrUserName {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.masHdrAvatarImg {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  object-fit: cover;
+  margin-left: 20px;
+}
+
+
+// src/pages/root/styles/SideNav.module.less
+// Auto-generated by a2ui-transformer
+
+.esbSidebarContainer {
+  width: 216px;
+  height: 100%;
+  background-color: var(--color-bg-2);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-color: var(--color-border-separator);
+  display: flex;
+  flex-direction: column;
+}
+
+.esbSidebarMenuWrapper {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.esbSidebarMenu {
+  width: 100%;
+  border-style: solid;
+  border-width: 0px;
+}
+
+.esbSidebarFooter {
+  margin-left: 14px;
+  margin-bottom: 16px;
+}
+
+.esbSidebarRecycleBtn {
+  width: 20px;
+  height: 20px;
+}
+
+@media (hover: hover) {
+  .esbSidebarRecycleBtn:hover {
+    color: var(--color-brand);
+  }
+}
+
+
+// src/pages/root/styles/OverviewMetrics.module.less
+// Auto-generated by a2ui-transformer
+
+.overviewMetricsZone {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.ovMetCard0 {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ovMetCard0Title {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.ovMetCard0ValueRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ovMetCard0Value {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.ovMetCard0Icon0 {
+  width: 20px;
+  height: 20px;
+}
+
+.ovMetCard0CompareRow {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ovMetCard0Change {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.ovMetCard0CompareText {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.ovMetCard1 {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ovMetCard1Title {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.ovMetCard1ValueRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ovMetCard1Value {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.ovMetCard1Icon1 {
+  width: 20px;
+  height: 20px;
+}
+
+.ovMetCard1CompareRow {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ovMetCard1Change {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.ovMetCard1CompareText {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.ovMetCard2 {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ovMetCard2Title {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.ovMetCard2ValueRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ovMetCard2Value {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.ovMetCard2Icon2 {
+  width: 20px;
+  height: 20px;
+}
+
+.ovMetCard2CompareRow {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ovMetCard2Change {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-info-primary);
+  font-weight: 600;
+}
+
+.ovMetCard2CompareText {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.ovMetCard3 {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ovMetCard3Title {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.ovMetCard3ValueRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ovMetCard3Value {
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.ovMetCard3Icon3 {
+  width: 20px;
+  height: 20px;
+}
+
+.ovMetCard3CompareRow {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ovMetCard3Change {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.ovMetCard3CompareText {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+
+// src/pages/root/styles/AuditLogTable.module.less
+// Auto-generated by a2ui-transformer
+
+.stlCard {
+  width: 100%;
+  background-color: var(--color-bg-2);
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stlTabs {
+  width: 100%;
+}
+
+.stlTabContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.stlTabsItemTabs {
+  width: 100%;
+}
+
+.stlTabItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.stlToolbarRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stlCardSecToolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.stlCardSecFilterTrigger {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.stlCardSecFilterText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.stlCardSecFilterIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.stlCardSecToolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stlCardAutoRefresh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stlCardAutoRefreshText {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.stlCardDivider {
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 1px;
+}
+
+.stlCardSecRefreshIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.stlCellStationNo {
+  color: var(--color-brand);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.stlCellCustomer {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.stlCellDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stlCellDetailLine {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.stlCellDeviceIP {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.stlCellPortId {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+.stlCellL2Vni {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+
+// src/pages/root/styles/PolicyConfigForm.module.less
+// Auto-generated by a2ui-transformer
+
+.drfShellPolicyCard {
+  background-color: var(--color-bg-2);
+  border-radius: 0.25rem;
+  box-shadow: var(--shadow-sm);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.drfPolCardInnerWrap {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.drfPolCardTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.drfPolCardTitleText {
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.drfPolCardTitleHelpIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.drfPolCardLenientSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drfPolCardLenientTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drfPolCardLenientTitleLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.drfPolCardLenientTitleText {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.drfPolCardLenientHelpIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.drfPolCardLenientBtns {
+  display: flex;
+  gap: 32px;
+}
+
+.drfPolCardLenientContentBg {
+  background-color: var(--color-bg-1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.drfPolCardLenientDropdownRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.drfPolCardDropdownLabel {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.drfPolCardDropdownHint {
+  color: var(--color-text-secondary);
+}
+
+.drfPolCardLenientCheckboxRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.drfPolCardCheckboxLabel {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  width: 112px;
+}
+
+.drfPolCardHighRiskSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drfPolCardHighRiskTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.drfPolCardHighRiskTitleText {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.drfPolCardHighRiskHelpIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.drfPolCardHighRiskToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drfPolCardToolbarBtns {
+  display: flex;
+  gap: 8px;
+}
+
+.drfPolCardProtocolCell {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.drfPolCardPortCell {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.drfPolCardDescCell {
+  font-size: 14px;
+  line-height: 1.5;
+}

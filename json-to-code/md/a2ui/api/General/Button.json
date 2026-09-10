@@ -1,0 +1,115 @@
+{
+	"name": "Button",
+	"type": "object",
+	"$defs": {
+		"DataBinding":{
+			"type": "object",
+			"description": "JSON Pointer state reference",
+			"required": ["path"],
+			"properties": {
+				"path": {
+					"type": "string",
+					"description": "A JSON Pointer path to a value in the state",
+					"examples": ["/value", "/form/value"]
+				}
+			}	
+		},
+		"Action": {
+			"type": "object",
+			"description": "Declarative event action. When the event fires, the declared action mutates state.",
+			"required": ["action", "args"],
+			"additionalProperties": false,
+			"properties": {
+				"action": {
+					"type": "string",
+					"enum": ["setState"],
+					"description": "The action to perform when the event fires."
+				},
+				"args": {
+					"type": "object",
+					"required": ["path", "value"],
+					"additionalProperties": false,
+					"properties": {
+						"path": {
+							"type": "string",
+							"description": "JSON Pointer path to the state key to update."
+						},
+						"value": {
+							"description": "The value to write into the state path."
+						}
+					}
+				}
+			}
+		}
+	},
+	"properties": {
+		"id": {
+			"type": "string",
+			"description": "Unique ID for cross-referencing."
+		},
+		"component": {
+			"type": "string",
+			"const": "Button"
+		},
+		"props": {
+			"type": "object",
+			"properties": {
+				"value": {
+					"oneOf": [{
+							"type": "string"
+						},
+						{
+							"$ref": "#/$defs/DataBinding"
+						}
+					],
+					"description": "Button text"
+				},
+				"color": {
+					"type": "string",
+					"enum": ["default", "primary", "danger"]
+				},
+				"types": {
+					"type": "string",
+					"enum": ["link", "default"],
+					"default": "default",
+					"description": "Selection of Button Type."
+				},
+				"size": {
+					"type": "string",
+					"enum": ["large", "medium", "small"]
+				},
+				"icon": {
+					"oneOf": [{
+							"type": "string"
+						},
+						{
+							"$ref": "#/$defs/DataBinding"
+						}
+					],
+					"description": "Valid kebab-case Lucide icon matching the context (e.g., 'chevron-right')."
+				},
+				"iconPlacement": {
+					"type": "string",
+					"enum": ["start", "end"]
+				},
+				"shape": {
+					"type": "string",
+					"enum": ["default", "circle", "round"]
+				},
+				"disabled": {
+					"type": "boolean"
+				},
+				"onClick": {
+					"$ref": "#/$defs/Action",
+					"description": "Fires when the button is clicked. Typically a setState action."
+				},
+				"className": {
+					"type": "string",
+					"description": "Tailwind CSS classes for the component. To specify the button color, use the color property instead (default | primary | danger)."
+				}
+			},
+			"required": []
+		}
+	},
+	"required": ["id", "component", "props"]
+}

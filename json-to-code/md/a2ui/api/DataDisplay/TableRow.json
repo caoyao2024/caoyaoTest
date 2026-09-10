@@ -1,0 +1,92 @@
+{
+  "title": "TableRow",
+  "description": "Table row component. Container for cell components.",
+  "type": "object",
+  "$defs": {
+    "DataBinding": {
+      "type": "object",
+      "description": "JSON Pointer state reference",
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "A JSON Pointer path to a value in the state"
+        }
+      }
+    },
+    "SlotNode": {
+      "type": "object",
+      "required": ["componentId"],
+      "description": "Slot binding: Reference to a specific child node.",
+      "properties": {
+        "componentId": {
+          "type": "string",
+          "description": "Unique ID for cross-referencing."
+        }
+      }
+    },
+    "StaticChildren": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"description": "The unique identifier for a child component node. Do not reuse the same component id in multiple parents or multiple children positions."
+			},
+			"description": "A static list of child component IDs. Every id in this array must be unique and must not be reused by any other parent node. Create a separate child node for each rendered position."
+		},
+		"TemplateChildren": {
+			"type": "object",
+			"description": "A template for generating a dynamic list of child components from a data model list. The `componentId` is the component node to use as a template. Do not reuse this template component id as a static child or as another parent's template; create a dedicated template node for this parent instance.",
+			"properties": {
+				"componentId": {
+					"type": "string",
+					"description": "The unique identifier for a template component node. It must be dedicated to this parent instance and must not be reused elsewhere."
+				},
+				"path": {
+					"type": "string",
+					"description": "The path to the list of component property objects in the data model."
+				}
+			},
+			"required": [
+				"componentId",
+				"path"
+			]
+		}
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique component cross-reference ID."
+    },
+    "component": {
+      "type": "string",
+      "const": "TableRow"
+    },
+    "props": {
+      "type": "object",
+      "properties": {
+        "expandedRowRender": {
+          "$ref": "#/$defs/SlotNode",
+          "description": "Expanded content template. Renders with current row data context (use relative paths)."
+        }
+      }
+    },
+    "children": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/StaticChildren"
+        },
+        {
+          "$ref": "#/$defs/TemplateChildren"
+        }
+      ],
+      "description": "Cell components within the row. The order must match the order of columns defined in the parent Table."
+    }
+  },
+  "required": [
+    "id",
+    "component",
+    "children"
+  ]
+}

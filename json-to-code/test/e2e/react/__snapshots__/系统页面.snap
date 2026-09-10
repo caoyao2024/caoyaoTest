@@ -1,0 +1,2972 @@
+// .gitignore
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw? 
+
+
+
+// index.html
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generated App</title>
+  </head>
+  <body class="aui3_1">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+
+// package.json
+{
+  "name": "generated-app-eview-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@nce/eview-react": "^3.10.16",
+    "@nce/icon-plus": "file:hui-icon-plus-1.0.9.tgz",
+    "@nce/charts": "file:hui-charts-0.3.6.tgz",
+    "lodash": "^4.18.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-intl": "^10.1.5",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "less": "^4.8.0",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.10"
+  }
+}
+
+// src/App.tsx
+import { Outlet } from 'react-router-dom';
+
+export default function App() {
+  return <Outlet />;
+}
+
+
+// src/main.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { IntlProvider } from 'react-intl';
+import { RouterProvider } from 'react-router-dom';
+import { ThemeProvider } from './theme/useTheme';
+import componentsLocales from '@nce/eview-react/locales';
+import router from './routes';
+import '@nce/eview-react/styles/aui3_1.css';
+import './styles/global.less';
+import './styles/base.css';
+import './styles/hui-base.css';
+import './styles/hui-base-dark.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <ThemeProvider>
+    <IntlProvider locale="zh" messages={componentsLocales.zh}>
+      <RouterProvider router={router} />
+    </IntlProvider>
+  </ThemeProvider>
+);
+
+
+// src/shared/TableFilter.less
+/* TableFilter 样式 */
+
+.ev-custom-table-filter-wrapper {
+    width: 296px;
+    background-color: var(--color-bg-4);
+    border-radius: var(--radius-base);
+
+    .checkbox-wrapper {
+        padding: var(--space-base);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-base);
+    }
+
+    .checkbox-item-wrapper {
+        padding-left: var(--space-2x);
+
+        &:hover {
+            border-radius: var(--radius-base);
+            background-color: var(--color-fill-2);
+        }
+    }
+
+    .button-wrapper {
+        text-align: right;
+        padding: var(--space-2x) 0;
+    }
+}
+
+// src/shared/TableFilter.tsx
+/**
+ * TableFilter 公共组件（eview-react shared）
+ *
+ * import: import TableFilter from '@/shared/TableFilter'
+ */
+
+import React, { useState, useCallback } from 'react'
+import Button from '@nce/eview-react/Button'
+import Divider from '@nce/eview-react/Divider'
+import Checkbox from '@nce/eview-react/Checkbox'
+import './TableFilter.less'
+
+export interface TableFilterOption {
+  text: string
+  value: string
+}
+
+export interface TableFilterProps {
+  /** 过滤选项列表，每项 { text, value }，必填 */
+  data: TableFilterOption[]
+  /** 选中值变化回调，参数为当前选中的 value 数组 */
+  onFilter?: (value: string[]) => void
+}
+
+export default function TableFilter(props: TableFilterProps) {
+  const { data, onFilter } = props
+
+  const [checkedValue, setCheckedValue] = useState<Set<string>>(new Set())
+
+  const handleChange = useCallback((value: string, checked: boolean) => {
+    const newSet = new Set([...checkedValue])
+    if (checked) {
+      newSet.add(value)
+    } else {
+      newSet.delete(value)
+    }
+    setCheckedValue(newSet)
+  }, [checkedValue])
+
+  const reset = useCallback(() => {
+    setCheckedValue(new Set())
+  }, [])
+
+  if (!data.length) return null
+
+  return (
+    <div className="ev-custom-table-filter-wrapper">
+      <div className="checkbox-wrapper">
+        {data.map((item) => (
+          <div className="checkbox-item-wrapper" key={item.value}>
+            <Checkbox
+              value={item.value}
+              label={item.text}
+              checked={checkedValue.has(item.value)}
+              onChange={handleChange}
+            />
+          </div>
+        ))}
+      </div>
+      <Divider style={{ margin: 'unset' }} />
+      <div className="button-wrapper">
+        <Button
+          style={{ padding: 'unset', minWidth: 'unset' }}
+          disabled={checkedValue.size === 0}
+          status="text"
+          onClick={reset}
+        >
+          重置
+        </Button>
+        <Button
+          style={{ padding: '0 var(--space-3x)', minWidth: 'unset' }}
+          status="text"
+          onClick={() => onFilter?.([...checkedValue])}
+        >
+          筛选
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+
+// src/styles/base.css
+:root {
+  /* ==========================================================================
+     1. 基础色阶 (Primitive Colors)
+     ========================================================================== */
+  /* brand */
+  --brand-05: #E6F2FD;
+  --brand-10: #B8D9F9;
+  --brand-20: #8ABEF3;
+  --brand-30: #5CA2E9;
+  --brand-40: #2E86DE;
+  --brand-50: #0067D1;
+  --brand-60: #004EA8;
+  --brand-70: #003D83;
+  --brand-80: #002E6A;
+  --brand-90: #00214B;
+
+  /* gray */
+   --gray-0: #FFFFFF;
+   --gray-05: #F3F3F3;
+   --gray-10: #DFDFDF;
+   --gray-20: #C9C9C9; 
+   --gray-30: #AEAEAE;
+   --gray-40: #939393;
+   --gray-50: #777777;
+   --gray-60: #595959;
+   --gray-70: #393939;
+   --gray-80: #2A2A2A;
+   --gray-90: #191919;
+   --gray-100: #000000;
+
+   /* red */
+   --red-05: #FEE7E8;
+   --red-10: #FABDC1;
+   --red-20: #F59297;
+   --red-30: #EE696F;
+   --red-40: #E7434A;
+   --red-50: #E02128;
+   --red-60: #C7000B;
+   --red-70: #850F12;
+   --red-80: #59080A;
+   --red-90: #350305;
+
+   /* rose */
+   --rose-05: #FEE5F2;
+   --rose-10: #FCC3E0;
+   --rose-20: #F99AC7;
+   --rose-30: #F470AB;
+   --rose-40: #ED448A;
+   --rose-50: #E61866;
+   --rose-60: #C40054;
+   --rose-70: #811439;
+   --rose-80: #540D24;
+   --rose-90: #330614;
+
+   /* orange */
+   --orange-05: #FEF5E8;
+   --orange-10: #FDE2BD;
+   --orange-20: #FCCE92;
+   --orange-30: #F9B766;
+   --orange-40: #F69E39;
+   --orange-50: #F4840C;
+   --orange-60: #C76207;
+   --orange-70: #954304;
+   --orange-80: #642802;
+   --orange-90: #3D1601;
+
+   /* yellow */
+   --yellow-05: #FEFCE0;
+   --yellow-10: #FEF8B8;
+   --yellow-20: #FEF08A;
+   --yellow-30: #FDE55C;
+   --yellow-40: #FCD72E;
+   --yellow-50: #FCC800;
+   --yellow-60: #D19F00;
+   --yellow-70: #9E7400;
+   --yellow-80: #614500;
+   --yellow-90: #2E1F00;
+
+   /* green */
+   --green-05: #F2FBE9;
+   --green-10: #DFF4CC;
+   --green-20: #C6E9A8;
+   --green-30: #A8DB81;
+   --green-40: #87C859;
+   --green-50: #62B42E;
+   --green-60: #488E20;
+   --green-70: #316614;
+   --green-80: #1B3E0A;
+   --green-90: #0C2004;
+
+   /* mint */
+   --mint-05: #E7FBF2;
+   --mint-10: #BCF2DB;
+   --mint-20: #8FE5C2;
+   --mint-30: #63D5A8;
+   --mint-40: #36C18D;
+   --mint-50: #09AA71;
+   --mint-60: #058358;
+   --mint-70: #036142;
+   --mint-80: #02422E;
+   --mint-90: #00291D;
+
+   /* cyan */
+   --cyan-05: #E8FCFD;
+   --cyan-10: #C9F6F9;
+   --cyan-20: #A4ECF1;
+   --cyan-30: #7DDFE7;
+   --cyan-40: #55CCD9;
+   --cyan-50: #2CB8C9;
+   --cyan-60: #1C94A4;
+   --cyan-70: #127180;
+   --cyan-80: #094C57;
+   --cyan-90: #04282F;
+
+   /* blue */
+   --blue-05: #EEF3FE;
+   --blue-10: #D0D8FD;
+   --blue-20: #B0BFFD;
+   --blue-30: #8CA3FA;
+   --blue-40: #668CF7;
+   --blue-50: #2070F3;
+   --blue-60: #1F55B5;
+   --blue-70: #1B3F86;
+   --blue-80: #112857;
+   --blue-90: #081635;
+
+   /* indigo */
+   --indigo-05: #EEEEFE;
+   --indigo-10: #D5D3FD;
+   --indigo-20: #BFB9FA;
+   --indigo-30: #A89FF9;
+   --indigo-40: #8E81F4;
+   --indigo-50: #715AFB;
+   --indigo-60: #5531EB;
+   --indigo-70: #3F21B5;
+   --indigo-80: #281675;
+   --indigo-90: #160B48;
+
+   /* purple */
+   --purple-05: #F7EDFE;
+   --purple-10: #E8CFFE;
+   --purple-20: #D9B1FD;
+   --purple-30: #CB8EFB;
+   --purple-40: #BF68FA;
+   --purple-50: #B62BF7;
+   --purple-60: #8A21BC;
+   --purple-70: #651B8B;
+   --purple-80: #41125A;
+   --purple-90: #260937;
+
+   /* pink */
+   --pink-05: #FDE6FC;
+   --pink-10: #F9C5F6;
+   --pink-20: #F39DEC;
+   --pink-30: #EB74DF;
+   --pink-40: #E049CE;
+   --pink-50: #D41DBC;
+   --pink-60: #9F1C8D;
+   --pink-70: #751868;
+   --pink-80: #4C0F43;
+   --pink-90: #2E0728;
+
+
+
+  /* ==========================================================================
+     3. 尺寸与形状变量 (Sizes & Shapes)
+     ========================================================================== */
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-base: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 999px;
+
+  /* ==========================================================================
+     4. 文本排版 (Typography)
+     ========================================================================== */
+  /* Font Family */
+  --font-family: 'HarmonyOS Sans', 'Microsoft YaHei', Arial, 'PingFang SC', 'San Francisco', sans-serif;
+
+  /* Font Size */
+  --font-size-sm: 10px;
+  --font-size-base: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 28px;
+  --font-size-5xl: 30px;
+  --font-size-6xl: 32px;
+  --font-size-7xl: 36px;
+  --font-size-8xl: 40px;
+  --font-size-12xl: 48px;
+  --font-size-16xl: 56px;
+  --font-size-18xl: 60px;
+  --font-size-24xl: 72px;
+
+  /* Line Height */
+  --line-height-xs: 2;
+  --line-height-sm: 1.625;
+  --line-height-md: 1.5;
+  --line-height-lg: 1.5;
+  --line-height-xl: 1.5;
+  --line-height-2xl: 1.375;
+  --line-height-3xl: 1.375;
+  --line-height-4xl: 1.375;
+  --line-height-5xl: 1.375;
+  --line-height-6xl: 1.375;
+  --line-height-7xl: 1.25;
+  --line-height-8xl: 1.25;
+  --line-height-9xl: 1.25;
+
+ 
+
+  /* Font Weight */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+
+  /* ==========================================================================
+     5. 间距 (Spacing)
+     ========================================================================== */
+  --spacing-0: 0px;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-2-5: 0.625rem;
+  --spacing-3: 0.75rem;
+  --spacing-3-5: 0.875rem;
+  --spacing-4: 1rem;
+  --spacing-4-5: 1.125rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+  --spacing-14: 3.5rem;
+  --spacing-15: 3.75rem;
+  --spacing-16: 4rem;
+  --spacing-17: 4.25rem;
+  --spacing-18: 4.5rem;
+  --spacing-19: 4.75rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-28: 7rem;
+  --spacing-32: 8rem;
+  --spacing-36: 9rem;
+  --spacing-40: 10rem;
+  --spacing-44: 11rem;
+  --spacing-48: 12rem;
+  --spacing-52: 13rem;
+  --spacing-56: 14rem;
+  --spacing-60: 15rem;
+  --spacing-64: 16rem;
+  --spacing-72: 18rem;
+  --spacing-80: 20rem;
+  --spacing-96: 24rem;
+}
+
+// src/styles/global.less
+/* 全局样式 — 由 json-to-react 工具生成 */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: 16px;
+}
+
+
+// src/styles/hui-base-dark.css
+body.theme-dark {
+  /* 品牌色 */
+  --color-brand: var(--brand-50);
+  --color-brand-hover: var(--brand-40);
+  --color-brand-focus: var(--brand-50);
+  --color-brand-active: var(--brand-60);
+  --color-brand-disabled: var(--brand-70);
+  /* 文本色 */
+  --color-text-primary: var(--gray-0);
+  --color-text-secondary: var(--gray-20);
+  --color-text-placeholder: var(--gray-40);
+  --color-text-disabled: var(--gray-40);
+  --color-text-inverse: var(--gray-0);
+  --color-text-inverse-disabled: rgb(from var(--gray-05) r g b / 0.3);
+  --color-text-on: var(--gray-0);
+  --color-link: var(--brand-30);
+  --color-link-hover: var(--brand-20);
+  --color-link-active: var(--brand-40);
+  --color-link-visited: var(--indigo-50);
+  --color-link-disabled: var(--brand-60);
+  /* 背景色 */
+  --color-bg-1: var(--gray-100);
+  --color-bg-2: var(--gray-90);
+  --color-bg-3: var(--gray-80);
+  --color-bg-4: var(--gray-70);
+  --color-bg-5: rgb(from var(--gray-05) r g b / 0.1);
+  --color-bg-6: rgb(from var(--gray-05) r g b / 0.1);
+  --color-bg-mask: rgb(from var(--gray-0) r g b / 0.7);
+  /* 填充色 */
+  --color-fill-disabled: var(--gray-60);
+  --color-hover: rgb(from var(--gray-05) r g b / 0.2);
+  --color-fill-disabled-subtle: rgb(from var(--gray-05) r g b / 0.2);
+  --color-fill: rgb(from var(--gray-05) r g b / 0.2);
+  --color-select: rgb(from var(--brand-50) r g b / 0.4);
+  --color-fill-subtle: rgb(from var(--gray-100) r g b / 0);
+
+  /* 图标色 */
+  --color-icon-primary: var(--gray-10);
+  --color-icon-secondary: var(--gray-30);
+  --color-icon-tertiary: var(--gray-50);
+  --color-icon-placeholder: var(--gray-40);
+  --color-icon-disabled: var(--gray-40);
+  --color-icon-inverse: var(--gray-0);
+  --color-icon-hover: var(--brand-20);
+  --color-icon-focus: var(--brand-30);
+  --color-icon-active: var(--brand-40);
+  /* 边框色 */
+  --color-border: var(--gray-50);
+  --color-border-hover: var(--gray-05);
+  --color-border-focus: var(--brand-40);
+  --color-border-active: var(--brand-80);
+  --color-border-disabled: var(--gray-60);
+  --color-border-separator: rgb(from var(--gray-05) r g b / 0.15);
+  --color-border-separator-sbutle: rgb(from var(--gray-05) r g b / 0.1);
+  /* 功能色-错误 */
+  --color-error: var(--red-40);
+  --color-error-hover: var(--red-30);
+  --color-error-active: var(--red-50);
+  --color-error-disabled: var(--red-80);
+  --color-error-subtle: var(--red-60);
+  --color-error-subtler: var(--red-80);
+  /* 功能色-告警 */
+  --color-alert: var(--orange-50);
+  --color-alert-hover: var(--orange-40);
+  --color-alert-active: var(--orange-60);
+  --color-alert-disabled: var(--orange-80);
+  --color-alert-subtle: var(--orange-60);
+  --color-alert-subtler: var(--orange-80);
+  /* 功能色-提醒 */
+  --color-warning: var(--yellow-40);
+  --color-warning-hover: var(--yellow-30);
+  --color-warning-active: var(--yellow-50);
+  --color-warning-disabled: var(--yellow-80);
+  --color-warning-bold: var(--yellow-60);
+  --color-warning-subtle: var(--yellow-60);
+  --color-warning-subtler: var(--yellow-80);
+  /* 功能色-成功 */
+  --color-success: var(--mint-60);
+  --color-success-hover: var(--mint-50);
+  --color-success-active: var(--mint-60);
+  --color-success-disabled: var(--mint-80);
+  --color-success-subtle: var(--mint-60);
+  --color-success-subtler: var(--mint-80);
+  /* 功能色-信息 */
+  --color-info-primary: var(--blue-50);
+  --color-info-primary-subtle: var(--blue-60);
+  --color-info-primary-subtler: var(--blue-80);
+  --color-info-secondary: var(--blue-60);
+  --color-info-secondary-hover: var(--blue-40);
+  --color-info-secondary-active: var(--blue-60);
+  --color-info-secondary-disabled: var(--blue-80);
+  --color-info-secondary-subtle: var(--blue-80);
+  /* 功能色-失效 */
+  --color-none: var(--gray-60);
+  --color-none-hover: rgb(from var(--gray-05) r g b / 0.2);
+  --color-none-active: var(--gray-50);
+  --color-none-disabled: var(--gray-90);
+  --color-none-subtle: var(--gray-90);
+  /* 推荐图表色 */
+  --color-chart-1: var(--blue-50);
+  --color-chart-2: var(--green-50);
+  --color-chart-3: var(--indigo-50);
+  --color-chart-4: var(--cyan-50);
+  --color-chart-5: var(--orange-40);
+  --color-chart-6: var(--brand-30);
+  --color-chart-7: var(--purple-60);
+  --color-chart-8: var(--rose-60);
+  --color-chart-9: var(--indigo-60);
+  --color-chart-10: var(--yellow-60);
+  --color-chart-11: var(--brand-60);
+  --color-chart-12: var(--green-60);
+  --color-chart-13: var(--purple-70);
+  --color-chart-14: var(--cyan-60);
+  --color-chart-15: var(--orange-70);
+  --color-chart-16: var(--rose-60);
+  --color-chart-17: var(--cyan-70);
+  --color-chart-18: var(--blue-60);
+  --color-chart-19: var(--green-70);
+  --color-chart-20: var(--indigo-70);
+  --color-chart-21: var(--rose-70);
+  --color-chart-22: var(--cyan-30);
+  --color-chart-23: var(--yellow-70);
+  --color-chart-24: var(--purple-50);
+  --color-chart-25: var(--mint-70);
+  /* 特殊场景 */
+  --color-scrollbar: var(--gray-60);
+  --color-scrollbar-hover: var(--gray-40);
+  --color-card-gray-disabled: rgb(from var(--gray-40) r g b / 0.05);
+  --color-card-white-disabled: rgb(from var(--gray-40) r g b / 0.1);
+  --color-sidenav-bg: var(--gray-70);
+  --color-table-header: rgb(from var(--gray-05) r g b / 0.1);
+  --color-table-zebra: rgb(from var(--gray-50) r g b / 0.15);
+  --color-message-bg-info: rgb(from var(--blue-50) r g b / 0.15);
+  --color-message-bg-success: rgb(from var(--mint-60) r g b / 0.15);
+  --color-message-bg-warning: rgb(from var(--yellow-40) r g b / 0.15);
+  --color-message-bg-alert: rgb(from var(--orange-50) r g b / 0.15);
+  --color-message-bg-error: rgb(from var(--red-40) r g b / 0.15);
+
+  /* ICT3.0 3.0告警色 */
+  --color-alert-urgent: #F43146;
+  --color-alert-primary: #EC6F1A;
+  --color-alert-secondary: #EEBA18;
+  --color-alert-success: #0D9458;
+  --color-alert-running: #5990FD;
+  --color-alert-none: #818181;
+  /* ICT3.1 表格 */
+  --color-table-1: rgb(from var(--brand-50) r g b / 0.2);
+  --color-table-2: rgb(from var(--brand-50) r g b / 0.4);
+  --color-table-sticky-1: var(--brand-80);
+  --color-table-sticky-2: var(--brand-70);
+  --color-table-sticky-bg: var(--gray-70);
+  --color-table-sticky-header: var(--gray-70);
+  /* 标签配色 */
+  --color-tag-text-purple: var(--purple-30);
+  --color-tag-bg-purple: rgb(from var(--purple-30) r g b / 0.15);
+  --color-tag-text-cyan: var(--cyan-40);
+  --color-tag-bg-cyan: rgb(from var(--cyan-50) r g b / 0.15);
+  --color-tag-text-rose: var(--rose-30);
+  --color-tag-bg-rose: rgb(from var(--rose-30) r g b / 0.15);
+  --color-tag-text-green: var(--green-50);
+  --color-tag-bg-green: rgb(from var(--green-40) r g b / 0.15);
+  --color-tag-text-pink: var(--pink-30);
+  --color-tag-bg-pink: rgb(from var(--pink-30) r g b / 0.15);
+  --color-tag-text-indigo: var(--indigo-30);
+  --color-tag-bg-indigo: rgb(from var(--indigo-30) r g b / 0.15);
+  --color-tag-text-none: var(--gray-30);
+  --color-tag-bg-none: rgb(from var(--gray-30) r g b / 0.15);
+  --color-tag-text-error: var(--red-40);
+  --color-tag-bg-error: rgb(from var(--red-30) r g b / 0.15);
+  --color-tag-text-alert: var(--orange-40);
+  --color-tag-bg-alert: rgb(from var(--orange-50) r g b / 0.15);
+  --color-tag-text-warning: var(--yellow-50);
+  --color-tag-bg-warning: rgb(from var(--yellow-30) r g b / 0.15);
+  --color-tag-text-success: var(--mint-40);
+  --color-tag-bg-success: rgb(from var(--mint-50) r g b / 0.15);
+  --color-tag-text-info: var(--blue-30);
+  --color-tag-bg-info: rgb(from var(--blue-40) r g b / 0.15);
+
+  /* Border */
+  --border: var(--gray-50);
+  --border-light: rgb(from var(--gray-05) r g b / 0.15);
+  --border-primary: var(--brand-30);
+  --border-success: var(--mint-20);
+  --border-warning: var(--yellow-20);
+  --border-alert: var(--orange-20);
+  --border-error: var(--red-20);
+
+  /* Icon */
+  --icon-primary: var(--brand-30);
+  --icon-success: var(--mint-30);
+  --icon-warning: var(--yellow-30);
+  --icon-critical: var(--orange-30);
+  --icon-alert: var(--orange-30);
+  --icon-error: var(--red-30);
+
+
+  /* Shadow (暗色模式下阴影更强) */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.5);
+  --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-r-sm: 1px 0 6px 0 rgba(0, 0, 0, 0.5);
+  --shadow-t-sm: 0 -1px 6px rgba(0, 0, 0, 0.5);
+  --shadow-l-base: -2px 0 12px 0 rgba(0, 0, 0, 0.5);
+  --shadow-l-md: -2px 0 24px 0 rgba(0, 0, 0, 0.5);
+
+
+  /* ==========================================================================
+  eview react 样式覆盖
+  ========================================================================== */
+
+  color: var(--color-text-primary);
+
+  .ev_tag.default {
+    color: var(--gray-30) !important;
+    background: rgb(from var(--gray-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  /* tag solid */
+  .ev_tag.info,
+  .aui3_1_dark .ev_tag.info {
+    color: var(--gray-0) !important;
+    background: var(--blue-50) !important;
+    border-color: transparent;
+  }
+
+  .ev_tag.error,
+  .aui3_1_dark .ev_tag.error {
+    color: var(--gray-0);
+    background: var(--red-50);
+    border-color: transparent;
+  }
+
+  .ev_tag.alert,
+  .aui3_1_dark .ev_tag.alert {
+    color: var(--gray-0);
+    background: var(--orange-50);
+    border-color: transparent;
+  }
+
+  .ev_tag.warning,
+  .aui3_1_dark .ev_tag.warning {
+    color: var(--gray-0);
+    background: var(--yellow-50);
+    border-color: transparent;
+  }
+
+  .ev_tag.success,
+  .aui3_1_dark .ev_tag.success {
+    color: var(--gray-0);
+    background: var(--mint-50);
+    border-color: transparent;
+  }
+
+  .ev_tag.disabled,
+  .aui3_1_dark .ev_tag.disabled {
+    color: var(--gray-0);
+    background: var(--gray-30);
+    border-color: transparent;
+  }
+
+  /* fill */
+  .ev_tag.info.ev_tag_fill {
+    color: var(--brand-30) !important;
+    background: rgb(from var(--brand-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.error.ev_tag_fill {
+    color: var(--red-40) !important;
+    background: rgb(from var(--red-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.alert.ev_tag_fill {
+    color: var(--orange-40) !important;
+    background: rgb(from var(--orange-50) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.warning.ev_tag_fill {
+    color: var(--yellow-50) !important;
+    background: rgb(from var(--yellow-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.success.ev_tag_fill {
+    color: var(--mint-40) !important;
+    background: rgb(from var(--mint-50) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.disabled.ev_tag_fill {
+    color: var(--gray-30) !important;
+    background: rgb(from var(--gray-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.green {
+    color: var(--mint-40) !important;
+    background: rgb(from var(--green-40) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.rose {
+    color: var(--rose-30) !important;
+    background: rgb(from var(--rose-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.pink {
+    color: var(--pink-30) !important;
+    background: rgb(from var(--pink-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.purple {
+    color: var(--purple-30) !important;
+    background: rgb(from var(--purple-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.indigo {
+    color: var(--indigo-30) !important;
+    background: rgb(from var(--indigo-30) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+
+  .ev_tag.cyan {
+    color: var(--cyan-40) !important;
+    background: rgb(from var(--cyan-50) r g b / 0.15) !important;
+    border-color: transparent !important;
+  }
+}
+
+// src/styles/hui-base.css
+:root {
+  /* 品牌色 */
+  --color-brand: var(--brand-50);
+  --color-brand-hover: var(--brand-40);
+  --color-brand-focus: var(--brand-50);
+  --color-brand-active: var(--brand-60);
+  --color-brand-disabled: var(--brand-20);
+  /* 文本色 */
+  --color-text-primary: var(--gray-90);
+  --color-text-secondary: var(--gray-50);
+  --color-text-placeholder: var(--gray-30);
+  --color-text-disabled: var(--gray-20);
+  --color-text-inverse: var(--gray-0);
+  --color-text-inverse-disabled: var(--gray-0);
+  --color-text-on: var(--brand-50);
+  --color-link: var(--brand-50);
+  --color-link-hover: var(--brand-40);
+  --color-link-active: var(--brand-60);
+  --color-link-visited: var(--indigo-50);
+  --color-link-disabled: var(--brand-20);
+  /* 背景色 */
+  --color-bg-1: var(--gray-05);
+  --color-bg-2: var(--gray-0);
+  --color-bg-3: var(--gray-0);
+  --color-bg-4: var(--gray-0);
+  --color-bg-5: var(--gray-0);
+  --color-bg-6: rgb(from var(--gray-20) r g b / 0.2);
+  --color-bg-mask: rgb(from var(--gray-90) r g b / 0.3);
+  /* 填充色 */
+  --color-fill-disabled: var(--gray-10);
+  --color-hover: rgb(from var(--gray-90) r g b / 0.05);
+  --color-fill-disabled-subtle: rgb(from var(--gray-90) r g b / 0.05);
+  --color-fill: rgb(from var(--gray-90) r g b / 0.05);
+  --color-select: var(--brand-05);
+  --color-fill-subtle: var(--gray-0);
+
+  /* 图标色 */
+  --color-icon-primary: var(--gray-90);
+  --color-icon-secondary: var(--gray-50);
+  --color-icon-tertiary: var(--gray-40);
+  --color-icon-placeholder: var(--gray-30);
+  --color-icon-disabled: var(--gray-20);
+  --color-icon-inverse: var(--gray-0);
+  --color-icon-hover: var(--brand-40);
+  --color-icon-focus: var(--brand-50);
+  --color-icon-active: var(--brand-60);
+  /* 边框色 */
+  --color-border: var(--gray-20);
+  --color-border-hover: var(--gray-90);
+  --color-border-focus: var(--brand-50);
+  --color-border-active: var(--brand-10);
+  --color-border-disabled: var(--gray-20);
+  --color-border-separator: var(--gray-10);
+  --color-border-separator-sbutle: var(--gray-05);
+  /* 功能色-错误 */
+  --color-error: var(--red-50);
+  --color-error-hover: var(--red-40);
+  --color-error-active: var(--red-60);
+  --color-error-disabled: var(--red-10);
+  --color-error-subtle: var(--red-20);
+  --color-error-subtler: var(--red-05);
+  /* 功能色-告警 */
+  --color-alert: var(--orange-50);
+  --color-alert-hover: var(--orange-40);
+  --color-alert-active: var(--orange-60);
+  --color-alert-disabled: var(--orange-10);
+  --color-alert-subtle: var(--orange-20);
+  --color-alert-subtler: var(--orange-05);
+  /* 功能色-提醒 */
+  --color-warning: var(--yellow-50);
+  --color-warning-hover: var(--yellow-40);
+  --color-warning-active: var(--yellow-60);
+  --color-warning-disabled: var(--yellow-10);
+  --color-warning-bold: var(--yellow-60);
+  --color-warning-subtle: var(--yellow-20);
+  --color-warning-subtler: var(--yellow-05);
+  /* 功能色-成功 */
+  --color-success: var(--mint-50);
+  --color-success-hover: var(--mint-40);
+  --color-success-active: var(--mint-60);
+  --color-success-disabled: var(--mint-10);
+  --color-success-subtle: var(--mint-20);
+  --color-success-subtler: var(--mint-05);
+  /* 功能色-信息 */
+  --color-info-primary: var(--blue-50);
+  --color-info-primary-subtle: var(--blue-30);
+  --color-info-primary-subtler: var(--blue-05);
+  --color-info-secondary: var(--blue-30);
+  --color-info-secondary-hover: var(--blue-20);
+  --color-info-secondary-active: var(--blue-40);
+  --color-info-secondary-disabled: var(--blue-10);
+  --color-info-secondary-subtle: var(--blue-05);
+  /* 功能色-失效 */
+  --color-none: var(--gray-30);
+  --color-none-hover: var(--gray-20);
+  --color-none-active: var(--gray-40);
+  --color-none-disabled: var(--gray-10);
+  --color-none-subtle: var(--gray-05);
+  /* 推荐图表色 */
+  --color-chart-1: var(--blue-50);
+  --color-chart-2: var(--green-50);
+  --color-chart-3: var(--indigo-50);
+  --color-chart-4: var(--cyan-50);
+  --color-chart-5: var(--orange-40);
+  --color-chart-6: var(--brand-30);
+  --color-chart-7: var(--purple-40);
+  --color-chart-8: var(--rose-40);
+  --color-chart-9: var(--indigo-20);
+  --color-chart-10: var(--yellow-60);
+  --color-chart-11: var(--brand-10);
+  --color-chart-12: var(--green-60);
+  --color-chart-13: var(--purple-20);
+  --color-chart-14: var(--cyan-60);
+  --color-chart-15: var(--orange-20);
+  --color-chart-16: var(--rose-60);
+  --color-chart-17: var(--cyan-20);
+  --color-chart-18: var(--blue-60);
+  --color-chart-19: var(--green-20);
+  --color-chart-20: var(--indigo-70);
+  --color-chart-21: var(--rose-10);
+  --color-chart-22: var(--cyan-70);
+  --color-chart-23: var(--yellow-20);
+  --color-chart-24: var(--purple-70);
+  --color-chart-25: var(--mint-20);
+  /* 特殊场景 */
+  --color-scrollbar: var(--gray-10);
+  --color-scrollbar-hover: var(--gray-30);
+  --color-card-gray-disabled: rgb(from var(--gray-30) r g b / 0.05);
+  --color-card-white-disabled: rgb(from var(--gray-0) r g b / 0.5);
+  --color-sidenav-bg: rgb(from var(--gray-05) r g b / 0.5);
+  --color-table-header: rgb(from var(--gray-90) r g b / 0.05);
+  --color-table-zebra: rgb(from var(--gray-40) r g b / 0.05);
+  --color-message-bg-info: var(--blue-05);
+  --color-message-bg-success: var(--mint-05);
+  --color-message-bg-warning: var(--yellow-05);
+  --color-message-bg-alert: var(--orange-05);
+  --color-message-bg-error: var(--red-05);
+ 
+  /* ICT3.0 3.0告警色 */
+  --color-alert-urgent: #F43146;
+  --color-alert-primary: #EC6F1A;
+  --color-alert-secondary: #EEBA18;
+  --color-alert-success: #2DA769;
+  --color-alert-running: #5990FD;
+  --color-alert-none: #939393;
+  /* ICT3.1 表格 */
+  --color-table-1: var(--brand-05);
+  --color-table-2: var(--brand-10);
+  --color-table-sticky-1: var(--brand-05);
+  --color-table-sticky-2: var(--brand-10);
+  --color-table-sticky-bg: var(--gray-0);
+  --color-table-sticky-header: var(--gray-05);
+  /* 标签配色 */
+  --color-tag-text-purple: var(--purple-60);
+  --color-tag-bg-purple: rgb(from var(--purple-10) r g b / 0.6);
+  --color-tag-text-cyan: var(--cyan-80);
+  --color-tag-bg-cyan: rgb(from var(--cyan-60) r g b / 0.15);
+  --color-tag-text-rose: var(--rose-60);
+  --color-tag-bg-rose: var(--rose-05);
+  --color-tag-text-green: var(--green-70);
+  --color-tag-bg-green: var(--green-10);
+  --color-tag-text-pink: var(--pink-60);
+  --color-tag-bg-pink: var(--pink-05);
+  --color-tag-text-indigo: var(--indigo-80);
+  --color-tag-bg-indigo: rgb(from var(--indigo-10) r g b / 0.6);
+  --color-tag-text-none: var(--gray-70);
+  --color-tag-bg-none: rgb(from var(--gray-90) r g b / 0.05);
+  --color-tag-text-error: var(--red-60);
+  --color-tag-bg-error: var(--red-05);
+  --color-tag-text-alert: var(--orange-70);
+  --color-tag-bg-alert: var(--orange-10);
+  --color-tag-text-warning: var(--yellow-80);
+  --color-tag-bg-warning: rgb(from var(--yellow-30) r g b / 0.6);
+  --color-tag-text-success: var(--mint-70);
+  --color-tag-bg-success: rgb(from var(--mint-10) r g b / 0.6);
+  --color-tag-text-info: var(--blue-60);
+  --color-tag-bg-info: rgb(from var(--blue-10) r g b / 0.5);
+
+
+   /* Border */
+   --border: var(--gray-20);
+   --border-light: var(--gray-10);
+   --border-primary: var(--brand-50);
+   --border-success: var(--mint-20);
+   --border-warning: var(--yellow-20);
+   --border-alert: var(--orange-20);
+   --border-error: var(--red-20);
+
+   /* Icon */
+   --icon-primary: var(--brand-50);
+   --icon-success: var(--mint-50);
+   --icon-warning: var(--yellow-50);
+   --icon-critical: var(--orange-50);
+   --icon-alert: var(--orange-50);
+   --icon-error: var(--red-50);
+
+   /* ==========================================================================
+     尺寸与形状变量 (Sizes & Shapes)
+     ========================================================================== */
+   /* Shadow */
+   --shadow-none: none;
+   --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.08);
+   --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.16);
+   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+   --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+   --shadow-r-sm: 1px 0 6px 0 rgba(0, 0, 0, 0.08);
+   --shadow-t-sm: 0 -1px 6px rgba(0, 0, 0, 0.08);
+   --shadow-l-base: -2px 0 12px 0 rgba(0, 0, 0, 0.08);
+   --shadow-l-md: -2px 0 24px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+  eview react 样式覆盖
+  ========================================================================== */
+.ev_tag.default {
+  color: var(--gray-70) !important;
+  background: rgb(from var(--gray-90) r g b / 0.05) !important;
+  border-color: transparent !important;
+}
+  /* tag solid */
+.ev_tag.info,
+.aui3_1 .ev_tag.info {
+  color: var(--gray-0) !important;
+  background: var(--blue-50) !important;
+  border-color: transparent !important;
+}
+.ev_tag.error,
+.aui3_1 .ev_tag.error {
+  color: var(--gray-0);
+  background: var(--red-50);
+  border-color: transparent;
+}
+.ev_tag.alert,
+.aui3_1 .ev_tag.alert {
+  color: var(--gray-0);
+  background: var(--orange-50);
+  border-color: transparent;
+}
+.ev_tag.warning,
+.aui3_1 .ev_tag.warning {
+  color: var(--gray-0);
+  background: var(--yellow-50);
+  border-color: transparent;
+}
+.ev_tag.success,
+.aui3_1 .ev_tag.success {
+  color: var(--gray-0);
+  background: var(--mint-50);
+  border-color: transparent;
+}
+.ev_tag.disabled,
+.aui3_1 .ev_tag.disabled {
+  color: var(--gray-0);
+  background: var(--gray-30);
+  border-color: transparent;
+}
+
+/* fill */
+.ev_tag.info.ev_tag_fill {
+  color: var(--brand-60) !important;
+  background: var(--brand-05) !important;
+  border-color: transparent !important;
+}
+.ev_tag.error.ev_tag_fill {
+  color: var(--red-60) !important;
+  background: var(--red-05) !important;
+  border-color: transparent !important;
+}
+.ev_tag.alert.ev_tag_fill {
+  color: var(--orange-70) !important;
+  background: var(--orange-10) !important;
+  border-color: transparent !important;
+}
+.ev_tag.warning.ev_tag_fill {
+  color: var(--yellow-80) !important;
+  background: rgb(from var(--yellow-30) r g b / 0.6) !important;
+  border-color: transparent !important;
+}
+.ev_tag.success.ev_tag_fill {
+  color: var(--mint-70) !important;
+  background: rgb(from var(--mint-10) r g b / 0.6) !important;
+  border-color: transparent !important;
+}
+.ev_tag.disabled.ev_tag_fill {
+  color: var(--gray-70) !important;
+  background: rgb(from var(--gray-90) r g b / 0.05) !important;
+  border-color: transparent !important;
+}
+
+.ev_tag.green { 
+  color: var(--mint-70) !important;
+  background: var(--green-10) !important;
+  border-color: transparent !important;
+}
+.ev_tag.rose {
+  color: var(--rose-60) !important;
+  background: var(--rose-05) !important;
+  border-color: transparent !important;;
+}
+
+.ev_tag.pink {
+  color: var(--pink-60) !important;
+  background: var(--pink-05) !important;
+  border-color: transparent !important;
+}
+
+.ev_tag.purple {
+  color: var(--purple-60) !important;
+  background: rgb(from var(--purple-10) r g b / 0.6) !important;
+  border-color: transparent !important;
+}
+
+.ev_tag.indigo {
+  color: var(--indigo-80) !important;
+  background: rgb(from var(--indigo-10) r g b / 0.6) !important;
+  border-color: transparent !important;
+}
+
+.ev_tag.cyan {
+  color: var(--cyan-80) !important;
+  background: rgb(from var(--cyan-60) r g b / 0.15) !important;
+  border-color: transparent !important;
+}
+
+
+
+
+// src/theme/useTheme.tsx
+import React, { useState, useEffect, createContext, useContext, ReactNode, useCallback } from "react";
+import { DEFAULT_THEME } from './config';
+
+const THEME = {
+    LIGHT: "light",
+    DARK: "dark"
+} as const;
+
+type ThemeType = typeof THEME[keyof typeof THEME];
+
+interface ThemeContextProps {
+    theme: ThemeType;
+    setTheme: (theme: ThemeType) => void;
+    toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
+    const [currentTheme, setCurrentTheme] = useState<ThemeType>(DEFAULT_THEME);
+
+    const setTheme = useCallback((theme: ThemeType) => {
+        setCurrentTheme(theme);
+    }, []);
+
+    const toggleTheme = useCallback(() => {
+        setCurrentTheme(prevTheme => prevTheme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT);
+    }, []);
+
+    // 同步 body 类名：dark → 加 theme-dark + aui3_1_dark，否则移除
+    // （theme-dark 驱动 hui-base-dark.css 的 body.theme-dark 变量块；
+    //  aui3_1_dark 驱动 eview-react 组件暗色样式覆盖，如 .aui3_1_dark .ev_tag.info）
+    useEffect(() => {
+        const body = document.body;
+        if (currentTheme === THEME.DARK) {
+            body.classList.add('theme-dark', 'aui3_1_dark');
+        } else {
+            body.classList.remove('theme-dark', 'aui3_1_dark');
+        }
+    }, [currentTheme]);
+
+    return (
+        <ThemeContext.Provider
+            value={{
+                theme: currentTheme,
+                setTheme,
+                toggleTheme
+            }}>
+            {children}
+        </ThemeContext.Provider>
+    )
+}
+
+export function useTheme(): ThemeContextProps {
+    const context = useContext(ThemeContext);
+    if (!context) {
+        throw new Error("useTheme must be used within a ThemeProvider");
+    }
+    return context;
+}
+
+
+// src/vite-env.d.ts
+/// <reference types="vite/client" />
+
+
+// tsconfig.app.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+} 
+
+
+
+// tsconfig.json
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+} 
+
+
+// tsconfig.node.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+} 
+
+
+
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 4080
+  },
+});
+
+
+// src/routes/index.tsx
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import App from '../App';
+
+import RootLayoutPage from '../pages/rootLayout';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      { index: true, element: <Navigate to="/rootLayout" replace /> },
+      { path: 'rootLayout', element: <RootLayoutPage /> },
+    ],
+  },
+]);
+
+export default router;
+
+// src/pages/rootLayout/state.ts
+export const initialState = {
+    masLogoImage: "/assets/3a8ea61746c464ce.svg",
+    masPlatformName: "IMaster NCE-Campus",
+    masSelectedMenuKeys: 0,
+    masQuickLinks: [
+      "开局",
+      "资源中心",
+      "任务中心",
+      "系统"
+    ],
+    masUserName: "Admin",
+    masAvatarImage: "/assets/1d40d700d4f4ae78.svg",
+    esbSelectedMenuKeys: "",
+    metrics: [
+      {
+        metricValue: 12847
+      },
+      {
+        metricValue: 452800
+      },
+      {
+        metricValue: 3
+      },
+      {
+        metricValue: 285.6
+      }
+    ],
+    audTrdCardTitle: "操作审计趋势",
+    audTrdChartUnit: "次数",
+    audTrdChartData: [
+      {
+        date: "2026-07-24",
+        loginCount: 1203,
+        configChangeCount: 45,
+        dataExportCount: 89
+      },
+      {
+        date: "2026-07-25",
+        loginCount: 1356,
+        configChangeCount: 62,
+        dataExportCount: 102
+      },
+      {
+        date: "2026-07-26",
+        loginCount: 1102,
+        configChangeCount: 38,
+        dataExportCount: 76
+      },
+      {
+        date: "2026-07-27",
+        loginCount: 1489,
+        configChangeCount: 55,
+        dataExportCount: 115
+      },
+      {
+        date: "2026-07-28",
+        loginCount: 1298,
+        configChangeCount: 71,
+        dataExportCount: 94
+      },
+      {
+        date: "2026-07-29",
+        loginCount: 1405,
+        configChangeCount: 49,
+        dataExportCount: 108
+      },
+      {
+        date: "2026-07-30",
+        loginCount: 1567,
+        configChangeCount: 83,
+        dataExportCount: 127
+      }
+    ],
+    twoSearchValue: ""
+  };
+
+export default initialState;
+
+// src/pages/rootLayout/index.tsx
+/**
+ * rootLayout 页面（自动生成，请勿手动修改）
+ */
+
+import React from 'react';
+import AuditLogTrend from './modules/AuditLogTrend.tsx';
+import DashboardMetrics from './modules/DashboardMetrics.tsx';
+import MasHeader from './modules/MasHeader.tsx';
+import SideNav from './modules/SideNav.tsx';
+import SystemSettings from './modules/SystemSettings.tsx';
+import styles from './styles/RootLayout.module.less';
+
+export default function RootLayoutPage() {
+  return (
+    <div id="rootLayout" className={styles.rootLayout}>
+      <MasHeader />
+      <div id="mainContentArea" className={styles.mainContentArea}>
+        <SideNav />
+        <main id="mainContentBody" className={styles.mainContentBody}>
+          <DashboardMetrics />
+          <AuditLogTrend />
+          <SystemSettings />
+        </main>
+      </div>
+    </div>
+  )
+}
+
+
+// src/pages/rootLayout/modules/MasHeader.tsx
+import React, { useState } from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@nce/icon-plus';
+import Tab, { TabItem } from '@nce/eview-react/Tab';
+import initialState from '../state';
+import styles from '../styles/MasHeader.module.less';
+
+const { masAvatarImage, masLogoImage, masPlatformName, masSelectedMenuKeys, masUserName } = initialState;
+
+const masNavItems_masHdrNavMenuEnriched = [
+  {
+    title: "工作台",
+    key: "layout-dashboard",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />
+  },
+  {
+    title: "大屏",
+    key: "monitor",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />
+  }
+];
+
+export default function MasHeader() {
+
+  const [menuSelectedIndexMasHdrNavMenu, setMenuSelectedIndexMasHdrNavMenu] = useState(masSelectedMenuKeys);
+
+  return (
+    <div id="masHeaderZone" className={styles.masHeaderZone}>
+      <div id="masHdrLeftSection" className={styles.masHdrLeftSection}>
+        <IconPlusIcPublicTransverseRectangleTemplate id="masHdrMenuIcon" className={styles.masHdrMenuIcon} iconSize={20} type={"lined"} />
+        <img id="masHdrLogoImg" src={masLogoImage} alt={"NCE-Campus Logo"} className={styles.masHdrLogoImg} />
+        <span id="masHdrPlatformName" className={styles.masHdrPlatformName}>
+          {masPlatformName}
+        </span>
+        <div id="masHdrVerticalDivider" className={styles.masHdrVerticalDivider} />
+        <Tab id="masHdrNavMenu" onClick={(index) => setMenuSelectedIndexMasHdrNavMenu(index)} selectedIndex={menuSelectedIndexMasHdrNavMenu} lazyLoad={true} className={styles.masHdrNavMenu}>
+          {(masNavItems_masHdrNavMenuEnriched || []).map((item, idx) => {
+            const { icon, title } = item;
+            return (
+              <TabItem key={idx} title={title} icon={icon} />
+            );
+          })}
+        </Tab>
+      </div>
+      <div id="masHdrSpacer" className={styles.masHdrSpacer} />
+      <div id="masHdrRightSection" className={styles.masHdrRightSection}>
+        <div id="masHdrQuickLinksGroup" className={styles.masHdrQuickLinksGroup}>
+          <span id="masHdrQuickLink1" className={styles.masHdrQuickLink1}>
+            {initialState.masQuickLinks[0]}
+          </span>
+          <span id="masHdrQuickLink2" className={styles.masHdrQuickLink2}>
+            {initialState.masQuickLinks[1]}
+          </span>
+          <span id="masHdrQuickLink3" className={styles.masHdrQuickLink3}>
+            {initialState.masQuickLinks[2]}
+          </span>
+          <span id="masHdrQuickLink4" className={styles.masHdrQuickLink4}>
+            {initialState.masQuickLinks[3]}
+          </span>
+        </div>
+        <div id="masHdrIconsGroup" className={styles.masHdrIconsGroup}>
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrThemeIcon" className={styles.masHdrThemeIcon} iconSize={20} type={"lined"} />
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrLangIcon" className={styles.masHdrLangIcon} iconSize={20} type={"lined"} />
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrHistoryIcon" className={styles.masHdrHistoryIcon} iconSize={20} type={"lined"} />
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrHelpIcon" className={styles.masHdrHelpIcon} iconSize={20} type={"lined"} />
+          <IconPlusIcPublicTransverseRectangleTemplate id="masHdrUserIcon" className={styles.masHdrUserIcon} iconSize={20} type={"lined"} />
+        </div>
+        <div id="masHdrUserInfoGroup" className={styles.masHdrUserInfoGroup}>
+          <span id="masHdrUserName" className={styles.masHdrUserName}>
+            {masUserName}
+          </span>
+          <img id="masHdrAvatarImg" src={masAvatarImage} alt={"用户头像"} className={styles.masHdrAvatarImg} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+// src/pages/rootLayout/modules/SideNav.tsx
+import React, { useState } from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@nce/icon-plus';
+import Accordion from '@nce/eview-react/Accordion';
+import IconButton from '@nce/eview-react/IconButton';
+import initialState from '../state';
+import styles from '../styles/SideNav.module.less';
+
+const esbSelectedMenuKeys = initialState.esbSelectedMenuKeys;
+
+const esbMenuItems = [
+  {
+    title: "数据分析",
+    value: "dashboard",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "概览",
+        value: "overview"
+      },
+      {
+        title: "分析",
+        value: "analytics"
+      },
+      {
+        title: "报告",
+        value: "reports"
+      }
+    ]
+  },
+  {
+    title: "用户管理",
+    value: "user",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "用户列表",
+        value: "list"
+      },
+      {
+        title: "角色管理",
+        value: "roles"
+      },
+      {
+        title: "权限设置",
+        value: "permissions"
+      }
+    ]
+  },
+  {
+    title: "订单管理",
+    value: "order",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "全部订单",
+        value: "all"
+      },
+      {
+        title: "待处理",
+        value: "pending"
+      },
+      {
+        title: "历史订单",
+        value: "history"
+      }
+    ]
+  },
+  {
+    title: "商品管理",
+    value: "product",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "商品目录",
+        value: "catalog"
+      },
+      {
+        title: "分类管理",
+        value: "categories"
+      },
+      {
+        title: "品牌管理",
+        value: "brands"
+      }
+    ]
+  },
+  {
+    title: "财务管理",
+    value: "finance",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "交易记录",
+        value: "transactions"
+      },
+      {
+        title: "发票管理",
+        value: "invoices"
+      },
+      {
+        title: "预算管理",
+        value: "budget"
+      }
+    ]
+  },
+  {
+    title: "内容管理",
+    value: "content",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "文章管理",
+        value: "articles"
+      },
+      {
+        title: "页面管理",
+        value: "pages"
+      },
+      {
+        title: "评论管理",
+        value: "comments"
+      }
+    ]
+  },
+  {
+    title: "营销推广",
+    value: "marketing",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "活动管理",
+        value: "campaigns"
+      },
+      {
+        title: "优惠券",
+        value: "coupons"
+      },
+      {
+        title: "SEO设置",
+        value: "seo"
+      }
+    ]
+  },
+  {
+    title: "系统设置",
+    value: "system",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "基本设置",
+        value: "general"
+      },
+      {
+        title: "安全设置",
+        value: "security"
+      },
+      {
+        title: "操作日志",
+        value: "logs"
+      }
+    ]
+  },
+  {
+    title: "工具",
+    value: "tools",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "数据库管理",
+        value: "database"
+      },
+      {
+        title: "缓存管理",
+        value: "cache"
+      },
+      {
+        title: "任务调度",
+        value: "scheduler"
+      }
+    ]
+  },
+  {
+    title: "帮助中心",
+    value: "help",
+    icon: <IconPlusIcPublicTransverseRectangleTemplate />,
+    children: [
+      {
+        title: "常见问题",
+        value: "faq"
+      },
+      {
+        title: "文档",
+        value: "docs"
+      },
+      {
+        title: "技术支持",
+        value: "support"
+      }
+    ]
+  }
+];
+
+export default function SideNav() {
+
+  const [menuSelectedValueEsbSidebarMenu, setMenuSelectedValueEsbSidebarMenu] = useState(esbSelectedMenuKeys);
+
+  return (
+    <aside id="esbSidebarContainer" className={styles.esbSidebarContainer}>
+      <div id="esbSidebarMenuWrapper" className={styles.esbSidebarMenuWrapper}>
+        <Accordion id="esbSidebarMenu" hideTitleBar={true} enableMultiOpen={true} enableExpand={false} hideIcons={true} data={esbMenuItems} onClick={(node) => setMenuSelectedValueEsbSidebarMenu(node.value)} selectedValue={menuSelectedValueEsbSidebarMenu} className={styles.esbSidebarMenu} />
+      </div>
+      <div id="esbSidebarFooter" className={styles.esbSidebarFooter}>
+        <IconButton id="esbSidebarRecycleBtn" iconName={<IconPlusIcPublicTransverseRectangleTemplate className={styles.esbSidebarRecycleBtn} />} onClick={(e) => {}} />
+      </div>
+    </aside>
+  )
+}
+
+
+// src/pages/rootLayout/modules/DashboardMetrics.tsx
+import React from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@nce/icon-plus';
+import Button from '@nce/eview-react/Button';
+import initialState from '../state';
+import styles from '../styles/DashboardMetrics.module.less';
+
+export default function DashboardMetrics() {
+  return (
+    <div id="dashboardMetrics" className={styles.dashboardMetrics}>
+      <div id="dashMetCardContainer" className={styles.dashMetCardContainer}>
+        <div id="dashMetHeader" className={styles.dashMetHeader}>
+          <span id="dashMetTitle" className={styles.dashMetTitle}>
+            关键指标概览
+          </span>
+          <Button id="dashMetViewAllBtn" rightIcon={<IconPlusIcPublicTransverseRectangleTemplate iconColor={["#0067D1"]} />} text={"查看全部"} status={"text"} className={styles.dashMetViewAllBtn} onClick={(e) => {}} />
+        </div>
+        <div id="dashMetCardList" className={styles.dashMetCardList}>
+          <div id="dashMetCard0" className={styles.dashMetCard0}>
+            <IconPlusIcPublicTransverseRectangleTemplate id="dashMetIcon0" className={styles.dashMetIcon0} iconSize={40} />
+            <div id="dashMetInfo0" className={styles.dashMetInfo0}>
+              <span id="dashMetValue0" className={styles.dashMetValue0}>
+                {initialState.metrics[0].metricValue}
+              </span>
+              <span id="dashMetLabel0" className={styles.dashMetLabel0}>
+                活跃用户
+              </span>
+              <div id="dashMetTrend0" className={styles.dashMetTrend0}>
+                <IconPlusIcPublicTransverseRectangleTemplate id="dashMetTrendIcon0" className={styles.dashMetTrendIcon0} iconSize={16} />
+                <span id="dashMetTrendText0" className={styles.dashMetTrendText0}>
+                  12.3% 较昨日
+                </span>
+              </div>
+            </div>
+          </div>
+          <div id="dashMetCard1" className={styles.dashMetCard1}>
+            <IconPlusIcPublicTransverseRectangleTemplate id="dashMetIcon1" className={styles.dashMetIcon1} iconSize={40} />
+            <div id="dashMetInfo1" className={styles.dashMetInfo1}>
+              <span id="dashMetValue1" className={styles.dashMetValue1}>
+                {initialState.metrics[1].metricValue}
+              </span>
+              <span id="dashMetLabel1" className={styles.dashMetLabel1}>
+                总订单量
+              </span>
+              <div id="dashMetTrend1" className={styles.dashMetTrend1}>
+                <IconPlusIcPublicTransverseRectangleTemplate id="dashMetTrendIcon1" className={styles.dashMetTrendIcon1} iconSize={16} />
+                <span id="dashMetTrendText1" className={styles.dashMetTrendText1}>
+                  8.7% 较上周
+                </span>
+              </div>
+            </div>
+          </div>
+          <div id="dashMetCard2" className={styles.dashMetCard2}>
+            <IconPlusIcPublicTransverseRectangleTemplate id="dashMetIcon2" className={styles.dashMetIcon2} iconSize={40} />
+            <div id="dashMetInfo2" className={styles.dashMetInfo2}>
+              <span id="dashMetValue2" className={styles.dashMetValue2}>
+                {initialState.metrics[2].metricValue}
+              </span>
+              <span id="dashMetLabel2" className={styles.dashMetLabel2}>
+                系统告警
+              </span>
+              <div id="dashMetTrend2" className={styles.dashMetTrend2}>
+                <IconPlusIcPublicTransverseRectangleTemplate id="dashMetTrendIcon2" className={styles.dashMetTrendIcon2} iconSize={16} />
+                <span id="dashMetTrendText2" className={styles.dashMetTrendText2}>
+                  -50.0% 较昨日
+                </span>
+              </div>
+            </div>
+          </div>
+          <div id="dashMetCard3" className={styles.dashMetCard3}>
+            <IconPlusIcPublicTransverseRectangleTemplate id="dashMetIcon3" className={styles.dashMetIcon3} iconSize={40} />
+            <div id="dashMetInfo3" className={styles.dashMetInfo3}>
+              <span id="dashMetValue3" className={styles.dashMetValue3}>
+                {initialState.metrics[3].metricValue}
+              </span>
+              <span id="dashMetLabel3" className={styles.dashMetLabel3}>
+                月营收
+              </span>
+              <div id="dashMetTrend3" className={styles.dashMetTrend3}>
+                <IconPlusIcPublicTransverseRectangleTemplate id="dashMetTrendIcon3" className={styles.dashMetTrendIcon3} iconSize={16} />
+                <span id="dashMetTrendText3" className={styles.dashMetTrendText3}>
+                  5.2% 较上月
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+// src/pages/rootLayout/modules/AuditLogTrend.tsx
+import React from 'react';
+import Chart from '@nce/eview-react/Chart';
+import initialState from '../state';
+import styles from '../styles/AuditLogTrend.module.less';
+
+const { audTrdCardTitle, audTrdChartData, audTrdChartUnit } = initialState;
+
+const lineChartOptionAudTrdChart = {
+  padding: [
+    32,
+    2,
+    0,
+    2
+  ],
+  theme: "hdesign-light",
+  adaptive: true,
+  tooltip: {
+    show: true
+  },
+  legend: {
+    show: true,
+    top: 2,
+    right: 6,
+    left: "auto"
+  },
+  yAxis: {
+    splitNumber: 4,
+    name: "次数"
+  },
+  xAxis: {
+    fullGrid: true,
+    axisLabel: {
+      interval: "auto",
+      alignMinLabel: "left",
+      alignMaxLabel: "right"
+    },
+    data: "date",
+    name: "日期"
+  },
+  area: true,
+  data: audTrdChartData,
+  smooth: true,
+  a2ui: true
+};
+
+export default function AuditLogTrend() {
+  return (
+    <div id="auditLogTrend" className={styles.auditLogTrend}>
+      <div id="audTrdCard" className={styles.audTrdCard}>
+        <div id="audTrdHeader" className={styles.audTrdHeader}>
+          <span id="audTrdTitle" className={styles.audTrdTitle}>
+            {audTrdCardTitle}
+          </span>
+          <span id="audTrdUnit" className={styles.audTrdUnit}>
+            {audTrdChartUnit}
+          </span>
+        </div>
+        <Chart id="audTrdChart" name={"LineChart"} option={lineChartOptionAudTrdChart} className={styles.audTrdChart} />
+      </div>
+    </div>
+  )
+}
+
+
+// src/pages/rootLayout/modules/SystemSettings.tsx
+import React, { useState } from 'react';
+import { IconPlusIcPublicTransverseRectangleTemplate } from '@nce/icon-plus';
+import Button from '@nce/eview-react/Button';
+import Divider from '@nce/eview-react/Divider';
+import DropDown from '@nce/eview-react/DropDown';
+import IconButton from '@nce/eview-react/IconButton';
+import Switch from '@nce/eview-react/Switch';
+import Table from '@nce/eview-react/Table';
+import Tag from '@nce/eview-react/Tag';
+import TextField from '@nce/eview-react/TextField';
+import initialState from '../state';
+import styles from '../styles/SystemSettings.module.less';
+
+const twoSearchValue = initialState.twoSearchValue;
+
+const twoWorkorderList = [
+  {
+    key: 1,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "审核通过",
+      color: "success"
+    },
+    configuration: "SDNC_CALLBACK_RETRY_TIMES",
+    configurationValue: "0",
+    defaultVal: 200,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 2,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "验证失败",
+      color: "error"
+    },
+    configuration: "SDNC_CALLBACK_RETRY_INTERVAL",
+    configurationValue: 100,
+    defaultVal: 100,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 3,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "发放失败",
+      color: "error"
+    },
+    configuration: "CONFIG_MBGP_L3VPN_BATCH_TASK_FOR_DE.",
+    configurationValue: 200,
+    defaultVal: 200,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 4,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "审核驳回",
+      color: "warning"
+    },
+    configuration: "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+    configurationValue: "0",
+    defaultVal: 1,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 5,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "回滚失败",
+      color: "default"
+    },
+    configuration: "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+    configurationValue: 100,
+    defaultVal: 5,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 6,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "验证中",
+      color: "info"
+    },
+    configuration: "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+    configurationValue: "0",
+    defaultVal: 1,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 7,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "发放中",
+      color: "info"
+    },
+    configuration: "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+    configurationValue: 20,
+    defaultVal: 5,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 8,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "回滚中",
+      color: "default"
+    },
+    configuration: "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+    configurationValue: 100,
+    defaultVal: 1,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 9,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "发放成功",
+      color: "success"
+    },
+    configuration: "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+    configurationValue: "0",
+    defaultVal: 100,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  },
+  {
+    key: 10,
+    subsystem: "MBGP L3VPN",
+    status: {
+      text: "回滚成功",
+      color: "success"
+    },
+    configuration: "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+    configurationValue: 50,
+    defaultVal: 150,
+    describe: "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+    microservice: "否",
+    actions: [
+      {
+        icon: <IconPlusIcPublicTransverseRectangleTemplate className={styles.sysManageActionButton} iconSize={18} />
+      }
+    ]
+  }
+];
+
+const tableColumnsSysManageWorkorderTable = [
+  {
+    key: "subsystem",
+    title: "子系统",
+    render: (cellValue, rowData, options, row) => {
+      const { subsystem } = row.rawData;
+      return (
+        <span id="sysManageSubsystemCell" className={styles.sysManageSubsystemCell}>
+          {subsystem}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 60
+  },
+  {
+    key: "status",
+    title: "状态",
+    render: (cellValue, rowData, options, row) => {
+      const { status } = row.rawData;
+      return (
+        <Tag id="sysManageStatusCell" color={status.color} size={"small"} fill={"outline"}>
+          {status.text}
+        </Tag>
+      )
+    },
+    allowSort: false,
+    width: 50
+  },
+  {
+    key: "configuration",
+    title: "配置",
+    render: (cellValue, rowData, options, row) => {
+      const { configuration } = row.rawData;
+      return (
+        <div id="sysManageConfigurationCell" className={styles.sysManageConfigurationCell}>
+          {configuration}
+        </div>
+      )
+    },
+    allowSort: false,
+    width: 180
+  },
+  {
+    key: "configurationValue",
+    title: "配置项值",
+    render: (cellValue, rowData, options, row) => {
+      const { configurationValue } = row.rawData;
+      return (
+        <div id="sysManageConfigurationValueCell" className={styles.sysManageConfigurationValueCell}>
+          {configurationValue}
+        </div>
+      )
+    },
+    allowSort: false,
+    width: 60
+  },
+  {
+    key: "defaultVal",
+    title: "默认值",
+    render: (cellValue, rowData, options, row) => {
+      const { defaultVal } = row.rawData;
+      return (
+        <span id="sysManageDefaultValCell" className={styles.sysManageDefaultValCell}>
+          {defaultVal}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 50
+  },
+  {
+    key: "describe",
+    title: "描述",
+    render: (cellValue, rowData, options, row) => {
+      const { describe } = row.rawData;
+      return (
+        <span id="sysManageDescribeCell">
+          {describe}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 260
+  },
+  {
+    key: "microservice",
+    title: "重启微服务",
+    render: (cellValue, rowData, options, row) => {
+      const { microservice } = row.rawData;
+      return (
+        <span id="sysManageMicroserviceCell">
+          {microservice}
+        </span>
+      )
+    },
+    allowSort: false,
+    width: 50
+  },
+  {
+    key: "actions",
+    title: "操作",
+    render: (cellValue, rowData, options, row) => {
+      const { actions } = row.rawData;
+      return (
+        <div id="sysManageActionsCell" className={styles.sysManageActionsCell}>
+          {(actions || []).map((item, idx) => {
+            const { icon } = item;
+            return (
+              <IconButton key={idx} id="sysManageActionButton" iconName={icon} onClick={(e) => {}} />
+            );
+          })}
+        </div>
+      )
+    },
+    allowSort: false,
+    width: 50
+  }
+];
+
+export default function SystemSettings() {
+
+  const [inputValueSysManageSearchInput, setInputValueSysManageSearchInput] = useState(twoSearchValue);
+  const [switchToggledTwoCardAutoRefreshSwitch, setSwitchToggledTwoCardAutoRefreshSwitch] = useState(twoCardAutoRefreshSwitchValue);
+
+  return (
+    <div id="sysManageCardContainer" className={styles.sysManageCardContainer}>
+      <div id="sysManageInner" className={styles.sysManageInner}>
+        <span id="sysManageTitle" className={styles.sysManageTitle}>
+          系统规格管理
+        </span>
+        <div id="sysManageToolbarRow" className={styles.sysManageToolbarRow}>
+          <div id="sysManageToolbarLeft" className={styles.sysManageToolbarLeft}>
+            <TextField id="sysManageSearchInput" onChange={(val) => setInputValueSysManageSearchInput(val)} value={inputValueSysManageSearchInput} placeholder={"请输入搜索内容"} suffix={<IconPlusIcPublicTransverseRectangleTemplate />} inputStyle={{ width: "296px" }} />
+            <DropDown id="sysManageFilterDropdown" data={[{ text: "全部线索", value: "all" }, { text: "按线索类型", value: "byType" }, { text: "按线索优先级", value: "byPriority" }, { text: "按线索状态", value: "byStatus" }]} position={"left"} popupDirection={"bottom"} trigger={"click"}>
+              <div id="sysManageFilterTrigger" className={styles.sysManageFilterTrigger}>
+                <span id="sysManageFilterText" className={styles.sysManageFilterText}>
+                  高级筛选
+                </span>
+                <IconPlusIcPublicTransverseRectangleTemplate id="sysManageFilterIcon" className={styles.sysManageFilterIcon} iconSize={16} type={"lined"} />
+              </div>
+            </DropDown>
+          </div>
+          <div id="sysManageToolbarRight" className={styles.sysManageToolbarRight}>
+            <div id="twoCardAutoRefresh" className={styles.twoCardAutoRefresh}>
+              <div id="twoCardAutoRefreshText" className={styles.twoCardAutoRefreshText}>
+                自动刷新
+              </div>
+              <Switch id="twoCardAutoRefreshSwitch" onToggle={() => {}} toggled={switchToggledTwoCardAutoRefreshSwitch} />
+            </div>
+            <Divider id="twoCardDivider" type={"vertical"} className={styles.twoCardDivider} />
+            <Button id="sysManageExportBtn" text={"导出"} onClick={(e) => {}} />
+            <Button id="sysManageCreateBtn" text={"创建"} status={"primary"} onClick={(e) => {}} />
+            <IconPlusIcPublicTransverseRectangleTemplate id="sysManageRefreshIcon" className={styles.sysManageRefreshIcon} iconSize={16} type={"lined"} />
+          </div>
+        </div>
+        <Table id="sysManageWorkorderTable" dataset={twoWorkorderList} columns={tableColumnsSysManageWorkorderTable} rowKey={"key"} enablePagination={true} recordCount={twoWorkorderList.length} className={styles.sysManageWorkorderTable} />
+      </div>
+    </div>
+  )
+}
+
+
+// src/theme/config.ts
+export const DEFAULT_THEME = "light"
+
+
+// src/pages/rootLayout/styles/RootLayout.module.less
+// Auto-generated by a2ui-transformer
+
+.rootLayout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-1);
+}
+
+.mainContentArea {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.mainContentBody {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+
+// src/pages/rootLayout/styles/MasHeader.module.less
+// Auto-generated by a2ui-transformer
+
+.masHeaderZone {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg-2);
+  box-shadow: var(--shadow-sm);
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.masHdrLeftSection {
+  display: flex;
+  align-items: center;
+}
+
+.masHdrMenuIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.masHdrLogoImg {
+  width: 19px;
+  height: auto;
+  object-fit: contain;
+  margin-left: 12px;
+  margin-right: 6px;
+}
+
+.masHdrPlatformName {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.masHdrVerticalDivider {
+  width: 1px;
+  height: 16px;
+  background-color: var(--color-border-separator);
+  margin-left: 16px;
+}
+
+.masHdrNavMenu {
+  border-style: solid;
+  border-width: 0px;
+  background-color: transparent;
+}
+
+.masHdrSpacer {
+  flex: 1;
+}
+
+.masHdrRightSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.masHdrQuickLinksGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.masHdrQuickLink1 {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media (hover: hover) {
+  .masHdrQuickLink1:hover {
+    color: var(--color-brand);
+  }
+}
+
+.masHdrQuickLink2 {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media (hover: hover) {
+  .masHdrQuickLink2:hover {
+    color: var(--color-brand);
+  }
+}
+
+.masHdrQuickLink3 {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media (hover: hover) {
+  .masHdrQuickLink3:hover {
+    color: var(--color-brand);
+  }
+}
+
+.masHdrQuickLink4 {
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+@media (hover: hover) {
+  .masHdrQuickLink4:hover {
+    color: var(--color-brand);
+  }
+}
+
+.masHdrIconsGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.masHdrThemeIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrLangIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrHistoryIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrHelpIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrUserIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.masHdrUserInfoGroup {
+  display: flex;
+  align-items: center;
+  margin-left: -12px;
+}
+
+.masHdrUserName {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.masHdrAvatarImg {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  object-fit: cover;
+  margin-left: 20px;
+}
+
+
+// src/pages/rootLayout/styles/SideNav.module.less
+// Auto-generated by a2ui-transformer
+
+.esbSidebarContainer {
+  width: 216px;
+  height: 100%;
+  background-color: var(--color-bg-2);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-color: var(--color-border-separator);
+  display: flex;
+  flex-direction: column;
+}
+
+.esbSidebarMenuWrapper {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.esbSidebarMenu {
+  width: 100%;
+  border-style: solid;
+  border-width: 0px;
+}
+
+.esbSidebarFooter {
+  margin-left: 14px;
+  margin-bottom: 16px;
+}
+
+.esbSidebarRecycleBtn {
+  width: 20px;
+  height: 20px;
+}
+
+@media (hover: hover) {
+  .esbSidebarRecycleBtn:hover {
+    color: var(--color-brand);
+  }
+}
+
+
+// src/pages/rootLayout/styles/DashboardMetrics.module.less
+// Auto-generated by a2ui-transformer
+
+.dashboardMetrics {
+  margin-bottom: 1rem;
+}
+
+.dashMetCardContainer {
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+}
+
+.dashMetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.dashMetTitle {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.dashMetViewAllBtn {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.dashMetCardList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashMetCard0 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: var(--color-bg-1);
+  border-radius: 8px;
+}
+
+.dashMetIcon0 {
+  width: 40px;
+  height: 40px;
+  color: var(--color-brand);
+}
+
+.dashMetInfo0 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0px;
+}
+
+.dashMetValue0 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.dashMetLabel0 {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.dashMetTrend0 {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dashMetTrendIcon0 {
+  width: 16px;
+  height: 16px;
+  color: var(--color-success);
+}
+
+.dashMetTrendText0 {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-success);
+}
+
+.dashMetCard1 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: var(--color-bg-1);
+  border-radius: 8px;
+}
+
+.dashMetIcon1 {
+  width: 40px;
+  height: 40px;
+  color: var(--color-brand);
+}
+
+.dashMetInfo1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0px;
+}
+
+.dashMetValue1 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.dashMetLabel1 {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.dashMetTrend1 {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dashMetTrendIcon1 {
+  width: 16px;
+  height: 16px;
+  color: var(--color-success);
+}
+
+.dashMetTrendText1 {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-success);
+}
+
+.dashMetCard2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: var(--color-bg-1);
+  border-radius: 8px;
+}
+
+.dashMetIcon2 {
+  width: 40px;
+  height: 40px;
+  color: var(--color-alert);
+}
+
+.dashMetInfo2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0px;
+}
+
+.dashMetValue2 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.dashMetLabel2 {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.dashMetTrend2 {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dashMetTrendIcon2 {
+  width: 16px;
+  height: 16px;
+  color: var(--color-success);
+}
+
+.dashMetTrendText2 {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-success);
+}
+
+.dashMetCard3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: var(--color-bg-1);
+  border-radius: 8px;
+}
+
+.dashMetIcon3 {
+  width: 40px;
+  height: 40px;
+  color: var(--color-brand);
+}
+
+.dashMetInfo3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0px;
+}
+
+.dashMetValue3 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.dashMetLabel3 {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.dashMetTrend3 {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dashMetTrendIcon3 {
+  width: 16px;
+  height: 16px;
+  color: var(--color-success);
+}
+
+.dashMetTrendText3 {
+  font-size: 10px;
+  line-height: 1.8;
+  color: var(--color-success);
+}
+
+
+// src/pages/rootLayout/styles/AuditLogTrend.module.less
+// Auto-generated by a2ui-transformer
+
+.auditLogTrend {
+  margin-bottom: 1rem;
+}
+
+.audTrdCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--color-bg-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+}
+
+.audTrdHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audTrdTitle {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.audTrdUnit {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.audTrdChart {
+  width: 100% !important;
+  height: 288px !important;
+}
+
+
+// src/pages/rootLayout/styles/SystemSettings.module.less
+// Auto-generated by a2ui-transformer
+
+.sysManageCardContainer {
+  background-color: var(--color-bg-2);
+  border-radius: 6px;
+}
+
+.sysManageInner {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sysManageTitle {
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+.sysManageToolbarRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sysManageToolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.sysManageFilterTrigger {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.sysManageFilterText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.sysManageFilterIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.sysManageToolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.twoCardAutoRefresh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.twoCardAutoRefreshText {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.twoCardDivider {
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 1px;
+}
+
+.sysManageRefreshIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.sysManageWorkorderTable {
+  margin-bottom: 16px;
+}
+
+.sysManageActionButton {
+  color: var(--color-text-primary);
+}
+
+.sysManageSubsystemCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.sysManageConfigurationCell {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sysManageConfigurationValueCell {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sysManageDefaultValCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.sysManageActionsCell {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

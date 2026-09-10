@@ -1,0 +1,101 @@
+{
+  "name": "TabItem",
+  "type": "object",
+  "$defs": {
+    "DataBinding": {
+      "type": "object",
+      "description": "JSON Pointer state reference",
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "A JSON Pointer path to a value in the state",
+          "examples": [
+            "/users",
+            "/form/name",
+            "name",
+            "role"
+          ]
+        }
+      }
+    },
+		"SlotNode": {
+      "type": "object",
+      "required": ["componentId"],
+      "description": "Slot binding: Reference to a specific child node.",
+      "properties": {
+        "componentId": {
+          "type": "string",
+          "description": "Unique ID for cross-referencing."
+        }
+      }
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique ID for cross-referencing. A node id must be used by exactly one parent and one child or slot position; do not reuse the same node id in multiple places."
+    },
+    "component": {
+      "type": "string",
+      "const": "TabItem"
+    },
+    "props": {
+      "type": "object",
+      "properties": {
+        "key": { 
+          "oneOf": [
+            { "type": "string" },
+						{ "$ref": "#/$defs/DataBinding" }
+					],
+          "description": "TabPane's key." 
+        },
+        "label": { 
+          "oneOf": [
+            { "type": "string" },
+						{ "$ref": "#/$defs/DataBinding" }
+					],
+          "description": "Tab header text element."
+        },
+        "icon": { 
+          "oneOf": [
+            { "type": "string" },
+						{ "$ref": "#/$defs/DataBinding" }
+					],
+          "description": "Tab header icon (Lucide icon name in kebab-case, e.g., 'chevron-right')"
+        },
+         "disabled": {
+          "oneOf": [
+            { "type": "boolean" },
+            { "$ref": "#/$defs/DataBinding" }
+          ]
+        },
+        "closable": {
+          "oneOf": [
+            { "type": "boolean" },
+            { "$ref": "#/$defs/DataBinding" }
+          ],
+          "description": "Whether the tab shows a close icon and can be removed."
+        },
+        "content": {
+          "oneOf": [{
+							"type": "string",
+							"description": "Raw text content to render directly (e.g., 'Submit', 'Hello World')."
+						},
+						{
+							"$ref": "#/$defs/DataBinding"
+						},
+						{
+							"$ref": "#/$defs/SlotNode"
+						}
+					],
+          "description": "Component payload. Can be raw literal text OR a structural node reference."
+        }
+      },
+      "required": ["key"]
+    }
+  },
+  "required": ["id", "component", "props"]
+}

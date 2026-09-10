@@ -1,0 +1,53 @@
+{
+  "planner": {
+    "rootId": "eventTestRoot",
+    "elements": [],
+    "slots": []
+  },
+  "mergedA2UI": {
+    "rootId": "eventTestRoot",
+    "state": {
+      "isDetailOpen": false
+    },
+    "elements": [
+      {
+        "id": "eventTestRoot",
+        "component": "div",
+        "props": { "className": "p-4 flex flex-col gap-2" },
+        "children": ["toggleBtn", "demoDrawer"]
+      },
+      {
+        "id": "toggleBtn",
+        "component": "Button",
+        "props": {
+          "value": "展开详情",
+          "color": "primary",
+          "onClick": {
+            "action": "setState",
+            "args": { "path": "/isDetailOpen", "value": true }
+          }
+        }
+      },
+      {
+        "id": "demoDrawer",
+        "component": "Drawer",
+        "props": {
+          "open": { "path": "/isDetailOpen" },
+          "onClose": {
+            "action": "setState",
+            "args": { "path": "/isDetailOpen", "value": false }
+          },
+          "title": "详情抽屉",
+          "placement": "right"
+        },
+        "children": ["detailContent"]
+      },
+      {
+        "id": "detailContent",
+        "component": "div",
+        "props": { "className": "p-4" },
+        "children": []
+      }
+    ]
+  }
+}

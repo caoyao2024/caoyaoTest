@@ -1,0 +1,1737 @@
+{
+  "planner": {
+    "state": {},
+    "rootId": "rootLayout",
+    "elements": [
+      {
+        "id": "rootLayout",
+        "component": "div",
+        "props": {
+          "className": "h-screen flex flex-col bg-surface-container-lowest"
+        },
+        "children": [
+          "masHeaderZone",
+          "mainContentArea"
+        ]
+      },
+      {
+        "id": "masHeaderZone",
+        "component": "div",
+        "props": {
+          "className": "h-12 flex items-center bg-surface-container-highest shadow-sm px-4"
+        },
+        "children": []
+      },
+      {
+        "id": "mainContentArea",
+        "component": "div",
+        "props": {
+          "className": "flex-1 flex overflow-hidden"
+        },
+        "children": [
+          "esbSidebarContainer",
+          "mainContentBody"
+        ]
+      },
+      {
+        "id": "esbSidebarContainer",
+        "component": "aside",
+        "props": {
+          "className": "w-[216px] h-full bg-surface-container-highest border-r border-divider flex flex-col"
+        },
+        "children": []
+      },
+      {
+        "id": "mainContentBody",
+        "component": "main",
+        "props": {
+          "className": "flex-1 p-[2rem] overflow-y-auto"
+        },
+        "children": [
+          "dashboardMetrics",
+          "auditLogTrend",
+          "sysManageCardContainer"
+        ]
+      },
+      {
+        "id": "dashboardMetrics",
+        "component": "div",
+        "props": {
+          "className": "mb-[1rem]"
+        },
+        "children": []
+      },
+      {
+        "id": "auditLogTrend",
+        "component": "div",
+        "props": {
+          "className": "mb-[1rem]"
+        },
+        "children": []
+      },
+      {
+        "id": "sysManageCardContainer",
+        "component": "div",
+        "props": {
+          "className": "bg-surface-container-highest rounded-md"
+        },
+        "children": []
+      }
+    ],
+    "slots": [
+      {
+        "section_id": "masHeader",
+        "element_id": "masHeaderZone",
+        "id_prefix": "masHead"
+      },
+      {
+        "section_id": "sideNav",
+        "element_id": "esbSidebarContainer",
+        "id_prefix": "sideNav"
+      },
+      {
+        "section_id": "dashboardMetrics",
+        "element_id": "dashboardMetrics",
+        "id_prefix": "dashMet"
+      },
+      {
+        "section_id": "systemSettings",
+        "element_id": "sysManageCardContainer",
+        "id_prefix": "sysSet"
+      },
+      {
+        "section_id": "auditLogTrend",
+        "element_id": "auditLogTrend",
+        "id_prefix": "audTrd"
+      }
+    ]
+  },
+  "mergedA2UI": {
+    "rootId": "rootLayout",
+    "elements": [
+      {
+        "id": "rootLayout",
+        "component": "div",
+        "props": {
+          "className": "h-screen flex flex-col bg-surface-container-lowest"
+        },
+        "children": [
+          "masHeaderZone",
+          "mainContentArea"
+        ]
+      },
+      {
+        "id": "masHeaderZone",
+        "component": "div",
+        "props": {
+          "className": "h-12 flex items-center bg-surface-container-highest shadow-sm px-4"
+        },
+        "children": [
+          "masHdrLeftSection",
+          "masHdrSpacer",
+          "masHdrRightSection"
+        ]
+      },
+      {
+        "id": "mainContentArea",
+        "component": "div",
+        "props": {
+          "className": "flex-1 flex overflow-hidden"
+        },
+        "children": [
+          "esbSidebarContainer",
+          "mainContentBody"
+        ]
+      },
+      {
+        "id": "esbSidebarContainer",
+        "component": "aside",
+        "props": {
+          "className": "w-[216px] h-full bg-surface-container-highest border-r border-divider flex flex-col"
+        },
+        "children": [
+          "esbSidebarMenuWrapper",
+          "esbSidebarFooter"
+        ]
+      },
+      {
+        "id": "mainContentBody",
+        "component": "main",
+        "props": {
+          "className": "flex-1 p-[2rem] overflow-y-auto"
+        },
+        "children": [
+          "dashboardMetrics",
+          "auditLogTrend",
+          "sysManageCardContainer"
+        ]
+      },
+      {
+        "id": "dashboardMetrics",
+        "component": "div",
+        "props": {
+          "className": "mb-[1rem]"
+        },
+        "children": [
+          "dashMetCardContainer"
+        ]
+      },
+      {
+        "id": "auditLogTrend",
+        "component": "div",
+        "props": {
+          "className": "mb-[1rem]"
+        },
+        "children": [
+          "audTrdCard"
+        ]
+      },
+      {
+        "id": "sysManageCardContainer",
+        "component": "div",
+        "props": {
+          "className": "bg-surface-container-highest rounded-md"
+        },
+        "children": [
+          "sysManageInner"
+        ]
+      },
+      {
+        "id": "masHdrLeftSection",
+        "component": "div",
+        "props": {
+          "className": "flex items-center"
+        },
+        "children": [
+          "masHdrMenuIcon",
+          "masHdrLogoImg",
+          "masHdrPlatformName",
+          "masHdrVerticalDivider",
+          "masHdrNavMenu"
+        ]
+      },
+      {
+        "id": "masHdrMenuIcon",
+        "component": "Icon",
+        "props": {
+          "name": "menu",
+          "shape": "outline",
+          "className": "w-5 h-5 text-on-surface cursor-pointer"
+        }
+      },
+      {
+        "id": "masHdrLogoImg",
+        "component": "img",
+        "props": {
+          "src": {
+            "path": "/masLogoImage"
+          },
+          "alt": "NCE-Campus Logo",
+          "className": "w-[19px] h-auto object-contain ml-[12px] mr-[6px]"
+        }
+      },
+      {
+        "id": "masHdrPlatformName",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "/masPlatformName"
+          },
+          "className": "text-md text-on-surface whitespace-nowrap"
+        }
+      },
+      {
+        "id": "masHdrVerticalDivider",
+        "component": "div",
+        "props": {
+          "className": "w-px h-4 bg-divider ml-[16px]"
+        }
+      },
+      {
+        "id": "masHdrNavMenu",
+        "component": "Menu",
+        "props": {
+          "mode": "horizontal",
+          "selectedKeys": {
+            "path": "/masSelectedMenuKeys"
+          },
+          "items": {
+            "path": "/masNavItems"
+          },
+          "className": "border-0 bg-transparent"
+        }
+      },
+      {
+        "id": "masHdrSpacer",
+        "component": "div",
+        "props": {
+          "className": "flex-1"
+        }
+      },
+      {
+        "id": "masHdrRightSection",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-5"
+        },
+        "children": [
+          "masHdrQuickLinksGroup",
+          "masHdrIconsGroup",
+          "masHdrUserInfoGroup"
+        ]
+      },
+      {
+        "id": "masHdrQuickLinksGroup",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-5"
+        },
+        "children": [
+          "masHdrQuickLink1",
+          "masHdrQuickLink2",
+          "masHdrQuickLink3",
+          "masHdrQuickLink4"
+        ]
+      },
+      {
+        "id": "masHdrQuickLink1",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "/masQuickLinks/0"
+          },
+          "className": "text-md cursor-pointer hover:text-primary transition-colors"
+        }
+      },
+      {
+        "id": "masHdrQuickLink2",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "/masQuickLinks/1"
+          },
+          "className": "text-md cursor-pointer hover:text-primary transition-colors"
+        }
+      },
+      {
+        "id": "masHdrQuickLink3",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "/masQuickLinks/2"
+          },
+          "className": "text-md cursor-pointer hover:text-primary transition-colors"
+        }
+      },
+      {
+        "id": "masHdrQuickLink4",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "/masQuickLinks/3"
+          },
+          "className": "text-md cursor-pointer hover:text-primary transition-colors"
+        }
+      },
+      {
+        "id": "masHdrIconsGroup",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-5"
+        },
+        "children": [
+          "masHdrThemeIcon",
+          "masHdrLangIcon",
+          "masHdrHistoryIcon",
+          "masHdrHelpIcon",
+          "masHdrUserIcon"
+        ]
+      },
+      {
+        "id": "masHdrThemeIcon",
+        "component": "Icon",
+        "props": {
+          "name": "sun",
+          "shape": "outline",
+          "className": "w-5 h-5 text-on-surface-variant cursor-pointer"
+        }
+      },
+      {
+        "id": "masHdrLangIcon",
+        "component": "Icon",
+        "props": {
+          "name": "languages",
+          "shape": "outline",
+          "className": "w-5 h-5 text-on-surface-variant cursor-pointer"
+        }
+      },
+      {
+        "id": "masHdrHistoryIcon",
+        "component": "Icon",
+        "props": {
+          "name": "wallpaper",
+          "shape": "outline",
+          "className": "w-5 h-5 text-on-surface-variant cursor-pointer"
+        }
+      },
+      {
+        "id": "masHdrHelpIcon",
+        "component": "Icon",
+        "props": {
+          "name": "help-circle",
+          "shape": "outline",
+          "className": "w-5 h-5 text-on-surface-variant cursor-pointer"
+        }
+      },
+      {
+        "id": "masHdrUserIcon",
+        "component": "Icon",
+        "props": {
+          "name": "user",
+          "shape": "outline",
+          "className": "w-5 h-5 text-on-surface-variant cursor-pointer"
+        }
+      },
+      {
+        "id": "masHdrUserInfoGroup",
+        "component": "div",
+        "props": {
+          "className": "flex items-center -ml-3"
+        },
+        "children": [
+          "masHdrUserName",
+          "masHdrAvatarImg"
+        ]
+      },
+      {
+        "id": "masHdrUserName",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "/masUserName"
+          },
+          "className": "text-md text-on-surface font-medium"
+        }
+      },
+      {
+        "id": "masHdrAvatarImg",
+        "component": "img",
+        "props": {
+          "src": {
+            "path": "/masAvatarImage"
+          },
+          "alt": "用户头像",
+          "className": "w-6 h-6 rounded-full object-cover ml-5"
+        }
+      },
+      {
+        "id": "esbSidebarMenuWrapper",
+        "component": "div",
+        "props": {
+          "className": "flex-1 overflow-y-auto"
+        },
+        "children": [
+          "esbSidebarMenu"
+        ]
+      },
+      {
+        "id": "esbSidebarMenu",
+        "component": "Menu",
+        "props": {
+          "mode": "vertical",
+          "selectedKeys": {
+            "path": "/esbSelectedMenuKeys"
+          },
+          "openKeys": {
+            "path": "/esbOpenMenuKeys"
+          },
+          "items": {
+            "path": "/esbMenuItems"
+          },
+          "className": "w-full border-0"
+        }
+      },
+      {
+        "id": "esbSidebarFooter",
+        "component": "div",
+        "props": {
+          "className": "ml-[14px] mb-[16px]"
+        },
+        "children": [
+          "esbSidebarRecycleBtn"
+        ]
+      },
+      {
+        "id": "esbSidebarRecycleBtn",
+        "component": "Button",
+        "props": {
+          "icon": "menu_expansion",
+          "className": "w-5 h-5 hover:text-primary"
+        }
+      },
+      {
+        "id": "dashMetCardContainer",
+        "component": "div",
+        "props": {
+          "className": "bg-surface-container-highest rounded-container shadow-card p-[1.5rem]"
+        },
+        "children": [
+          "dashMetHeader",
+          "dashMetCardList"
+        ]
+      },
+      {
+        "id": "dashMetHeader",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-between mb-[1rem]"
+        },
+        "children": [
+          "dashMetTitle",
+          "dashMetViewAllBtn"
+        ]
+      },
+      {
+        "id": "dashMetTitle",
+        "component": "span",
+        "props": {
+          "className": "text-lg font-bold text-on-surface",
+          "value": "关键指标概览"
+        }
+      },
+      {
+        "id": "dashMetViewAllBtn",
+        "component": "Button",
+        "props": {
+          "value": "查看全部",
+          "types": "link",
+          "icon": "arrow-right",
+          "iconPlacement": "end",
+          "className": "text-sm"
+        }
+      },
+      {
+        "id": "dashMetCardList",
+        "component": "div",
+        "props": {
+          "className": "grid grid-cols-4 gap-[1rem]"
+        },
+        "children": [
+          "dashMetCard0",
+          "dashMetCard1",
+          "dashMetCard2",
+          "dashMetCard3"
+        ]
+      },
+      {
+        "id": "dashMetCard0",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-[0.75rem] p-[1rem] bg-surface-container-lowest rounded-lg"
+        },
+        "children": [
+          "dashMetIcon0",
+          "dashMetInfo0"
+        ]
+      },
+      {
+        "id": "dashMetIcon0",
+        "component": "Icon",
+        "props": {
+          "name": "users",
+          "className": "w-10 h-10 text-primary"
+        }
+      },
+      {
+        "id": "dashMetInfo0",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col gap-[0.25rem] flex-1 min-w-0"
+        },
+        "children": [
+          "dashMetValue0",
+          "dashMetLabel0",
+          "dashMetTrend0"
+        ]
+      },
+      {
+        "id": "dashMetValue0",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface",
+          "value": {
+            "path": "/metrics/0/metricValue"
+          }
+        }
+      },
+      {
+        "id": "dashMetLabel0",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant",
+          "value": "活跃用户"
+        }
+      },
+      {
+        "id": "dashMetTrend0",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-[0.25rem]"
+        },
+        "children": [
+          "dashMetTrendIcon0",
+          "dashMetTrendText0"
+        ]
+      },
+      {
+        "id": "dashMetTrendIcon0",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "className": "w-4 h-4 text-success"
+        }
+      },
+      {
+        "id": "dashMetTrendText0",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-success",
+          "value": "12.3% 较昨日"
+        }
+      },
+      {
+        "id": "dashMetCard1",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-[0.75rem] p-[1rem] bg-surface-container-lowest rounded-lg"
+        },
+        "children": [
+          "dashMetIcon1",
+          "dashMetInfo1"
+        ]
+      },
+      {
+        "id": "dashMetIcon1",
+        "component": "Icon",
+        "props": {
+          "name": "shopping-cart",
+          "className": "w-10 h-10 text-primary"
+        }
+      },
+      {
+        "id": "dashMetInfo1",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col gap-[0.25rem] flex-1 min-w-0"
+        },
+        "children": [
+          "dashMetValue1",
+          "dashMetLabel1",
+          "dashMetTrend1"
+        ]
+      },
+      {
+        "id": "dashMetValue1",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface",
+          "value": {
+            "path": "/metrics/1/metricValue"
+          }
+        }
+      },
+      {
+        "id": "dashMetLabel1",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant",
+          "value": "总订单量"
+        }
+      },
+      {
+        "id": "dashMetTrend1",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-[0.25rem]"
+        },
+        "children": [
+          "dashMetTrendIcon1",
+          "dashMetTrendText1"
+        ]
+      },
+      {
+        "id": "dashMetTrendIcon1",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "className": "w-4 h-4 text-success"
+        }
+      },
+      {
+        "id": "dashMetTrendText1",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-success",
+          "value": "8.7% 较上周"
+        }
+      },
+      {
+        "id": "dashMetCard2",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-[0.75rem] p-[1rem] bg-surface-container-lowest rounded-lg"
+        },
+        "children": [
+          "dashMetIcon2",
+          "dashMetInfo2"
+        ]
+      },
+      {
+        "id": "dashMetIcon2",
+        "component": "Icon",
+        "props": {
+          "name": "alert-triangle",
+          "className": "w-10 h-10 text-critical"
+        }
+      },
+      {
+        "id": "dashMetInfo2",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col gap-[0.25rem] flex-1 min-w-0"
+        },
+        "children": [
+          "dashMetValue2",
+          "dashMetLabel2",
+          "dashMetTrend2"
+        ]
+      },
+      {
+        "id": "dashMetValue2",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface",
+          "value": {
+            "path": "/metrics/2/metricValue"
+          }
+        }
+      },
+      {
+        "id": "dashMetLabel2",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant",
+          "value": "系统告警"
+        }
+      },
+      {
+        "id": "dashMetTrend2",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-[0.25rem]"
+        },
+        "children": [
+          "dashMetTrendIcon2",
+          "dashMetTrendText2"
+        ]
+      },
+      {
+        "id": "dashMetTrendIcon2",
+        "component": "Icon",
+        "props": {
+          "name": "trending-down",
+          "className": "w-4 h-4 text-success"
+        }
+      },
+      {
+        "id": "dashMetTrendText2",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-success",
+          "value": "-50.0% 较昨日"
+        }
+      },
+      {
+        "id": "dashMetCard3",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-[0.75rem] p-[1rem] bg-surface-container-lowest rounded-lg"
+        },
+        "children": [
+          "dashMetIcon3",
+          "dashMetInfo3"
+        ]
+      },
+      {
+        "id": "dashMetIcon3",
+        "component": "Icon",
+        "props": {
+          "name": "dollar-sign",
+          "className": "w-10 h-10 text-primary"
+        }
+      },
+      {
+        "id": "dashMetInfo3",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col gap-[0.25rem] flex-1 min-w-0"
+        },
+        "children": [
+          "dashMetValue3",
+          "dashMetLabel3",
+          "dashMetTrend3"
+        ]
+      },
+      {
+        "id": "dashMetValue3",
+        "component": "span",
+        "props": {
+          "className": "text-2xl font-bold text-on-surface",
+          "value": {
+            "path": "/metrics/3/metricValue"
+          }
+        }
+      },
+      {
+        "id": "dashMetLabel3",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant",
+          "value": "月营收"
+        }
+      },
+      {
+        "id": "dashMetTrend3",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-[0.25rem]"
+        },
+        "children": [
+          "dashMetTrendIcon3",
+          "dashMetTrendText3"
+        ]
+      },
+      {
+        "id": "dashMetTrendIcon3",
+        "component": "Icon",
+        "props": {
+          "name": "trending-up",
+          "className": "w-4 h-4 text-success"
+        }
+      },
+      {
+        "id": "dashMetTrendText3",
+        "component": "span",
+        "props": {
+          "className": "text-xs text-success",
+          "value": "5.2% 较上月"
+        }
+      },
+      {
+        "id": "sysManageInner",
+        "component": "div",
+        "props": {
+          "className": "p-6 flex flex-col gap-4"
+        },
+        "children": [
+          "sysManageTitle",
+          "sysManageToolbarRow",
+          "sysManageWorkorderTable"
+        ]
+      },
+      {
+        "id": "sysManageTitle",
+        "component": "span",
+        "props": {
+          "value": "系统规格管理",
+          "className": "text-2xl text-on-surface"
+        }
+      },
+      {
+        "id": "sysManageToolbarRow",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-between"
+        },
+        "children": [
+          "sysManageToolbarLeft",
+          "sysManageToolbarRight"
+        ]
+      },
+      {
+        "id": "sysManageToolbarLeft",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-6"
+        },
+        "children": [
+          "sysManageSearchInput",
+          "sysManageFilterDropdown"
+        ]
+      },
+      {
+        "id": "sysManageSearchInput",
+        "component": "Input",
+        "props": {
+          "value": {
+            "path": "/twoSearchValue"
+          },
+          "placeholder": "请输入搜索内容",
+          "suffix": "search",
+          "size": "medium",
+          "className": "w-74"
+        }
+      },
+      {
+        "id": "sysManageFilterDropdown",
+        "component": "Dropdown",
+        "props": {
+          "menu": [
+            {
+              "label": "全部线索",
+              "key": "all"
+            },
+            {
+              "label": "按线索类型",
+              "key": "byType"
+            },
+            {
+              "label": "按线索优先级",
+              "key": "byPriority"
+            },
+            {
+              "label": "按线索状态",
+              "key": "byStatus"
+            }
+          ],
+          "trigger": [
+            "click"
+          ],
+          "placement": "bottomLeft"
+        },
+        "children": [
+          "sysManageFilterTrigger"
+        ]
+      },
+      {
+        "id": "sysManageFilterTrigger",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-1 cursor-pointer select-none"
+        },
+        "children": [
+          "sysManageFilterText",
+          "sysManageFilterIcon"
+        ]
+      },
+      {
+        "id": "sysManageFilterText",
+        "component": "span",
+        "props": {
+          "value": "高级筛选",
+          "className": "text-md text-on-surface-variant"
+        }
+      },
+      {
+        "id": "sysManageFilterIcon",
+        "component": "Icon",
+        "props": {
+          "name": "chevron-down",
+          "shape": "outline",
+          "className": "w-4 h-4"
+        }
+      },
+      {
+        "id": "sysManageToolbarRight",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-2"
+        },
+        "children": [
+          "twoCardAutoRefresh",
+          "twoCardDivider",
+          "sysManageExportBtn",
+          "sysManageCreateBtn",
+          "sysManageRefreshIcon"
+        ]
+      },
+      {
+        "id": "twoCardAutoRefresh",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-2"
+        },
+        "children": [
+          "twoCardAutoRefreshText",
+          "twoCardAutoRefreshSwitch"
+        ]
+      },
+      {
+        "id": "twoCardAutoRefreshText",
+        "component": "div",
+        "props": {
+          "value": "自动刷新",
+          "className": "text-md"
+        }
+      },
+      {
+        "id": "twoCardAutoRefreshSwitch",
+        "component": "Switch",
+        "props": {
+          "value": {
+            "path": "twoCardAutoRefreshSwitchValue"
+          },
+          "size": "medium"
+        }
+      },
+      {
+        "id": "twoCardDivider",
+        "component": "Divider",
+        "props": {
+          "orientation": "vertical",
+          "className": "mx-2 w-px"
+        }
+      },
+      {
+        "id": "sysManageExportBtn",
+        "component": "Button",
+        "props": {
+          "value": "导出"
+        }
+      },
+      {
+        "id": "sysManageCreateBtn",
+        "component": "Button",
+        "props": {
+          "value": "创建",
+          "color": "primary"
+        }
+      },
+      {
+        "id": "sysManageRefreshIcon",
+        "component": "Icon",
+        "props": {
+          "name": "refresh-cw",
+          "shape": "outline",
+          "className": "w-4 h-4 text-on-surface-variant cursor-pointer ml-2"
+        }
+      },
+      {
+        "id": "sysManageWorkorderTable",
+        "component": "Table",
+        "props": {
+          "rowKey": "key",
+          "dataSource": {
+            "path": "/twoWorkorderList"
+          },
+          "columns": [
+            {
+              "title": "子系统",
+              "dataIndex": "subsystem",
+              "minWidth": 60
+            },
+            {
+              "title": "状态",
+              "dataIndex": "status",
+              "minWidth": 50
+            },
+            {
+              "title": "配置",
+              "dataIndex": "configuration",
+              "minWidth": 180
+            },
+            {
+              "title": "配置项值",
+              "dataIndex": "configurationValue",
+              "minWidth": 60
+            },
+            {
+              "title": "默认值",
+              "dataIndex": "defaultVal",
+              "minWidth": 50
+            },
+            {
+              "title": "描述",
+              "dataIndex": "describe",
+              "minWidth": 260
+            },
+            {
+              "title": "重启微服务",
+              "dataIndex": "microservice",
+              "minWidth": 50
+            },
+            {
+              "title": "操作",
+              "dataIndex": "actions",
+              "minWidth": 50
+            }
+          ],
+          "className": "mb-4"
+        },
+        "children": {
+          "path": "/twoWorkorderList",
+          "componentId": "sysManageTableRow"
+        }
+      },
+      {
+        "id": "sysManageTableRow",
+        "component": "TableRow",
+        "children": [
+          "sysManageSubsystemCell",
+          "sysManageStatusCell",
+          "sysManageConfigurationCell",
+          "sysManageConfigurationValueCell",
+          "sysManageDefaultValCell",
+          "sysManageDescribeCell",
+          "sysManageMicroserviceCell",
+          "sysManageActionsCell"
+        ],
+        "props": {}
+      },
+      {
+        "id": "sysManageSubsystemCell",
+        "component": "span",
+        "props": {
+          "className": "truncate inline-block max-w-full",
+          "value": {
+            "path": "subsystem"
+          }
+        }
+      },
+      {
+        "id": "sysManageStatusCell",
+        "component": "Tag",
+        "props": {
+          "value": {
+            "path": "status/text"
+          },
+          "color": {
+            "path": "status/color"
+          },
+          "size": "small"
+        }
+      },
+      {
+        "id": "sysManageConfigurationCell",
+        "component": "div",
+        "props": {
+          "value": {
+            "path": "configuration"
+          },
+          "className": "flex items-center w-full"
+        }
+      },
+      {
+        "id": "sysManageConfigurationValueCell",
+        "component": "div",
+        "props": {
+          "value": {
+            "path": "configurationValue"
+          },
+          "className": "flex items-center w-full"
+        }
+      },
+      {
+        "id": "sysManageDefaultValCell",
+        "component": "span",
+        "props": {
+          "className": "truncate inline-block max-w-full",
+          "value": {
+            "path": "defaultVal"
+          }
+        }
+      },
+      {
+        "id": "sysManageDescribeCell",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "describe"
+          }
+        }
+      },
+      {
+        "id": "sysManageMicroserviceCell",
+        "component": "span",
+        "props": {
+          "value": {
+            "path": "microservice"
+          }
+        }
+      },
+      {
+        "id": "sysManageActionsCell",
+        "component": "div",
+        "props": {
+          "className": "flex items-center gap-5"
+        },
+        "children": {
+          "path": "actions",
+          "componentId": "sysManageActionButton"
+        }
+      },
+      {
+        "id": "sysManageActionButton",
+        "component": "Button",
+        "props": {
+          "icon": {
+            "path": "icon"
+          },
+          "size": "medium",
+          "iconPlacement": "start",
+          "className": "text-on-surface"
+        }
+      },
+      {
+        "id": "audTrdCard",
+        "component": "div",
+        "props": {
+          "className": "flex flex-col gap-gutter bg-surface-container-highest rounded-container shadow-card p-inset"
+        },
+        "children": [
+          "audTrdHeader",
+          "audTrdChart"
+        ]
+      },
+      {
+        "id": "audTrdHeader",
+        "component": "div",
+        "props": {
+          "className": "flex items-center justify-between"
+        },
+        "children": [
+          "audTrdTitle",
+          "audTrdUnit"
+        ]
+      },
+      {
+        "id": "audTrdTitle",
+        "component": "span",
+        "props": {
+          "className": "text-lg font-semibold text-on-surface",
+          "value": {
+            "path": "/audTrdCardTitle"
+          }
+        }
+      },
+      {
+        "id": "audTrdUnit",
+        "component": "span",
+        "props": {
+          "className": "text-sm text-on-surface-variant",
+          "value": {
+            "path": "/audTrdChartUnit"
+          }
+        }
+      },
+      {
+        "id": "audTrdChart",
+        "component": "LineChart",
+        "props": {
+          "option": {
+            "data": {
+              "path": "/audTrdChartData"
+            },
+            "xAxis": {
+              "data": "date",
+              "name": "日期"
+            },
+            "yAxisTitle": "次数",
+            "smooth": true
+          },
+          "className": "w-full h-72"
+        }
+      }
+    ],
+    "state": {
+      "masLogoImage": "/history/ses_04f23a998ffeCpCDPX5OitTtxa/uploads/3a8ea61746c464ce.svg",
+      "masPlatformName": "IMaster NCE-Campus",
+      "masSelectedMenuKeys": [
+        "layout-dashboard"
+      ],
+      "masNavItems": [
+        {
+          "title": "工作台",
+          "key": "layout-dashboard",
+          "icon": "house"
+        },
+        {
+          "title": "大屏",
+          "key": "monitor",
+          "icon": "monitor"
+        }
+      ],
+      "masQuickLinks": [
+        "开局",
+        "资源中心",
+        "任务中心",
+        "系统"
+      ],
+      "masUserName": "Admin",
+      "masAvatarImage": "/history/ses_04f23a998ffeCpCDPX5OitTtxa/uploads/1d40d700d4f4ae78.svg",
+      "esbSelectedMenuKeys": [],
+      "esbOpenMenuKeys": [],
+      "esbMenuItems": [
+        {
+          "title": "数据分析",
+          "key": "dashboard",
+          "icon": "layout-dashboard",
+          "children": [
+            {
+              "title": "概览",
+              "key": "overview"
+            },
+            {
+              "title": "分析",
+              "key": "analytics"
+            },
+            {
+              "title": "报告",
+              "key": "reports"
+            }
+          ]
+        },
+        {
+          "title": "用户管理",
+          "key": "user",
+          "icon": "users",
+          "children": [
+            {
+              "title": "用户列表",
+              "key": "list"
+            },
+            {
+              "title": "角色管理",
+              "key": "roles"
+            },
+            {
+              "title": "权限设置",
+              "key": "permissions"
+            }
+          ]
+        },
+        {
+          "title": "订单管理",
+          "key": "order",
+          "icon": "shopping-cart",
+          "children": [
+            {
+              "title": "全部订单",
+              "key": "all"
+            },
+            {
+              "title": "待处理",
+              "key": "pending"
+            },
+            {
+              "title": "历史订单",
+              "key": "history"
+            }
+          ]
+        },
+        {
+          "title": "商品管理",
+          "key": "product",
+          "icon": "package",
+          "children": [
+            {
+              "title": "商品目录",
+              "key": "catalog"
+            },
+            {
+              "title": "分类管理",
+              "key": "categories"
+            },
+            {
+              "title": "品牌管理",
+              "key": "brands"
+            }
+          ]
+        },
+        {
+          "title": "财务管理",
+          "key": "finance",
+          "icon": "dollar-sign",
+          "children": [
+            {
+              "title": "交易记录",
+              "key": "transactions"
+            },
+            {
+              "title": "发票管理",
+              "key": "invoices"
+            },
+            {
+              "title": "预算管理",
+              "key": "budget"
+            }
+          ]
+        },
+        {
+          "title": "内容管理",
+          "key": "content",
+          "icon": "file-text",
+          "children": [
+            {
+              "title": "文章管理",
+              "key": "articles"
+            },
+            {
+              "title": "页面管理",
+              "key": "pages"
+            },
+            {
+              "title": "评论管理",
+              "key": "comments"
+            }
+          ]
+        },
+        {
+          "title": "营销推广",
+          "key": "marketing",
+          "icon": "megaphone",
+          "children": [
+            {
+              "title": "活动管理",
+              "key": "campaigns"
+            },
+            {
+              "title": "优惠券",
+              "key": "coupons"
+            },
+            {
+              "title": "SEO设置",
+              "key": "seo"
+            }
+          ]
+        },
+        {
+          "title": "系统设置",
+          "key": "system",
+          "icon": "settings",
+          "children": [
+            {
+              "title": "基本设置",
+              "key": "general"
+            },
+            {
+              "title": "安全设置",
+              "key": "security"
+            },
+            {
+              "title": "操作日志",
+              "key": "logs"
+            }
+          ]
+        },
+        {
+          "title": "工具",
+          "key": "tools",
+          "icon": "wrench",
+          "children": [
+            {
+              "title": "数据库管理",
+              "key": "database"
+            },
+            {
+              "title": "缓存管理",
+              "key": "cache"
+            },
+            {
+              "title": "任务调度",
+              "key": "scheduler"
+            }
+          ]
+        },
+        {
+          "title": "帮助中心",
+          "key": "help",
+          "icon": "life-buoy",
+          "children": [
+            {
+              "title": "常见问题",
+              "key": "faq"
+            },
+            {
+              "title": "文档",
+              "key": "docs"
+            },
+            {
+              "title": "技术支持",
+              "key": "support"
+            }
+          ]
+        }
+      ],
+      "cardTitle": "关键指标概览",
+      "metrics": [
+        {
+          "metricIcon": "Users",
+          "metricName": "活跃用户",
+          "metricValue": 12847,
+          "unit": "人",
+          "trendIcon": "TrendingUp",
+          "changePercentage": "12.3%",
+          "compareText": "较昨日"
+        },
+        {
+          "metricIcon": "ShoppingCart",
+          "metricName": "总订单量",
+          "metricValue": 452800,
+          "unit": "单",
+          "trendIcon": "TrendingUp",
+          "changePercentage": "8.7%",
+          "compareText": "较上周"
+        },
+        {
+          "metricIcon": "AlertTriangle",
+          "metricName": "系统告警",
+          "metricValue": 3,
+          "unit": "个",
+          "trendIcon": "TrendingDown",
+          "changePercentage": "-50.0%",
+          "compareText": "较昨日"
+        },
+        {
+          "metricIcon": "DollarSign",
+          "metricName": "月营收",
+          "metricValue": 285.6,
+          "unit": "万元",
+          "trendIcon": "TrendingUp",
+          "changePercentage": "5.2%",
+          "compareText": "较上月"
+        }
+      ],
+      "twoSearchValue": "",
+      "twoCardAutoRefreshSwitchValue": false,
+      "twoWorkorderList": [
+        {
+          "key": 1,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核通过",
+            "color": "success"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_TIMES",
+          "configurationValue": "0",
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 2,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证失败",
+            "color": "error"
+          },
+          "configuration": "SDNC_CALLBACK_RETRY_INTERVAL",
+          "configurationValue": 100,
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 3,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放失败",
+            "color": "error"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_TASK_FOR_DE.",
+          "configurationValue": 200,
+          "defaultVal": 200,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 4,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "审核驳回",
+            "color": "warning"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 5,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚失败",
+            "color": "#FA541C"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 6,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "验证中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 7,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放中",
+            "color": "info"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 20,
+          "defaultVal": 5,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 8,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚中",
+            "color": "#13C2C2"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 100,
+          "defaultVal": 1,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 9,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "发放成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": "0",
+          "defaultVal": 100,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        },
+        {
+          "key": 10,
+          "subsystem": "MBGP L3VPN",
+          "status": {
+            "text": "回滚成功",
+            "color": "success"
+          },
+          "configuration": "CONFIG_MBGP_L3VPN_BATCH_UNDEPLOY_NE.",
+          "configurationValue": 50,
+          "defaultVal": 150,
+          "describe": "完成工单的部署之后，回调北向系统失败后的最大重试次数，默认重试次数为3次。",
+          "microservice": "否",
+          "actions": [
+            {
+              "icon": "feedback"
+            }
+          ]
+        }
+      ],
+      "audTrdCardTitle": "操作审计趋势",
+      "audTrdChartData": [
+        {
+          "date": "2026-07-24",
+          "loginCount": 1203,
+          "configChangeCount": 45,
+          "dataExportCount": 89
+        },
+        {
+          "date": "2026-07-25",
+          "loginCount": 1356,
+          "configChangeCount": 62,
+          "dataExportCount": 102
+        },
+        {
+          "date": "2026-07-26",
+          "loginCount": 1102,
+          "configChangeCount": 38,
+          "dataExportCount": 76
+        },
+        {
+          "date": "2026-07-27",
+          "loginCount": 1489,
+          "configChangeCount": 55,
+          "dataExportCount": 115
+        },
+        {
+          "date": "2026-07-28",
+          "loginCount": 1298,
+          "configChangeCount": 71,
+          "dataExportCount": 94
+        },
+        {
+          "date": "2026-07-29",
+          "loginCount": 1405,
+          "configChangeCount": 49,
+          "dataExportCount": 108
+        },
+        {
+          "date": "2026-07-30",
+          "loginCount": 1567,
+          "configChangeCount": 83,
+          "dataExportCount": 127
+        }
+      ],
+      "audTrdChartUnit": "次数"
+    }
+  }
+}

@@ -1,0 +1,746 @@
+{
+  "planner": {
+    "slots": [
+      
+    ]
+  },
+  "mergedA2UI":{
+  "state": {
+    "pageTitle": "商品管理",
+    "searchKeyword": "",
+    "categoryFilter": "",
+    "statusFilter": "all",
+    "categoryOptions": [
+      { "label": "全部类目", "value": "" },
+      { "label": "数码电子", "value": "digital" },
+      { "label": "服装鞋帽", "value": "clothing" },
+      { "label": "食品饮料", "value": "food" },
+      { "label": "家居用品", "value": "home" },
+      { "label": "美妆护肤", "value": "beauty" }
+    ],
+    "statusOptions": [
+      { "label": "全部状态", "value": "all" },
+      { "label": "上架", "value": "active" },
+      { "label": "下架", "value": "inactive" },
+      { "label": "售罄", "value": "soldOut" }
+    ],
+    "tableColumns": [
+      { "title": "商品编号", "dataIndex": "code", "width": 140 },
+      { "title": "商品名称", "dataIndex": "name", "minWidth": 200 },
+      { "title": "类目", "dataIndex": "category", "width": 100 },
+      { "title": "价格", "dataIndex": "price", "width": 100, "align": "right" },
+      { "title": "库存", "dataIndex": "stock", "width": 80, "align": "right" },
+      { "title": "销量", "dataIndex": "sales", "width": 80, "align": "right" },
+      { "title": "状态", "dataIndex": "status", "width": 90, "align": "center" },
+      { "title": "上架时间", "dataIndex": "createdAt", "width": 120 },
+      { "title": "操作", "dataIndex": "action", "width": 180, "align": "center" }
+    ],
+    "productList": [
+      { "id": "P001", "code": "DG-10001", "name": "Apple MacBook Pro 14英寸 M3芯片", "category": "数码电子", "price": 14999, "stock": 86, "sales": 352, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-03-15" },
+      { "id": "P002", "code": "DG-10002", "name": "Samsung Galaxy S24 Ultra", "category": "数码电子", "price": 9699, "stock": 23, "sales": 1287, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-01-20" },
+      { "id": "P003", "code": "CL-20001", "name": "Nike Air Max 270 运动鞋", "category": "服装鞋帽", "price": 1199, "stock": 0, "sales": 2436, "status": "soldOut", "statusLabel": "售罄", "statusColor": "error", "createdAt": "2025-11-08" },
+      { "id": "P004", "code": "CL-20002", "name": "优衣库男士轻薄羽绒服", "category": "服装鞋帽", "price": 599, "stock": 340, "sales": 892, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-06-01" },
+      { "id": "P005", "code": "FD-30001", "name": "三只松鼠坚果礼盒大礼包", "category": "食品饮料", "price": 168, "stock": 1200, "sales": 5678, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-04-22" },
+      { "id": "P006", "code": "FD-30002", "name": "元气森林白桃味苏打气泡水", "category": "食品饮料", "price": 5, "stock": 5000, "sales": 15320, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-02-14" },
+      { "id": "P007", "code": "HM-40001", "name": "IKEA拉克边桌 39x39cm", "category": "家居用品", "price": 129, "stock": 560, "sales": 3241, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-05-30" },
+      { "id": "P008", "code": "HM-40002", "name": "小米空气净化器4 Pro", "category": "家居用品", "price": 1999, "stock": 0, "sales": 765, "status": "soldOut", "statusLabel": "售罄", "statusColor": "error", "createdAt": "2025-09-12" },
+      { "id": "P009", "code": "BT-50001", "name": "兰蔻小黑瓶精华肌底液", "category": "美妆护肤", "price": 1080, "stock": 45, "sales": 2103, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-03-01" },
+      { "id": "P010", "code": "BT-50002", "name": "SK-II 神仙水230ml", "category": "美妆护肤", "price": 1590, "stock": 12, "sales": 987, "status": "inactive", "statusLabel": "下架", "statusColor": "default", "createdAt": "2025-07-18" },
+      { "id": "P011", "code": "DG-10003", "name": "Sony WH-1000XM5 降噪耳机", "category": "数码电子", "price": 2499, "stock": 78, "sales": 1567, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-05-10" },
+      { "id": "P012", "code": "CL-20003", "name": "Zara 女装夏季连衣裙", "category": "服装鞋帽", "price": 459, "stock": 230, "sales": 4321, "status": "active", "statusLabel": "上架", "statusColor": "success", "createdAt": "2026-06-15" }
+    ],
+    "selectedRowKeys": [],
+    "statsTotalProducts": 12,
+    "statsActiveProducts": 9,
+    "statsInactiveProducts": 1,
+    "statsSoldOutProducts": 2,
+    "statsLowStockProducts": 3,
+    "isAddDrawerOpen": false,
+    "isEditDrawerOpen": false,
+    "addFormCode": "",
+    "addFormName": "",
+    "addFormCategory": "",
+    "addFormPrice": 0,
+    "addFormStock": 0,
+    "addFormStatus": "active",
+    "addFormDesc": "",
+    "editFormCode": "",
+    "editFormName": "",
+    "editFormCategory": "",
+    "editFormPrice": 0,
+    "editFormStock": 0,
+    "editFormStatus": "active",
+    "editFormDesc": "",
+    "isDeleteModalOpen": false,
+    "deleteTargetName": ""
+  },
+  "rootId": "pageProductContainer",
+  "elements": [
+    {
+      "id": "pageProductContainer",
+      "component": "div",
+      "props": { "className": "flex flex-col h-screen bg-surface-container-lowest" },
+      "children": ["pageProductHeader", "pageProductMain", "pageProductAddDrawer", "pageProductEditDrawer", "pageProductDeleteModal"]
+    },
+    {
+      "id": "pageProductHeader",
+      "component": "header",
+      "props": { "className": "h-12 bg-surface-container-highest flex items-center px-page border-b border-divider shrink-0" },
+      "children": ["pageProductHeaderTitle", "pageProductHeaderActions"]
+    },
+    {
+      "id": "pageProductHeaderTitle",
+      "component": "div",
+      "props": { "className": "flex items-center gap-3" },
+      "children": ["pageProductHeaderIcon", "pageProductHeaderText"]
+    },
+    {
+      "id": "pageProductHeaderIcon",
+      "component": "Icon",
+      "props": { "name": "package", "className": "w-5 h-5 text-primary" }
+    },
+    {
+      "id": "pageProductHeaderText",
+      "component": "span",
+      "props": { "value": { "path": "/pageTitle" }, "className": "text-md font-semibold text-on-surface" }
+    },
+    {
+      "id": "pageProductHeaderActions",
+      "component": "div",
+      "props": { "className": "ml-auto flex items-center gap-2" },
+      "children": ["pageProductHeaderRefreshBtn"]
+    },
+    {
+      "id": "pageProductHeaderRefreshBtn",
+      "component": "Button",
+      "props": { "icon": "refresh-cw", "types": "link", "className": "text-on-surface-variant" }
+    },
+    {
+      "id": "pageProductMain",
+      "component": "div",
+      "props": { "className": "flex-1 overflow-auto p-page" },
+      "children": ["pageProductStatsBar", "pageProductContentCard"]
+    },
+    {
+      "id": "pageProductStatsBar",
+      "component": "div",
+      "props": { "className": "grid grid-cols-5 gap-section mb-section" },
+      "children": ["pageProductStatsTotal", "pageProductStatsActive", "pageProductStatsInactive", "pageProductStatsSoldOut", "pageProductStatsLowStock"]
+    },
+    {
+      "id": "pageProductStatsTotal",
+      "component": "div",
+      "props": { "className": "bg-surface-container-highest rounded-container shadow-card p-4 flex items-center gap-3" },
+      "children": ["pageProductStatsTotalIcon", "pageProductStatsTotalInfo"]
+    },
+    {
+      "id": "pageProductStatsTotalIcon",
+      "component": "div",
+      "props": { "className": "w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0" },
+      "children": ["pageProductStatsTotalIconInner"]
+    },
+    {
+      "id": "pageProductStatsTotalIconInner",
+      "component": "Icon",
+      "props": { "name": "boxes", "className": "w-5 h-5 text-primary" }
+    },
+    {
+      "id": "pageProductStatsTotalInfo",
+      "component": "div",
+      "props": { "className": "flex flex-col" },
+      "children": ["pageProductStatsTotalValue", "pageProductStatsTotalLabel"]
+    },
+    {
+      "id": "pageProductStatsTotalValue",
+      "component": "span",
+      "props": { "value": { "path": "/statsTotalProducts" }, "className": "text-2xl font-bold text-on-surface leading-none" }
+    },
+    {
+      "id": "pageProductStatsTotalLabel",
+      "component": "span",
+      "props": { "value": "全部商品", "className": "text-xs text-on-surface-variant mt-1" }
+    },
+    {
+      "id": "pageProductStatsActive",
+      "component": "div",
+      "props": { "className": "bg-surface-container-highest rounded-container shadow-card p-4 flex items-center gap-3" },
+      "children": ["pageProductStatsActiveIcon", "pageProductStatsActiveInfo"]
+    },
+    {
+      "id": "pageProductStatsActiveIcon",
+      "component": "div",
+      "props": { "className": "w-10 h-10 rounded-full bg-success-container flex items-center justify-center shrink-0" },
+      "children": ["pageProductStatsActiveIconInner"]
+    },
+    {
+      "id": "pageProductStatsActiveIconInner",
+      "component": "Icon",
+      "props": { "name": "check-circle", "className": "w-5 h-5 text-success" }
+    },
+    {
+      "id": "pageProductStatsActiveInfo",
+      "component": "div",
+      "props": { "className": "flex flex-col" },
+      "children": ["pageProductStatsActiveValue", "pageProductStatsActiveLabel"]
+    },
+    {
+      "id": "pageProductStatsActiveValue",
+      "component": "span",
+      "props": { "value": { "path": "/statsActiveProducts" }, "className": "text-2xl font-bold text-on-surface leading-none" }
+    },
+    {
+      "id": "pageProductStatsActiveLabel",
+      "component": "span",
+      "props": { "value": "上架中", "className": "text-xs text-on-surface-variant mt-1" }
+    },
+    {
+      "id": "pageProductStatsInactive",
+      "component": "div",
+      "props": { "className": "bg-surface-container-highest rounded-container shadow-card p-4 flex items-center gap-3" },
+      "children": ["pageProductStatsInactiveIcon", "pageProductStatsInactiveInfo"]
+    },
+    {
+      "id": "pageProductStatsInactiveIcon",
+      "component": "div",
+      "props": { "className": "w-10 h-10 rounded-full bg-warning-container flex items-center justify-center shrink-0" },
+      "children": ["pageProductStatsInactiveIconInner"]
+    },
+    {
+      "id": "pageProductStatsInactiveIconInner",
+      "component": "Icon",
+      "props": { "name": "pause-circle", "className": "w-5 h-5 text-warning" }
+    },
+    {
+      "id": "pageProductStatsInactiveInfo",
+      "component": "div",
+      "props": { "className": "flex flex-col" },
+      "children": ["pageProductStatsInactiveValue", "pageProductStatsInactiveLabel"]
+    },
+    {
+      "id": "pageProductStatsInactiveValue",
+      "component": "span",
+      "props": { "value": { "path": "/statsInactiveProducts" }, "className": "text-2xl font-bold text-on-surface leading-none" }
+    },
+    {
+      "id": "pageProductStatsInactiveLabel",
+      "component": "span",
+      "props": { "value": "已下架", "className": "text-xs text-on-surface-variant mt-1" }
+    },
+    {
+      "id": "pageProductStatsSoldOut",
+      "component": "div",
+      "props": { "className": "bg-surface-container-highest rounded-container shadow-card p-4 flex items-center gap-3" },
+      "children": ["pageProductStatsSoldOutIcon", "pageProductStatsSoldOutInfo"]
+    },
+    {
+      "id": "pageProductStatsSoldOutIcon",
+      "component": "div",
+      "props": { "className": "w-10 h-10 rounded-full bg-error-container flex items-center justify-center shrink-0" },
+      "children": ["pageProductStatsSoldOutIconInner"]
+    },
+    {
+      "id": "pageProductStatsSoldOutIconInner",
+      "component": "Icon",
+      "props": { "name": "alert-circle", "className": "w-5 h-5 text-error" }
+    },
+    {
+      "id": "pageProductStatsSoldOutInfo",
+      "component": "div",
+      "props": { "className": "flex flex-col" },
+      "children": ["pageProductStatsSoldOutValue", "pageProductStatsSoldOutLabel"]
+    },
+    {
+      "id": "pageProductStatsSoldOutValue",
+      "component": "span",
+      "props": { "value": { "path": "/statsSoldOutProducts" }, "className": "text-2xl font-bold text-on-surface leading-none" }
+    },
+    {
+      "id": "pageProductStatsSoldOutLabel",
+      "component": "span",
+      "props": { "value": "已售罄", "className": "text-xs text-on-surface-variant mt-1" }
+    },
+    {
+      "id": "pageProductStatsLowStock",
+      "component": "div",
+      "props": { "className": "bg-surface-container-highest rounded-container shadow-card p-4 flex items-center gap-3" },
+      "children": ["pageProductStatsLowStockIcon", "pageProductStatsLowStockInfo"]
+    },
+    {
+      "id": "pageProductStatsLowStockIcon",
+      "component": "div",
+      "props": { "className": "w-10 h-10 rounded-full bg-critical-container flex items-center justify-center shrink-0" },
+      "children": ["pageProductStatsLowStockIconInner"]
+    },
+    {
+      "id": "pageProductStatsLowStockIconInner",
+      "component": "Icon",
+      "props": { "name": "package-minus", "className": "w-5 h-5 text-critical" }
+    },
+    {
+      "id": "pageProductStatsLowStockInfo",
+      "component": "div",
+      "props": { "className": "flex flex-col" },
+      "children": ["pageProductStatsLowStockValue", "pageProductStatsLowStockLabel"]
+    },
+    {
+      "id": "pageProductStatsLowStockValue",
+      "component": "span",
+      "props": { "value": { "path": "/statsLowStockProducts" }, "className": "text-2xl font-bold text-on-surface leading-none" }
+    },
+    {
+      "id": "pageProductStatsLowStockLabel",
+      "component": "span",
+      "props": { "value": "库存预警", "className": "text-xs text-on-surface-variant mt-1" }
+    },
+    {
+      "id": "pageProductContentCard",
+      "component": "div",
+      "props": { "className": "bg-surface-container-highest rounded-container shadow-card overflow-hidden" },
+      "children": ["pageProductToolbar", "pageProductTable"]
+    },
+    {
+      "id": "pageProductToolbar",
+      "component": "div",
+      "props": { "className": "flex items-center justify-between p-4 pb-0" },
+      "children": ["pageProductToolbarLeft", "pageProductToolbarRight"]
+    },
+    {
+      "id": "pageProductToolbarLeft",
+      "component": "div",
+      "props": { "className": "flex items-center gap-3 flex-1" },
+      "children": ["pageProductSearchInput", "pageProductCategorySelect", "pageProductStatusSelect"]
+    },
+    {
+      "id": "pageProductSearchInput",
+      "component": "Input",
+      "props": { "value": { "path": "/searchKeyword" }, "placeholder": "搜索商品名称或编号", "prefix": "search", "className": "w-64" }
+    },
+    {
+      "id": "pageProductCategorySelect",
+      "component": "Select",
+      "props": { "value": { "path": "/categoryFilter" }, "options": { "path": "/categoryOptions" }, "placeholder": "全部分类", "className": "w-40" }
+    },
+    {
+      "id": "pageProductStatusSelect",
+      "component": "Select",
+      "props": { "value": { "path": "/statusFilter" }, "options": { "path": "/statusOptions" }, "placeholder": "全部状态", "className": "w-32" }
+    },
+    {
+      "id": "pageProductToolbarRight",
+      "component": "div",
+      "props": { "className": "flex items-center gap-2" },
+      "children": ["pageProductBatchDeleteBtn", "pageProductAddBtn"]
+    },
+    {
+      "id": "pageProductBatchDeleteBtn",
+      "component": "Button",
+      "props": { "value": "批量删除", "icon": "trash-2", "color": "danger" }
+    },
+    {
+      "id": "pageProductAddBtn",
+      "component": "Button",
+      "props": { "value": "新增商品", "icon": "plus", "color": "primary", "onClick": { "action": "setState", "args": { "path": "/isAddDrawerOpen", "value": true } } }
+    },
+    {
+      "id": "pageProductTable",
+      "component": "Table",
+      "props": {
+        "rowKey": "id",
+        "dataSource": { "path": "/productList" },
+        "columns": { "path": "/tableColumns" },
+        "rowSelection": { "type": "checkbox", "selectedRowKeys": { "path": "/selectedRowKeys" } },
+        "pagination": { "pageSize": 10 }
+      },
+      "children": { "path": "/productList", "componentId": "pageProductRow" }
+    },
+    {
+      "id": "pageProductRow",
+      "component": "TableRow",
+      "children": ["pageProductRowCode", "pageProductRowName", "pageProductRowCategory", "pageProductRowPrice", "pageProductRowStock", "pageProductRowSales", "pageProductRowStatus", "pageProductRowCreatedAt", "pageProductRowAction"]
+    },
+    {
+      "id": "pageProductRowCode",
+      "component": "span",
+      "props": { "value": { "path": "code" }, "className": "text-sm text-on-surface font-mono" }
+    },
+    {
+      "id": "pageProductRowName",
+      "component": "span",
+      "props": { "value": { "path": "name" }, "className": "text-sm text-on-surface" }
+    },
+    {
+      "id": "pageProductRowCategory",
+      "component": "Tag",
+      "props": { "value": { "path": "category" }, "color": "brand", "variant": "solid" }
+    },
+    {
+      "id": "pageProductRowPrice",
+      "component": "span",
+      "props": { "value": { "path": "price" }, "className": "text-sm text-on-surface tabular-nums" }
+    },
+    {
+      "id": "pageProductRowStock",
+      "component": "span",
+      "props": { "value": { "path": "stock" }, "className": "text-sm text-on-surface tabular-nums" }
+    },
+    {
+      "id": "pageProductRowSales",
+      "component": "span",
+      "props": { "value": { "path": "sales" }, "className": "text-sm text-on-surface tabular-nums" }
+    },
+    {
+      "id": "pageProductRowStatus",
+      "component": "Tag",
+      "props": { "value": { "path": "statusLabel" }, "color": { "path": "statusColor" } }
+    },
+    {
+      "id": "pageProductRowCreatedAt",
+      "component": "span",
+      "props": { "value": { "path": "createdAt" }, "className": "text-sm text-on-surface-variant" }
+    },
+    {
+      "id": "pageProductRowAction",
+      "component": "div",
+      "props": { "className": "flex items-center justify-center gap-1" },
+      "children": ["pageProductRowActionEdit", "pageProductRowActionDelete"]
+    },
+    {
+      "id": "pageProductRowActionEdit",
+      "component": "Button",
+      "props": { "value": "编辑", "types": "link", "size": "small", "onClick": { "action": "setState", "args": { "path": "/isEditDrawerOpen", "value": true } } }
+    },
+    {
+      "id": "pageProductRowActionDelete",
+      "component": "Button",
+      "props": { "value": "删除", "types": "link", "size": "small", "color": "danger", "onClick": { "action": "setState", "args": { "path": "/isDeleteModalOpen", "value": true } } }
+    },
+    {
+      "id": "pageProductAddDrawer",
+      "component": "Drawer",
+      "props": {
+        "open": { "path": "/isAddDrawerOpen" },
+        "placement": "right",
+        "title": "新增商品",
+        "mask": true,
+        "onClose": { "action": "setState", "args": { "path": "/isAddDrawerOpen", "value": false } },
+        "footer": { "componentId": "pageProductAddDrawerFooter" }
+      },
+      "children": ["pageProductAddDrawerBody"]
+    },
+    {
+      "id": "pageProductAddDrawerBody",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-5 p-4" },
+      "children": ["pageProductAddFormCode", "pageProductAddFormName", "pageProductAddFormCategory", "pageProductAddFormPrice", "pageProductAddFormStock", "pageProductAddFormStatus", "pageProductAddFormDesc"]
+    },
+    {
+      "id": "pageProductAddFormCode",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductAddFormCodeLabel", "pageProductAddFormCodeInput"]
+    },
+    {
+      "id": "pageProductAddFormCodeLabel",
+      "component": "span",
+      "props": { "value": "商品编号", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductAddFormCodeInput",
+      "component": "Input",
+      "props": { "value": { "path": "/addFormCode" }, "placeholder": "如：DG-10004", "className": "w-full" }
+    },
+    {
+      "id": "pageProductAddFormName",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductAddFormNameLabel", "pageProductAddFormNameInput"]
+    },
+    {
+      "id": "pageProductAddFormNameLabel",
+      "component": "span",
+      "props": { "value": "商品名称", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductAddFormNameInput",
+      "component": "Input",
+      "props": { "value": { "path": "/addFormName" }, "placeholder": "请输入商品名称", "className": "w-full" }
+    },
+    {
+      "id": "pageProductAddFormCategory",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductAddFormCategoryLabel", "pageProductAddFormCategorySelect"]
+    },
+    {
+      "id": "pageProductAddFormCategoryLabel",
+      "component": "span",
+      "props": { "value": "所属类目", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductAddFormCategorySelect",
+      "component": "Select",
+      "props": { "value": { "path": "/addFormCategory" }, "placeholder": "请选择类目", "options": [{ "label": "数码电子", "value": "数码电子" }, { "label": "服装鞋帽", "value": "服装鞋帽" }, { "label": "食品饮料", "value": "食品饮料" }, { "label": "家居用品", "value": "家居用品" }, { "label": "美妆护肤", "value": "美妆护肤" }], "className": "w-full" }
+    },
+    {
+      "id": "pageProductAddFormPrice",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductAddFormPriceLabel", "pageProductAddFormPriceInput"]
+    },
+    {
+      "id": "pageProductAddFormPriceLabel",
+      "component": "span",
+      "props": { "value": "销售价格（元）", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductAddFormPriceInput",
+      "component": "InputNumber",
+      "props": { "value": { "path": "/addFormPrice" }, "placeholder": "请输入价格", "min": 0, "step": 0.01, "className": "w-full" }
+    },
+    {
+      "id": "pageProductAddFormStock",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductAddFormStockLabel", "pageProductAddFormStockInput"]
+    },
+    {
+      "id": "pageProductAddFormStockLabel",
+      "component": "span",
+      "props": { "value": "库存数量", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductAddFormStockInput",
+      "component": "InputNumber",
+      "props": { "value": { "path": "/addFormStock" }, "placeholder": "请输入库存", "min": 0, "step": 1, "className": "w-full" }
+    },
+    {
+      "id": "pageProductAddFormStatus",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductAddFormStatusLabel", "pageProductAddFormStatusSelect"]
+    },
+    {
+      "id": "pageProductAddFormStatusLabel",
+      "component": "span",
+      "props": { "value": "商品状态", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductAddFormStatusSelect",
+      "component": "Select",
+      "props": { "value": { "path": "/addFormStatus" }, "placeholder": "请选择状态", "options": [{ "label": "上架", "value": "active" }, { "label": "下架", "value": "inactive" }], "className": "w-full" }
+    },
+    {
+      "id": "pageProductAddFormDesc",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductAddFormDescLabel", "pageProductAddFormDescInput"]
+    },
+    {
+      "id": "pageProductAddFormDescLabel",
+      "component": "span",
+      "props": { "value": "商品描述", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductAddFormDescInput",
+      "component": "TextArea",
+      "props": { "value": { "path": "/addFormDesc" }, "placeholder": "请输入商品描述信息", "autoSize": true, "className": "w-full" }
+    },
+    {
+      "id": "pageProductAddDrawerFooter",
+      "component": "div",
+      "props": { "className": "flex justify-end gap-2" },
+      "children": ["pageProductAddDrawerCancel", "pageProductAddDrawerSubmit"]
+    },
+    {
+      "id": "pageProductAddDrawerCancel",
+      "component": "Button",
+      "props": { "value": "取消", "onClick": { "action": "setState", "args": { "path": "/isAddDrawerOpen", "value": false } } }
+    },
+    {
+      "id": "pageProductAddDrawerSubmit",
+      "component": "Button",
+      "props": { "value": "确认新增", "color": "primary", "onClick": { "action": "setState", "args": { "path": "/isAddDrawerOpen", "value": false } } }
+    },
+    {
+      "id": "pageProductEditDrawer",
+      "component": "Drawer",
+      "props": {
+        "open": { "path": "/isEditDrawerOpen" },
+        "placement": "right",
+        "title": "编辑商品",
+        "mask": true,
+        "onClose": { "action": "setState", "args": { "path": "/isEditDrawerOpen", "value": false } },
+        "footer": { "componentId": "pageProductEditDrawerFooter" }
+      },
+      "children": ["pageProductEditDrawerBody"]
+    },
+    {
+      "id": "pageProductEditDrawerBody",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-5 p-4" },
+      "children": ["pageProductEditFormCode", "pageProductEditFormName", "pageProductEditFormCategory", "pageProductEditFormPrice", "pageProductEditFormStock", "pageProductEditFormStatus", "pageProductEditFormDesc"]
+    },
+    {
+      "id": "pageProductEditFormCode",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductEditFormCodeLabel", "pageProductEditFormCodeInput"]
+    },
+    {
+      "id": "pageProductEditFormCodeLabel",
+      "component": "span",
+      "props": { "value": "商品编号", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductEditFormCodeInput",
+      "component": "Input",
+      "props": { "value": { "path": "/editFormCode" }, "placeholder": "请输入商品编号", "className": "w-full" }
+    },
+    {
+      "id": "pageProductEditFormName",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductEditFormNameLabel", "pageProductEditFormNameInput"]
+    },
+    {
+      "id": "pageProductEditFormNameLabel",
+      "component": "span",
+      "props": { "value": "商品名称", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductEditFormNameInput",
+      "component": "Input",
+      "props": { "value": { "path": "/editFormName" }, "placeholder": "请输入商品名称", "className": "w-full" }
+    },
+    {
+      "id": "pageProductEditFormCategory",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductEditFormCategoryLabel", "pageProductEditFormCategorySelect"]
+    },
+    {
+      "id": "pageProductEditFormCategoryLabel",
+      "component": "span",
+      "props": { "value": "所属类目", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductEditFormCategorySelect",
+      "component": "Select",
+      "props": { "value": { "path": "/editFormCategory" }, "placeholder": "请选择类目", "options": [{ "label": "数码电子", "value": "数码电子" }, { "label": "服装鞋帽", "value": "服装鞋帽" }, { "label": "食品饮料", "value": "食品饮料" }, { "label": "家居用品", "value": "家居用品" }, { "label": "美妆护肤", "value": "美妆护肤" }], "className": "w-full" }
+    },
+    {
+      "id": "pageProductEditFormPrice",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductEditFormPriceLabel", "pageProductEditFormPriceInput"]
+    },
+    {
+      "id": "pageProductEditFormPriceLabel",
+      "component": "span",
+      "props": { "value": "销售价格（元）", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductEditFormPriceInput",
+      "component": "InputNumber",
+      "props": { "value": { "path": "/editFormPrice" }, "placeholder": "请输入价格", "min": 0, "step": 0.01, "className": "w-full" }
+    },
+    {
+      "id": "pageProductEditFormStock",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductEditFormStockLabel", "pageProductEditFormStockInput"]
+    },
+    {
+      "id": "pageProductEditFormStockLabel",
+      "component": "span",
+      "props": { "value": "库存数量", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductEditFormStockInput",
+      "component": "InputNumber",
+      "props": { "value": { "path": "/editFormStock" }, "placeholder": "请输入库存", "min": 0, "step": 1, "className": "w-full" }
+    },
+    {
+      "id": "pageProductEditFormStatus",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductEditFormStatusLabel", "pageProductEditFormStatusSelect"]
+    },
+    {
+      "id": "pageProductEditFormStatusLabel",
+      "component": "span",
+      "props": { "value": "商品状态", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductEditFormStatusSelect",
+      "component": "Select",
+      "props": { "value": { "path": "/editFormStatus" }, "placeholder": "请选择状态", "options": [{ "label": "上架", "value": "active" }, { "label": "下架", "value": "inactive" }], "className": "w-full" }
+    },
+    {
+      "id": "pageProductEditFormDesc",
+      "component": "div",
+      "props": { "className": "flex flex-col gap-2" },
+      "children": ["pageProductEditFormDescLabel", "pageProductEditFormDescInput"]
+    },
+    {
+      "id": "pageProductEditFormDescLabel",
+      "component": "span",
+      "props": { "value": "商品描述", "className": "text-sm font-medium text-on-surface" }
+    },
+    {
+      "id": "pageProductEditFormDescInput",
+      "component": "TextArea",
+      "props": { "value": { "path": "/editFormDesc" }, "placeholder": "请输入商品描述信息", "autoSize": true, "className": "w-full" }
+    },
+    {
+      "id": "pageProductEditDrawerFooter",
+      "component": "div",
+      "props": { "className": "flex justify-end gap-2" },
+      "children": ["pageProductEditDrawerCancel", "pageProductEditDrawerSubmit"]
+    },
+    {
+      "id": "pageProductEditDrawerCancel",
+      "component": "Button",
+      "props": { "value": "取消", "onClick": { "action": "setState", "args": { "path": "/isEditDrawerOpen", "value": false } } }
+    },
+    {
+      "id": "pageProductEditDrawerSubmit",
+      "component": "Button",
+      "props": { "value": "保存修改", "color": "primary", "onClick": { "action": "setState", "args": { "path": "/isEditDrawerOpen", "value": false } } }
+    },
+    {
+      "id": "pageProductDeleteModal",
+      "component": "Modal",
+      "props": {
+        "open": { "path": "/isDeleteModalOpen" },
+        "title": "确认删除",
+        "mask": true,
+        "onClose": { "action": "setState", "args": { "path": "/isDeleteModalOpen", "value": false } },
+        "footer": { "componentId": "pageProductDeleteFooter" }
+      },
+      "children": ["pageProductDeleteBody"]
+    },
+    {
+      "id": "pageProductDeleteBody",
+      "component": "span",
+      "props": { "className": "text-sm text-on-surface", "value": "确定要删除该商品吗？删除后不可恢复。" }
+    },
+    {
+      "id": "pageProductDeleteFooter",
+      "component": "div",
+      "props": { "className": "flex justify-end gap-2" },
+      "children": ["pageProductDeleteCancel", "pageProductDeleteConfirm"]
+    },
+    {
+      "id": "pageProductDeleteCancel",
+      "component": "Button",
+      "props": { "value": "取消", "onClick": { "action": "setState", "args": { "path": "/isDeleteModalOpen", "value": false } } }
+    },
+    {
+      "id": "pageProductDeleteConfirm",
+      "component": "Button",
+      "props": { "value": "确认删除", "color": "danger", "onClick": { "action": "setState", "args": { "path": "/isDeleteModalOpen", "value": false } } }
+    }
+  ]
+}
+}

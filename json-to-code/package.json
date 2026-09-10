@@ -1,0 +1,28 @@
+{
+  "name": "json-to-code",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A2UI JSON → React 代码管线工程（新架构）",
+  "scripts": {
+    "start": "tsx cli.ts",
+    "dev": "tsx cli.ts",
+    "batch": "tsx jsonTest/run-batch.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run test/unit",
+    "test:e2e": "vitest run test/e2e",
+    "test:e2e:react": "vitest run test/e2e/react",
+    "test:e2e:ui": "vitest run test/e2e/ui"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "tsx": "^4.19.0",
+    "typescript": "~5.6.2",
+    "vitest": "^2.1.9"
+  }
+}
