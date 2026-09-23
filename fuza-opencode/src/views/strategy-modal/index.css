@@ -1,0 +1,23 @@
+.strategy-modal__title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.strategy-modal__desc {
+  margin: 0 0 var(--spacing-4);
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.strategy-modal__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  margin: 0;
+  padding: 2px var(--spacing-2);
+  border-radius: var(--radius-badge);
+  background: var(--surface-variant);
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}

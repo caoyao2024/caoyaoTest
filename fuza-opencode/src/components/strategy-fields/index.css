@@ -1,0 +1,76 @@
+/* Layer 3: 策略字段组样式
+   ⚠️ eview-react Form.Item 必须是 Form 直接子节点，故源项目的 .strategy-fields__grid div 栅格
+   与 .strategy-fields__advanced 二级容器已移除（改用 Form itemCol + Form.Item.col）。
+   分组标题 / 开关行作为装饰性直接子节点插在 Form.Item 之间（Form 文档允许）。 */
+
+.strategy-fields__group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+.strategy-fields__group-title {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+.strategy-fields__group-line {
+  flex: 1;
+  height: var(--border-width-thin);
+  background: var(--divider);
+}
+
+.strategy-fields__group-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: 2px var(--spacing-2);
+  border-radius: var(--radius-badge);
+  background: var(--primary-container);
+  color: var(--primary);
+  font: var(--font-caption-m);
+  white-space: nowrap;
+}
+
+.strategy-fields__checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-inline);
+}
+
+/* 开关行：Label + 说明在行首，Toggle 在行尾 */
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  border-radius: var(--radius-container);
+  background: var(--surface-container-high);
+}
+
+.switch-row--inset {
+  background: var(--surface-container-highest);
+}
+
+.switch-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5);
+  min-width: 0;
+}
+
+.switch-row__label {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.switch-row__desc {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
