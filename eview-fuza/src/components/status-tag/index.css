@@ -1,0 +1,44 @@
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: 0 var(--spacing-2);
+  border-radius: var(--radius-badge);
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  line-height: 20px;
+}
+
+.status-tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+}
+
+/* 软底状态色：底色用 *-container，文字用状态主色，暗色模式随 token 自动翻转 */
+.status-tag--success {
+  color: var(--success);
+  background: var(--success-container);
+}
+
+.status-tag--warning {
+  color: var(--critical);
+  background: var(--critical-container);
+}
+
+.status-tag--error {
+  color: var(--error);
+  background: var(--error-container);
+}
+
+.status-tag--info {
+  color: var(--info);
+  background: var(--info-container);
+}
+
+.status-tag--neutral {
+  color: var(--on-surface-variant);
+  background: var(--surface-variant);
+}
