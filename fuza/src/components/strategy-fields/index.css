@@ -1,0 +1,152 @@
+/* Layer 3: 策略字段组样式 — 高级参数二级容器 + 辅助组件样式 */
+
+.strategy-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.strategy-fields__group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.strategy-fields__group-title {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+.strategy-fields__group-line {
+  flex: 1;
+  height: var(--border-width-thin);
+  background: var(--divider);
+}
+
+.strategy-fields__group-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: 2px var(--spacing-2);
+  border-radius: var(--radius-badge);
+  background: var(--primary-container);
+  color: var(--primary);
+  font: var(--font-caption-m);
+}
+
+/* 高级参数面板 = 卡片内的二级区域（theme: Level 2 用 surface-variant） */
+.strategy-fields__advanced {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-inset);
+  border-radius: var(--radius-container);
+  background: var(--surface-variant);
+  animation: fields-expand 0.18s ease-out;
+}
+
+@keyframes fields-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.strategy-fields__checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-inline);
+}
+
+/* 开关行：Label + 说明在行首，Switch 在行尾 */
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  border-radius: var(--radius-container);
+  background: var(--surface-container-high);
+}
+
+.strategy-fields__advanced .switch-row,
+.switch-row--inset {
+  background: var(--surface-container-highest);
+}
+
+.switch-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5);
+  min-width: 0;
+}
+
+.switch-row__label {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.switch-row__desc {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+/* SpinnerWithUnit：Spinner + 单位后缀 */
+.spinner-with-unit {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.spinner-with-unit__input {
+  flex: 1;
+}
+
+.spinner-with-unit__text {
+  color: var(--on-surface-variant);
+  font: var(--font-body-m);
+  white-space: nowrap;
+}
+
+/* TimeRangePicker：两个原生 time 输入 + 分隔符 */
+.time-range-picker {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.time-range-picker__input {
+  flex: 1;
+  height: 32px;
+  padding: 0 var(--spacing-3);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background: var(--color-fill-subtle);
+  color: var(--color-text-primary);
+  font: var(--font-body-m);
+  caret-color: var(--brand-50);
+}
+
+.time-range-picker__input:focus {
+  border-color: var(--color-border-focus);
+  outline: none;
+}
+
+.time-range-picker__sep {
+  color: var(--color-text-primary);
+  font: var(--font-body-m);
+}
+
+@media (max-width: 1024px) {
+  .strategy-fields__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

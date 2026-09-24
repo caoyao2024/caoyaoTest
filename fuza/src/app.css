@@ -1,0 +1,163 @@
+/* 应用级基础样式 — 页面骨架与通用卡片容器 */
+
+.app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+/* ── 主体骨架：侧边导航 + 内容区 ── */
+.app-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  padding: var(--spacing-page);
+  background: var(--surface-container-lowest);
+}
+
+.app-main__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+}
+
+/* ── 页头：标题 + 主操作 ── */
+.app-page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  margin-bottom: var(--spacing-6);
+}
+
+.app-page-head__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5);
+  min-width: 0;
+}
+
+.app-page-head__crumb {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.app-page-head__title {
+  margin: 0;
+  color: var(--on-surface);
+  font: var(--font-headline-l);
+  font-weight: var(--font-weight-semibold);
+}
+
+.app-page-head__desc {
+  margin: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.app-page-head__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex: none;
+}
+
+.app-page-head__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  height: 32px;
+  padding: 0 var(--spacing-4);
+  border: var(--border-width-thin) solid var(--outline);
+  border-radius: var(--radius-action);
+  background: var(--surface-container-highest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.app-page-head__btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.app-page-head__btn--primary {
+  border-color: transparent;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.app-page-head__btn--primary:hover {
+  background: var(--primary-hover);
+  color: var(--on-primary);
+}
+
+/* ── 通用内容卡片（Level 1：最高层容器 + 卡片阴影，不加描边） ── */
+.panel-card {
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+}
+
+.panel-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  padding-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+  border-bottom: var(--border-width-thin) solid var(--divider);
+}
+
+.panel-card__titles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5);
+  min-width: 0;
+}
+
+.panel-card__title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: 0;
+  color: var(--on-surface);
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+}
+
+.panel-card__desc {
+  margin: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.panel-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex: none;
+}
+
+@media (max-width: 1024px) {
+  .app-main {
+    padding: var(--spacing-4);
+  }
+
+  .app-page-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
