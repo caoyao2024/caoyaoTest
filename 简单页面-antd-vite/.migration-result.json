@@ -1,0 +1,32 @@
+{
+  "status": "FAIL",
+  "round": 1,
+  "failures": [
+    "npm-install: @nce/@baize/@cloudsop packages only available on Huawei internal npm registry (cmc.centralrepo.rnd.huawei.com), DNS resolution fails from external network. Cannot install @nce/eview-react, @nce/icon-plus, @cloudsop/horizon, @baize/wdk, @hui/design-token.",
+    "npm-run-dev: Vite dev server starts successfully (775ms) but app cannot fully render without @nce/eview-react and @nce/icon-plus packages installed.",
+    "functional: Cannot verify full page rendering and dark mode toggle without eview-react components installed."
+  ],
+  "checks": {
+    "i18n-keys": "PASS",
+    "npm-install": "FAIL",
+    "npm-run-dev": "FAIL",
+    "functional": "0/5"
+  },
+  "migratedComponents": [
+    "ConfigProvider",
+    "Button",
+    "Dropdown",
+    "Modal",
+    "Table",
+    "Tooltip",
+    "Badge",
+    "Input",
+    "Switch",
+    "DatePicker",
+    "Drawer",
+    "Form",
+    "InputNumber",
+    "Select"
+  ],
+  "notes": "All 14 antd components migrated to eview-react. Code structure validated: (1) i18n-keys check PASS - no t(value,value) issues; (2) All 13 JSX files pass esbuild syntax validation (0 failures); (3) Vite dev server starts in 775ms with no syntax/import-path errors for local files - only @nce package resolution errors (expected). npm-install FAIL is an environment limitation: the .npmrc points @nce scope to Huawei internal registry (cmc.centralrepo.rnd.huawei.com) which is unreachable from external network. On Huawei internal network, npm install should succeed. Form mode conversion: useForm->useRef, validateFields->submit()+onSuccess callback, rules deleted message, itemCol for multi-column (removed div grid wrappers), validateAllChildComponent=true for TextField pattern validator, initialValues={} (empty object required). Icons migrated via 方案 C (icon-plus static imports): 13 L1-exact/semantic matches (Search, BellClock, ChevronDown/Up, Download, Plus, RefreshClockwise, Checkmark, ProhibitCircle, Trash, Copy, Ellipsis, Upload, Clock, Minus, SortUp/Down), 3 placeholders (gauge, file-spreadsheet, square-pen). message.success replaced with context-based DivMessage toast. Modal.confirm replaced with MessageDialog type=confirm. Dropdown menu replaced with state-controlled custom div menu (no eview-react Dropdown API reference available)."
+}

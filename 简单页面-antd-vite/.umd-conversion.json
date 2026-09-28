@@ -1,0 +1,60 @@
+{
+  "skill": "umd-to-antd-vite",
+  "version": "1.0",
+  "sourceFile": "index.page.html",
+  "projectName": "简单页面-antd-vite",
+  "antdComponents": {
+    "ConfigProvider": ["src/app.jsx", "src/main.jsx"],
+    "Button": ["src/views/page-heading/index.jsx", "src/views/metric-table/index.jsx", "src/views/header-bar/index.jsx", "src/views/metric-editor/index.jsx", "src/views/metric-filter/index.jsx"],
+    "Dropdown": ["src/views/metric-table/index.jsx"],
+    "Modal": ["src/views/metric-table/index.jsx"],
+    "Table": ["src/views/metric-table/index.jsx"],
+    "Tooltip": ["src/views/metric-table/index.jsx", "src/views/header-bar/index.jsx"],
+    "Badge": ["src/views/header-bar/index.jsx"],
+    "Input": ["src/views/header-bar/index.jsx", "src/views/metric-editor/index.jsx", "src/views/metric-filter/index.jsx"],
+    "Switch": ["src/views/header-bar/index.jsx"],
+    "DatePicker": ["src/views/metric-editor/index.jsx"],
+    "Drawer": ["src/views/metric-editor/index.jsx"],
+    "Form": ["src/views/metric-editor/index.jsx"],
+    "InputNumber": ["src/views/metric-editor/index.jsx"],
+    "Select": ["src/views/metric-editor/index.jsx", "src/views/metric-filter/index.jsx"]
+  },
+  "antdIcons": [],
+  "tokens": {
+    "rootVarCount": 455,
+    "darkVarCount": 186,
+    "cssFiles": [
+      "src/styles/tokens.css",
+      "src/styles/theme-dark.css",
+      "src/styles/font.css",
+      "src/styles/base.css"
+    ]
+  },
+  "srcFiles": [
+    "src/app.jsx",
+    "src/main.jsx",
+    "src/context.jsx",
+    "src/mock/metrics.js",
+    "src/shared/icon.jsx",
+    "src/components/panel-card/index.jsx",
+    "src/components/status-tag/index.jsx",
+    "src/components/category-chip/index.jsx",
+    "src/components/ratio-value/index.jsx",
+    "src/views/header-bar/index.jsx",
+    "src/views/page-heading/index.jsx",
+    "src/views/metric-filter/index.jsx",
+    "src/views/metric-table/index.jsx",
+    "src/views/metric-editor/index.jsx"
+  ],
+  "darkMode": {
+    "method": "css-vars + antd-darkAlgorithm",
+    "darkClass": ".dark on <html>",
+    "algorithm": "antd theme.darkAlgorithm"
+  },
+  "verification": {
+    "relativeImports": "PASS",
+    "npmInstall": "PASS",
+    "npmRunDev": "PASS"
+  },
+  "notes": "源项目无 src/,从 index.page.html 的 <script type=text/babel> 块按 /* ===== filename ===== */ 分隔注释拆分为独立 ES 模块。antd-zh.js locale 补丁未搬入(scaffold 用 antd 自带 zhCN)。icon.jsx 保留源项目原版(Lucide + icon-plus 在线),vite.config.js 已配 proxy。字体 woff2 + 用户头像图片复制到 public/assets/ 保持源项目路径。"
+}

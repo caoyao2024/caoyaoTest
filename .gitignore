@@ -15,3 +15,5 @@ yarn-error.log*
 .idea/
 .DS_Store
 Thumbs.db
+/简单页面-antd-vite/node_modules
+/简单页面-antd-vite/dist
