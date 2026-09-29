@@ -1,0 +1,109 @@
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 248px;
+  height: 100%;
+  padding: var(--spacing-2) 0 var(--spacing-3);
+  background: var(--surface-container-highest);
+  box-shadow: var(--shadow-r-sm);
+  transition: width 0.18s ease;
+  overflow: hidden auto;
+}
+
+.side-nav.is-collapsed {
+  width: 48px;
+}
+
+.side-nav__menu {
+  flex: 1;
+}
+
+/* ── 手写侧导航项（替代 antd Menu） ── */
+.side-nav__group {
+  margin-bottom: var(--spacing-1);
+}
+
+.side-nav__item,
+.side-nav__sub-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  padding: var(--spacing-1) var(--spacing-3);
+  border: none;
+  background: transparent;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.side-nav__item:hover,
+.side-nav__sub-item:hover {
+  background: var(--surface-container-high);
+  color: var(--on-surface);
+}
+
+.side-nav__item.active,
+.side-nav__sub-item.active {
+  background: var(--primary-container);
+  color: var(--primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.side-nav__item-icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.side-nav__item-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.side-nav__item-arrow {
+  flex: none;
+  font-size: 10px;
+  transition: transform 0.18s;
+}
+
+.side-nav__item-arrow.open {
+  transform: rotate(180deg);
+}
+
+.side-nav__sub {
+  margin-left: var(--spacing-4);
+}
+
+.side-nav.is-collapsed .side-nav__item-label,
+.side-nav.is-collapsed .side-nav__item-arrow,
+.side-nav.is-collapsed .side-nav__sub {
+  display: none;
+}
+
+.side-nav.is-collapsed .side-nav__item {
+  justify-content: center;
+  padding: var(--spacing-2) var(--spacing-1);
+}
+
+.side-nav__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: var(--spacing-2) var(--spacing-3) 0;
+  padding-top: var(--spacing-3);
+  border-top: var(--border-width-thin) solid var(--divider);
+  color: var(--on-surface-variant);
+  font: var(--font-caption-s);
+  white-space: nowrap;
+}
+
+.side-nav.is-collapsed .side-nav__footer {
+  justify-content: center;
+  margin: var(--spacing-2) var(--spacing-1) 0;
+}

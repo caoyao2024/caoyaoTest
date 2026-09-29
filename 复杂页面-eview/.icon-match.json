@@ -1,0 +1,646 @@
+{
+  "summary": {
+    "total": 31,
+    "matched": 18,
+    "unmatched": 13
+  },
+  "icons": [
+    {
+      "sourceName": "download",
+      "normalizedBase": "download",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "Download",
+      "componentName": "IconPlusIcPublicDownload",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/app.jsx",
+          "line": 65,
+          "original": "<Icon name=\"download\" size={14} />",
+          "replacement": "<IconPlusIcPublicDownload iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "plus",
+      "normalizedBase": "plus",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "Plus",
+      "componentName": "IconPlusIcPublicPlus",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/app.jsx",
+          "line": 73,
+          "original": "<Icon name=\"plus\" size={14} />",
+          "replacement": "<IconPlusIcPublicPlus iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "sliders-horizontal",
+      "normalizedBase": "SlidersHorizontal",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/components/strategy-fields/index.jsx",
+          "line": 68,
+          "original": "<Icon name=\"sliders-horizontal\" size={12} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={12} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 21,
+          "original": "<Icon name=\"sliders-horizontal\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-form/index.jsx",
+          "line": 33,
+          "original": "<Icon name=\"sliders-horizontal\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "layout-dashboard",
+      "normalizedBase": "LayoutDashboard",
+      "matchLevel": "L6",
+      "fuzzy": true,
+      "domain": "Public",
+      "catalogName": "Dashboard",
+      "componentName": "IconPlusIcPublicDashboard",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 16,
+          "original": "<Icon name=\"layout-dashboard\" size={16} />",
+          "replacement": "<IconPlusIcPublicDashboard iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 15,
+          "original": "<Icon name=\"layout-dashboard\" size={16} />",
+          "replacement": "<IconPlusIcPublicDashboard iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "scroll-text",
+      "normalizedBase": "ScrollText",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 17,
+          "original": "<Icon name=\"scroll-text\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 18,
+          "original": "<Icon name=\"scroll-text\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "network",
+      "normalizedBase": "network",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "HuaweiCloud",
+      "catalogName": "Network",
+      "componentName": "IconPlusIcHuaweiCloudNetwork",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 18,
+          "original": "<Icon name=\"network\" size={16} />",
+          "replacement": "<IconPlusIcHuaweiCloudNetwork iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 28,
+          "original": "<Icon name=\"network\" size={16} />",
+          "replacement": "<IconPlusIcHuaweiCloudNetwork iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "bell",
+      "normalizedBase": "bell",
+      "matchLevel": "L3",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "BellClock",
+      "componentName": "IconPlusIcPublicBellClock",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 19,
+          "original": "<Icon name=\"bell\" size={16} />",
+          "replacement": "<IconPlusIcPublicBellClock iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 80,
+          "original": "<Icon name=\"bell\" size={16} />",
+          "replacement": "<IconPlusIcPublicBellClock iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 38,
+          "original": "<Icon name=\"bell\" size={16} />",
+          "replacement": "<IconPlusIcPublicBellClock iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "chart-column",
+      "normalizedBase": "ChartColumn",
+      "matchLevel": "L6",
+      "fuzzy": true,
+      "domain": "Public",
+      "catalogName": "Chart",
+      "componentName": "IconPlusIcPublicChart",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 20,
+          "original": "<Icon name=\"chart-column\" size={16} />",
+          "replacement": "<IconPlusIcPublicChart iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 45,
+          "original": "<Icon name=\"chart-column\" size={16} />",
+          "replacement": "<IconPlusIcPublicChart iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "shield-check",
+      "normalizedBase": "ShieldCheck",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 33,
+          "original": "<Icon name=\"shield-check\" size={18} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 46,
+          "original": "<Icon name=\"shield-check\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "circle-question-mark",
+      "normalizedBase": "CircleQuestionMark",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 87,
+          "original": "<Icon name=\"circle-question-mark\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "log-out",
+      "normalizedBase": "LogOut",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "Ict",
+      "catalogName": "LogOut",
+      "componentName": "IconPlusIcIctLogOut",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx",
+          "line": 105,
+          "original": "<Icon name=\"log-out\" size={16} />",
+          "replacement": "<IconPlusIcIctLogOut iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "list-checks",
+      "normalizedBase": "ListChecks",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 22,
+          "original": "<Icon name=\"list-checks\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-table/index.jsx",
+          "line": 191,
+          "original": "<Icon name=\"list-checks\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "copy",
+      "normalizedBase": "copy",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "Copy",
+      "componentName": "IconPlusIcPublicCopy",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 23,
+          "original": "<Icon name=\"copy\" size={16} />",
+          "replacement": "<IconPlusIcPublicCopy iconSize={16} iconColor={['currentcolor']} />"
+        },
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-table/index.jsx",
+          "line": 141,
+          "original": "<Icon name=\"copy\" size={14} />",
+          "replacement": "<IconPlusIcPublicCopy iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "router",
+      "normalizedBase": "router",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 31,
+          "original": "<Icon name=\"router\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "users",
+      "normalizedBase": "users",
+      "matchLevel": "L5",
+      "fuzzy": true,
+      "domain": "Car",
+      "catalogName": "User",
+      "componentName": "IconPlusIcCarUser",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 32,
+          "original": "<Icon name=\"users\" size={16} />",
+          "replacement": "<IconPlusIcCarUser iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "hard-drive",
+      "normalizedBase": "HardDrive",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 33,
+          "original": "<Icon name=\"hard-drive\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "triangle-alert",
+      "normalizedBase": "TriangleAlert",
+      "matchLevel": "L6",
+      "fuzzy": true,
+      "domain": "Ict",
+      "catalogName": "Triangle",
+      "componentName": "IconPlusIcIctTriangle",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 41,
+          "original": "<Icon name=\"triangle-alert\" size={16} />",
+          "replacement": "<IconPlusIcIctTriangle iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "activity",
+      "normalizedBase": "activity",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 42,
+          "original": "<Icon name=\"activity\" size={16} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "settings",
+      "normalizedBase": "settings",
+      "matchLevel": "L5",
+      "fuzzy": true,
+      "domain": "Public",
+      "catalogName": "Setting",
+      "componentName": "IconPlusIcPublicSetting",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 47,
+          "original": "<Icon name=\"settings\" size={16} />",
+          "replacement": "<IconPlusIcPublicSetting iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "wifi",
+      "normalizedBase": "wifi",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "Wifi",
+      "componentName": "IconPlusIcPublicWifi",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx",
+          "line": 105,
+          "original": "<Icon name=\"wifi\" size={14} />",
+          "replacement": "<IconPlusIcPublicWifi iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "pencil-line",
+      "normalizedBase": "PencilLine",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-form/index.jsx",
+          "line": 40,
+          "original": "<Icon name=\"pencil-line\" size={12} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={12} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "external-link",
+      "normalizedBase": "ExternalLink",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-form/index.jsx",
+          "line": 45,
+          "original": "<Icon name=\"external-link\" size={14} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "info",
+      "normalizedBase": "info",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "Info",
+      "componentName": "IconPlusIcPublicInfo",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-form/index.jsx",
+          "line": 91,
+          "original": "<Icon name=\"info\" size={12} />",
+          "replacement": "<IconPlusIcPublicInfo iconSize={12} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "undo-2",
+      "normalizedBase": "Undo2",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-form/index.jsx",
+          "line": 98,
+          "original": "<Icon name=\"undo-2\" size={14} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "save",
+      "normalizedBase": "save",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-form/index.jsx",
+          "line": 110,
+          "original": "<Icon name=\"save\" size={14} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "circle-plus",
+      "normalizedBase": "CirclePlus",
+      "matchLevel": "L2",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "PlusCircle",
+      "componentName": "IconPlusIcPublicPlusCircle",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-modal/index.jsx",
+          "line": 50,
+          "original": "<Icon name=\"circle-plus\" size={16} />",
+          "replacement": "<IconPlusIcPublicPlusCircle iconSize={16} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "pencil",
+      "normalizedBase": "pencil",
+      "matchLevel": "UNMATCHED",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "TransverseRectangleTemplate",
+      "componentName": "IconPlusIcPublicTransverseRectangleTemplate",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-table/index.jsx",
+          "line": 135,
+          "original": "<Icon name=\"pencil\" size={14} />",
+          "replacement": "<IconPlusIcPublicTransverseRectangleTemplate iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "trash-2",
+      "normalizedBase": "Trash2",
+      "matchLevel": "SEMANTIC",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "Trash",
+      "componentName": "IconPlusIcPublicTrash",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-table/index.jsx",
+          "line": 160,
+          "original": "<Icon name=\"trash-2\" size={14} />",
+          "replacement": "<IconPlusIcPublicTrash iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "play",
+      "normalizedBase": "play",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "Play",
+      "componentName": "IconPlusIcPublicPlay",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-table/index.jsx",
+          "line": 228,
+          "original": "<Icon name=\"play\" size={14} />",
+          "replacement": "<IconPlusIcPublicPlay iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "pause",
+      "normalizedBase": "pause",
+      "matchLevel": "L1",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "Pause",
+      "componentName": "IconPlusIcPublicPause",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-table/index.jsx",
+          "line": 234,
+          "original": "<Icon name=\"pause\" size={14} />",
+          "replacement": "<IconPlusIcPublicPause iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    },
+    {
+      "sourceName": "refresh-cw",
+      "normalizedBase": "RefreshCw",
+      "matchLevel": "SEMANTIC",
+      "fuzzy": false,
+      "domain": "Public",
+      "catalogName": "RefreshClockwise",
+      "componentName": "IconPlusIcPublicRefreshClockwise",
+      "callSites": [
+        {
+          "file": "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-table/index.jsx",
+          "line": 240,
+          "original": "<Icon name=\"refresh-cw\" size={14} />",
+          "replacement": "<IconPlusIcPublicRefreshClockwise iconSize={14} iconColor={['currentcolor']} />"
+        }
+      ]
+    }
+  ],
+  "imports": {
+    "C:/Users/lingdan33/Downloads/复杂页面-eview/src/app.jsx": [
+      "IconPlusIcPublicDownload",
+      "IconPlusIcPublicPlus"
+    ],
+    "C:/Users/lingdan33/Downloads/复杂页面-eview/src/components/strategy-fields/index.jsx": [
+      "IconPlusIcPublicTransverseRectangleTemplate"
+    ],
+    "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/side-nav/index.jsx": [
+      "IconPlusIcCarUser",
+      "IconPlusIcHuaweiCloudNetwork",
+      "IconPlusIcIctTriangle",
+      "IconPlusIcPublicBellClock",
+      "IconPlusIcPublicChart",
+      "IconPlusIcPublicCopy",
+      "IconPlusIcPublicDashboard",
+      "IconPlusIcPublicSetting",
+      "IconPlusIcPublicTransverseRectangleTemplate",
+      "IconPlusIcPublicWifi"
+    ],
+    "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-form/index.jsx": [
+      "IconPlusIcPublicInfo",
+      "IconPlusIcPublicTransverseRectangleTemplate"
+    ],
+    "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/header-bar/index.jsx": [
+      "IconPlusIcHuaweiCloudNetwork",
+      "IconPlusIcIctLogOut",
+      "IconPlusIcPublicBellClock",
+      "IconPlusIcPublicChart",
+      "IconPlusIcPublicDashboard",
+      "IconPlusIcPublicTransverseRectangleTemplate"
+    ],
+    "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-table/index.jsx": [
+      "IconPlusIcPublicCopy",
+      "IconPlusIcPublicPause",
+      "IconPlusIcPublicPlay",
+      "IconPlusIcPublicRefreshClockwise",
+      "IconPlusIcPublicTransverseRectangleTemplate",
+      "IconPlusIcPublicTrash"
+    ],
+    "C:/Users/lingdan33/Downloads/复杂页面-eview/src/views/strategy-modal/index.jsx": [
+      "IconPlusIcPublicPlusCircle"
+    ]
+  }
+}

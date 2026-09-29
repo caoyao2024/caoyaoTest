@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "i18n-keys": "PASS",
+    "icon-match": "23/42 命中率（18/31 唯一名命中，5 处动态名保留 Icon shim 兜底）",
+    "relative-imports": "SKIPPED（上游已 PASS）",
+    "npm-install": "SKIPPED",
+    "npm-run-dev": "SKIPPED"
+  },
+  "notes": "用户要求跳过 npm 验证（@nce/eview-react 在内网源）。15 个 antd 组件全部替换完成：Form→Form(ref+onSuccess)、Input→TextField、InputNumber→Spinner、Select→Select、TimePicker→Spinner type=time、Checkbox.Group→CheckboxGroup、Switch→Toggle、Button→Button(status)/IconButton、Menu→手写、Segmented→SelectCard、Badge→Badge、Tooltip→TipBox/IconButton.tipText、message→DivMessage、Modal→Dialog、Table→Table。src/shared/icon.jsx 保留作未匹配动态图标兜底。"
+}

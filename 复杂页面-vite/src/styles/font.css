@@ -1,0 +1,21 @@
+/* font.css - 从 index.page.html 提取的 @font-face */
+
+@font-face { font-family: 'HarmonyOS Sans';
+  src: url('/assets/font/HarmonyOS_SansSC/Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face { font-family: 'HarmonyOS Sans';
+  src: url('/assets/font/HarmonyOS_SansSC/Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face { font-family: 'HarmonyOS Sans';
+  src: url('/assets/font/HarmonyOS_SansSC/Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face { font-family: 'HarmonyOS Sans';
+  src: url('/assets/font/HarmonyOS_SansSC/Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal; }

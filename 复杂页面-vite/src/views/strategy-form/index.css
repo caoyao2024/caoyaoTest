@@ -1,0 +1,40 @@
+.strategy-form {
+  padding: var(--spacing-inset);
+}
+
+.strategy-form__draft {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: 2px var(--spacing-2);
+  border-radius: var(--radius-badge);
+  background: var(--warning-container);
+  color: var(--critical);
+  font: var(--font-caption-m);
+  white-space: nowrap;
+}
+
+/* 打开高级参数时的提示行 */
+.strategy-form__hint {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  margin: 0 0 var(--spacing-4);
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.strategy-form__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  padding-top: var(--spacing-4);
+  border-top: var(--border-width-thin) solid var(--divider);
+}
+
+.strategy-form__footer-main {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}

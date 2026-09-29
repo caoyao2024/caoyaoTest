@@ -1,0 +1,118 @@
+/* Layer 3: 策略字段组样式 — 两列自适应栅格 + 高级参数二级容器 */
+
+.strategy-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.strategy-fields__group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.strategy-fields__group-title {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+.strategy-fields__group-line {
+  flex: 1;
+  height: var(--border-width-thin);
+  background: var(--divider);
+}
+
+.strategy-fields__group-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: 2px var(--spacing-2);
+  border-radius: var(--radius-badge);
+  background: var(--primary-container);
+  color: var(--primary);
+  font: var(--font-caption-m);
+}
+
+.strategy-fields__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--spacing-gutter);
+  row-gap: var(--spacing-0);
+}
+
+.strategy-fields__full {
+  grid-column: 1 / -1;
+}
+
+/* 高级参数面板 = 卡片内的二级区域（theme: Level 2 用 surface-variant） */
+.strategy-fields__advanced {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-inset);
+  border-radius: var(--radius-container);
+  background: var(--surface-variant);
+  animation: fields-expand 0.18s ease-out;
+}
+
+@keyframes fields-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.strategy-fields__checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-inline);
+}
+
+/* 开关行：Label + 说明在行首，Switch 在行尾 */
+.switch-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  border-radius: var(--radius-container);
+  background: var(--surface-container-high);
+}
+
+.strategy-fields__advanced .switch-row,
+.switch-row--inset {
+  background: var(--surface-container-highest);
+}
+
+.switch-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5);
+  min-width: 0;
+}
+
+.switch-row__label {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.switch-row__desc {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+@media (max-width: 1024px) {
+  .strategy-fields__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

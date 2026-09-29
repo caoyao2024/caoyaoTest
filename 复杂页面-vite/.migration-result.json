@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "i18n-keys": "PASS",
+    "npm-install": "SKIPPED",
+    "npm-run-dev": "SKIPPED",
+    "functional": "SKIPPED"
+  },
+  "notes": "依赖内网源（@nce/eview-react / @nce/icon-plus），按用户要求跳过 npm install/dev 验证。静态检查全通过：check-i18n-keys PASS（0 高危）、check-relative-imports PASS（全部解析）。15 个 antd 组件全部替换为 eview-react 对应组件或手写（Menu 手写）。图标走方案 C：match-icons.cjs 报告 14 命中 / 19 占位。Form 模式转换完成（useForm→useRef、validateFields→submit+onSuccess、itemCol+Form.Item.col）。Provider/i18n/body 类名按硬约束配置（IntlProvider 在 main.jsx 作为 ConfigProvider 直接子级，locale='zh'，合并 componentsLocales + 业务文案；body class='aui3_1' + 暗色切 aui3_1_dark + html .dark）。"
+}

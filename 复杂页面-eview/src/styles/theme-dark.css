@@ -1,0 +1,576 @@
+/* theme-dark.css - 从 index.page.html 提取的 .dark 覆盖 */
+/* 共 186 个变量，132 个 .dark 规则 */
+
+.dark { /* 品牌色 */
+  --color-brand: var(--brand-50);
+  --color-brand-hover: var(--brand-40);
+  --color-brand-focus: var(--brand-50);
+  --color-brand-active: var(--brand-60);
+  --color-brand-disabled: var(--brand-70);
+  /* 文本色 */
+  --color-text-primary: var(--gray-0);
+  --color-text-secondary: var(--gray-20);
+  --color-text-placeholder: var(--gray-40);
+  --color-text-disabled: var(--gray-40);
+  --color-text-inverse: var(--gray-0);
+  --color-text-inverse-disabled: rgb(from var(--gray-05) r g b / 0.3);
+  --color-text-on: var(--gray-0);
+  --color-link: var(--brand-30);
+  --color-link-hover: var(--brand-20);
+  --color-link-active: var(--brand-40);
+  --color-link-visited: var(--indigo-50);
+  --color-link-disabled: var(--brand-60);
+  /* 背景色 */
+  --color-bg-1: var(--gray-100);
+  --color-bg-2: var(--gray-90);
+  --color-bg-3: var(--gray-80);
+  --color-bg-4: var(--gray-70);
+  --color-bg-5: rgb(from var(--gray-05) r g b / 0.1);
+  --color-bg-6: rgb(from var(--gray-05) r g b / 0.1);
+  --color-bg-mask: rgb(from var(--gray-0) r g b / 0.7);
+  /* 填充色 */
+  --color-fill-disabled: var(--gray-60);
+  --color-hover: rgb(from var(--gray-05) r g b / 0.2);
+  --color-fill-disabled-subtle: rgb(from var(--gray-05) r g b / 0.2);
+  --color-fill: rgb(from var(--gray-05) r g b / 0.2);
+  --color-select: rgb(from var(--brand-50) r g b / 0.4);
+  --color-fill-subtle: rgb(from var(--gray-100) r g b / 0);
+  /* 图标色 */
+  --color-icon-primary: var(--gray-10);
+  --color-icon-secondary: var(--gray-30);
+  --color-icon-tertiary: var(--gray-50);
+  --color-icon-placeholder: var(--gray-40);
+  --color-icon-disabled: var(--gray-40);
+  --color-icon-inverse: var(--gray-0);
+  --color-icon-hover: var(--brand-20);
+  --color-icon-focus: var(--brand-30);
+  --color-icon-active: var(--brand-40);
+  /* 边框色 */
+  --color-border: var(--gray-50);
+  --color-border-hover: var(--gray-05);
+  --color-border-focus: var(--brand-40);
+  --color-border-active: var(--brand-80);
+  --color-border-disabled: var(--gray-60);
+  --color-border-separator: rgb(from var(--gray-05) r g b / 0.15);
+  --color-border-separator-sbutle: rgb(from var(--gray-05) r g b / 0.1);
+  /* 功能色-错误 */
+  --color-error: var(--red-40);
+  --color-error-hover: var(--red-30);
+  --color-error-active: var(--red-50);
+  --color-error-disabled: var(--red-80);
+  --color-error-subtle: var(--red-60);
+  --color-error-subtler: var(--red-80);
+  /* 功能色-告警 */
+  --color-alert: var(--orange-50);
+  --color-alert-hover: var(--orange-40);
+  --color-alert-active: var(--orange-60);
+  --color-alert-disabled: var(--orange-80);
+  --color-alert-subtle: var(--orange-60);
+  --color-alert-subtler: var(--orange-80);
+  /* 功能色-提醒 */
+  --color-warning: var(--yellow-40);
+  --color-warning-hover: var(--yellow-30);
+  --color-warning-active: var(--yellow-50);
+  --color-warning-disabled: var(--yellow-80);
+  --color-warning-bold: var(--yellow-60);
+  --color-warning-subtle: var(--yellow-60);
+  --color-warning-subtler: var(--yellow-80);
+  /* 功能色-成功 */
+  --color-success: var(--mint-60);
+  --color-success-hover: var(--mint-50);
+  --color-success-active: var(--mint-60);
+  --color-success-disabled: var(--mint-80);
+  --color-success-subtle: var(--mint-60);
+  --color-success-subtler: var(--mint-80);
+  /* 功能色-信息 */
+  --color-info-primary: var(--blue-50);
+  --color-info-primary-subtle: var(--blue-60);
+  --color-info-primary-subtler: var(--blue-80);
+  --color-info-secondary: var(--blue-60);
+  --color-info-secondary-hover: var(--blue-40);
+  --color-info-secondary-active: var(--blue-60);
+  --color-info-secondary-disabled: var(--blue-80);
+  --color-info-secondary-subtle: var(--blue-80);
+  /* 功能色-失效 */
+  --color-none: var(--gray-60);
+  --color-none-hover: rgb(from var(--gray-05) r g b / 0.2);
+  --color-none-active: var(--gray-50);
+  --color-none-disabled: var(--gray-90);
+  --color-none-subtle: var(--gray-90);
+  /* 推荐图表色 */
+  --color-chart-1: var(--blue-50);
+  --color-chart-2: var(--green-50);
+  --color-chart-3: var(--indigo-50);
+  --color-chart-4: var(--cyan-50);
+  --color-chart-5: var(--orange-40);
+  --color-chart-6: var(--brand-30);
+  --color-chart-7: var(--purple-60);
+  --color-chart-8: var(--rose-60);
+  --color-chart-9: var(--indigo-60);
+  --color-chart-10: var(--yellow-60);
+  --color-chart-11: var(--brand-60);
+  --color-chart-12: var(--green-60);
+  --color-chart-13: var(--purple-70);
+  --color-chart-14: var(--cyan-60);
+  --color-chart-15: var(--orange-70);
+  --color-chart-16: var(--rose-60);
+  --color-chart-17: var(--cyan-70);
+  --color-chart-18: var(--blue-60);
+  --color-chart-19: var(--green-70);
+  --color-chart-20: var(--indigo-70);
+  --color-chart-21: var(--rose-70);
+  --color-chart-22: var(--cyan-30);
+  --color-chart-23: var(--yellow-70);
+  --color-chart-24: var(--purple-50);
+  --color-chart-25: var(--mint-70);
+  /* 特殊场景 */
+  --color-scrollbar: var(--gray-60);
+  --color-scrollbar-hover: var(--gray-40);
+  --color-card-gray-disabled: rgb(from var(--gray-40) r g b / 0.05);
+  --color-card-white-disabled: rgb(from var(--gray-40) r g b / 0.1);
+  --color-sidenav-bg: var(--gray-70);
+  --color-table-header: rgb(from var(--gray-05) r g b / 0.1);
+  --color-table-zebra: rgb(from var(--gray-50) r g b / 0.15);
+  --color-message-bg-info: rgb(from var(--blue-50) r g b / 0.15);
+  --color-message-bg-success: rgb(from var(--mint-60) r g b / 0.15);
+  --color-message-bg-warning: rgb(from var(--yellow-40) r g b / 0.15);
+  --color-message-bg-alert: rgb(from var(--orange-50) r g b / 0.15);
+  --color-message-bg-error: rgb(from var(--red-40) r g b / 0.15);
+  /* ICT3.0 3.0告警色 */
+  --color-alert-urgent: #F43146;
+  --color-alert-primary: #EC6F1A;
+  --color-alert-secondary: #EEBA18;
+  --color-alert-success: #0D9458;
+  --color-alert-running: #5990FD;
+  --color-alert-none: #818181;
+  /* ICT3.1 表格 */
+  --color-table-1: rgb(from var(--brand-50) r g b / 0.2);
+  --color-table-2: rgb(from var(--brand-50) r g b / 0.4);
+  --color-table-sticky-1: var(--brand-80);
+  --color-table-sticky-2: var(--brand-70);
+  --color-table-sticky-bg: var(--gray-70);
+  --color-table-sticky-header: var(--gray-70);
+  /* 标签配色 */
+  --color-tag-text-purple: var(--purple-30);
+  --color-tag-bg-purple: rgb(from var(--purple-30) r g b / 0.15);
+  --color-tag-text-cyan: var(--cyan-40);
+  --color-tag-bg-cyan: rgb(from var(--cyan-50) r g b / 0.15);
+  --color-tag-text-rose: var(--rose-30);
+  --color-tag-bg-rose: rgb(from var(--rose-30) r g b / 0.15);
+  --color-tag-text-green: var(--green-50);
+  --color-tag-bg-green: rgb(from var(--green-40) r g b / 0.15);
+  --color-tag-text-pink: var(--pink-30);
+  --color-tag-bg-pink: rgb(from var(--pink-30) r g b / 0.15);
+  --color-tag-text-indigo: var(--indigo-30);
+  --color-tag-bg-indigo: rgb(from var(--indigo-30) r g b / 0.15);
+  --color-tag-text-none: var(--gray-30);
+  --color-tag-bg-none: rgb(from var(--gray-30) r g b / 0.15);
+  --color-tag-text-error: var(--red-40);
+  --color-tag-bg-error: rgb(from var(--red-30) r g b / 0.15);
+  --color-tag-text-alert: var(--orange-40);
+  --color-tag-bg-alert: rgb(from var(--orange-50) r g b / 0.15);
+  --color-tag-text-warning: var(--yellow-50);
+  --color-tag-bg-warning: rgb(from var(--yellow-30) r g b / 0.15);
+  --color-tag-text-success: var(--mint-40);
+  --color-tag-bg-success: rgb(from var(--mint-50) r g b / 0.15);
+  --color-tag-text-info: var(--blue-30);
+  --color-tag-bg-info: rgb(from var(--blue-40) r g b / 0.15);
+  /* Border */
+  --border: var(--gray-50);
+  --border-light: rgb(from var(--gray-05) r g b / 0.15);
+  --border-primary: var(--brand-30);
+  --border-success: var(--mint-20);
+  --border-warning: var(--yellow-20);
+  --border-alert: var(--orange-20);
+  --border-error: var(--red-20);
+  /* Icon */
+  --icon-primary: var(--brand-30);
+  --icon-success: var(--mint-30);
+  --icon-warning: var(--yellow-30);
+  --icon-critical: var(--orange-30);
+  --icon-alert: var(--orange-30);
+  --icon-error: var(--red-30);
+  /* Shadow (暗色模式下阴影更强) */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.5);
+  --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-r-sm: 1px 0 6px 0 rgba(0, 0, 0, 0.5);
+  --shadow-t-sm: 0 -1px 6px rgba(0, 0, 0, 0.5);
+  --shadow-l-base: -2px 0 12px 0 rgba(0, 0, 0, 0.5);
+  --shadow-l-md: -2px 0 24px 0 rgba(0, 0, 0, 0.5); }
+
+.dark .ant-divider { border-color: var(--color-border-separator); }
+
+.dark .ant-btn.ant-btn-color-default { border-color: var(--gray-50);
+  background-color: rgb(from var(--gray-100) r g b / 0); }
+
+.dark .ant-btn.ant-btn-color-default:not(:disabled):hover { background-color: rgb(from var(--gray-100) r g b / 0);
+  border-color: var(--gray-05); }
+
+.dark .ant-btn.ant-btn-color-default:not(:disabled):active { color: var(--color-text-primary);
+  border-color: var(--brand-40);
+  background-color: rgb(from var(--gray-100) r g b / 0); }
+
+.dark .ant-btn.ant-btn-color-default:disabled { background-color: rgb(from var(--gray-05) r g b / 0.2);
+  border-color: var(--gray-60); }
+
+.dark .ant-btn.ant-btn-color-primary:not(:disabled):hover { background-color: var(--brand-40); }
+
+.dark .ant-btn.ant-btn-color-primary:not(:disabled):active { background-color: var(--brand-60); }
+
+.dark .ant-btn.ant-btn-color-primary:disabled { color: rgb(from var(--gray-05) r g b / 0.3);
+  background-color: var(--brand-70);
+  border-color: var(--brand-70); }
+
+.dark .ant-btn.ant-btn-color-dangerous { background-color: var(--red-40); }
+
+.dark .ant-btn.ant-btn-color-dangerous:not(:disabled):hover { background-color: var(--red-30); }
+
+.dark .ant-btn.ant-btn-color-dangerous:not(:disabled):active { background-color: var(--red-50); }
+
+.dark .ant-btn.ant-btn-color-dangerous:disabled { color: var(--gray-0);
+  background-color: var(--red-80);
+  border-color: var(--red-80); }
+
+.dark .ant-btn.ant-btn-variant-link { color: var(--brand-30); }
+
+.dark .ant-btn.ant-btn-variant-link:not(:disabled):hover { color: var(--brand-20); }
+
+.dark .ant-btn.ant-btn-variant-link:not(:disabled):active { color: var(--brand-40); }
+
+.dark .ant-btn.ant-btn-icon-only { color: var(--gray-10); }
+
+.dark .ant-btn.ant-btn-icon-only:hover .anticon { color: var(--brand-20); }
+
+.dark .ant-btn.ant-btn-icon-only:active .anticon { color: var(--brand-40); }
+
+.dark .ant-input-textarea-affix-wrapper,
+.dark .ant-flex-align-center { border-color: var(--color-border); }
+
+.dark .ant-input-textarea-affix-wrapper.ant-input-affix-wrapper-focused,
+.dark .ant-flex-align-center.ant-input-affix-wrapper-focused { border-color: var(--brand-40); }
+
+.dark { /* InputNumber 组件样式（占位，待填充 token 映射） */ }
+
+.dark .ant-input-number { color: var(--gray-0);
+  height: 32px;
+  border-color: var(--gray-20);
+  box-shadow: none; }
+
+.dark .ant-input-number .ant-input-number-action-down { padding-left: var(--spacing-2);
+  padding-right: var(--spacing-2); }
+
+.dark .ant-input-number .ant-input-number-action-up { padding-left: var(--spacing-2);
+  padding-right: var(--spacing-2); }
+
+.dark .ant-input-number .ant-input-number-input { font-size: 14px; }
+
+.dark .ant-input-number-outlined:hover { border-color: var(--gray-0); }
+
+.dark .ant-input-number-outlined:active { border-color: var(--brand-40); }
+
+.dark .ant-input-number-inlined:active { border-color: var(--brand-40); }
+
+.dark .ant-input-number-focused { border: 1px solid var(--brand-40) !important; }
+
+.dark .ant-picker.ant-picker-css-var { --ant-color-border: var(--gray-50);
+  --ant-color-text-quaternary: var(--gray-30);
+  --ant-date-picker-active-border-color: var(--brand-40);
+  --ant-date-picker-active-shadow: 0 0 0 1px var(--brand-80);
+  --ant-date-picker-hover-border-color: var(--brand-40);
+  color: var(--color-text-primary); }
+
+.dark .ant-picker.ant-picker-css-var.ant-picker-focused { --ant-color-text-quaternary: var(--gray-10); }
+
+.dark .ant-picker.ant-picker-css-var.ant-picker-disabled { background-color: rgb(from var(--gray-05) r g b / 0.2);
+  border-color: var(--gray-20); }
+
+.dark .ant-picker-range .ant-picker-active-bar { background: rgb(from var(--brand-50) r g b / 0.4); }
+
+.dark .ant-radio { background-color: var(--gray-100);
+  border-color: var(--gray-50); }
+
+.dark .ant-radio-wrapper.ant-radio-wrapper-disabled .ant-radio { background-color: rgb(from var(--gray-05) r g b / 0.2);
+  border-color: var(--gray-50); }
+
+.dark .ant-radio-wrapper.ant-radio-wrapper-disabled .ant-radio.ant-radio-checked { background-color: var(--brand-70);
+  border-color: transparent; }
+
+.dark .ant-radio-wrapper.ant-radio-wrapper-disabled .ant-radio.ant-radio-checked::after { background-color: rgb(from var(--gray-05) r g b / 0.3); }
+
+.dark .ant-checkbox-wrapper:not(.ant-checkbox-wrapper-checked) .ant-checkbox { border-color: var(--gray-50);
+  background-color: var(--gray-100); }
+
+.dark .ant-checkbox-wrapper .ant-checkbox-disabled.ant-checkbox { background-color: rgb(from var(--gray-05) r g b / 0.2);
+  border-color: var(--gray-60) !important; }
+
+.dark .ant-checkbox-wrapper.ant-checkbox-wrapper-checked .ant-checkbox-disabled.ant-checkbox { background-color: var(--brand-70) !important;
+  border-color: transparent !important; }
+
+.dark .ant-checkbox-wrapper.ant-checkbox-wrapper-checked .ant-checkbox-disabled:after { border-color: rgb(from var(--gray-05) r g b / 0.3); }
+
+.dark .ant-checkbox-wrapper .ant-checkbox-indeterminate.ant-checkbox-indeterminate { border-color: transparent !important; }
+
+.dark .ant-checkbox-wrapper .ant-checkbox-indeterminate.ant-checkbox-indeterminate::after { background-color: rgb(from var(--gray-05) r g b / 0.3); }
+
+.dark .ant-checkbox-wrapper .ant-checkbox-indeterminate.ant-checkbox-indeterminate.ant-checkbox-disabled { background-color: var(--brand-70) !important; }
+
+.dark .ant-switch { background-color: var(--gray-60); }
+
+.dark .ant-switch.ant-switch-checked { background-color: var(--brand-50); }
+
+.dark .ant-switch.ant-switch-disabled { background-color: var(--gray-60); }
+
+.dark .ant-switch.ant-switch-disabled.ant-switch-checked { background-color: var(--brand-70); }
+
+.dark .ant-switch.ant-switch-disabled .ant-switch-handle::before { background-color: rgb(from var(--gray-05) r g b / 0.3); }
+
+.dark .ant-slider .ant-slider-rail { background-color: color-mix(in srgb, var(--gray-05) 15%, transparent); }
+
+.dark .ant-slider .ant-slider-track { background-color: var(--brand-50) !important; }
+
+.dark .ant-slider .ant-slider-handle::after { content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  font-size: 14px;
+  background-color: var(--gray-0);
+  box-shadow: 0 0 0 2px var(--brand-70);
+  outline: 0px solid transparent;
+  border-radius: 50%;
+  cursor: pointer; }
+
+.dark .ant-slider .ant-slider-mark .ant-slider-mark-text { font-size: 14px;
+  color: var(--gray-0); }
+
+.dark .ant-slider:hover .ant-slider-rail { background-color: color-mix(in srgb, var(--gray-05) 15%, transparent); }
+
+.dark .ant-slider:hover .ant-slider-handle::after { content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  font-size: 14px;
+  box-shadow: 0 0 0 2px var(--brand-50);
+  outline: 0px solid transparent;
+  border-radius: 50%;
+  cursor: pointer; }
+
+.dark .ant-slider:hover .ant-slider-handle:not(.ant-slider-handle-disabled)::after { box-shadow: 0 0 0 2px var(--brand-50); }
+
+.dark .ant-table .ant-table-content .ant-table-thead > tr > th { color: var(--color-text-primary);
+  background-color: var(--gray-70); }
+
+.dark .ant-table .ant-table-content .ant-table-thead > tr > th::before { background-color: var(--gray-50) !important; }
+
+.dark .ant-table .ant-table-content .ant-table-tbody > tr > td { color: var(--color-text-primary);
+  border-bottom: 1px solid rgb(from var(--gray-05) r g b / 0.1);
+  background-color: transparent; }
+
+.dark .ant-table .ant-table-content .ant-table-tbody .ant-table-row > .ant-table-cell-row-hover { background-color: rgb(from var(--brand-50) r g b / 0.4); }
+
+.dark .ant-table .ant-table-content .ant-table-tbody .ant-table-row.ant-table-row-selected > .ant-table-cell { background-color: rgb(from var(--brand-50) r g b / 0.2); }
+
+.dark .ant-table .ant-table-content .ant-table-tbody .ant-table-expanded-row .ant-table-cell { background-color: rgb(from var(--gray-05) r g b / 0.1); }
+
+.dark .ant-collapse .ant-collapse-item { border-color: var(--color-text-inverse-disabled); }
+
+.dark .ant-collapse .ant-collapse-item .ant-collapse-header { color: var(--color-text-primary);
+  background-color: rgb(from var(--gray-05) r g b / 0.2); }
+
+.dark .ant-collapse .ant-collapse-item .ant-collapse-header .ant-collapse-expand-icon { color: var(--gray-10); }
+
+.dark .ant-collapse .ant-collapse-item .ant-collapse-panel { border-color: var(--color-text-inverse-disabled); }
+
+.dark .ant-badge .ant-badge-count { border: 1px solid rgb(from var(--gray-0) r g b / 0);
+  box-shadow: 0 0 0 1px rgb(from var(--gray-0) r g b / 0); }
+
+.dark .ant-badge .ant-badge-dot { box-shadow: 0 0 0 1px rgb(from var(--gray-0) r g b / 0);
+  border: 1px solid rgb(from var(--gray-0) r g b / 0); }
+
+.dark .ant-progress.ant-progress-line.ant-progress-status-success .ant-progress-track { background-color: var(--mint-40); }
+
+.dark .ant-steps.ant-steps-panel .ant-steps-item.ant-steps-item-error { background-color: rgba(238, 0, 34, 0.4); }
+
+.dark .ant-steps.ant-steps-panel .ant-steps-item.ant-steps-item-error .ant-steps-panel-arrow path { fill: rgba(238, 0, 34, 0.4); }
+
+.dark { /* Pagination 组件样式（占位，待填充 token 映射） */ }
+
+.dark .ant-pagination { font-size: 14px; }
+
+.dark .ant-pagination .ant-pagination-total-text { color: var(--gray-0);
+  margin-right: var(--spacing-2); }
+
+.dark .ant-pagination .ant-pagination-prev,
+.dark .ant-pagination .ant-pagination-next { margin-right: var(--spacing-2);
+  height: 24px !important;
+  min-width: 24px;
+  margin-inline-end: var(--spacing-2); }
+
+.dark .ant-pagination .ant-pagination-prev .ant-pagination-item-link,
+.dark .ant-pagination .ant-pagination-next .ant-pagination-item-link { width: 24px !important; }
+
+.dark .ant-pagination .ant-pagination-prev .ant-pagination-item-link .anticon,
+.dark .ant-pagination .ant-pagination-next .ant-pagination-item-link .anticon { width: 10px;
+  height: 10px; }
+
+.dark .ant-pagination .ant-pagination-item { margin-right: var(--spacing-2);
+  color: var(--gray-0);
+  width: 32px;
+  height: 32px; }
+
+.dark .ant-pagination .ant-pagination-item a:hover { text-decoration: none;
+  background-color: color-mix(in srgb, var(--brand-05) 20%, transparent);
+  color: var(--gray-0); }
+
+.dark .ant-pagination .ant-pagination-item-active { background-color: color-mix(in srgb, var(--brand-50) 40%, transparent);
+  border: none;
+  font-weight: var(--font-weight-normal);
+  color: var(--gray-0) !important; }
+
+.dark .ant-pagination .ant-pagination-item-active a { background-color: color-mix(in srgb, var(--brand-50) 40%, transparent);
+  border: none;
+  font-weight: var(--font-weight-normal);
+  color: var(--gray-0) !important; }
+
+.dark .ant-pagination .ant-pagination-item-active:hover a { color: var(--gray-0);
+  background-color: color-mix(in srgb, var(--brand-50) 40%, transparent);
+  font-weight: var(--font-weight-normal); }
+
+.dark .ant-pagination .ant-pagination-options { margin-inline-start: 0; }
+
+.dark .ant-pagination .ant-pagination-options .ant-select-dropdown .ant-select-item .ant-select-item-option-content { font-weight: var(--font-weight-normal) !important; }
+
+.dark .ant-pagination .ant-pagination-options .ant-select-dropdown .ant-select-item-option-selected { background-color: var(--brand-05); }
+
+.dark .ant-pagination .ant-pagination-options .ant-pagination-options-quick-jumper input { color: var(--gray-90);
+  font-size: 14px; }
+
+.dark .ant-segmented-group .ant-segmented-item .ant-segmented-item-icon { color: var(--gray-30); }
+
+.dark .ant-segmented-group .ant-segmented-item:not(.ant-segmented-item-disabled):hover { color: var(--gray-0); }
+
+.dark .ant-segmented-group .ant-segmented-item:not(.ant-segmented-item-disabled):hover .ant-segmented-item-icon { color: var(--gray-0); }
+
+.dark .ant-segmented-group .ant-segmented-item.ant-segmented-item-disabled { color: var(--gray-40); }
+
+.dark .ant-segmented-group .ant-segmented-item.ant-segmented-item-disabled .ant-segmented-item-icon { color: var(--gray-40); }
+
+.dark .ant-segmented-group .ant-segmented-item-selected-text { color: var(--gray-0);
+  background: var(--brand-50); }
+
+.dark .ant-segmented-group .ant-segmented-item-selected-text .ant-segmented-item-icon { color: var(--gray-0); }
+
+.dark .ant-segmented-group .ant-segmented-item-selected-text:not(.ant-segmented-item-disabled):hover { color: var(--gray-0);
+  background: var(--brand-40); }
+
+.dark .ant-segmented-group .ant-segmented-item-selected-text.ant-segmented-item-disabled { color: var(--color-text-inverse-disabled);
+  background: var(--brand-70); }
+
+.dark .ant-segmented-group .ant-segmented-item-selected-text.ant-segmented-item-disabled .ant-segmented-item-icon { color: var(--color-text-inverse-disabled); }
+
+.dark .ant-drawer .ant-drawer-content-wrapper .ant-drawer-section { background-color: var(--gray-80); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container { position: relative;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: var(--radius-lg);
+  pointer-events: auto;
+  padding: var(--spacing-6); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-header { color: var(--gray-0);
+  margin-bottom: var();
+  padding: var(--ant-modal-header-padding);
+  border-bottom: var(--spacing-4); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-header .ant-modal-title { font-size: 20px;
+  color: var(--gray-0); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-body .ant-typography.ant-typography-secondary,
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-body .ant-typography.ant-typography-link.ant-typography-secondary { color: var(--gray-0); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-footer .ant-btn { border-radius: var(--radius-base);
+  height: 36px;
+  line-height: 36px;
+  border: 1px solid var(--gray-50);
+  color: var(--gray-0); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-footer .ant-btn span { font-size: 14px; }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-footer .ant-btn-default:hover { border: 1px solid var(--gray-05); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-footer .ant-btn-default:active { border: 1px solid var(--brand-40); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-footer .ant-btn-primary { background-color: var(--brand-50);
+  color: var(--gray-0); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-footer .ant-btn-primary:hover { background-color: var(--brand-40);
+  color: var(--gray-0); }
+
+.dark .ant-modal-root .ant-modal-wrap .ant-modal .ant-modal-container .ant-modal-footer .ant-btn-primary:active { background-color: var(--brand-60);
+  color: var(--gray-0); }
+
+.dark .ant-breadcrumb .ant-breadcrumb-item { color: var(--gray-20);
+  font-size: 14px; }
+
+.dark .ant-breadcrumb .ant-breadcrumb-item:last-child { color: var(--gray-0); }
+
+.dark .ant-breadcrumb .ant-breadcrumb-separator { width: 12px;
+  text-align: center;
+  margin-inline: var(--spacing-1);
+  color: var(--gray-40); }
+
+.dark .ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item:hover { background-color: var(--gray-70); }
+
+.dark .ant-menu-inline .ant-menu-submenu .ant-menu-submenu-title { padding-left: var(--spacing-3);
+  padding-right: var(--spacing-3);
+  color: var(--gray-0);
+  font-size: 14px;
+  background-color: var(--gray-90); }
+
+.dark .ant-menu-inline .ant-menu-submenu .ant-menu-submenu-title .ant-menu-item-icon { color: var(--gray-10); }
+
+.dark .ant-menu-inline .ant-menu-submenu .ant-menu-submenu-title:active { color: var(--gray-0);
+  background-color: color-mix(in srgb, var(--brand-50) 40%, transparent); }
+
+.dark .ant-menu-inline .ant-menu-submenu-selecte { color: var(--gray-0) !important;
+  background-color: color-mix(in srgb, var(--brand-50) 40%, transparent) !important; }
+
+.dark .ant-menu-item { font-size: 14px; }
+
+.dark .ant-menu-light .ant-menu-item-selected,
+.dark .ant-menu-light > .ant-menu .ant-menu-item-selected { color: var(--gray-0) !important;
+  background-color: color-mix(in srgb, var(--brand-50) 40%, transparent) !important; }
+
+.dark .ant-menu-item:active { color: var(--gray-0);
+  background-color: color-mix(in srgb, var(--brand-50) 40%, transparent) !important; }
+
+.dark .ant-menu-item:hover { color: var(--gray-0);
+  background-color: color-mix(in srgb, var(--gray-05) 20%, transparent); }
+
+.dark .ant-menu-horizontal .ant-menu-item { color: var(--gray-20);
+  font-size: 16px; }
+
+.dark .ant-menu-horizontal .ant-menu-item::after { border-bottom: 0 !important; }
+
+.dark .ant-menu-horizontal .ant-menu-item:hover { color: var(--gray-0); }
+
+.dark .ant-menu-horizontal .ant-menu-item:active { color: var(--brand-30);
+  background-color: transparent !important; }
+
+.dark .ant-menu-horizontal .ant-menu-item:hover::after { border-bottom: 0; }
+
+.dark .ant-menu-horizontal .ant-menu-item-selected { color: var(--brand-30) !important;
+  background-color: transparent !important; }
+
+.dark .ant-menu-horizontal .ant-menu-item-selected::after { border-bottom: 2px solid var(--brand-30) !important; }
+
+.dark .ant-form-item .ant-form-item-label > label { color: var(--gray-0); }
+
+.dark .ant-form-item-extra { color: var(--gray-40); }
+
+.dark .ant-form-item-explain-error { color: var(--red-40); }
+
+.dark .ant-form-item-explain-warning { color: var(--orange-50); }
