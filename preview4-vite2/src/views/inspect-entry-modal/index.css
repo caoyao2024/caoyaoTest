@@ -1,0 +1,49 @@
+/* 弹窗内纵向表单:标签在上方,单列自上而下排列 */
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+  padding-top: var(--spacing-0-5);
+}
+
+.entry-form__tip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-1-5);
+  margin: 0;
+  padding: var(--spacing-stack);
+  border-radius: var(--radius-base);
+  background: var(--info-container);
+  color: var(--on-info-container);
+  font: var(--font-body-s);
+}
+
+.entry-form__tip svg {
+  margin-top: 0.1875rem;
+  flex: none;
+}
+
+/* 实测值 + 单位:数值框 ≥128px(见工作台栅格说明),单位框固定宽度 */
+.entry-form__pair {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) 5rem;
+  gap: var(--spacing-inline);
+  align-items: center;
+  width: 100%;
+}
+
+.entry-form .field-row__control > .ant-select,
+.entry-form .field-row__control > .ant-input,
+.entry-form .field-row__control > .ant-input-affix-wrapper {
+  width: 100%;
+}
+
+.entry-form .field-row__control > .ant-radio-group {
+  width: 100%;
+}
+
+/* 弹窗内容过高时内部滚动,避免撑出视口 */
+.entry-modal .ant-modal-body {
+  max-height: 62vh;
+  overflow-y: auto;
+}

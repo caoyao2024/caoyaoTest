@@ -1,0 +1,71 @@
+.field-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1-5);
+  min-width: 0;
+}
+
+.field-row--full {
+  grid-column: 1 / -1;
+}
+
+.field-row__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-0-5);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+}
+
+.field-row__req {
+  color: var(--error);
+  font: var(--font-body-m);
+  line-height: 1;
+}
+
+.field-row__control {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  flex-wrap: wrap;
+}
+
+/* 独占一行的复合控件(确认项列表 / 附件区) */
+.field-row__control > .ack-list,
+.field-row__control > .attach {
+  flex: 1 1 100%;
+}
+
+.field-row__control > .ant-input,
+.field-row__control > .ant-input-affix-wrapper,
+.field-row__control > .ant-picker,
+.field-row__control > .ant-input-number,
+.field-row__control > .ant-select {
+  width: 100%;
+}
+
+.field-row__control > .ant-select-auto-complete {
+  width: 100%;
+}
+
+.field-row__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-1);
+  margin: 0;
+  color: var(--error);
+  font: var(--font-body-s);
+}
+
+.field-row__error svg {
+  margin-top: 0.25rem;
+  flex: none;
+}
+
+.field-row__help {
+  margin: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}

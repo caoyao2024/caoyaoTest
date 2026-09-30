@@ -1,0 +1,34 @@
+/* 应用级基础样式 — 页面骨架的 token 消费示例 */
+.app-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  overflow: hidden;
+}
+
+.app-body {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.app-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.app-main ::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.app-main ::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-full);
+  background: var(--outline-variant);
+}

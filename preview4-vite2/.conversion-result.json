@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS"
+  },
+  "notes": "check-relative-imports.cjs 一次性通过：all relative imports resolved。所有 ./src/... 已改为 ./...；9 个文件的 ../../../assets/shared/icon.jsx 已改为 ../../shared/icon.jsx（指向 scaffold 预制的 src/shared/icon.jsx）；context.jsx 补 aui3_1_dark 类切换；app.jsx 删除 antd ConfigProvider + locale，路径修正。"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "SKIP",
+    "i18n-keys": "PASS",
+    "npm-install": "SKIP"
+  },
+  "notes": "npm-install SKIP: @nce 内网源不可达（外网环境），仅静态检查 i18n-keys 生效。relative-imports SKIP: 上游 umd-to-antd-vite 已修正并验证 PASS。i18n-keys PASS: 项目硬编码中文（场景 A），无 react-intl t(x,x) 调用，无 MISSING_TRANSLATION 风险。"
+}
