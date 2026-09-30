@@ -1,20 +1,20 @@
 // App entry — ICT React page
 // Layering convention (one folder per component, kebab-case + index.jsx/index.css):
-//   Layer 1 global state  → context.jsx         (AppProvider: global state + dark mode toggle)
-//           form state    → use-form.js        (轻量表单状态：值/校验/必填，不依赖 antd Form)
-//   Layer 2 mock data     → mock/              (per-domain files, e.g. device.js / alarm.js)
-//   Layer 3 reusable      → components/{name}/ (cross-view, e.g. status-tag / form-field)
-//   Layer 4 views         → views/{name}/      (one per tab/section, e.g. work-order-form)
-//   Layer 5 layout        → app.jsx            (root container assembly)
+//   Layer 1 global state  → context.jsx           (AppProvider: global state + dark mode toggle)
+//           form state    → use-form.js           (轻量表单状态：值/校验/必填，不依赖 antd Form)
+//   Layer 2 mock data     → mock/                 (per-domain files, e.g. device.js / alarm.js)
+//   Layer 3 reusable      → components/{name}/    (cross-view, e.g. status-tag / form-field)
+//   Layer 4 views         → views/{name}/         (one per tab/section, e.g. work-order-form)
+//   Layer 5 layout        → app.jsx               (Provider + root container assembly)
 //
 // Styling: custom styles in component folder's index.css; prefer tokens for visual values.
-// Provider 体系（ConfigProvider + IntlProvider）在 main.jsx，AppProvider 在 main.jsx 包裹。
 
 import { useEffect, useRef, useState } from "react";
-import { IconPlusIcPublicAlert } from "@nce/icon-plus";
 import Dialog from "@nce/eview-react/Dialog";
 import DivMessage from "@nce/eview-react/DivMessage";
 import dayjs from "dayjs";
+import { IconPlusIcPublicAlert } from "@nce/icon-plus";
+import { AppProvider } from "./context.jsx";
 import { useForm } from "./use-form.js";
 import PageHeader from "./views/page-header/index.jsx";
 import WorkOrderForm from "./views/work-order-form/index.jsx";
@@ -43,28 +43,36 @@ function computeProgress(values) {
 
 function labelOf(list, value) {
   const hit = list.find(function (item) { return item.value === value; });
-  return hit ? hit.text : "—";
+  return hit ? hit.label : "—";
 }
 
 export default function App() {
+  return (
+    <AppProvider>
+      <WorkOrderPage />
+    </AppProvider>
+  );
+}
+
+function WorkOrderPage() {
   const form = useForm(orderSchema, orderInitialValues);
   const [progress, setProgress] = useState(0);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [summary, setSummary] = useState({});
+  const [notice, setNotice] = useState(null);
   const startNewRef = useRef(false);
-  const [toast, setToast] = useState({ key: 0, display: false, type: "success", text: "" });
 
   useEffect(function () {
     setProgress(computeProgress(form.values));
   }, [form.values]);
 
-  function notify(type, text) {
-    setToast({ key: toast.key + 1, display: true, type: type, text: text });
+  function notify(type, text, opts) {
+    setNotice(Object.assign({ key: Date.now(), type: type, text: text }, opts || {}));
   }
 
   function handleFill() {
     form.setValues(
-      Object.assign({}, sampleValues, { dueTime: dayjs().add(1, "day").hour(18).minute(0).second(0).toDate() })
+      Object.assign({}, sampleValues, { dueTime: dayjs().add(1, "day").hour(18).minute(0).second(0) })
     );
     notify("success", "已填充示例数据，请按实际情况调整后提交");
   }
@@ -92,7 +100,7 @@ export default function App() {
   function submit(startNew) {
     const result = form.validate();
     if (!result.ok) {
-      notify("error", "表单存在未填写或格式有误的必填项，请检查标红字段");
+      notify("error", "表单存在未填写或格式有误的必填项，请检查标红字段", { enableDisposeTimeOut: false });
       focusField(result.firstError);
       return;
     }
@@ -128,10 +136,6 @@ export default function App() {
 
   return (
     <div className="page-shell">
-      <DivMessage key={toast.key} display={toast.display} type={toast.type}>
-        {toast.text}
-      </DivMessage>
-
       <PageHeader
         onFill={handleFill}
         onReset={handleCancel}
@@ -139,6 +143,18 @@ export default function App() {
         onSubmit={function () { submit(false); }}
         onSubmitAndNew={function () { submit(true); }}
       />
+
+      {notice ? (
+        <DivMessage
+          key={notice.key}
+          display
+          type={notice.type}
+          text={notice.text}
+          enableDisposeTimeOut={notice.enableDisposeTimeOut !== false}
+          onClose={function () { setNotice(null); }}
+          style={{ margin: "0 var(--spacing-page)" }}
+        />
+      ) : null}
 
       <div className="page-body">
         <main className="page-form-card">
@@ -158,15 +174,16 @@ export default function App() {
       <Dialog
         isOpen={confirmOpen}
         title="提交工单确认"
-        size={[620, "auto"]}
         onClose={function () { setConfirmOpen(false); }}
+        size={[620, "auto"]}
+        style={{ maxHeight: "80vh" }}
         buttons={[
           { text: "再检查一下", onClick: function () { setConfirmOpen(false); } },
           { text: "确认提交", status: "primary", onClick: handleConfirmed },
         ]}
       >
         <p className="confirm-lead">
-          <IconPlusIcPublicAlert iconSize="1rem" iconColor={["currentcolor"]} />
+          <IconPlusIcPublicAlert iconSize="1rem" iconColor={['currentcolor']} />
           提交后工单将进入审批流，标题、优先级与关联设备不可直接修改。
         </p>
         <div className="confirm-grid">

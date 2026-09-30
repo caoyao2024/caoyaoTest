@@ -3,9 +3,9 @@
   "round": 1,
   "failures": [],
   "checks": {
-    "relative-imports": "PASS",
+    "relative-imports": "SKIP",
     "i18n-keys": "PASS",
     "npm-install": "SKIP"
   },
-  "notes": "用户要求跳过 npm install/dev（依赖内网源），仅静态检查 i18n-keys 生效。relative-imports 上游 umd-to-antd-vite 已验证 PASS，本次未新增 ./src/... 错误路径。i18n-keys 检查无 t(x,x) 高危调用（本项目无 Table render，业务文案硬编码中文，IntlProvider 仅管组件内置文案）。"
+  "notes": "i18n-keys PASS（无 t(x,x) 动态翻译调用，无 value≠msgId 字段）。relative-imports 跳过（上游 umd-to-antd-vite 已验证 PASS）。npm-install 跳过（用户明确说明产物依赖内网 npm 源，不执行 npm install/npm run dev）。所有 antd 组件已替换为 @nce/eview-react，antd 依赖已从 package.json 移除。"
 }

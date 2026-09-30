@@ -20,6 +20,15 @@
   color: var(--error);
 }
 
+.form-field__checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+  line-height: var(--line-height-base);
+}
+
 .form-section__badge {
   display: inline-flex;
   align-items: center;

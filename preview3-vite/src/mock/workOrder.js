@@ -1,28 +1,28 @@
-// Layer 2 — 工单填报域模拟数据
+﻿// Layer 2 — 工单填报域模拟数据
 
 export const workOrderTypes = [
-  { value: "fault", text: "设备故障报修" },
-  { value: "inspection", text: "巡检异常上报" },
-  { value: "change", text: "变更申请" },
-  { value: "expand", text: "资源扩容申请" },
-  { value: "security", text: "安全整改" },
-  { value: "maintain", text: "例行维护" },
+  { value: "fault", label: "设备故障报修" },
+  { value: "inspection", label: "巡检异常上报" },
+  { value: "change", label: "变更申请" },
+  { value: "expand", label: "资源扩容申请" },
+  { value: "security", label: "安全整改" },
+  { value: "maintain", label: "例行维护" },
 ];
 
 export const priorities = [
-  { value: "p0", text: "紧急 P0", tone: "error" },
-  { value: "p1", text: "高 P1", tone: "critical" },
-  { value: "p2", text: "中 P2", tone: "info" },
-  { value: "p3", text: "低 P3", tone: "muted" },
+  { value: "p0", label: "紧急 P0", tone: "error" },
+  { value: "p1", label: "高 P1", tone: "critical" },
+  { value: "p2", label: "中 P2", tone: "info" },
+  { value: "p3", label: "低 P3", tone: "muted" },
 ];
 
 export const idcList = [
-  { value: "hd1-a", text: "华东1号数据中心 · A 机房" },
-  { value: "hd1-b", text: "华东1号数据中心 · B 机房" },
-  { value: "hd2-c", text: "华东2号数据中心 · C 机房" },
-  { value: "hb1-a", text: "华北1号数据中心 · A 机房" },
-  { value: "hn1-d", text: "华南1号数据中心 · D 机房" },
-  { value: "edge-sh", text: "上海边缘节点机房" },
+  { value: "hd1-a", label: "华东1号数据中心 · A 机房" },
+  { value: "hd1-b", label: "华东1号数据中心 · B 机房" },
+  { value: "hd2-c", label: "华东2号数据中心 · C 机房" },
+  { value: "hb1-a", label: "华北1号数据中心 · A 机房" },
+  { value: "hn1-d", label: "华南1号数据中心 · D 机房" },
+  { value: "edge-sh", label: "上海边缘节点机房" },
 ];
 
 const deviceSeeds = [
@@ -60,54 +60,47 @@ export const devices = deviceSeeds.map(function (row) {
     idcName: row[3],
     room: row[4],
     rack: row[5],
-    text: row[0] + " · " + row[1],
+    label: row[0] + " · " + row[1],
     value: row[0],
   };
 });
 
 export const issueCategories = [
-  { value: "hardware", text: "硬件告警" },
-  { value: "network", text: "网络异常" },
-  { value: "power", text: "供电/制冷" },
-  { value: "os", text: "操作系统" },
-  { value: "db", text: "数据库" },
-  { value: "security", text: "安全事件" },
+  { value: "hardware", label: "硬件告警" },
+  { value: "network", label: "网络异常" },
+  { value: "power", label: "供电/制冷" },
+  { value: "os", label: "操作系统" },
+  { value: "db", label: "数据库" },
+  { value: "security", label: "安全事件" },
 ];
 
 export const impactScopes = [
-  { value: "single", text: "单台设备" },
-  { value: "rack", text: "单个机柜" },
-  { value: "row", text: "整排机架" },
-  { value: "room", text: "整个机房" },
-  { value: "multi-idc", text: "跨机房" },
-  { value: "business", text: "业务系统受影响" },
+  { value: "single", label: "单台设备" },
+  { value: "rack", label: "单个机柜" },
+  { value: "row", label: "整排机架" },
+  { value: "room", label: "整个机房" },
+  { value: "multi-idc", label: "跨机房" },
+  { value: "business", label: "业务系统受影响" },
 ];
 
 export const teams = [
-  { value: "net", text: "网络运维组" },
-  { value: "sys", text: "系统运维组" },
-  { value: "sec", text: "安全响应组" },
-  { value: "app", text: "应用支撑组" },
-  { value: "hw", text: "硬件保障组" },
-  { value: "dc", text: "数据中心现场组" },
+  { value: "net", label: "网络运维组" },
+  { value: "sys", label: "系统运维组" },
+  { value: "sec", label: "安全响应组" },
+  { value: "app", label: "应用支撑组" },
+  { value: "hw", label: "硬件保障组" },
+  { value: "dc", label: "数据中心现场组" },
 ];
 
 export const assignees = [
-  { value: "zhangwei", text: "张伟（网络运维组）", team: "net" },
-  { value: "liyan", text: "李岩（网络运维组）", team: "net" },
-  { value: "chenjing", text: "陈静（系统运维组）", team: "sys" },
-  { value: "zhaolei", text: "赵磊（系统运维组）", team: "sys" },
-  { value: "sunqi", text: "孙琪（安全响应组）", team: "sec" },
-  { value: "wangkai", text: "王凯（应用支撑组）", team: "app" },
-  { value: "hemin", text: "何敏（硬件保障组）", team: "hw" },
-  { value: "zhouyu", text: "周宇（数据中心现场组）", team: "dc" },
-];
-
-export const fillTips = [
-  { icon: "lightbulb", text: "工单标题请包含设备编号与故障现象，便于检索与分派。" },
-  { icon: "clock", text: "紧急优先级会触发值班短信通知，请确认影响范围后再选择。" },
-  { icon: "paperclip", text: "建议上传设备告警截图或日志文件，单个文件不超过 20MB。" },
-  { icon: "shield-check", text: "涉及生产变更的工单需同步抄送业务负责人。" },
+  { value: "zhangwei", label: "张伟（网络运维组）", team: "net" },
+  { value: "liyan", label: "李岩（网络运维组）", team: "net" },
+  { value: "chenjing", label: "陈静（系统运维组）", team: "sys" },
+  { value: "zhaolei", label: "赵磊（系统运维组）", team: "sys" },
+  { value: "sunqi", label: "孙琪（安全响应组）", team: "sec" },
+  { value: "wangkai", label: "王凯（应用支撑组）", team: "app" },
+  { value: "hemin", label: "何敏（硬件保障组）", team: "hw" },
+  { value: "zhouyu", label: "周宇（数据中心现场组）", team: "dc" },
 ];
 
 // 需要填写的必填字段（用于计算填写完成度）

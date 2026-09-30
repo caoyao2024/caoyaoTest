@@ -1,4 +1,4 @@
-// 工单表单校验规则（供 src/use-form.js 消费）
+﻿// 工单表单校验规则（供 src/use-form.js 消费）
 
 export const orderSchema = {
   title: [

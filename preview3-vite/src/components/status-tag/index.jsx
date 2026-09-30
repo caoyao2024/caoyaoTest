@@ -1,4 +1,4 @@
-// Layer 3 — 状态标签（跨视图复用）
+﻿// Layer 3 — 状态标签（跨视图复用）
 
 const STATUS_MAP = {
   processing: { label: "处理中", tone: "info" },

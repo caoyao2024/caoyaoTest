@@ -1,7 +1,7 @@
 ﻿// Layer 3 — 附件上传区（H5 自绘，替代 antd Upload）
 
 import { useRef, useState } from "react";
-import { IconPlusIcPublicCheckmark, IconPlusIcPublicClose, IconPlusIcPublicFiles, IconPlusIcPublicUpload } from "@nce/icon-plus";
+import { IconPlusIcPublicCheckmark, IconPlusIcPublicClose, IconPlusIcPublicFiles, IconPlusIcPublicUpload } from '@nce/icon-plus';
 import "./index.css";
 
 const SEED_FILES = [
@@ -70,7 +70,7 @@ export default function UploadDropzone({ maxSize = 20 }) {
           {files.map(function (f) {
             return (
               <li className="upload__item" key={f.uid}>
-                <IconPlusIcPublicFiles iconSize="1rem" iconColor={["currentcolor"]} className="upload__file-icon" />
+                <IconPlusIcPublicFiles iconSize="1rem" iconColor={['currentcolor']} className="upload__file-icon" />
                 <span className="upload__name">{f.name}</span>
                 <span className="upload__size">{f.size}</span>
                 <IconPlusIcPublicCheckmark iconSize="1rem" iconColor={['currentcolor']} className="upload__ok" />

@@ -28,6 +28,12 @@
     ],
     "InputNumber": [
       "src/views/work-order-form/index.jsx"
+    ],
+    "Modal": [
+      "src/app.jsx"
+    ],
+    "message": [
+      "src/app.jsx"
     ]
   },
   "antdIcons": [],
@@ -50,6 +56,7 @@
     "src/components/status-tag/index.jsx",
     "src/components/upload-dropzone/index.css",
     "src/components/upload-dropzone/index.jsx",
+    "src/app.jsx",
     "src/context.jsx",
     "src/mock/workOrder.js",
     "src/use-form.js",
@@ -62,14 +69,22 @@
     "src/views/work-order-form/schema.js"
   ],
   "darkMode": {
-    "method": "css-vars + antd-darkAlgorithm",
-    "darkClass": ".dark on <html>",
-    "algorithm": "antd theme.darkAlgorithm"
+    "method": "css-vars + aui3_1_dark body class",
+    "darkClass": ".dark on <html> + aui3_1_dark on <body>",
+    "algorithm": "none (antd ConfigProvider removed; eview-react ConfigProvider in main.jsx)"
   },
-  "verification": {
-    "relativeImports": "PASS",
-    "npmInstall": "SKIP",
-    "npmRunDev": "SKIP"
-  },
-  "notes": "用户要求跳过 npm install/dev 验证（最终产物依赖内网源）。icon.jsx 从 index.page.html 内联提取为 src/assets/shared/icon.jsx（ES 模块化，保留 Lucide 兜底 + icon-plus 在线）。app.css 搬入 src/styles/app.css。antd locale 由 main.jsx 的外层 ConfigProvider 提供（antd/locale/zh_CN），app.jsx 内层 ConfigProvider 只控制 theme.darkAlgorithm。"
+  "verification": { "relativeImports": "PASS" },
+  "migrationPlan": [
+    { "antd": "Progress", "category": "B", "eview": "手写", "keyDiffs": "无导出，手写进度条（strokeColor/strokeWidth 替代）", "ref": "handwrite-templates.md §9", "files": ["src/views/form-aside/index.jsx"] },
+    { "antd": "Button", "category": "A", "eview": "Button", "keyDiffs": "type→status；icon→leftIcon（有文字时）；文字搬 text= 不能用 children；纯图标按钮用 IconButton", "ref": "components/Button.md", "files": ["src/views/page-header/index.jsx", "src/views/work-order-form/index.jsx"] },
+    { "antd": "Input", "category": "A", "eview": "TextField", "keyDiffs": "onChange 首参是值不是 event；Input.TextArea→TextArea（onChange 首参也是值）；无 allowClear/prefix/rules", "ref": "components/TextField.md", "files": ["src/views/work-order-form/index.jsx"] },
+    { "antd": "Select", "category": "A", "eview": "Select", "keyDiffs": "options 字段 label→text；placeholder→defaultLabel；onChange 五参首参是值；enableClear 替代 allowClear", "ref": "components/Select.md", "files": ["src/views/work-order-form/index.jsx"] },
+    { "antd": "DatePicker", "category": "A", "eview": "DatePicker", "keyDiffs": "不要无条件回写 onChange 字符串到 value；用 defaultValue+ref.getValue() 或有效 Date 才回写", "ref": "components/DatePicker.md", "files": ["src/views/work-order-form/index.jsx"] },
+    { "antd": "Radio", "category": "A", "eview": "RadioGroup", "keyDiffs": "Group 用 data=[{text,value}]；需 isControlled 才受控；onChange 参数顺序有冲突用兼容写法", "ref": "components/RadioGroup.md", "files": ["src/views/work-order-form/index.jsx"] },
+    { "antd": "Checkbox", "category": "A", "eview": "Checkbox", "keyDiffs": "onChange 首参是值 (value, checked, event)；label 只支持 string；Checkbox.Group→CheckboxGroup 用 data=[{text,value}]", "ref": "components/Checkbox.md", "files": ["src/views/work-order-form/index.jsx"] },
+    { "antd": "InputNumber", "category": "A", "eview": "Spinner", "keyDiffs": "onChange 只在有效值触发；重置加 doNotFocusWhenValueUpdate；min/max/step/precision", "ref": "components/Spinner.md", "files": ["src/views/work-order-form/index.jsx"] },
+    { "antd": "Modal", "category": "C", "eview": "Dialog", "keyDiffs": "open→isOpen；footer→buttons=[{text,status,onClick}] 数组；onClose 不自动关闭需 setIsOpen(false)", "ref": "components/Dialog.md", "files": ["src/app.jsx"] },
+    { "antd": "message", "category": "C", "eview": "DivMessage", "keyDiffs": "无命令式 API，改为声明式 <DivMessage display type=\"success\">", "ref": "components/DivMessage.md", "files": ["src/app.jsx"] }
+  ],
+  "notes": "antd ConfigProvider removed from app.jsx (main.jsx has eview-react ConfigProvider + IntlProvider). Dark mode: context.jsx toggles .dark on <html> + aui3_1_dark on <body>. antd added to package.json for transitional business code."
 }

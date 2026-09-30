@@ -1,4 +1,4 @@
-// Layer 1 — 轻量表单状态（不依赖 antd Form / Form.Item）
+﻿// Layer 1 — 轻量表单状态（不依赖 antd Form / Form.Item）
 // 负责：值收集、字段校验、错误信息、必填判定
 // 约定 schema 结构：
 //   { fieldName: [rule, ...] }                     // 普通字段

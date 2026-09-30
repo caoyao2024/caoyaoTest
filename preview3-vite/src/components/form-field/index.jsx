@@ -1,4 +1,4 @@
-// Layer 3 — H5 表单字段容器（替代 antd Form.Item）
+﻿// Layer 3 — H5 表单字段容器（替代 antd Form.Item）
 // 结构：label + 控件 + 辅助说明 / 错误信息，全部为自绘 H5，间距由本组件自己控制
 import { IconPlusIcPublicAlert } from '@nce/icon-plus';
 import "./index.css";

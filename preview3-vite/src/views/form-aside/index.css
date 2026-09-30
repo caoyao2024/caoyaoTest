@@ -39,6 +39,23 @@
   color: var(--primary);
 }
 
+.aside-progress {
+  width: 100%;
+}
+
+.aside-progress__track {
+  height: 8px;
+  background: var(--hover, rgba(0, 0, 0, 0.05));
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.aside-progress__fill {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.2s;
+}
+
 .aside-card__link {
   font: var(--font-body-s);
   color: var(--interactive-link);
