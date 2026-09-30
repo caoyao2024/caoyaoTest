@@ -1,0 +1,352 @@
+.wo-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+  min-width: 0;
+}
+
+/* ---------- 表单网格 ---------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-gutter) var(--spacing-inset);
+}
+
+@media (max-width: 1200px) {
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- 巡检明细 ---------- */
+.inspect {
+  border-radius: var(--radius-container);
+  background: var(--surface-variant);
+  padding: var(--spacing-stack);
+  overflow-x: auto;
+}
+
+.inspect__head,
+.inspect__row {
+  display: grid;
+  grid-template-columns:
+    2.25rem
+    minmax(10.5rem, 1.5fr)
+    minmax(9rem, 1.2fr)
+    minmax(6.5rem, 0.85fr)
+    minmax(13.5rem, 1.15fr)
+    minmax(10rem, 1.3fr)
+    9.5rem;
+  gap: var(--spacing-stack);
+  align-items: flex-start;
+  min-width: 65.75rem;
+}
+
+.inspect__head {
+  padding: 0 0 var(--spacing-1-5);
+  border-bottom: var(--border-width-thin) solid var(--divider);
+}
+
+.inspect__col {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.inspect__col .ant-select,
+.inspect__col .ant-input,
+.inspect__col .ant-input-number {
+  width: 100%;
+}
+
+.inspect__head .inspect__col {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+  font-weight: var(--font-weight-medium);
+}
+
+.inspect__col--no {
+  align-items: center;
+}
+
+.inspect__col--op {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--spacing-inline);
+}
+
+.inspect__no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-base);
+  background: var(--surface-container-highest);
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.inspect__row {
+  padding: var(--spacing-stack) 0;
+  border-bottom: var(--border-width-thin) solid var(--divider);
+}
+
+.inspect__row:last-of-type {
+  border-bottom: none;
+}
+
+/* 实测值 + 单位 — 两个独立控件并排,保留清晰间距
+   注意:换肤层给 .ant-input-number 设了 min-width:128px !important(spinner 形态的
+   − / + 按钮内置在边框里),因此本列必须留出 ≥128px + 单位宽 + 间距,否则数值框会
+   溢出行轨道、压住单位框。 */
+.inspect__pair {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) 4.5rem;
+  gap: var(--spacing-inline);
+  align-items: center;
+}
+
+.inspect__pair .ant-select .ant-select-selection-item,
+.inspect__pair .ant-select .ant-select-selection-placeholder {
+  padding-inline-end: 1.125rem;
+}
+
+.inspect__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-inline);
+  padding: var(--spacing-8) 0;
+  color: var(--on-surface-variant);
+  font: var(--font-body-m);
+}
+
+.inspect__empty p {
+  margin: 0;
+}
+
+.inspect__alert {
+  margin-bottom: var(--spacing-stack);
+}
+
+.inspect__add {
+  margin-top: var(--spacing-stack);
+}
+
+/* ---------- 附件 ---------- */
+.attach {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-stack);
+}
+
+.attach__drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1-5);
+  padding: var(--spacing-6) var(--spacing-gutter);
+  border: var(--border-width-thin) dashed var(--outline);
+  border-radius: var(--radius-container);
+  background: var(--surface-variant);
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition: border-color 0.16s ease, color 0.16s ease;
+}
+
+.attach__drop:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.attach__drop-title {
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+}
+
+.attach__drop-hint {
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.attach__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+}
+
+.attach__actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: var(--interactive-link);
+  font: var(--font-body-s);
+  cursor: pointer;
+}
+
+.attach__count {
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.attach__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1-5);
+}
+
+.attach-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-stack);
+  padding: var(--spacing-1-5) var(--spacing-stack);
+  border-radius: var(--radius-base);
+  background: var(--surface-variant);
+}
+
+.attach-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  border-radius: var(--radius-base);
+  background: var(--surface-container-highest);
+  color: var(--primary);
+}
+
+.attach-item__main {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-inline);
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.attach-item__name {
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attach-item__size {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+  flex: none;
+}
+
+.attach-item__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  border: none;
+  border-radius: var(--radius-base);
+  background: transparent;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+}
+
+.attach-item__remove:hover {
+  background: var(--error-container);
+  color: var(--error);
+}
+
+.attach__empty {
+  margin: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+/* ---------- 确认项 ---------- */
+.ack-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1-5);
+}
+
+.ack-list .ant-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1-5);
+}
+
+.ack-list .ant-checkbox-wrapper {
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.ack-list .ant-checkbox-wrapper .ant-checkbox {
+  margin-top: 0.1875rem;
+}
+
+/* ---------- 底部操作条 ---------- */
+.form-footbar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  flex-wrap: wrap;
+  padding: var(--spacing-stack) var(--spacing-inset);
+  border-radius: var(--radius-container);
+  background: var(--surface-container-highest);
+  box-shadow: var(--shadow-md);
+}
+
+.form-footbar__status {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-stack);
+  flex-wrap: wrap;
+}
+
+.form-footbar__text {
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.form-footbar__text strong {
+  color: var(--primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.form-footbar__link {
+  color: var(--interactive-link);
+  font: var(--font-body-s);
+  cursor: pointer;
+}
+
+.form-footbar__ok {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: var(--success);
+  font: var(--font-body-s);
+}
+
+.form-footbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS"
+  },
+  "notes": "check-relative-imports.cjs 报告 all relative imports resolved（一轮通过）。"
+}

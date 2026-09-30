@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS",
+    "i18n-keys": "PASS",
+    "npm-install": "SKIP"
+  },
+  "notes": "外网环境无法访问 @nce 内网源，npm-install 降级为 SKIP；仅静态检查 i18n-keys 生效。relative-imports 由 umd-to-antd-vite 已验证 PASS。"
+}
