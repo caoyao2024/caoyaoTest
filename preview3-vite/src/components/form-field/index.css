@@ -1,0 +1,44 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-bottom: var(--spacing-gutter);
+}
+
+.form-field__label {
+  margin-bottom: var(--spacing-2);
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.form-field__label--required::before {
+  content: "*";
+  display: inline-block;
+  margin-inline-end: var(--spacing-0-5);
+  font-family: sans-serif;
+  line-height: 1;
+  color: var(--error);
+}
+
+.form-field__control {
+  min-width: 0;
+}
+
+.form-field__hint {
+  margin: var(--spacing-2) 0 0;
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.form-field__error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  margin: var(--spacing-2) 0 0;
+  font: var(--font-body-s);
+  color: var(--error);
+}
+
+.form-field__error .lucide {
+  flex: none;
+}

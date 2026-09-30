@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS",
+    "npm-install": "SKIP",
+    "npm-run-dev": "SKIP",
+    "functional": "N/A"
+  },
+  "notes": "用户要求跳过 npm install/dev 验证（最终产物依赖内网源）。relative-imports 由 check-relative-imports.cjs 验证通过。"
+}

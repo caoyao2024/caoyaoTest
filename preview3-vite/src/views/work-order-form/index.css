@@ -1,0 +1,69 @@
+/* 工单表单：布局与校验文案全部由 H5 承担（H5 form + FormField 组件），
+   此处只保留表单自身的骨架样式；字段级间距/标签/错误样式见
+   src/components/form-field/index.css，栅格见 src/components/form-section/index.css。 */
+
+.work-order-form {
+  display: block;
+}
+
+.form-link {
+  color: var(--interactive-link);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.form-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.form-required-mark {
+  color: var(--error);
+}
+
+.form-section__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  height: 1.5rem;
+  padding: 0 var(--spacing-2);
+  border-radius: var(--radius-base);
+  background: var(--success-container);
+  color: var(--success);
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-medium);
+}
+
+.work-order-form__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  padding: var(--spacing-3) var(--spacing-6);
+  background: var(--surface-variant);
+  border-top: var(--border-width-thin) solid var(--divider);
+}
+
+.work-order-form__footer-tip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.work-order-form__footer-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+@media (max-width: 900px) {
+  .work-order-form__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .work-order-form__footer-actions {
+    justify-content: flex-end;
+  }
+}

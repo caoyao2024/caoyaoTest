@@ -1,0 +1,75 @@
+{
+  "skill": "umd-to-antd-vite",
+  "version": "1.0",
+  "sourceFile": "index.page.html",
+  "projectName": "preview3-vite",
+  "antdComponents": {
+    "Progress": [
+      "src/views/form-aside/index.jsx"
+    ],
+    "Button": [
+      "src/views/page-header/index.jsx",
+      "src/views/work-order-form/index.jsx"
+    ],
+    "Input": [
+      "src/views/work-order-form/index.jsx"
+    ],
+    "Select": [
+      "src/views/work-order-form/index.jsx"
+    ],
+    "DatePicker": [
+      "src/views/work-order-form/index.jsx"
+    ],
+    "Radio": [
+      "src/views/work-order-form/index.jsx"
+    ],
+    "Checkbox": [
+      "src/views/work-order-form/index.jsx"
+    ],
+    "InputNumber": [
+      "src/views/work-order-form/index.jsx"
+    ]
+  },
+  "antdIcons": [],
+  "tokens": {
+    "rootVarCount": 455,
+    "darkVarCount": 180,
+    "cssFiles": [
+      "src/styles/tokens.css",
+      "src/styles/theme-dark.css",
+      "src/styles/font.css",
+      "src/styles/base.css"
+    ]
+  },
+  "srcFiles": [
+    "src/components/form-field/index.css",
+    "src/components/form-field/index.jsx",
+    "src/components/form-section/index.css",
+    "src/components/form-section/index.jsx",
+    "src/components/status-tag/index.css",
+    "src/components/status-tag/index.jsx",
+    "src/components/upload-dropzone/index.css",
+    "src/components/upload-dropzone/index.jsx",
+    "src/context.jsx",
+    "src/mock/workOrder.js",
+    "src/use-form.js",
+    "src/views/form-aside/index.css",
+    "src/views/form-aside/index.jsx",
+    "src/views/page-header/index.css",
+    "src/views/page-header/index.jsx",
+    "src/views/work-order-form/index.css",
+    "src/views/work-order-form/index.jsx",
+    "src/views/work-order-form/schema.js"
+  ],
+  "darkMode": {
+    "method": "css-vars + antd-darkAlgorithm",
+    "darkClass": ".dark on <html>",
+    "algorithm": "antd theme.darkAlgorithm"
+  },
+  "verification": {
+    "relativeImports": "PASS",
+    "npmInstall": "SKIP",
+    "npmRunDev": "SKIP"
+  },
+  "notes": "用户要求跳过 npm install/dev 验证（最终产物依赖内网源）。icon.jsx 从 index.page.html 内联提取为 src/assets/shared/icon.jsx（ES 模块化，保留 Lucide 兜底 + icon-plus 在线）。app.css 搬入 src/styles/app.css。antd locale 由 main.jsx 的外层 ConfigProvider 提供（antd/locale/zh_CN），app.jsx 内层 ConfigProvider 只控制 theme.darkAlgorithm。"
+}
