@@ -1,0 +1,16 @@
+/* side-nav — 侧边导航栏（展开 248px / 收起 64px） */
+.side-nav {
+  width: 248px;
+  flex-shrink: 0;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 0;
+  background: var(--surface-container-highest);
+  border-right: 1px solid var(--divider);
+  transition: width 0.2s ease;
+}
+
+.side-nav.collapsed {
+  width: 4rem;
+}

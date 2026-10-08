@@ -1,0 +1,5 @@
+/* step-customer — 步骤一：客户资料 */
+.step-customer {
+  display: flex;
+  flex-direction: column;
+}
