@@ -1,0 +1,12 @@
+.app-sider {
+  position: sticky;
+  top: 48px;
+  align-self: flex-start;
+  flex: none;
+  width: 248px;
+  height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: var(--spacing-3) 0;
+  background: var(--surface-container-highest);
+  border-right: var(--border-width-thin) solid var(--divider);
+}

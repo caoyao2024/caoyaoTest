@@ -1,0 +1,98 @@
+.rt-card {
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-inset);
+}
+
+.rt-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-gutter);
+}
+
+.rt-toolbar__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-stack);
+}
+
+.rt-card__title {
+  margin: 0;
+  font: var(--font-headline-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+}
+
+.rt-count {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.rt-toolbar__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-stack);
+}
+
+.rt-selection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  height: 2rem;
+  padding: 0 var(--spacing-3);
+  border-radius: var(--radius-action);
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  font: var(--font-body-s);
+}
+
+.rt-selection a {
+  color: var(--interactive-link);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.rt-selection a:hover {
+  color: var(--interactive-link-hover);
+}
+
+.rt-search {
+  width: 15rem;
+}
+
+/* ── 单元格 ── */
+.rt-link {
+  color: var(--interactive-link);
+  cursor: pointer;
+  text-decoration: none;
+  font: var(--font-body-m);
+}
+
+.rt-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.rt-plain {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.rt-plain--muted {
+  color: var(--on-surface-variant);
+}
+
+.rt-num {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+.rt-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}

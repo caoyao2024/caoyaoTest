@@ -1,0 +1,159 @@
+{
+  "skill": "umd-to-antd-vite",
+  "version": "1.0",
+  "sourceFile": "index.page.html",
+  "projectName": "preview6-vite",
+  "antdComponents": {
+    "Menu": [
+      "src/views/app-sidebar/index.jsx"
+    ],
+    "Input": [
+      "src/views/rule-form/index.jsx",
+      "src/views/rule-table/index.jsx"
+    ],
+    "Select": [
+      "src/views/rule-form/index.jsx",
+      "src/views/rule-table/index.jsx"
+    ],
+    "InputNumber": [
+      "src/views/rule-form/index.jsx"
+    ],
+    "Switch": [
+      "src/views/rule-form/index.jsx"
+    ],
+    "Segmented": [
+      "src/views/rule-form/index.jsx"
+    ],
+    "Button": [
+      "src/views/rule-form/index.jsx",
+      "src/views/rule-table/index.jsx"
+    ],
+    "message": [
+      "src/views/rule-form/index.jsx"
+    ],
+    "Table": [
+      "src/views/rule-table/index.jsx"
+    ]
+  },
+  "antdIcons": [],
+  "tokens": {
+    "rootVarCount": 455,
+    "darkVarCount": 180,
+    "cssFiles": [
+      "src/styles/tokens.css",
+      "src/styles/theme-dark.css",
+      "src/styles/font.css",
+      "src/styles/base.css"
+    ]
+  },
+  "srcFiles": [
+    "src/components/soft-tag/index.css",
+    "src/components/soft-tag/index.jsx",
+    "src/context.jsx",
+    "src/mock/rules.js",
+    "src/views/app-header/index.css",
+    "src/views/app-header/index.jsx",
+    "src/views/app-sidebar/index.css",
+    "src/views/app-sidebar/index.jsx",
+    "src/views/rule-form/index.css",
+    "src/views/rule-form/index.jsx",
+    "src/views/rule-table/index.css",
+    "src/views/rule-table/index.jsx"
+  ],
+  "darkMode": {
+    "method": "css-vars + aui3_1_dark class (antd darkAlgorithm removed in step 3)",
+    "darkClass": ".dark on <html> + aui3_1_dark on <body>"
+  },
+  "i18nScenario": {
+    "scenario": "A",
+    "reactIntl": {
+      "used": false,
+      "files": []
+    },
+    "i18next": {
+      "used": false,
+      "files": []
+    },
+    "antdLocaleImports": [],
+    "antdLocaleFiles": [],
+    "businessLocaleFiles": [],
+    "hasDayjs": false,
+    "wired": true
+  },
+  "verification": { "relativeImports": "PASS" },
+  "migrationPlan": [
+    {
+      "antd": "Menu",
+      "category": "A",
+      "eview": "Accordion",
+      "keyDiffs": "items→data（key/label→value/title）；selectedKeys→selectedValue 单 string；onClick(node)；expanded 语义反转（true=收起）",
+      "ref": "components/Accordion.md",
+      "files": ["src/views/app-sidebar/index.jsx"]
+    },
+    {
+      "antd": "Input",
+      "category": "A",
+      "eview": "TextField",
+      "keyDiffs": "onChange(value,oldValue,event) 首参是值；无 allowClear/prefix/rules；required 自带星号",
+      "ref": "components/TextField.md",
+      "files": ["src/views/rule-form/index.jsx", "src/views/rule-table/index.jsx"]
+    },
+    {
+      "antd": "Select",
+      "category": "A",
+      "eview": "Select",
+      "keyDiffs": "options label→text；placeholder→defaultLabel；onChange 五参；enableClear 替代 allowClear；mode=multiple→MultipleSelect（删 mode，onChange(value[],changeValue[],event)）",
+      "ref": "components/Select.md",
+      "files": ["src/views/rule-form/index.jsx", "src/views/rule-table/index.jsx"]
+    },
+    {
+      "antd": "InputNumber",
+      "category": "A",
+      "eview": "Spinner",
+      "keyDiffs": "onChange(value) 只在有效值触发；onInputError 接无效值；min/max/step 保留；无 addonAfter",
+      "ref": "components/Spinner.md",
+      "files": ["src/views/rule-form/index.jsx"]
+    },
+    {
+      "antd": "Switch",
+      "category": "A",
+      "eview": "Toggle",
+      "keyDiffs": "checked→toggled；onChange→onToggle(value)；data=[关,开]；taggledChildren（拼错属性名）",
+      "ref": "components/Toggle.md",
+      "files": ["src/views/rule-form/index.jsx"]
+    },
+    {
+      "antd": "Segmented",
+      "category": "A",
+      "eview": "SelectCard",
+      "keyDiffs": "options label→text；onChange(value,event)；disable（不是 disabled）；block 需用 CSS 实现",
+      "ref": "components/SelectCard.md",
+      "files": ["src/views/rule-form/index.jsx"]
+    },
+    {
+      "antd": "Button",
+      "category": "A",
+      "eview": "Button",
+      "keyDiffs": "type→status（default/primary/risk/text）；无 htmlType/danger/loading；纯图标按钮（type=text shape=circle 无 children）剥外壳走 <IconPlusIc* onClick title/>；有文字时 icon→leftIcon/rightIcon 且文字搬 text=",
+      "ref": "components/Button.md",
+      "files": ["src/views/rule-form/index.jsx", "src/views/rule-table/index.jsx"]
+    },
+    {
+      "antd": "message",
+      "category": "C",
+      "eview": "DivMessage",
+      "keyDiffs": "无命令式 API；message.success/error → 渲染 <DivMessage display type=success/error>，需 state 驱动 display",
+      "ref": "components/DivMessage.md",
+      "files": ["src/views/rule-form/index.jsx"]
+    },
+    {
+      "antd": "Table",
+      "category": "A",
+      "eview": "Table",
+      "keyDiffs": "dataSource→dataset；columns dataIndex→key；rowSelection→enableCheckBox+onRowCheck；pagination→enablePagination+pagingProps+onPageChange；render 取 row.rawData（非第 2 参）",
+      "ref": "components/Table.md",
+      "files": ["src/views/rule-table/index.jsx"]
+    }
+  ],
+  "notes": ""
+}

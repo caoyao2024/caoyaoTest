@@ -1,0 +1,32 @@
+/* 应用级基础样式 — 页面根节点、导航骨架与内容流 */
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+.app-body {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  min-height: 0;
+}
+
+/* 内容区：自上而下 —— 表单 → 表格 */
+.app-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+  padding: var(--spacing-page);
+}
+
+@media (max-width: 900px) {
+  .app-sider {
+    display: none;
+  }
+}

@@ -1,0 +1,123 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  height: 48px;
+  padding: 0 var(--spacing-page);
+  background: var(--surface-container-highest);
+  box-shadow: var(--shadow-sm);
+}
+
+.app-header__left {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-page);
+  height: 100%;
+  min-width: 0;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.app-header__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-action);
+  background: var(--primary-container);
+  color: var(--primary);
+}
+
+.app-header__title {
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+/* ── 原生顶部导航 ── */
+.topnav {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+.topnav__item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--spacing-4);
+  border-bottom: var(--border-width-thick) solid transparent;
+  font: var(--font-body-m);
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.topnav__item:hover {
+  color: var(--primary);
+}
+
+.topnav__item.is-active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.app-header__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.app-header__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: var(--radius-action);
+  background: transparent;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.app-header__icon-btn:hover {
+  background: var(--surface-variant);
+  color: var(--on-surface);
+}
+
+.app-header__divider {
+  width: var(--border-width-thin);
+  height: 1.25rem;
+  background: var(--divider);
+}
+
+.app-header__user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.app-header__avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.app-header__username {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}

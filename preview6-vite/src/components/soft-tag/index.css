@@ -1,0 +1,40 @@
+.soft-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  height: 1.5rem;
+  padding: 0 var(--spacing-2);
+  border-radius: var(--radius-badge);
+  font: var(--font-body-s);
+  white-space: nowrap;
+}
+
+.soft-tag--success {
+  color: var(--success);
+  background: var(--success-container);
+}
+
+.soft-tag--error {
+  color: var(--error);
+  background: var(--error-container);
+}
+
+.soft-tag--critical {
+  color: var(--critical);
+  background: var(--critical-container);
+}
+
+.soft-tag--info {
+  color: var(--info);
+  background: var(--info-container);
+}
+
+.soft-tag--brand {
+  color: var(--primary);
+  background: var(--primary-container);
+}
+
+.soft-tag--neutral {
+  color: var(--on-surface-variant);
+  background: var(--surface-variant);
+}
