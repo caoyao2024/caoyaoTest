@@ -1,0 +1,22 @@
+/* 应用级基础样式 — 顶部导航 + 侧边导航 + 内容区 三区骨架 */
+.app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+.app-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+}

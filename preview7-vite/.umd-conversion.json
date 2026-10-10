@@ -1,0 +1,120 @@
+{
+  "skill": "umd-to-antd-vite",
+  "version": "1.0",
+  "sourceFile": "index.page.html",
+  "projectName": "preview7-vite",
+  "antdComponents": {
+    "Input": [
+      "src/views/header-bar/index.jsx",
+      "src/views/order-wizard/step-access.jsx",
+      "src/views/order-wizard/step-confirm.jsx",
+      "src/views/order-wizard/step-customer.jsx",
+      "src/views/order-wizard/step-service.jsx"
+    ],
+    "Dropdown": [
+      "src/views/header-bar/index.jsx"
+    ],
+    "Badge": [
+      "src/views/header-bar/index.jsx"
+    ],
+    "Steps": [
+      "src/views/order-wizard/index.jsx"
+    ],
+    "Button": [
+      "src/views/order-wizard/index.jsx"
+    ],
+    "Progress": [
+      "src/views/order-wizard/index.jsx"
+    ],
+    "Select": [
+      "src/views/order-wizard/step-access.jsx",
+      "src/views/order-wizard/step-confirm.jsx",
+      "src/views/order-wizard/step-customer.jsx",
+      "src/views/order-wizard/step-service.jsx"
+    ],
+    "Radio": [
+      "src/views/order-wizard/step-access.jsx",
+      "src/views/order-wizard/step-confirm.jsx",
+      "src/views/order-wizard/step-service.jsx"
+    ],
+    "DatePicker": [
+      "src/views/order-wizard/step-access.jsx"
+    ],
+    "Checkbox": [
+      "src/views/order-wizard/step-confirm.jsx"
+    ],
+    "InputNumber": [
+      "src/views/order-wizard/step-service.jsx"
+    ],
+    "Switch": [
+      "src/views/order-wizard/step-service.jsx"
+    ],
+    "Menu": [
+      "src/views/side-nav/index.jsx"
+    ]
+  },
+  "antdIcons": [],
+  "tokens": {
+    "rootVarCount": 455,
+    "darkVarCount": 180,
+    "cssFiles": [
+      "src/styles/tokens.css",
+      "src/styles/theme-dark.css",
+      "src/styles/font.css",
+      "src/styles/base.css"
+    ]
+  },
+  "srcFiles": [
+    "src/components/form-field/index.css",
+    "src/components/form-field/index.jsx",
+    "src/context.jsx",
+    "src/mock/order.js",
+    "src/views/header-bar/index.css",
+    "src/views/header-bar/index.jsx",
+    "src/views/order-wizard/index.css",
+    "src/views/order-wizard/index.jsx",
+    "src/views/order-wizard/step-access.jsx",
+    "src/views/order-wizard/step-confirm.jsx",
+    "src/views/order-wizard/step-customer.jsx",
+    "src/views/order-wizard/step-service.jsx",
+    "src/views/side-nav/index.css",
+    "src/views/side-nav/index.jsx"
+  ],
+  "darkMode": {
+    "method": "css-vars + aui3_1_dark class (antd darkAlgorithm removed in step 3)",
+    "darkClass": ".dark on <html> + aui3_1_dark on <body>"
+  },
+  "i18nScenario": {
+    "scenario": "A",
+    "reactIntl": {
+      "used": false,
+      "files": []
+    },
+    "i18next": {
+      "used": false,
+      "files": []
+    },
+    "antdLocaleImports": [],
+    "antdLocaleFiles": [],
+    "businessLocaleFiles": [],
+    "hasDayjs": true,
+    "wired": true
+  },
+  "verification": { "relativeImports": "PASS" },
+  "migrationPlan": [
+    { "antd": "Input", "category": "A", "eview": "TextField", "keyDiffs": "onChange(value,oldValue,event) 首参是值；无 allowClear/prefix/onPressEnter；Input.TextArea→TextArea（maxLength 自带计数替代 showCount）；导入 @/shared/TextField", "ref": "components/TextField.md", "files": ["src/views/header-bar/index.jsx", "src/views/order-wizard/step-access.jsx", "src/views/order-wizard/step-confirm.jsx", "src/views/order-wizard/step-customer.jsx", "src/views/order-wizard/step-service.jsx"] },
+    { "antd": "Dropdown", "category": "A", "eview": "Dropdown", "keyDiffs": "menu.items[].icon/label 透传；trigger/placement 兼容；需验证 eview-react Dropdown 的 menu prop 是否与 antd 一致", "ref": "components/Dropdown.md", "files": ["src/views/header-bar/index.jsx"] },
+    { "antd": "Badge", "category": "A", "eview": "Badge", "keyDiffs": "count→content；dot；status 五态+text；max/showZero", "ref": "components/Badge.md", "files": ["src/views/header-bar/index.jsx"] },
+    { "antd": "Steps", "category": "C", "eview": "Steps", "keyDiffs": "current→currentStep（对应 data[].value 不是下标）；items→data=[{text,value}]；onClick(index) 只允许回跳", "ref": "components/Steps.md", "files": ["src/views/order-wizard/index.jsx"] },
+    { "antd": "Button", "category": "A", "eview": "Button", "keyDiffs": "type→status（default/primary/risk/text）；无 loading/htmlType/danger；文字用 text=；有图标时 leftIcon/rightIcon 且必须用 text 不能用 children", "ref": "components/Button.md", "files": ["src/views/order-wizard/index.jsx"] },
+    { "antd": "Progress", "category": "B", "eview": "手写", "keyDiffs": "无导出；手写 CSS 进度条", "ref": "handwrite-templates.md §9", "files": ["src/views/order-wizard/index.jsx"] },
+    { "antd": "Select", "category": "A", "eview": "Select", "keyDiffs": "options label→text；placeholder→defaultLabel；onChange(value,oldValue,text,oldText,event) 五参；enableClear；导入 @/shared/Select", "ref": "components/Select.md", "files": ["src/views/order-wizard/step-access.jsx", "src/views/order-wizard/step-confirm.jsx", "src/views/order-wizard/step-customer.jsx", "src/views/order-wizard/step-service.jsx"] },
+    { "antd": "Radio", "category": "A", "eview": "Radio/RadioGroup", "keyDiffs": "Group 用 data=[{text,value}]；需 isControlled 才受控；onChange 参数顺序有冲突用兼容写法", "ref": "components/Radio.md", "files": ["src/views/order-wizard/step-access.jsx", "src/views/order-wizard/step-confirm.jsx", "src/views/order-wizard/step-service.jsx"] },
+    { "antd": "DatePicker", "category": "A", "eview": "DatePicker", "keyDiffs": "不要无条件回写 onChange 字符串到 value（官方反例）；用 defaultValue+ref.getValue() 或有效 Date 才回写", "ref": "components/DatePicker.md", "files": ["src/views/order-wizard/step-access.jsx"] },
+    { "antd": "Checkbox", "category": "A", "eview": "Checkbox", "keyDiffs": "onChange(value,checked,event,additionalData)；onPreChange 拦截", "ref": "components/Checkbox.md", "files": ["src/views/order-wizard/step-confirm.jsx"] },
+    { "antd": "InputNumber", "category": "A", "eview": "Spinner", "keyDiffs": "onChange(value) 只在有效值触发；onInputError(value) 接无效值；min/max/step/precision", "ref": "components/Spinner.md", "files": ["src/views/order-wizard/step-service.jsx"] },
+    { "antd": "Switch", "category": "A", "eview": "Toggle", "keyDiffs": "checked→toggled；onChange→onToggle(value)；taggledChildren（拼错）；data=[关,开]", "ref": "components/Toggle.md", "files": ["src/views/order-wizard/step-service.jsx"] },
+    { "antd": "Menu", "category": "A", "eview": "Accordion", "keyDiffs": "items→data（key/label→value/title）；selectedKeys 数组→selectedValue 单 string；onClick({key})→onClick(node)；inlineCollapsed→expanded/onExpand（expanded={true}=收起，语义反转）", "ref": "components/Accordion.md", "files": ["src/views/side-nav/index.jsx"] }
+  ],
+  "notes": ""
+}

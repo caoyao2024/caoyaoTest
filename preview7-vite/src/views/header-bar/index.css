@@ -1,0 +1,136 @@
+/* 顶部导航栏 48px */
+.topbar {
+  flex: none;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 1.5rem;
+  background: var(--surface-container-highest);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 10;
+}
+
+.topbar-brand {
+  flex: none;
+  width: 16rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  box-sizing: border-box;
+}
+
+.brand-mark {
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-name {
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+.topbar-nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 1.5rem;
+}
+
+.topnav-item {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  height: 100%;
+  padding: 0 0.25rem;
+  font: var(--font-body-l);
+  color: var(--on-surface-variant);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.topnav-item:hover {
+  color: var(--primary);
+}
+
+.topnav-item.is-active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.topbar-tools {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.topbar-search {
+  width: 16rem;
+}
+
+.tool-icon {
+  color: var(--on-surface-variant);
+}
+
+.tool-icon:hover {
+  color: var(--primary);
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-action);
+}
+
+.topbar-user:hover {
+  background: var(--surface-variant);
+}
+
+.user-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.user-name {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.user-role {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.user-caret {
+  color: var(--on-surface-variant);
+}

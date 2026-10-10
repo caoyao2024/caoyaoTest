@@ -1,0 +1,49 @@
+/* 表单字段壳：标签居上，星号悬挂，校验文案绝对定位不占位 */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.field-label {
+  position: relative;
+  font: var(--font-body-m);
+  color: var(--on-surface);
+  line-height: var(--line-height-sm);
+}
+
+.field-label.is-required::before {
+  content: "*";
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--error);
+  font: var(--font-body-m);
+}
+
+.field-control {
+  position: relative;
+  min-width: 0;
+}
+
+.field-hint {
+  margin-top: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.field-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--error);
+  white-space: nowrap;
+}

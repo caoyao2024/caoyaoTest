@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "SKIP",
+    "i18n-keys": "PASS",
+    "npm-install": "SKIP"
+  },
+  "notes": "外网环境降级：npm install 跳过（@nce 内网依赖）；relative-imports 跳过（上游已验证通过）；i18n-keys 检查通过（0 个高危调用）"
+}
