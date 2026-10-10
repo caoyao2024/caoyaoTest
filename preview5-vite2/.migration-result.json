@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "i18n-keys": "PASS",
+    "npm-install": "SKIP"
+  },
+  "notes": "All 15 antd components replaced with @nce/eview-react equivalents across 10 files. Tag→@/shared/tag (wrapper), Input→TextField (@/shared/TextField), Select→Select (@/shared/Select), Radio.Group→RadioGroup with data or individual Radio with isControlled, Checkbox.Group→individual Checkbox with checked/onChange, InputNumber→Spinner, Button type→status + icon→leftIcon/rightIcon + children→text, Steps current→currentStep + items→data, Modal→Dialog (isOpen/buttons array), message→DivMessage (declarative with notice state), Menu→Accordion (data/selectedValue/expanded semantic inversion), Progress→handwritten div+CSS with tokens, Badge count→content, Tooltip→TipBox wrapping pattern. DatePicker uses type='datetime'+timeEmbedded+dateRange, onChange only writes valid Date. Select options label→text transformed inline. Icon components left untouched per Stage 3 scope. i18n scenario A (wired=true): IntlProvider in main.jsx with locale='zh', no antd locale imports. Zero remaining 'from antd' imports."
+}

@@ -1,0 +1,17 @@
+/* step-install — 步骤三：安装信息 */
+.step-install {
+  display: flex;
+  flex-direction: column;
+}
+
+.install-tip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-md);
+  background: var(--info-container);
+  color: var(--on-info-container);
+  font: var(--font-body-s);
+}

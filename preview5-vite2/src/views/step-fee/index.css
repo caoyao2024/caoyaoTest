@@ -1,0 +1,150 @@
+/* step-fee — 步骤四：费用确认 */
+.step-fee {
+  display: flex;
+  flex-direction: column;
+}
+
+.fee-panel {
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-container);
+  background: var(--surface-variant);
+  padding: var(--spacing-inset);
+}
+
+.fee-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.fee-panel-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.fee-panel-sub {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.fee-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.fee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--divider);
+}
+
+.fee-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.fee-label.fee-sub {
+  padding-left: 1rem;
+  color: var(--on-surface-variant);
+}
+
+.fee-note {
+  font: var(--font-caption-m);
+  font-style: normal;
+  color: var(--on-surface-variant);
+}
+
+.fee-value {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+.fee-value-muted {
+  color: var(--on-surface-variant);
+}
+
+.fee-row-total {
+  border-bottom: none;
+}
+
+.fee-row-total .fee-label,
+.fee-row-total .fee-value {
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.fee-row-final {
+  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--divider);
+  border-bottom: none;
+}
+
+.fee-row-final .fee-label {
+  font-weight: var(--font-weight-medium);
+}
+
+.fee-value-strong {
+  font: var(--font-headline-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary);
+}
+
+.fee-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: var(--radius-md);
+  background: var(--critical-container);
+  color: var(--on-critical-container);
+  font: var(--font-body-s);
+}
+
+/* 支付方式卡片 */
+.pay-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.pay-card {
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.pay-card:hover {
+  border-color: var(--primary);
+}
+
+.pay-card.selected {
+  border-color: var(--primary);
+  background: var(--primary-container);
+}
+
+.coupon-apply {
+  color: var(--interactive-link);
+  cursor: pointer;
+  font: var(--font-body-s);
+}
+
+.coupon-apply:hover {
+  color: var(--interactive-link-hover);
+}

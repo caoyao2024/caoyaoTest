@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS"
+  },
+  "notes": "Scaffold copied (25 files), token CSS extracted (455 root vars, 180 dark vars), 15 antd components scanned, 0 antd icons. All source src/ files moved to target src/, app.jsx rewritten (ConfigProvider/zhCN removed, paths fixed), context.jsx dark mode useEffect updated (aui3_1_dark on body), Icon imports fixed to @/shared/Icon (10 files), user.png copied to public/assets/uploads/, font.css paths fixed. i18n scenario A (hardcoded Chinese, wired=true). check-relative-imports.cjs: PASS."
+}

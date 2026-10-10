@@ -1,0 +1,223 @@
+/* order-aside — 受理侧栏 */
+.order-aside {
+  flex: 0 0 320px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+  position: sticky;
+  top: var(--spacing-page);
+}
+
+.aside-card {
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-inset);
+}
+
+.aside-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+}
+
+.aside-card-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.aside-progress-num {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--primary);
+}
+
+.aside-progress {
+  margin-top: 0.25rem;
+}
+
+.aside-progress-track {
+  height: 8px;
+  background: var(--surface-variant);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.aside-progress-fill {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.2s;
+}
+
+.aside-more {
+  font: var(--font-body-s);
+  color: var(--interactive-link);
+  cursor: pointer;
+}
+
+/* 进度步骤 */
+.progress-steps {
+  list-style: none;
+  margin: 0.875rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.progress-step-dot {
+  flex: 0 0 auto;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: var(--font-caption-s);
+  background: var(--surface-variant);
+  color: var(--on-surface-variant);
+  border: 1px solid var(--outline-variant);
+}
+
+.progress-step.done .progress-step-dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.progress-step.active {
+  color: var(--on-surface);
+  font-weight: var(--font-weight-medium);
+}
+
+.progress-step.active .progress-step-dot {
+  background: var(--primary-container);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* 资费预估 */
+.aside-fee-main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.125rem;
+  color: var(--primary);
+}
+
+.aside-fee-num {
+  font: var(--font-display-s);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+}
+
+.aside-fee-unit {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.aside-fee-rows {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--divider);
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.aside-fee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.aside-fee-row b {
+  color: var(--on-surface);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 办理须知 */
+.notice-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.notice-item {
+  display: flex;
+  gap: 0.5rem;
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+  line-height: 1.5;
+}
+
+.notice-icon {
+  flex: 0 0 auto;
+  margin-top: 0.1875rem;
+  color: var(--primary);
+}
+
+/* 最近工单 */
+.recent-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.recent-item {
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.recent-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.recent-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.recent-customer {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.recent-product {
+  margin-top: 0.125rem;
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.recent-meta {
+  margin-top: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: var(--font-caption-m);
+  color: var(--text-placeholder);
+}

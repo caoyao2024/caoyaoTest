@@ -1,0 +1,128 @@
+/* form-field — 表单字段骨架（标签 / 控件 / 校验文案） */
+.form-field-wrap {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+
+.form-field-wrap.is-top {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field-wrap.is-left {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.form-field-wrap.is-left > .form-label {
+  flex: 0 0 auto;
+  padding-top: 0.5rem;
+  min-width: 5.5rem;
+  text-align: left;
+}
+
+.form-label {
+  position: relative;
+  font: var(--font-body-m);
+  color: var(--on-surface-variant);
+  line-height: 1.5rem;
+}
+
+.form-label.required::before {
+  content: "*";
+  position: absolute;
+  left: -0.5rem;
+  /* 锚定标签首行文字行的垂直中心（行高 1.5rem 的一半） */
+  top: 0.75rem;
+  color: var(--error);
+  font: var(--font-body-m);
+  line-height: 1;
+  /* 星号字形本身偏高，下沉补偿其视觉重心，使其与标签文字垂直居中 */
+  transform: translateY(-0.24em);
+}
+
+/* 标签居左：行中心 = 上内边距 0.5rem + 行高一半 0.75rem */
+.form-field-wrap.is-left > .form-label.required::before {
+  top: 1.25rem;
+}
+
+.form-control {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.form-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--error);
+}
+
+.form-hint {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+/* ── 网格工具（复用同一控件列宽 / 组间距）── */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+  row-gap: 1.5rem;
+}
+
+.form-grid.cols-1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.form-grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.form-grid .span-2 {
+  grid-column: span 2;
+}
+
+.form-grid.cols-3 .span-2 {
+  grid-column: span 2;
+}
+
+.form-block {
+  margin-bottom: 1.5rem;
+}
+
+.form-block:last-child {
+  margin-bottom: 0;
+}
+
+.form-block-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+  margin-bottom: 1rem;
+}
+
+.form-block-title .form-block-bar {
+  width: 0.1875rem;
+  height: 1rem;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+}
+
+.form-block-desc {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+  margin-top: 0.25rem;
+}

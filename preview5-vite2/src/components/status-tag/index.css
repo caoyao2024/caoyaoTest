@@ -1,0 +1,9 @@
+/* status-tag — 状态标签微调 */
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-inline-end: 0;
+  border-radius: var(--radius-badge);
+  font: var(--font-body-s);
+}
