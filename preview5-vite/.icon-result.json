@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "total": 35,
+  "confirmed": 12,
+  "residualManual": 22,
+  "shimKept": 1,
+  "failures": [],
+  "checks": {
+    "match-icons": "PASS",
+    "no-stale-imports": "PASS"
+  },
+  "notes": "脚本 --apply 自动改写 12 处（11 字面量 confirmed + 1 sun/moon 扁平三元 confirmed）。脚本同时落地 3 个数据数组 render 站点（render 改 {expr}），但数据数组内未命中项为占位 IconPlusIcPublicTransverseRectangleTemplate，归入 residualManual。residualManual 22 处 = 19 处字面量/三元手改 + 3 处数据数组占位替换（topNavItems 5 项 / orderNotices 3 项 / sections 3 项 / sideMenuItems depth-0 4 项 = 共 15 个占位/字符串图标替换为真实 icon+ 组件）。shimKept 1 处 = status-tag:11 name={conf.icon}，conf=orderStatusMap[status]，status 来自组件 props（OBJ[runtimeKey] 真运行时），保留方案A shim。side-nav:13 原被脚本判为 runtime（it 是函数参数，脚本无法穿透函数调用边界追源），但 sideMenuItems 是静态数组，故手动转 B/C（mock 数据 depth-0 icon 改 JSX 元素 + render 改 it.icon 透传）。match-icons 二次扫描（无 --apply）：0 confirmed / 0 residual / 1 runtime shim，无新增 residual。grep <Icon 仅剩 status-tag:11。无 assets/shared/icon 旧路径残留。无 TransverseRectangleTemplate 占位残留。"
+}

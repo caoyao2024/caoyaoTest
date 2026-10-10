@@ -1,9 +1,8 @@
 import { useState, useEffect, createContext, useContext } from "react";
 
 // Layer 1: 全局状态 — 主题模式与业务状态
-// 换肤双轨驱动:
-//   1) .dark 挂 <html> → token 变量翻转（自定义样式跟随）
-//   2) aui3_1_dark 挂 <body> → eview 暗色 CSS 覆盖（antd 组件暗色留待下游替换后生效）
+// 换肤单轨驱动:isDark 只切换 <html> 的 .dark class;
+// 普通 H5 元素(token 四层)与 antd 组件(ant.css 换肤层)同源跟随,无需 React 参与换肤。
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {

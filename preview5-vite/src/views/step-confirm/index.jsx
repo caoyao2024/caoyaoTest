@@ -1,13 +1,8 @@
 // Layer 4: 步骤五 — 提交审核（信息核对 / 备注 / 协议确认）
-import TextArea from '@nce/eview-react/TextArea';
-import Checkbox from '@nce/eview-react/Checkbox';
-import {
-  IconPlusIcPublicIdcard,
-  IconPlusIcIctNodeResourcePackage,
-  IconPlusIcPublicMappinOnMap,
-  IconPlusIcPublicMoneyCircle,
-  IconPlusIcPublicCheckmark,
-} from '@nce/icon-plus';
+import dayjs from "dayjs";
+import { IconPlusIcDigitalPowerDpCheck, IconPlusIcPublicBox, IconPlusIcPublicIdcard, IconPlusIcPublicMappinOnMap, IconPlusIcPublicMoneyCircle } from '@nce/icon-plus';
+import TextArea from "@nce/eview-react/TextArea";
+import Checkbox from "@nce/eview-react/Checkbox";
 import {
   certTypes,
   productTypes,
@@ -22,14 +17,7 @@ import "./index.css";
 
 function pick(list, value) {
   const hit = list.find((x) => x.value === value);
-  return hit ? hit.text : "—";
-}
-
-function fmtDateTime(d) {
-  if (!d) return "—";
-  const dt = new Date(d);
-  const pad = (n) => String(n).padStart(2, "0");
-  return `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())} ${pad(dt.getHours())}:${pad(dt.getMinutes())}`;
+  return hit ? hit.label : "—";
 }
 
 export default function StepConfirm({ data, setField, errors, fee }) {
@@ -52,7 +40,7 @@ export default function StepConfirm({ data, setField, errors, fee }) {
       ].filter(Boolean),
     },
     {
-      icon: <IconPlusIcIctNodeResourcePackage iconSize="1rem" iconColor={['currentcolor']} />,
+      icon: <IconPlusIcPublicBox iconSize="1rem" iconColor={['currentcolor']} />,
       title: "产品订购",
       items: [
         ["产品类型", pick(productTypes, data.productType)],
@@ -67,7 +55,7 @@ export default function StepConfirm({ data, setField, errors, fee }) {
       title: "安装信息",
       items: [
         ["装机地址", data.installAddress || "—"],
-        ["预约时间", fmtDateTime(data.installTime)],
+        ["预约时间", data.installTime ? dayjs(data.installTime).format("YYYY-MM-DD HH:mm") : "—"],
         ["接入方式", pick(accessTypes, data.accessType)],
         ["光猫设备", pick(opticalModems, data.opticalModem)],
         ["安装方式", pick(installModes, data.installMode)],
@@ -89,7 +77,7 @@ export default function StepConfirm({ data, setField, errors, fee }) {
     <div className="step-confirm">
       <div className="step-intro">
         <span className="step-intro-icon">
-          <IconPlusIcPublicCheckmark iconSize="1.25rem" iconColor={['currentcolor']} />
+          <IconPlusIcDigitalPowerDpCheck iconSize="1.25rem" iconColor={['currentcolor']} />
         </span>
         <div>
           <h2 className="step-intro-title">提交审核</h2>
@@ -118,7 +106,7 @@ export default function StepConfirm({ data, setField, errors, fee }) {
         <div className="confirm-remark">
           <TextArea
             value={data.remark}
-            onChange={(targetValue) => setField("remark", targetValue)}
+            onChange={(value) => setField("remark", value)}
             placeholder="补充说明（选填）：如门禁方式、联系人偏好时段等"
             rows={3}
             maxLength={200}
@@ -126,20 +114,22 @@ export default function StepConfirm({ data, setField, errors, fee }) {
         </div>
       </div>
 
-      <div className={`confirm-agree${data.agree ? " checked" : ""}${errors.agree ? " has-error" : ""}`}>
+      <label className={`confirm-agree${data.agree ? " checked" : ""}${errors.agree ? " has-error" : ""}`}>
         <Checkbox
           value="agree"
           checked={data.agree}
           onChange={(_, checked) => setField("agree", checked)}
+          label={
+            <span className="confirm-agree-text">
+              我已阅读并同意
+              <a className="confirm-link">《电信业务入网服务协议》</a>
+              与
+              <a className="confirm-link">《个人信息处理规则》</a>
+              ，确认以上信息真实有效。
+            </span>
+          }
         />
-        <span className="confirm-agree-text">
-          我已阅读并同意
-          <a className="confirm-link">《电信业务入网服务协议》</a>
-          与
-          <a className="confirm-link">《个人信息处理规则》</a>
-          ，确认以上信息真实有效。
-        </span>
-      </div>
+      </label>
       {errors.agree ? <div className="confirm-agree-error">{errors.agree}</div> : null}
     </div>
   );

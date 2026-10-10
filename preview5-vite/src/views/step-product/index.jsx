@@ -1,15 +1,10 @@
 // Layer 4: 步骤二 — 产品订购（产品类型 / 套餐 / 合约 / 增值服务）
-import Select from '@nce/eview-react/Select';
-import Radio from '@nce/eview-react/Radio';
-import Checkbox from '@nce/eview-react/Checkbox';
-import Spinner from '@nce/eview-react/Spinner';
-import Tag from '@nce/eview-react/Tag';
-import {
-  IconPlusIcPublicWifi,
-  IconPlusIcIctNodeResourcePackage,
-  IconPlusIcPublicMobilephone,
-  IconPlusIcPublicPhoneGear,
-} from '@nce/icon-plus';
+import Select from "@/shared/Select";
+import { IconPlusIcPublicBox, IconPlusIcPublicMobilephone, IconPlusIcPublicTelephone, IconPlusIcPublicWifi } from '@nce/icon-plus';
+import Radio from "@nce/eview-react/Radio";
+import Checkbox from "@nce/eview-react/Checkbox";
+import Spinner from "@nce/eview-react/Spinner";
+import Tag from "@/shared/tag";
 import FormField from "../../components/form-field/index.jsx";
 import {
   productTypes,
@@ -31,7 +26,7 @@ export default function StepProduct({ data, setField, errors }) {
     <div className="step-product">
       <div className="step-intro">
         <span className="step-intro-icon">
-          <IconPlusIcIctNodeResourcePackage iconSize="1.25rem" iconColor={['currentcolor']} />
+          <IconPlusIcPublicBox iconSize="1.25rem" iconColor={['currentcolor']} />
         </span>
         <div>
           <h2 className="step-intro-title">产品订购</h2>
@@ -54,7 +49,7 @@ export default function StepProduct({ data, setField, errors }) {
                 onChange={(value) => changeType(value)}
               />
               <div className="type-card-body">
-                <div className="type-card-name">{t.text}</div>
+                <div className="type-card-name">{t.label}</div>
                 <div className="type-card-desc">{t.desc}</div>
               </div>
             </label>
@@ -71,13 +66,13 @@ export default function StepProduct({ data, setField, errors }) {
                   value={p.id}
                   checked={data.planId === p.id}
                   isControlled
-                  className="plan-radio"
                   onChange={(value) => setField("planId", value)}
+                  className="plan-radio"
                 />
                 <div className="plan-head">
                   <span className="plan-name">{p.name}</span>
                   {p.tags.map((t) => (
-                    <Tag key={t} color="primary" className="plan-tag">
+                    <Tag key={t} color="blue" className="plan-tag">
                       {t}
                     </Tag>
                   ))}
@@ -94,7 +89,7 @@ export default function StepProduct({ data, setField, errors }) {
                     流量 {p.data}
                   </span>
                   <span className="plan-spec">
-                    <IconPlusIcPublicPhoneGear iconSize="0.875rem" iconColor={['currentcolor']} />
+                    <IconPlusIcPublicTelephone iconSize="0.875rem" iconColor={['currentcolor']} />
                     语音 {p.voice}
                   </span>
                   <span className="plan-spec">
@@ -117,10 +112,10 @@ export default function StepProduct({ data, setField, errors }) {
           <FormField label="合约期" htmlFor="f-contract">
             <Select
               id="f-contract"
-              selectStyle={{ width: "100%" }}
+              style={{ width: "100%" }}
               value={data.contractPeriod}
               onChange={(v) => setField("contractPeriod", v)}
-              options={contractPeriods}
+              options={contractPeriods.map((c) => ({ value: c.value, text: c.label }))}
             />
           </FormField>
           <FormField label="副卡数量" hint="每张副卡 ¥10/月" htmlFor="f-sub">
@@ -129,8 +124,8 @@ export default function StepProduct({ data, setField, errors }) {
               min={0}
               max={4}
               value={data.subCards}
+              onChange={(v) => setField("subCards", v)}
               doNotFocusWhenValueUpdate
-              onChange={(value) => setField("subCards", value === null ? 0 : value)}
               style={{ width: "100%" }}
             />
           </FormField>
@@ -150,7 +145,7 @@ export default function StepProduct({ data, setField, errors }) {
                 <Checkbox
                   value={a.id}
                   checked={data.addons.includes(a.id)}
-                  onChange={(value, checked) => {
+                  onChange={(_, checked) => {
                     if (checked) {
                       setField("addons", [...data.addons, a.id]);
                     } else {

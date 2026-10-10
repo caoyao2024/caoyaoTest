@@ -2,8 +2,6 @@
   "status": "PASS",
   "round": 1,
   "failures": [],
-  "checks": {
-    "relative-imports": "PASS"
-  },
-  "notes": "All relative imports resolved on first pass. Source src/ files migrated with icon import path fixed (../../../assets/shared/icon.jsx → ../../shared/icon.jsx). app.jsx ConfigProvider + antd locale removed; context.jsx dark mode useEffect updated with aui3_1_dark body class. icon.jsx extracted from HTML inline (with Lucide fallback) and converted to ESM."
+  "checks": { "relative-imports": "PASS" },
+  "notes": ""
 }

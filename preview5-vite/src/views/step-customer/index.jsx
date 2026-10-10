@@ -1,13 +1,15 @@
 // Layer 4: 步骤一 — 客户资料（实名信息 / 联系方式）
-import TextField from '@nce/eview-react/TextField';
-import Select from '@nce/eview-react/Select';
-import RadioGroup from '@nce/eview-react/RadioGroup';
+import TextField from "@/shared/TextField";
 import { IconPlusIcPublicIdcard } from '@nce/icon-plus';
+import Select from "@/shared/Select";
+import Radio from "@nce/eview-react/Radio";
 import FormField from "../../components/form-field/index.jsx";
 import { certTypes } from "../../mock/order.jsx";
 import "./index.css";
 
 export default function StepCustomer({ data, setField, errors }) {
+  const status = (k) => (errors[k] ? "error" : undefined);
+
   return (
     <div className="step-customer">
       <div className="step-intro">
@@ -25,17 +27,20 @@ export default function StepCustomer({ data, setField, errors }) {
           <span className="form-block-bar" />
           客户类型
         </div>
-        <RadioGroup
+        <Radio
+          value="personal"
+          checked={data.customerType === "personal"}
           isControlled
-          value={data.customerType}
-          data={[
-            { value: "personal", text: "个人客户" },
-            { value: "enterprise", text: "政企客户" },
-          ]}
-          onChange={(a, b) => {
-            const next = a === data.customerType ? b : a;
-            setField("customerType", next);
-          }}
+          onChange={(value) => setField("customerType", value)}
+          label="个人客户"
+          style={{ marginRight: "1rem" }}
+        />
+        <Radio
+          value="enterprise"
+          checked={data.customerType === "enterprise"}
+          isControlled
+          onChange={(value) => setField("customerType", value)}
+          label="政企客户"
         />
       </div>
 
@@ -83,10 +88,10 @@ export default function StepCustomer({ data, setField, errors }) {
           <FormField label="证件类型" required htmlFor="f-cert-type">
             <Select
               id="f-cert-type"
-              selectStyle={{ width: "100%" }}
+              style={{ width: "100%" }}
               value={data.certType}
               onChange={(v) => setField("certType", v)}
-              options={certTypes}
+              options={certTypes.map((c) => ({ value: c.value, text: c.label }))}
             />
           </FormField>
 

@@ -1,7 +1,7 @@
 // Layer 4: 步骤四 — 费用确认（资费明细 / 支付方式 / 发票 / 优惠）
-import TextField from '@nce/eview-react/TextField';
-import Radio from '@nce/eview-react/Radio';
-import { IconPlusIcPublicGift, IconPlusIcPublicPlus, IconPlusIcPublicMoneyCircle, IconPlusIcPublicInvoice } from '@nce/icon-plus';
+import TextField from "@/shared/TextField";
+import { IconPlusIcPublicGift, IconPlusIcPublicInvoice, IconPlusIcPublicMoneyCircle, IconPlusIcPublicPlus } from '@nce/icon-plus';
+import Radio from "@nce/eview-react/Radio";
 import FormField from "../../components/form-field/index.jsx";
 import { payMethods, invoiceTypes } from "../../mock/order.jsx";
 import "./index.css";
@@ -97,11 +97,11 @@ export default function StepFee({ data, setField, errors, fee }) {
             {payMethods.map((p) => (
               <label key={p.value} className={`pay-card${data.payMethod === p.value ? " selected" : ""}`}>
                 <Radio
-                  label={p.text}
                   value={p.value}
                   checked={data.payMethod === p.value}
                   isControlled
                   onChange={(value) => setField("payMethod", value)}
+                  label={p.label}
                 />
               </label>
             ))}
@@ -112,15 +112,16 @@ export default function StepFee({ data, setField, errors, fee }) {
       <div className="form-block">
         <div className="form-grid">
           <FormField label="发票类型" htmlFor="f-invoice">
-            <div id="f-invoice" className="invoice-type-group">
-              {invoiceTypes.map((t) => (
+            <div id="f-invoice">
+              {invoiceTypes.map((t, i) => (
                 <Radio
                   key={t.value}
-                  label={t.text}
                   value={t.value}
                   checked={data.invoiceType === t.value}
                   isControlled
                   onChange={(value) => setField("invoiceType", value)}
+                  label={t.label}
+                  style={i < invoiceTypes.length - 1 ? { marginRight: "1rem" } : undefined}
                 />
               ))}
             </div>

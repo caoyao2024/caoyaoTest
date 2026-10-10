@@ -120,126 +120,21 @@
   },
   "verification": { "relativeImports": "PASS" },
   "migrationPlan": [
-    {
-      "antd": "Tag",
-      "category": "A",
-      "eview": "Tag",
-      "keyDiffs": "无 closable；color 六语义色(default/primary/success/warning/caution/danger)；fill=outline 描边",
-      "ref": "components/Tag.md",
-      "files": ["src/components/status-tag/index.jsx", "src/views/step-product/index.jsx"]
-    },
-    {
-      "antd": "Progress",
-      "category": "B",
-      "eview": "手写",
-      "keyDiffs": "eview-react 无 Progress 导出；手写进度条（token + CSS）",
-      "ref": "handwrite-templates.md §9",
-      "files": ["src/views/order-aside/index.jsx"]
-    },
-    {
-      "antd": "Steps",
-      "category": "C",
-      "eview": "Steps",
-      "keyDiffs": "current→currentStep（对应 data[].value 不是下标）；items→data=[{text,value}]；onClick(index) 只允许回跳",
-      "ref": "components/Steps.md",
-      "files": ["src/views/order-form/index.jsx"]
-    },
-    {
-      "antd": "Button",
-      "category": "A",
-      "eview": "Button",
-      "keyDiffs": "type→status(default/primary/risk/text)；带 icon 时必须用 text 不能用 children；纯图标按钮用 IconButton；无 loading/htmlType/danger",
-      "ref": "components/Button.md",
-      "files": ["src/views/order-form/index.jsx"]
-    },
-    {
-      "antd": "Modal",
-      "category": "C",
-      "eview": "Dialog",
-      "keyDiffs": "open→isOpen；footer→buttons=[{text,status,onClick}]；onClose 不自动关闭需 setIsOpen(false)",
-      "ref": "components/Dialog.md",
-      "files": ["src/views/order-form/index.jsx"]
-    },
-    {
-      "antd": "message",
-      "category": "C",
-      "eview": "DivMessage",
-      "keyDiffs": "无命令式 API；message.success()→渲染 <DivMessage display type=\"success\">；需加 display state 管理",
-      "ref": "components/DivMessage.md",
-      "files": ["src/views/order-form/index.jsx"]
-    },
-    {
-      "antd": "Menu",
-      "category": "A",
-      "eview": "Accordion",
-      "keyDiffs": "items→data(key/label→value/title)；selectedKeys→selectedValue 单 string；onClick({key})→onClick(node)；inlineCollapsed→expanded（语义反转：expanded=true=收起）",
-      "ref": "components/Accordion.md",
-      "files": ["src/views/side-nav/index.jsx"]
-    },
-    {
-      "antd": "Input",
-      "category": "A",
-      "eview": "TextField",
-      "keyDiffs": "onChange(value,oldValue,event) 首参是值；无 allowClear/prefix/onPressEnter；Input.TextArea→TextArea(maxLength 自带计数替代 showCount)；validator 返回 {result,message}",
-      "ref": "components/TextField.md",
-      "files": ["src/views/step-confirm/index.jsx", "src/views/step-customer/index.jsx", "src/views/step-fee/index.jsx", "src/views/step-install/index.jsx", "src/views/top-bar/index.jsx"]
-    },
-    {
-      "antd": "Checkbox",
-      "category": "A",
-      "eview": "Checkbox / CheckboxGroup",
-      "keyDiffs": "onChange(value,checked,event,additionalData)；Checkbox.Group→CheckboxGroup data=[{text,value}]；selectAll",
-      "ref": "components/Checkbox.md",
-      "files": ["src/views/step-confirm/index.jsx", "src/views/step-product/index.jsx"]
-    },
-    {
-      "antd": "Select",
-      "category": "A",
-      "eview": "Select",
-      "keyDiffs": "options label→text；placeholder→defaultLabel；onChange(value,oldValue,text,oldText,event) 五参；enableClear；virtualScroll >100 项",
-      "ref": "components/Select.md",
-      "files": ["src/views/step-customer/index.jsx", "src/views/step-install/index.jsx", "src/views/step-product/index.jsx"]
-    },
-    {
-      "antd": "Radio",
-      "category": "A",
-      "eview": "Radio / RadioGroup",
-      "keyDiffs": "Group 用 data=[{text,value}]；需 isControlled 才受控；onChange 参数顺序有冲突用兼容写法",
-      "ref": "components/Radio.md",
-      "files": ["src/views/step-customer/index.jsx", "src/views/step-fee/index.jsx", "src/views/step-install/index.jsx", "src/views/step-product/index.jsx"]
-    },
-    {
-      "antd": "DatePicker",
-      "category": "A",
-      "eview": "DatePicker",
-      "keyDiffs": "不要无条件回写 onChange 字符串到 value（官方反例）；用 defaultValue+ref.getValue() 或有效 Date 才回写",
-      "ref": "components/DatePicker.md",
-      "files": ["src/views/step-install/index.jsx"]
-    },
-    {
-      "antd": "InputNumber",
-      "category": "A",
-      "eview": "Spinner",
-      "keyDiffs": "onChange(value) 只在有效值触发；onInputError(value) 接无效值；min/max/step/precision；导出名 Spinner 不是 InputNumber",
-      "ref": "components/Spinner.md",
-      "files": ["src/views/step-product/index.jsx"]
-    },
-    {
-      "antd": "Badge",
-      "category": "A",
-      "eview": "Badge",
-      "keyDiffs": "count→content；dot；status 五态+text；max/showZero",
-      "ref": "components/Badge.md",
-      "files": ["src/views/top-bar/index.jsx"]
-    },
-    {
-      "antd": "Tooltip",
-      "category": "A",
-      "eview": "TipBox",
-      "keyDiffs": "包裹式 <TipBox content><目标/></TipBox>（非 overlay prop）；direction 12 方位；trigger=hover/click/focus",
-      "ref": "components/TipBox.md",
-      "files": ["src/views/top-bar/index.jsx"]
-    }
+    { "antd": "Tag", "category": "A", "eview": "Tag", "keyDiffs": "无 closable（删靠数组+onClick）；color 六语义色（default/primary/success/warning/caution/danger）；fill=\"outline\" 描边", "ref": "components/Tag.md", "files": ["src/components/status-tag/index.jsx", "src/views/step-product/index.jsx"] },
+    { "antd": "Progress", "category": "B", "eview": "手写", "keyDiffs": "eview-react 无导出，手写进度条", "ref": "handwrite-templates.md §9", "files": ["src/views/order-aside/index.jsx"] },
+    { "antd": "Steps", "category": "C", "eview": "Steps", "keyDiffs": "current→currentStep（对应 data[].value 不是下标）；items→data=[{text,value}]；onClick(index) 只允许回跳", "ref": "components/Steps.md", "files": ["src/views/order-form/index.jsx"] },
+    { "antd": "Button", "category": "A", "eview": "Button", "keyDiffs": "type→status（default/primary/risk/text）；文字用 text（带图标时必须用 text 不能用 children）；纯图标按钮剥外壳走 IconPlusIc*", "ref": "components/Button.md", "files": ["src/views/order-form/index.jsx"] },
+    { "antd": "Modal", "category": "C", "eview": "Dialog", "keyDiffs": "open→isOpen；footer→buttons=[{text,status,onClick}]；onClose 不自动关闭（需 setIsOpen(false)）", "ref": "components/Dialog.md", "files": ["src/views/order-form/index.jsx"] },
+    { "antd": "message", "category": "C", "eview": "DivMessage", "keyDiffs": "无命令式 API；只能渲染 <DivMessage display type=\"success\">；需手动状态管理（imperative→declarative 模式转换）", "ref": "components/DivMessage.md", "files": ["src/views/order-form/index.jsx"] },
+    { "antd": "Menu", "category": "A", "eview": "Accordion", "keyDiffs": "items→data（key/label→value/title）；selectedKeys 数组→selectedValue 单 string；onClick({key})→onClick(node)；expanded 语义反转（true=收起）", "ref": "components/Accordion.md", "files": ["src/views/side-nav/index.jsx"] },
+    { "antd": "Input", "category": "A", "eview": "TextField", "keyDiffs": "onChange(value,oldValue,event) 首参是值；无 allowClear/prefix/onPressEnter；validator 返回 {result,message}；导入 @/shared/TextField（包壳）", "ref": "components/TextField.md", "files": ["src/views/step-confirm/index.jsx", "src/views/step-customer/index.jsx", "src/views/step-fee/index.jsx", "src/views/step-install/index.jsx", "src/views/top-bar/index.jsx"] },
+    { "antd": "Checkbox", "category": "A", "eview": "Checkbox", "keyDiffs": "onChange(value,checked,event,additionalData)；onPreChange 拦截", "ref": "components/Checkbox.md", "files": ["src/views/step-confirm/index.jsx", "src/views/step-product/index.jsx"] },
+    { "antd": "Select", "category": "A", "eview": "Select", "keyDiffs": "options label→text；placeholder→defaultLabel；onChange(value,oldValue,text,oldText,event) 五参；enableClear；导入 @/shared/Select（包壳）", "ref": "components/Select.md", "files": ["src/views/step-customer/index.jsx", "src/views/step-install/index.jsx", "src/views/step-product/index.jsx"] },
+    { "antd": "Radio", "category": "A", "eview": "Radio/RadioGroup", "keyDiffs": "Group 用 data=[{text,value}]；需 isControlled 才受控；onChange 参数顺序有冲突用兼容写法", "ref": "components/Radio.md", "files": ["src/views/step-customer/index.jsx", "src/views/step-fee/index.jsx", "src/views/step-install/index.jsx", "src/views/step-product/index.jsx"] },
+    { "antd": "DatePicker", "category": "A", "eview": "DatePicker", "keyDiffs": "不要无条件回写 onChange 字符串到 value（官方反例）；用 defaultValue+ref.getValue() 或有效 Date 才回写", "ref": "components/DatePicker.md", "files": ["src/views/step-install/index.jsx"] },
+    { "antd": "InputNumber", "category": "A", "eview": "Spinner", "keyDiffs": "onChange(value) 只在有效值触发；onInputError(value) 接无效值；min/max/step/precision", "ref": "components/Spinner.md", "files": ["src/views/step-product/index.jsx"] },
+    { "antd": "Badge", "category": "A", "eview": "Badge", "keyDiffs": "count→content；dot；status 五态+text；max/showZero", "ref": "components/Badge.md", "files": ["src/views/top-bar/index.jsx"] },
+    { "antd": "Tooltip", "category": "A", "eview": "TipBox", "keyDiffs": "包裹式（<TipBox content><目标/></TipBox>）；direction 12 方位（非 placement）；trigger=hover/click/focus", "ref": "components/TipBox.md", "files": ["src/views/top-bar/index.jsx"] }
   ],
-  "notes": "Source icon.jsx extracted from HTML inline (with Lucide fallback), converted to ESM at src/shared/icon.jsx. antd-zh.js locale deleted (i18n scenario A). top-bar/index.jsx references ./assets/uploads/user.png (image asset, not a JS import) — image file not present in source, may 404 at runtime. Context dark mode updated with aui3_1_dark body class."
+  "notes": ""
 }

@@ -1,16 +1,24 @@
 // Layer 4: 受理侧栏 — 进度 / 资费预估 / 办理须知 / 最近工单
-import { IconPlusIcDigitalPowerDpCheck, IconPlusIcPublicChart, IconPlusIcPublicMoneyCircle, IconPlusIcDigitalPowerDpTips, IconPlusIcPublicClipboard } from '@nce/icon-plus';
+import { IconPlusIcDigitalPowerDpCheck, IconPlusIcDigitalPowerDpTips, IconPlusIcPublicChart, IconPlusIcPublicClipboard, IconPlusIcPublicMoneyCircle } from '@nce/icon-plus';
 import StatusTag from "../../components/status-tag/index.jsx";
 import { orderNotices, recentOrders, stepItems } from "../../mock/order.jsx";
 import "./index.css";
 
-// TODO(eview-react): ProgressBar 未覆盖，当前手写最小可用版
 function SimpleProgress({ percent }) {
   const p = Math.min(100, Math.max(0, percent));
   return (
-    <div className="simple-progress">
-      <div className="simple-progress-track">
-        <div className="simple-progress-fill" style={{ width: `${p}%` }} />
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div style={{
+        flex: 1, height: "8px",
+        background: "var(--hover, rgba(0,0,0,0.05))",
+        borderRadius: "4px",
+        overflow: "hidden",
+      }}>
+        <div style={{
+          width: `${p}%`, height: "100%",
+          background: "var(--primary, #0067D1)",
+          transition: "width .2s",
+        }} />
       </div>
     </div>
   );
@@ -34,13 +42,13 @@ export default function OrderAside({ current, data, fee }) {
         <ul className="progress-steps">
           {stepItems.map((s, i) => (
             <li
-              key={s.text}
+              key={s.title}
               className={`progress-step${i < current ? " done" : ""}${i === current ? " active" : ""}`}
             >
               <span className="progress-step-dot">
                 {i < current ? <IconPlusIcDigitalPowerDpCheck iconSize="0.625rem" iconColor={['currentcolor']} /> : i + 1}
               </span>
-              <span className="progress-step-text">{s.text}</span>
+              <span className="progress-step-text">{s.title}</span>
             </li>
           ))}
         </ul>

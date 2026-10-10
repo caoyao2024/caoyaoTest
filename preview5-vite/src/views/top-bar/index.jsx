@@ -1,19 +1,10 @@
 // Layer 4: 顶部导航栏 — 品牌 / 主主导航（原生 nav）/ 全局工具
-// 顶部导航不使用 Accordion（见 references/component/Accordion.md）：选中项品牌色文字 + 2px 下划线。
+// 顶部导航不使用 antd Menu（见 references/component/Menu.md）：选中项品牌色文字 + 2px 下划线。
 import { useState } from "react";
-import TextField from '@nce/eview-react/TextField';
-import Badge from '@nce/eview-react/Badge';
-import TipBox from '@nce/eview-react/TipBox';
-import {
-  IconPlusIcPublicChevronDown,
-  IconPlusIcPublicMoon,
-  IconPlusIcPublicSearch,
-  IconPlusIcPublicSun,
-  IconPlusIcDigitalPowerCoolingTower,
-  IconPlusIcPublicBellClock,
-  IconPlusIcPublicBoxOpen,
-  IconPlusIcPublicClose,
-} from '@nce/icon-plus';
+import { IconPlusIcPublicBellClock, IconPlusIcPublicChevronDown, IconPlusIcPublicMenuCollapse, IconPlusIcPublicMenuExpansion, IconPlusIcPublicMoon, IconPlusIcPublicRadiowave, IconPlusIcPublicSearch, IconPlusIcPublicSun } from '@nce/icon-plus';
+import TextField from "@/shared/TextField";
+import Badge from "@nce/eview-react/Badge";
+import TipBox from "@nce/eview-react/TipBox";
 import { useApp } from "../../context.jsx";
 import { topNavItems } from "../../mock/order.jsx";
 import "./index.css";
@@ -27,7 +18,7 @@ export default function TopBar({ collapsed, onToggleCollapsed }) {
     <header className="topbar">
       <div className="topbar-brand">
         <span className="topbar-logo">
-          <IconPlusIcDigitalPowerCoolingTower iconSize="1rem" iconColor={['currentcolor']} />
+          <IconPlusIcPublicRadiowave iconSize="1rem" iconColor={['currentcolor']} />
         </span>
         <span className="topbar-title">运营商业务受理平台</span>
         <span className="topbar-ver">V3.2</span>
@@ -39,9 +30,7 @@ export default function TopBar({ collapsed, onToggleCollapsed }) {
         onClick={onToggleCollapsed}
         aria-label={collapsed ? "展开导航" : "收起导航"}
       >
-        {collapsed
-          ? <IconPlusIcPublicBoxOpen iconSize="1rem" iconColor={['currentcolor']} />
-          : <IconPlusIcPublicClose iconSize="1rem" iconColor={['currentcolor']} />}
+        {collapsed ? <IconPlusIcPublicMenuExpansion iconSize="1rem" iconColor={['currentcolor']} /> : <IconPlusIcPublicMenuCollapse iconSize="1rem" iconColor={['currentcolor']} />}
       </button>
 
       <nav className="topbar-nav">
@@ -65,7 +54,6 @@ export default function TopBar({ collapsed, onToggleCollapsed }) {
           className="topbar-search"
           value={keyword}
           onChange={(value) => setKeyword(value)}
-          onKeyDown={(event) => { if (event.key === "Enter") {} }}
           placeholder="搜索工单号 / 客户 / 号码"
           suffix={<IconPlusIcPublicSearch iconSize="0.875rem" iconColor={['currentcolor']} />}
         />
@@ -80,9 +68,7 @@ export default function TopBar({ collapsed, onToggleCollapsed }) {
 
         <TipBox type="simple" content={isDark ? "切换浅色模式" : "切换深色模式"} direction="bottom">
           <button type="button" className="topbar-icon-btn" onClick={toggleDark} aria-label="切换主题">
-            {isDark
-              ? <IconPlusIcPublicSun iconSize="1rem" iconColor={['currentcolor']} />
-              : <IconPlusIcPublicMoon iconSize="1rem" iconColor={['currentcolor']} />}
+            {isDark ? <IconPlusIcPublicSun iconSize="1rem" iconColor={['currentcolor']} /> : <IconPlusIcPublicMoon iconSize="1rem" iconColor={['currentcolor']} />}
           </button>
         </TipBox>
 

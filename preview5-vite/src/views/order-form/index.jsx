@@ -1,17 +1,10 @@
 // Layer 4: 多步受理表单 — 步骤编排 / 受控数据 / 分步校验 / 底部操作栏
 import { useState } from "react";
-import Steps from '@nce/eview-react/Steps';
-import Button from '@nce/eview-react/Button';
-import Dialog from '@nce/eview-react/Dialog';
-import DivMessage from '@nce/eview-react/DivMessage';
-import {
-  IconPlusIcPublicCheckmark,
-  IconPlusIcPublicCloud,
-  IconPlusIcPublicInfo,
-  IconPlusIcPublicRightArrow,
-  IconPlusIcPublicDownload,
-  IconPlusIcPublicLeftArrow,
-} from '@nce/icon-plus';
+import { IconPlusIcDigitalPowerDpCheck, IconPlusIcPublicCheckmark, IconPlusIcPublicCloud, IconPlusIcPublicDownload, IconPlusIcPublicInfo, IconPlusIcPublicLeftArrow, IconPlusIcPublicRightArrow } from '@nce/icon-plus';
+import Steps from "@nce/eview-react/Steps";
+import Button from "@nce/eview-react/Button";
+import Dialog from "@nce/eview-react/Dialog";
+import DivMessage from "@nce/eview-react/DivMessage";
 import {
   stepItems,
   plans,
@@ -26,6 +19,12 @@ import StepFee from "../step-fee/index.jsx";
 import StepConfirm from "../step-confirm/index.jsx";
 import OrderAside from "../order-aside/index.jsx";
 import "./index.css";
+
+const STEP_DATA = stepItems.map((s, i) => ({
+  text: s.title,
+  value: String(i + 1),
+  description: s.description,
+}));
 
 const INITIAL_DATA = {
   // step 1
@@ -124,10 +123,6 @@ export default function OrderForm() {
     setNotice(null);
   }
 
-  function notify(type, text) {
-    setNotice({ type, text, key: Date.now() });
-  }
-
   function goNext() {
     const e = validateStep(current, data);
     if (Object.keys(e).length) {
@@ -144,7 +139,7 @@ export default function OrderForm() {
   }
 
   function saveDraft() {
-    notify("success", "草稿已保存，可稍后继续受理");
+    setNotice({ type: "success", text: "草稿已保存，可稍后继续受理", key: Date.now() });
   }
 
   function submit() {
@@ -153,7 +148,7 @@ export default function OrderForm() {
       if (Object.keys(e).length) {
         setCurrent(s);
         setErrors(e);
-        notify("error", "请完善必填信息后再提交");
+        setNotice({ type: "error", text: "请完善必填信息后再提交", key: Date.now() });
         return;
       }
     }
@@ -191,7 +186,7 @@ export default function OrderForm() {
       <div className="order-layout">
         <div className="order-main">
           <section className="order-card steps-card">
-            <Steps data={stepItems} currentStep={stepItems[current].value} />
+            <Steps data={STEP_DATA} currentStep={STEP_DATA[current]?.value} />
           </section>
 
           <section className="order-card form-card">
@@ -208,31 +203,12 @@ export default function OrderForm() {
               提交后系统将自动核验资源并进入装维派单流程
             </div>
             <div className="order-footer-actions">
-              <Button
-                text="保存草稿"
-                leftIcon={<IconPlusIcPublicDownload iconSize="0.875rem" iconColor={['currentcolor']} />}
-                onClick={saveDraft}
-              />
-              <Button
-                text="上一步"
-                disabled={current === 0}
-                leftIcon={<IconPlusIcPublicLeftArrow iconSize="0.875rem" iconColor={['currentcolor']} />}
-                onClick={goPrev}
-              />
+              <Button leftIcon={<IconPlusIcPublicDownload iconSize="0.875rem" iconColor={['currentcolor']} />} text="保存草稿" onClick={saveDraft} />
+              <Button disabled={current === 0} leftIcon={<IconPlusIcPublicLeftArrow iconSize="0.875rem" iconColor={['currentcolor']} />} text="上一步" onClick={goPrev} />
               {current < stepItems.length - 1 ? (
-                <Button
-                  status="primary"
-                  text="下一步"
-                  rightIcon={<IconPlusIcPublicRightArrow iconSize="0.875rem" iconColor={['currentcolor']} />}
-                  onClick={goNext}
-                />
+                <Button status="primary" text="下一步" rightIcon={<IconPlusIcPublicRightArrow iconSize="0.875rem" iconColor={['currentcolor']} />} onClick={goNext} />
               ) : (
-                <Button
-                  status="primary"
-                  text="提交工单"
-                  leftIcon={<IconPlusIcPublicCheckmark iconSize="0.875rem" iconColor={['currentcolor']} />}
-                  onClick={submit}
-                />
+                <Button status="primary" leftIcon={<IconPlusIcDigitalPowerDpCheck iconSize="0.875rem" iconColor={['currentcolor']} />} text="提交工单" onClick={submit} />
               )}
             </div>
           </div>

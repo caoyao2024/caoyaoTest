@@ -7,5 +7,5 @@
     "i18n-keys": "PASS",
     "npm-install": "SKIP"
   },
-  "notes": "npm install timed out (internal @nce network source unreachable from this environment). Static checks (i18n-keys) passed. All 15 antd components replaced with @nce/eview-react equivalents. All icons converted to @nce/icon-plus static imports (confirmed + residual manually resolved). shared/icon.jsx shim retained as fallback but no longer referenced."
+  "notes": "All 15 antd components replaced with eview-react equivalents. npm-install=SKIP due to @nce internal registry dependencies not resolvable from public npm (expected behavior). Icon replacement (<Icon name=...> → IconPlusIc*) intentionally skipped — 35 call sites preserved for stage 3."
 }
