@@ -1,7 +1,6 @@
 // Layer 4: 步骤五 — 提交审核（信息核对 / 备注 / 协议确认）
-import dayjs from "dayjs";
-import { IconPlusIcDigitalPowerDpCheck, IconPlusIcPublicBox, IconPlusIcPublicIdcard, IconPlusIcPublicMappinOnMap, IconPlusIcPublicMoneyCircle } from '@nce/icon-plus';
 import TextArea from "@nce/eview-react/TextArea";
+import { IconPlusIcDigitalPowerDpCheck, IconPlusIcIctNodeResourcePackage, IconPlusIcPublicIdcard, IconPlusIcPublicMappinOnMap, IconPlusIcPublicMoneyCircle } from '@nce/icon-plus';
 import Checkbox from "@nce/eview-react/Checkbox";
 import {
   certTypes,
@@ -18,6 +17,13 @@ import "./index.css";
 function pick(list, value) {
   const hit = list.find((x) => x.value === value);
   return hit ? hit.label : "—";
+}
+
+function formatDateTime(d) {
+  if (!d) return "—";
+  const date = new Date(d);
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
 
 export default function StepConfirm({ data, setField, errors, fee }) {
@@ -40,7 +46,7 @@ export default function StepConfirm({ data, setField, errors, fee }) {
       ].filter(Boolean),
     },
     {
-      icon: <IconPlusIcPublicBox iconSize="1rem" iconColor={['currentcolor']} />,
+      icon: <IconPlusIcIctNodeResourcePackage iconSize="1rem" iconColor={['currentcolor']} />,
       title: "产品订购",
       items: [
         ["产品类型", pick(productTypes, data.productType)],
@@ -55,7 +61,7 @@ export default function StepConfirm({ data, setField, errors, fee }) {
       title: "安装信息",
       items: [
         ["装机地址", data.installAddress || "—"],
-        ["预约时间", data.installTime ? dayjs(data.installTime).format("YYYY-MM-DD HH:mm") : "—"],
+        ["预约时间", formatDateTime(data.installTime)],
         ["接入方式", pick(accessTypes, data.accessType)],
         ["光猫设备", pick(opticalModems, data.opticalModem)],
         ["安装方式", pick(installModes, data.installMode)],
@@ -106,7 +112,7 @@ export default function StepConfirm({ data, setField, errors, fee }) {
         <div className="confirm-remark">
           <TextArea
             value={data.remark}
-            onChange={(value) => setField("remark", value)}
+            onChange={(targetValue) => setField("remark", targetValue)}
             placeholder="补充说明（选填）：如门禁方式、联系人偏好时段等"
             rows={3}
             maxLength={200}
@@ -116,19 +122,17 @@ export default function StepConfirm({ data, setField, errors, fee }) {
 
       <label className={`confirm-agree${data.agree ? " checked" : ""}${errors.agree ? " has-error" : ""}`}>
         <Checkbox
-          value="agree"
           checked={data.agree}
-          onChange={(_, checked) => setField("agree", checked)}
-          label={
-            <span className="confirm-agree-text">
-              我已阅读并同意
-              <a className="confirm-link">《电信业务入网服务协议》</a>
-              与
-              <a className="confirm-link">《个人信息处理规则》</a>
-              ，确认以上信息真实有效。
-            </span>
-          }
-        />
+          onChange={(value, checked) => setField("agree", checked)}
+        >
+          <span className="confirm-agree-text">
+            我已阅读并同意
+            <a className="confirm-link">《电信业务入网服务协议》</a>
+            与
+            <a className="confirm-link">《个人信息处理规则》</a>
+            ，确认以上信息真实有效。
+          </span>
+        </Checkbox>
       </label>
       {errors.agree ? <div className="confirm-agree-error">{errors.agree}</div> : null}
     </div>

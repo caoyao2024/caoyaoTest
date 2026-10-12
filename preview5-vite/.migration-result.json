@@ -1,11 +1,1 @@
-{
-  "status": "PASS",
-  "round": 1,
-  "failures": [],
-  "checks": {
-    "relative-imports": "PASS",
-    "i18n-keys": "PASS",
-    "npm-install": "SKIP"
-  },
-  "notes": "All 15 antd components replaced with eview-react equivalents. npm-install=SKIP due to @nce internal registry dependencies not resolvable from public npm (expected behavior). Icon replacement (<Icon name=...> → IconPlusIc*) intentionally skipped — 35 call sites preserved for stage 3."
-}
+{"status":"PASS","round":1,"failures":[],"checks":{"relative-imports":"PASS","i18n-keys":"PASS","npm-install":"SKIP"},"notes":"@nce internal dependency - external npm install expected SKIP"}

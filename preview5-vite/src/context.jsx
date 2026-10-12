@@ -1,16 +1,16 @@
 import { useState, useEffect, createContext, useContext } from "react";
 
 // Layer 1: 全局状态 — 主题模式与业务状态
-// 换肤单轨驱动:isDark 只切换 <html> 的 .dark class;
-// 普通 H5 元素(token 四层)与 antd 组件(ant.css 换肤层)同源跟随,无需 React 参与换肤。
+// 换肤双轨驱动:isDark 同时切换 <html> 的 .dark class 与 <body> 的 aui3_1_dark class;
+// 普通 H5 元素(token 四层)跟随 .dark;eview-react 组件(aui3_1 换肤层)跟随 aui3_1_dark。
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    document.body.classList.toggle("aui3_1_dark", isDark);
     document.documentElement.classList.toggle("dark", isDark);
+    document.body.classList.toggle("aui3_1_dark", isDark);
   }, [isDark]);
 
   const value = {

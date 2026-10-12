@@ -1,6 +1,6 @@
 // Layer 4: 多步受理表单 — 步骤编排 / 受控数据 / 分步校验 / 底部操作栏
 import { useState } from "react";
-import { IconPlusIcDigitalPowerDpCheck, IconPlusIcPublicCheckmark, IconPlusIcPublicCloud, IconPlusIcPublicDownload, IconPlusIcPublicInfo, IconPlusIcPublicLeftArrow, IconPlusIcPublicRightArrow } from '@nce/icon-plus';
+import { IconPlusIcDigitalPowerDpCheck, IconPlusIcPublicCheckmark, IconPlusIcPublicCloud, IconPlusIcPublicDisk, IconPlusIcPublicInfo, IconPlusIcPublicLeftArrow, IconPlusIcPublicRightArrow } from '@nce/icon-plus';
 import Steps from "@nce/eview-react/Steps";
 import Button from "@nce/eview-react/Button";
 import Dialog from "@nce/eview-react/Dialog";
@@ -19,12 +19,6 @@ import StepFee from "../step-fee/index.jsx";
 import StepConfirm from "../step-confirm/index.jsx";
 import OrderAside from "../order-aside/index.jsx";
 import "./index.css";
-
-const STEP_DATA = stepItems.map((s, i) => ({
-  text: s.title,
-  value: String(i + 1),
-  description: s.description,
-}));
 
 const INITIAL_DATA = {
   // step 1
@@ -130,11 +124,13 @@ export default function OrderForm() {
       return;
     }
     setErrors({});
+    setNotice(null);
     setCurrent((c) => Math.min(c + 1, stepItems.length - 1));
   }
 
   function goPrev() {
     setErrors({});
+    setNotice(null);
     setCurrent((c) => Math.max(c - 1, 0));
   }
 
@@ -161,12 +157,25 @@ export default function OrderForm() {
     setErrors({});
     setCurrent(0);
     setSubmitted(false);
+    setNotice(null);
   }
 
   const stepProps = { data, setField, errors };
 
   return (
     <div className="order-page">
+      {notice ? (
+        <div style={{ position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", zIndex: 1050 }}>
+          <DivMessage
+            key={notice.key}
+            display
+            type={notice.type}
+            text={notice.text}
+            onClose={() => setNotice(null)}
+          />
+        </div>
+      ) : null}
+
       <div className="order-head">
         <div className="order-head-text">
           <h1 className="order-title">融合业务受理</h1>
@@ -186,7 +195,10 @@ export default function OrderForm() {
       <div className="order-layout">
         <div className="order-main">
           <section className="order-card steps-card">
-            <Steps data={STEP_DATA} currentStep={STEP_DATA[current]?.value} />
+            <Steps
+              data={stepItems.map((s, i) => ({ text: s.title, value: i, description: s.description }))}
+              currentStep={current}
+            />
           </section>
 
           <section className="order-card form-card">
@@ -203,10 +215,10 @@ export default function OrderForm() {
               提交后系统将自动核验资源并进入装维派单流程
             </div>
             <div className="order-footer-actions">
-              <Button leftIcon={<IconPlusIcPublicDownload iconSize="0.875rem" iconColor={['currentcolor']} />} text="保存草稿" onClick={saveDraft} />
+              <Button leftIcon={<IconPlusIcPublicDisk iconSize="0.875rem" iconColor={['currentcolor']} />} text="保存草稿" onClick={saveDraft} />
               <Button disabled={current === 0} leftIcon={<IconPlusIcPublicLeftArrow iconSize="0.875rem" iconColor={['currentcolor']} />} text="上一步" onClick={goPrev} />
               {current < stepItems.length - 1 ? (
-                <Button status="primary" text="下一步" rightIcon={<IconPlusIcPublicRightArrow iconSize="0.875rem" iconColor={['currentcolor']} />} onClick={goNext} />
+                <Button status="primary" text="下一步" onClick={goNext} rightIcon={<IconPlusIcPublicRightArrow iconSize="0.875rem" iconColor={['currentcolor']} />} />
               ) : (
                 <Button status="primary" leftIcon={<IconPlusIcDigitalPowerDpCheck iconSize="0.875rem" iconColor={['currentcolor']} />} text="提交工单" onClick={submit} />
               )}
@@ -221,7 +233,6 @@ export default function OrderForm() {
         isOpen={submitted}
         title="工单提交成功"
         onClose={() => setSubmitted(false)}
-        size={[480, "auto"]}
         buttons={[
           { text: "查看工单详情", onClick: () => setSubmitted(false) },
           { text: "继续受理新工单", status: "primary", onClick: resetAll },
@@ -246,19 +257,6 @@ export default function OrderForm() {
           </div>
         </div>
       </Dialog>
-
-      {notice ? (
-        <div style={{ position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", zIndex: 1050 }}>
-          <DivMessage
-            key={notice.key}
-            display
-            type={notice.type}
-            text={notice.text}
-            enableDisposeTimeOut={notice.type !== "error"}
-            onClose={() => setNotice(null)}
-          />
-        </div>
-      ) : null}
     </div>
   );
 }

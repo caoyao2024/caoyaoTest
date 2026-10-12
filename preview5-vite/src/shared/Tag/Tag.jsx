@@ -1,5 +1,5 @@
 import EvTag from "@nce/eview-react/Tag";
-import "./tag.css";
+import "./Tag.css";
 
 // antd 颜色 → tag.css className token（词汇来自 tag.css：info/error/alert/warning/success/default/green/rose/pink/purple/indigo/cyan）
 const TOKEN_MAP = {

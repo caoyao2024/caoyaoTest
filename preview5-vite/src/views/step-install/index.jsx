@@ -1,9 +1,9 @@
 // Layer 4: 步骤三 — 安装信息（装机地址 / 预约时间 / 接入方式与设备）
 import TextField from "@/shared/TextField";
 import Select from "@/shared/Select";
-import { IconPlusIcDigitalPowerDpTips, IconPlusIcPublicMappinOnMap } from '@nce/icon-plus';
-import Radio from "@nce/eview-react/Radio";
+import { RadioGroup } from "@nce/eview-react/Radio";
 import DatePicker from "@nce/eview-react/DatePicker";
+import { IconPlusIcDigitalPowerDpTips, IconPlusIcPublicMappinOnMap } from '@nce/icon-plus';
 import FormField from "../../components/form-field/index.jsx";
 import {
   accessTypes,
@@ -13,8 +13,6 @@ import {
 import "./index.css";
 
 export default function StepInstall({ data, setField, errors }) {
-  const status = (k) => (errors[k] ? "error" : undefined);
-
   return (
     <div className="step-install">
       <div className="step-intro">
@@ -40,7 +38,6 @@ export default function StepInstall({ data, setField, errors }) {
           htmlFor="f-install-addr"
         >
           <TextField
-            id="f-install-addr"
             value={data.installAddress}
             onChange={(value) => setField("installAddress", value)}
             placeholder="请输入详细装机地址，例如：广东省深圳市南山区科技园路 1 号 3 栋 502"
@@ -56,13 +53,12 @@ export default function StepInstall({ data, setField, errors }) {
         <div className="form-grid">
           <FormField label="预约上门时间" required error={errors.installTime} htmlFor="f-install-time">
             <DatePicker
-              id="f-install-time"
               type="datetime"
               format="yyyy-MM-dd HH:mm"
               timeEmbedded
-              style={{ width: "100%" }}
-              value={data.installTime}
-              dateRange={{ dateFrom: new Date(), dateTo: new Date(2099, 11, 31) }}
+              timeFormat="hh:mm"
+              value={data.installTime || undefined}
+              dateRange={{ dateFrom: new Date(new Date().setHours(0, 0, 0, 0)), dateTo: new Date(2099, 11, 31) }}
               placeholder="请选择日期与时间"
               onChange={(dateString, date) => {
                 if (date) setField("installTime", date);
@@ -72,38 +68,27 @@ export default function StepInstall({ data, setField, errors }) {
 
           <FormField label="接入方式" htmlFor="f-access">
             <Select
-              id="f-access"
-              style={{ width: "100%" }}
               value={data.accessType}
               onChange={(v) => setField("accessType", v)}
-              options={accessTypes.map((a) => ({ value: a.value, text: a.label }))}
+              options={accessTypes.map((a) => ({ text: a.label, value: a.value }))}
             />
           </FormField>
 
           <FormField label="光猫设备" htmlFor="f-modem">
             <Select
-              id="f-modem"
-              style={{ width: "100%" }}
               value={data.opticalModem}
               onChange={(v) => setField("opticalModem", v)}
-              options={opticalModems.map((m) => ({ value: m.value, text: m.label }))}
+              options={opticalModems.map((m) => ({ text: m.label, value: m.value }))}
             />
           </FormField>
 
           <FormField label="安装方式" htmlFor="f-install-mode">
-            <div id="f-install-mode">
-              {installModes.map((m, i) => (
-                <Radio
-                  key={m.value}
-                  value={m.value}
-                  checked={data.installMode === m.value}
-                  isControlled
-                  onChange={(value) => setField("installMode", value)}
-                  label={m.label}
-                  style={i < installModes.length - 1 ? { marginRight: "1rem" } : undefined}
-                />
-              ))}
-            </div>
+            <RadioGroup
+              isControlled
+              value={data.installMode}
+              onChange={(a, b) => setField("installMode", a === data.installMode ? b : a)}
+              data={installModes.map((m) => ({ text: m.label, value: m.value }))}
+            />
           </FormField>
         </div>
       </div>

@@ -1,5 +1,5 @@
 // Layer 4: 受理侧栏 — 进度 / 资费预估 / 办理须知 / 最近工单
-import { IconPlusIcDigitalPowerDpCheck, IconPlusIcDigitalPowerDpTips, IconPlusIcPublicChart, IconPlusIcPublicClipboard, IconPlusIcPublicMoneyCircle } from '@nce/icon-plus';
+import { IconPlusIcDigitalPowerDpCheck, IconPlusIcDigitalPowerDpTips, IconPlusIcPublicClipboard, IconPlusIcPublicHeartWaveform, IconPlusIcPublicMoneyCircle } from '@nce/icon-plus';
 import StatusTag from "../../components/status-tag/index.jsx";
 import { orderNotices, recentOrders, stepItems } from "../../mock/order.jsx";
 import "./index.css";
@@ -8,17 +8,8 @@ function SimpleProgress({ percent }) {
   const p = Math.min(100, Math.max(0, percent));
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-      <div style={{
-        flex: 1, height: "8px",
-        background: "var(--hover, rgba(0,0,0,0.05))",
-        borderRadius: "4px",
-        overflow: "hidden",
-      }}>
-        <div style={{
-          width: `${p}%`, height: "100%",
-          background: "var(--primary, #0067D1)",
-          transition: "width .2s",
-        }} />
+      <div style={{ flex: 1, height: "8px", background: "var(--hover, rgba(0,0,0,0.05))", borderRadius: "4px", overflow: "hidden" }}>
+        <div style={{ width: `${p}%`, height: "100%", background: "var(--primary, #0067D1)", transition: "width .2s" }} />
       </div>
     </div>
   );
@@ -33,7 +24,7 @@ export default function OrderAside({ current, data, fee }) {
       <section className="aside-card">
         <div className="aside-card-head">
           <span className="aside-card-title">
-            <IconPlusIcPublicChart iconSize="1rem" iconColor={['currentcolor']} />
+            <IconPlusIcPublicHeartWaveform iconSize="1rem" iconColor={['currentcolor']} />
             办理进度
           </span>
           <span className="aside-progress-num">{percent}%</span>

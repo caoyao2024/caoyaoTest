@@ -1,23 +1,11 @@
-import {
-  IconPlusIcDigitalPowerDpUserCluster,
-  IconPlusIcIctNewFile,
-  IconPlusIcIctServers,
-  IconPlusIcPublicBarChart,
-  IconPlusIcPublicCalendar,
-  IconPlusIcPublicClipboard,
-  IconPlusIcPublicCreditcard,
-  IconPlusIcPublicDashboard,
-  IconPlusIcPublicIdcard,
-  IconPlusIcPublicMappinOnMap,
-  IconPlusIcPublicSecurity,
-} from '@nce/icon-plus';
+import { IconPlusIcDigitalPowerDpFile, IconPlusIcDigitalPowerDpUserCluster, IconPlusIcIctNetworkCheck, IconPlusIcPublicBarChart, IconPlusIcPublicCalendar, IconPlusIcPublicClipboard, IconPlusIcPublicCreditcard, IconPlusIcPublicDashboard, IconPlusIcPublicIdcard, IconPlusIcPublicMappinOnMap } from '@nce/icon-plus';
 // Layer 2: 运营商业务受理 — 领域 mock 数据
 // 语义化键名，供视图层直接消费。
 
 // ── 顶部主导航（原生 nav 自写）──
 export const topNavItems = [
   { key: "workbench", label: "经营工作台", icon: <IconPlusIcPublicDashboard iconSize="0.875rem" iconColor={['currentcolor']} /> },
-  { key: "order", label: "业务受理", icon: <IconPlusIcIctNewFile iconSize="0.875rem" iconColor={['currentcolor']} /> },
+  { key: "order", label: "业务受理", icon: <IconPlusIcDigitalPowerDpFile iconSize="0.875rem" iconColor={['currentcolor']} /> },
   { key: "ticket", label: "工单管理", icon: <IconPlusIcPublicClipboard iconSize="0.875rem" iconColor={['currentcolor']} /> },
   { key: "customer", label: "客户中心", icon: <IconPlusIcDigitalPowerDpUserCluster iconSize="0.875rem" iconColor={['currentcolor']} /> },
   { key: "report", label: "经营分析", icon: <IconPlusIcPublicBarChart iconSize="0.875rem" iconColor={['currentcolor']} /> },
@@ -27,7 +15,7 @@ export const topNavItems = [
 export const sideMenuItems = [
   {
     key: "grp-order",
-    icon: <IconPlusIcIctNewFile iconSize="1rem" iconColor={['currentcolor']} />,
+    icon: "file-plus",
     label: "业务受理",
     children: [
       { key: "order-create", icon: "plus", label: "新装受理" },
@@ -38,7 +26,7 @@ export const sideMenuItems = [
   },
   {
     key: "grp-ticket",
-    icon: <IconPlusIcPublicClipboard iconSize="1rem" iconColor={['currentcolor']} />,
+    icon: "clipboard-list",
     label: "工单处理",
     children: [
       { key: "ticket-list", icon: "list-checks", label: "工单列表" },
@@ -48,7 +36,7 @@ export const sideMenuItems = [
   },
   {
     key: "grp-resource",
-    icon: <IconPlusIcIctServers iconSize="1rem" iconColor={['currentcolor']} />,
+    icon: "server",
     label: "资源管理",
     children: [
       { key: "res-number", icon: "hash", label: "号码资源" },
@@ -58,7 +46,7 @@ export const sideMenuItems = [
   },
   {
     key: "grp-audit",
-    icon: <IconPlusIcPublicBarChart iconSize="1rem" iconColor={['currentcolor']} />,
+    icon: "chart-column",
     label: "统计分析",
     children: [
       { key: "stat-daily", icon: "trending-up", label: "业务报表" },
@@ -169,7 +157,7 @@ export const orderNotices = [
   { icon: <IconPlusIcPublicMappinOnMap iconSize="0.875rem" iconColor={['currentcolor']} className="notice-icon" />, text: "装机地址需在光纤覆盖范围内，提交后系统自动核验。" },
   { icon: <IconPlusIcPublicCalendar iconSize="0.875rem" iconColor={['currentcolor']} className="notice-icon" />, text: "预约安装后，装维工程师将在 4 小时内与您联系确认。" },
   { icon: <IconPlusIcPublicCreditcard iconSize="0.875rem" iconColor={['currentcolor']} className="notice-icon" />, text: "首月费用按实际使用天数折算，次月起按月正常计费。" },
-  { icon: <IconPlusIcPublicSecurity iconSize="0.875rem" iconColor={['currentcolor']} className="notice-icon" />, text: "合约期内解约需结清剩余费用并支付相应违约金。" },
+  { icon: <IconPlusIcIctNetworkCheck iconSize="0.875rem" iconColor={['currentcolor']} className="notice-icon" />, text: "合约期内解约需结清剩余费用并支付相应违约金。" },
 ];
 
 // ── 最近受理工单 ──
@@ -185,9 +173,9 @@ export const recentOrders = [
 // ── 工单状态字典 ──
 export const orderStatusMap = {
   completed: { text: "已完工", color: "success", icon: "circle-check" },
-  processing: { text: "处理中", color: "processing", icon: "loader" },
+  processing: { text: "处理中", color: "primary", icon: "loader" },
   pending: { text: "待受理", color: "warning", icon: "clock" },
-  failed: { text: "已退单", color: "error", icon: "circle-x" },
+  failed: { text: "已退单", color: "danger", icon: "circle-x" },
   draft: { text: "草稿", color: "default", icon: "pencil" },
 };
 
