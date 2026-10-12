@@ -1,0 +1,52 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  position: relative;
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  width: fit-content;
+}
+
+.form-label.required::before {
+  content: "*";
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--error);
+  font: var(--font-body-m);
+}
+
+.form-control {
+  position: relative;
+  min-width: 0;
+}
+
+.form-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--error);
+  white-space: nowrap;
+}
+
+.form-hint {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+  white-space: nowrap;
+}

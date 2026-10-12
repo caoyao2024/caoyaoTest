@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS"
+  },
+  "notes": "check-relative-imports.cjs 报告 all relative imports resolved。Icon 导入已从 ../../../assets/shared/icon.jsx 改为 @/shared/Icon；app.jsx 的 ./src/ 路径已修正为 ./；context.jsx 已加 aui3_1_dark body 类切换；main.jsx 已加 dayjs locale 注册。"
+}

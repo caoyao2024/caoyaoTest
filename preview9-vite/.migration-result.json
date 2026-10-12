@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS",
+    "i18n-keys": "PASS",
+    "npm-install": "SKIP"
+  },
+  "notes": "All 16 migrationPlan items replaced. No 'from antd' imports remain. Icon call sites (31 <Icon> sites) untouched per stage-3 boundary. npm install timed out (30s) — @nce internal registry unreachable from external network, expected SKIP. i18n scenario A wired=true, no MISSING_TRANSLATION risk found."
+}

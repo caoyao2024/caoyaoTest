@@ -1,0 +1,104 @@
+.cfg-table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+}
+
+.cfg-table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  flex-wrap: wrap;
+}
+
+.cfg-toolbar-hint {
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.cfg-selected {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gutter);
+  color: var(--on-surface);
+  font: var(--font-body-s);
+}
+
+.cfg-selected strong {
+  color: var(--primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.cfg-table-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.cell-link {
+  color: var(--interactive-link);
+  cursor: pointer;
+}
+
+.cell-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.row-action {
+  color: var(--on-surface-variant);
+}
+
+.row-action:hover {
+  color: var(--primary);
+}
+
+.row-action-danger:hover {
+  color: var(--error);
+}
+
+.cfg-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: 0.75rem 1rem;
+  background: var(--surface-variant);
+  border-radius: var(--radius-container);
+  flex-wrap: wrap;
+}
+
+.cfg-summary-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-inline);
+}
+
+.cfg-summary-label {
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.cfg-summary-value {
+  color: var(--on-surface);
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+}
+
+.cfg-summary-actions {
+  margin-left: auto;
+}
+
+.cfg-table .ev_table_has_paging {
+  height: auto;
+}
+
+.cfg-table .ev_paging.ev_table_paging {
+  height: auto;
+  padding-top: 1rem;
+}

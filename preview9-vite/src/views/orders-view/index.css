@@ -1,0 +1,54 @@
+.orders-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+}
+
+.orders-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  flex-wrap: wrap;
+}
+
+.orders-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.cell-link {
+  color: var(--interactive-link);
+  cursor: pointer;
+}
+
+.cell-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.row-more {
+  display: inline-flex;
+  align-items: center;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+}
+
+.row-more:hover {
+  color: var(--primary);
+}
+
+.orders-view .ev_table_has_paging {
+  height: auto;
+}
+
+.orders-view .ev_paging.ev_table_paging {
+  height: auto;
+  padding-top: 1rem;
+}

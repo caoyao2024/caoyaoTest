@@ -1,0 +1,53 @@
+/* 应用级基础样式 — 页面根节点的 token 消费示例 */
+.app-root {
+  min-height: 100vh;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+.app-main {
+  padding: var(--spacing-page);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+}
+
+.app-page-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.app-title {
+  margin: 0;
+  color: var(--on-surface);
+  font: var(--font-display-s);
+  font-weight: var(--font-weight-semibold);
+}
+
+.app-subtitle {
+  margin: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-body-m);
+}
+
+.tab-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+/* 开通配置：表单 + 清单双栏 */
+.cfg-layout {
+  display: grid;
+  grid-template-columns: minmax(24rem, 30rem) minmax(0, 1fr);
+  gap: var(--spacing-gutter);
+  align-items: start;
+}
+
+@media (max-width: 1180px) {
+  .cfg-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
