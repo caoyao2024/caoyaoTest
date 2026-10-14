@@ -32,6 +32,13 @@ const iconInfoPromiseMap = {}; // name -> 进行中 Promise (in-flight 去重)
 const svgCache = new Map(); // "name&variant&color&size" -> svg text (结果缓存)
 const svgPromiseMap = new Map(); // "name&variant&color&size" -> 进行中 Promise (in-flight 去重)
 
+// 动态获取当前 rem 基准 px（html font-size 随视口媒体查询变化：12/14/16/20px）
+function getRootFontSize() {
+  if (typeof document === "undefined") return 16;
+  const fs = getComputedStyle(document.documentElement).fontSize;
+  return parseFloat(fs) || 16;
+}
+
 // getIcon 接口的 size 参数需数字 px。源 size 可能是 rem/px/数字，转 px 后吸附到 icon-plus 标准尺寸。
 const API_SIZES = [12, 14, 16, 20, 24, 32, 36, 40, 48, 60];
 function toApiSize(size) {
@@ -40,7 +47,7 @@ function toApiSize(size) {
     const m = String(size).trim().match(/(-?\d+(?:\.\d+)?)\s*(rem|px)?/i);
     if (m) {
       n = Number(m[1]);
-      if (m[2] && m[2].toLowerCase() === "rem") n = n * 16;
+      if (m[2] && m[2].toLowerCase() === "rem") n = n * getRootFontSize();
     }
   }
   if (n == null || Number.isNaN(n)) return 16;
@@ -184,7 +191,8 @@ function fetchSvg(name, variant, colorHex, size) {
 function resolveSize(size) {
   if (typeof size === "number") {
     console.warn(`[Icon] size={${size}} is a number — use rem string instead (e.g. size="${(size / 16).toFixed(4).replace(/\.?0+$/, "")}rem")`);
-    const rem = size / 16;
+    const rootFontSize = getRootFontSize();
+    const rem = size / rootFontSize;
     return `${parseFloat(rem.toFixed(4))}rem`;
   }
   return size;
@@ -204,9 +212,22 @@ export function Icon({
 }) {
   const resolvedSize = resolveSize(size);
   const mergedStyle = onClick ? { cursor: "pointer", ...style } : style;
+  const wrapRef = useRef(null);
+  const [inheritedColor, setInheritedColor] = useState(null);
+  const effectiveColor = color || inheritedColor;
   const [plus, setPlus] = useState(plusState); // reuse already-probed result
+
+    // 无显式 color 时，同步读取父元素计算色，转 hex 后回填 inheritedColor
+  useLayoutEffect(function () {
+    if (color) return; // 显式传了 color，无需继承
+    const el = wrapRef.current;
+    if (!el) return; // 尚未挂载（首次 plus===null 返回 null）
+    const hex = rgbToHex(getComputedStyle(el).color);
+    if (hex && hex !== inheritedColor) setInheritedColor(hex);
+  });
+
   const [svg, setSvg] = useState(
-    () => svgCache.get(`${name}&${variant}&${color}&${size}`) || ""
+    () => svgCache.get(`${name}&${variant}&${effectiveColor}&${size}`) || ""
   );
 
   useEffect(() => {
@@ -216,12 +237,12 @@ export function Icon({
       if (!alive) return;
       setPlus(ok);
       if (!ok) return; // getConfig probe failed → Lucide branch
-      const key = `${name}&${variant}&${color}&${size}`;
+      const key = `${name}&${variant}&${effectiveColor}&${size}`;
       if (svgCache.has(key)) {
         setSvg(svgCache.get(key));
         return;
       }
-      fetchSvg(name, variant, color, size).then((s) => {
+      fetchSvg(name, variant, effectiveColor, size).then((s) => {
         if (!alive || !s) return; // 空结果（失败）不写入 state，允许下次重试
         setSvg(s);
       });
@@ -229,7 +250,7 @@ export function Icon({
     return () => {
       alive = false;
     };
-  }, [src, name, variant, color, size]);
+  }, [src, name, variant, effectiveColor, size]);
 
   // user-provided asset (svg/png/jpg) via relative path — overrides name when both are set
   if (src) {
@@ -279,6 +300,7 @@ export function Icon({
   // icon-plus available → render fetched SVG text as-is (only width/height on the wrapper)
   if (!svg) {
     return React.createElement("span", {
+      ref: wrapRef,
       className,
       "aria-hidden": true,
       onClick,
@@ -288,6 +310,7 @@ export function Icon({
   }
 
   return React.createElement("span", {
+    ref: wrapRef,
     className,
     "aria-hidden": true,
     onClick,
