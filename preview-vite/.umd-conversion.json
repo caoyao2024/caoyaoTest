@@ -1,0 +1,299 @@
+{
+  "skill": "umd-to-antd-vite",
+  "version": "1.0",
+  "sourceFile": "index.page.html",
+  "projectName": "preview-vite",
+  "antdComponents": {
+    "Button": [
+      "src/views/header-bar/index.jsx"
+    ],
+    "Tag": [
+      "src/views/tag-showcase/index.jsx"
+    ],
+    "Input": [
+      "src/views/tag-showcase/index.jsx"
+    ]
+  },
+  "antdIcons": [],
+  "iconCallSites": [
+    {
+      "file": "src/views/header-bar/index.jsx",
+      "line": 13,
+      "name": "tag",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/header-bar/index.jsx",
+      "line": 24,
+      "name": "isDark ? \"sun\" : \"moon\"",
+      "type": "dynamic"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 67,
+      "name": "circle-check",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 68,
+      "name": "clock",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 69,
+      "name": "circle-x",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 70,
+      "name": "triangle-alert",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 86,
+      "name": "mail",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 87,
+      "name": "user",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 88,
+      "name": "search",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 89,
+      "name": "bell",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 90,
+      "name": "star",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 91,
+      "name": "shield-check",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 122,
+      "name": "plus",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 180,
+      "name": "circle-check",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 181,
+      "name": "circle-x",
+      "type": "literal"
+    },
+    {
+      "file": "src/views/tag-showcase/index.jsx",
+      "line": 182,
+      "name": "loader",
+      "type": "literal"
+    }
+  ],
+  "tokens": {
+    "rootVarCount": 455,
+    "darkVarCount": 180,
+    "cssFiles": [
+      "src/styles/tokens.css",
+      "src/styles/theme-dark.css",
+      "src/styles/font.css",
+      "src/styles/base.css"
+    ]
+  },
+  "srcFiles": [
+    "src/components/demo-section/index.css",
+    "src/components/demo-section/index.jsx",
+    "src/context.jsx",
+    "src/views/header-bar/index.css",
+    "src/views/header-bar/index.jsx",
+    "src/views/tag-showcase/index.css",
+    "src/views/tag-showcase/index.jsx"
+  ],
+  "darkMode": {
+    "method": "css-vars + aui3_1_dark class (antd darkAlgorithm removed in step 3)",
+    "darkClass": ".dark on <html> + aui3_1_dark on <body>"
+  },
+  "i18nScenario": {
+    "scenario": "A",
+    "reactIntl": {
+      "used": false,
+      "files": []
+    },
+    "i18next": {
+      "used": false,
+      "files": []
+    },
+    "antdLocaleImports": [],
+    "antdLocaleFiles": [],
+    "businessLocaleFiles": [],
+    "hasDayjs": false,
+    "wired": true
+  },
+  "verification": {
+    "relativeImports": "PASS"
+  },
+  "migrationPlan": [
+    {
+      "antd": "Button",
+      "category": "A",
+      "eview": "Button",
+      "importPath": "@nce/eview-react/Button",
+      "shellComponent": false,
+      "keyDiffs": "[Button type=\"primary\"] type→status（default/primary/risk/text）；无 loading/htmlType/danger；文字用 text（**带 leftIcon/rightIcon/icon 时必须用 text，不能用 children，否则图标不渲染**；无图标时可等价用 children）；处理中用 disabled+文案切换 | [Button danger] 同上 | [Button type=\"text\" shape=\"circle\" icon={<Icon/>}（无 children，纯图标按钮）] antd shape=\"circle\"/type=\"text\"+icon+无 children 是纯图标按钮信号；**剥 Button 外壳，onClick/title 直接搬到内层 <IconPlusIc* />**（IconButton 已弃用）；antd 的 message.success 提示文案移到原生 title 属性；**icon 的尺寸（<Icon size> / antd style.fontSize）吸附后写到 <IconPlusIc* iconSize={N} />（默认 14；吸附规则见 [match-icons.cjs](../scripts/match-icons.cjs)）** | [Button icon={...}（有文字 children）] 仅当有文字 children 时；无 children 的纯图标按钮剥外壳走 <IconPlusIc* onClick title/>（见上行，IconButton 已弃用）；**icon 的尺寸同样落到内层 <IconPlusIc* iconSize={N} />；文字搬 text=，不要保留 children（children 与 leftIcon/rightIcon 同时存在会让图标不渲染）**",
+      "ref": "components/Button.md",
+      "files": [
+        "src/views/header-bar/index.jsx"
+      ]
+    },
+    {
+      "antd": "Tag",
+      "category": "A",
+      "eview": "Tag",
+      "importPath": "@/shared/Tag",
+      "shellComponent": true,
+      "keyDiffs": "导入 @/shared/Tag（非 @nce/eview-react/Tag）；**调用点保留 antd 写法、不逐个改 props**——wrapper 内部映射 color→className token（shared/Tag/Tag.css 词汇：info/error/alert/warning/success/default/green/rose/pink/purple/indigo/cyan）、bordered→fill/ev_tag_fill、icon→iconName、closable/onClose 原样透传、antd closeIcon 丢弃；eview Tag **原生支持 closable+onClose**（非\"无 closable\"）；Tag.CheckableTag 仍无对应，用 Tag+onClick+fill 切换",
+      "ref": "components/Tag.md",
+      "files": [
+        "src/views/tag-showcase/index.jsx"
+      ]
+    },
+    {
+      "antd": "Input",
+      "category": "A",
+      "eview": "TextField",
+      "importPath": "@/shared/TextField",
+      "shellComponent": true,
+      "keyDiffs": "[Input] onChange(value, oldValue, event) 首参是值；validator 返回 {result,message}；required 自带星号；无 allowClear/prefix/rules/onPressEnter；⚠️ 导入 @/shared/TextField（包壳，非 @nce/eview-react/TextField） | [Input.TextArea] onChange(targetValue, value, event)；onBlur(event) 无 value；maxLength 自带右下角计数（替代 showCount）；无 autoSize/allowClear；无 ref 方法；⚠️ 导入 @/shared/TextArea（包壳，非 @nce/eview-react/TextArea） | [Input.Search] onSearch 值变化也触发（需防抖）；onClear(value)；placeholder 保留；onSuggest vs popItems 互斥；⚠️ 导入 @/shared/SearchInput（包壳，非 @nce/eview-react/SearchInput） | [Input.Password] 需 isAllowToModifyPasswordByProps 才能 props 清空/回填；autoComplete=\"off\"",
+      "ref": "components/TextField.md",
+      "files": [
+        "src/views/tag-showcase/index.jsx"
+      ]
+    }
+  ],
+  "notes": "",
+  "globalRef": {
+    "spellingAnomalies": [
+      {
+        "eview": "seprator",
+        "correct": "separator",
+        "component": "Crumbs"
+      },
+      {
+        "eview": "taggledChildren",
+        "correct": "toggledChildren",
+        "component": "Toggle"
+      },
+      {
+        "eview": "disable",
+        "correct": "disabled",
+        "component": "SelectCard/FileUpload"
+      },
+      {
+        "eview": "status",
+        "antd": "type",
+        "component": "Button"
+      },
+      {
+        "eview": "defaultLabel",
+        "antd": "placeholder",
+        "component": "Select"
+      },
+      {
+        "eview": "toggled",
+        "antd": "checked",
+        "component": "Toggle"
+      },
+      {
+        "eview": "iconSize",
+        "antd": "size",
+        "component": "icon-plus"
+      }
+    ],
+    "callbackSignatures": [
+      {
+        "component": "TextField",
+        "signature": "onChange(value, oldValue, event)",
+        "note": "首参是值不是 event"
+      },
+      {
+        "component": "Select",
+        "signature": "onChange(value, oldValue, text, oldText, event)",
+        "note": "五参"
+      },
+      {
+        "component": "TextArea",
+        "signature": "onChange(targetValue, value, event)"
+      },
+      {
+        "component": "MultipleSelect",
+        "signature": "onChange(value[], changeValue[], event)"
+      },
+      {
+        "component": "SearchInput",
+        "signature": "onSearch(value)",
+        "note": "值变化也触发，需防抖"
+      },
+      {
+        "component": "Button",
+        "signature": "onClick(event, additionalData)",
+        "note": "第二参是业务数据"
+      },
+      {
+        "component": "Tab",
+        "signature": "onClick(index, title, event)",
+        "note": "不是 onChange"
+      },
+      {
+        "component": "Toggle",
+        "signature": "onToggle(value)"
+      },
+      {
+        "component": "Spinner",
+        "signature": "onChange(value)",
+        "note": "只在有效值触发"
+      },
+      {
+        "component": "Checkbox",
+        "signature": "onChange(value, checked, event, additionalData)"
+      },
+      {
+        "component": "Radio",
+        "signature": "onChange(value, event)",
+        "note": "参数顺序有冲突，用兼容写法"
+      },
+      {
+        "component": "DragInput",
+        "signature": "onChange(value[])",
+        "note": "value 永远是数组"
+      },
+      {
+        "component": "TreeSelector",
+        "signature": "onChange(value: string|string[], checkedKeys?)",
+        "note": "首参是 id"
+      }
+    ]
+  }
+}

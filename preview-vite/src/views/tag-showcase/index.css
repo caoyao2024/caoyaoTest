@@ -1,0 +1,33 @@
+/* Tag 展示主视图 */
+.tag-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-section);
+}
+
+.tag-inline-label {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.tag-selected-text {
+  font: var(--font-body-s);
+  color: var(--on-surface);
+  font-weight: var(--font-weight-medium);
+}
+
+.tag-add-btn {
+  cursor: pointer;
+  background: var(--surface-container-low) !important;
+  border-style: dashed !important;
+}
+
+.tag-add-btn:hover {
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+.tag-pill {
+  border-radius: var(--radius-full) !important;
+  padding-inline: 0.75em !important;
+}
