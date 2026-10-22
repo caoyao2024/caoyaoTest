@@ -21,10 +21,9 @@ export default function HeaderBar() {
       </div>
       <div className="header-bar-right">
         <Button
-          status="default"
           leftIcon={isDark ? <IconPlusIcPublicSun iconSize="0.875rem" iconColor={['currentcolor']} /> : <IconPlusIcPublicMoon iconSize="0.875rem" iconColor={['currentcolor']} />}
-          text={isDark ? "切换浅色" : "切换深色"}
           onClick={toggleDark}
+          text={isDark ? "切换浅色" : "切换深色"}
         />
       </div>
     </header>

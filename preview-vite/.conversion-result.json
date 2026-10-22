@@ -2,8 +2,6 @@
   "status": "PASS",
   "round": 1,
   "failures": [],
-  "checks": {
-    "relative-imports": "PASS"
-  },
-  "notes": "check-relative-imports.cjs round 1: all relative imports resolved. Business code keeps antd imports (Button/Tag/Input/Empty) per hard constraint #1; Icon import rewritten to @/shared/Icon default import; context.jsx dark-mode useEffect enhanced to toggle aui3_1_dark on <body> + .dark on <html>."
+  "checks": { "relative-imports": "PASS" },
+  "notes": "code moved, paths fixed, i18n scenario A wired, dark mode updated"
 }

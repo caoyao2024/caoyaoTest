@@ -1,6 +1,6 @@
 // Tag 组件展示主视图 — 涵盖 Tag 的各类形态
 import { useState } from "react";
-import { IconPlusIcCarUser, IconPlusIcIctVerifyResult, IconPlusIcPublicAlert, IconPlusIcPublicBellClock, IconPlusIcPublicCheckmark, IconPlusIcPublicClock, IconPlusIcPublicCloseCircle, IconPlusIcPublicEnvelope, IconPlusIcPublicLoadingClockwise, IconPlusIcPublicPlus, IconPlusIcPublicSearch, IconPlusIcPublicStar } from '@hui/icon-plus';
+import { IconPlusIcCarUser, IconPlusIcPublicAlert, IconPlusIcPublicBellClock, IconPlusIcPublicCheckmark, IconPlusIcPublicClock, IconPlusIcPublicCloseCircle, IconPlusIcPublicEnvelope, IconPlusIcPublicLoadingClockwise, IconPlusIcPublicPlus, IconPlusIcPublicSearch, IconPlusIcPublicSecurity, IconPlusIcPublicStar } from '@hui/icon-plus';
 import Tag from "@/shared/Tag";
 import TextField from "@/shared/TextField";
 import DemoSection from "../../components/demo-section/index.jsx";
@@ -65,10 +65,10 @@ export default function TagShowcase() {
         <Tag color="error">error</Tag>
         <Tag color="default">default</Tag>
         <Tag color="warning">warning</Tag>
-        <Tag color="success" icon={<IconPlusIcPublicCheckmark iconSize="0.875rem" iconColor={['currentcolor']} />}>已通过</Tag>
-        <Tag color="processing" icon={<IconPlusIcPublicClock iconSize="0.875rem" iconColor={['currentcolor']} />}>审核中</Tag>
-        <Tag color="error" icon={<IconPlusIcPublicCloseCircle iconSize="0.875rem" iconColor={['currentcolor']} />}>已驳回</Tag>
-        <Tag color="warning" icon={<IconPlusIcPublicAlert iconSize="0.875rem" iconColor={['currentcolor']} />}>待处理</Tag>
+        <Tag color="success"><IconPlusIcPublicCheckmark iconSize="0.875rem" iconColor={['currentcolor']} />已通过</Tag>
+        <Tag color="processing"><IconPlusIcPublicClock iconSize="0.875rem" iconColor={['currentcolor']} />审核中</Tag>
+        <Tag color="error"><IconPlusIcPublicCloseCircle iconSize="0.875rem" iconColor={['currentcolor']} />已驳回</Tag>
+        <Tag color="warning"><IconPlusIcPublicAlert iconSize="0.875rem" iconColor={['currentcolor']} />待处理</Tag>
       </DemoSection>
 
       <DemoSection
@@ -84,12 +84,12 @@ export default function TagShowcase() {
         title="带图标标签"
         description="通过 icon 属性添加前置图标,常与色彩搭配表达语义。"
       >
-        <Tag icon={<IconPlusIcPublicEnvelope iconSize="0.875rem" iconColor={['currentcolor']} />}>邮件</Tag>
-        <Tag icon={<IconPlusIcCarUser iconSize="0.875rem" iconColor={['currentcolor']} />} color="processing">用户</Tag>
-        <Tag icon={<IconPlusIcPublicSearch iconSize="0.875rem" iconColor={['currentcolor']} />} color="success">查询</Tag>
-        <Tag icon={<IconPlusIcPublicBellClock iconSize="0.875rem" iconColor={['currentcolor']} />} color="warning">通知</Tag>
-        <Tag icon={<IconPlusIcPublicStar iconSize="0.875rem" iconColor={['currentcolor']} />} color="magenta">收藏</Tag>
-        <Tag icon={<IconPlusIcIctVerifyResult iconSize="0.875rem" iconColor={['currentcolor']} />} color="geekblue">已认证</Tag>
+        <Tag><IconPlusIcPublicEnvelope iconSize="0.875rem" iconColor={['currentcolor']} />邮件</Tag>
+        <Tag color="processing"><IconPlusIcCarUser iconSize="0.875rem" iconColor={['currentcolor']} />用户</Tag>
+        <Tag color="success"><IconPlusIcPublicSearch iconSize="0.875rem" iconColor={['currentcolor']} />查询</Tag>
+        <Tag color="warning"><IconPlusIcPublicBellClock iconSize="0.875rem" iconColor={['currentcolor']} />通知</Tag>
+        <Tag color="magenta"><IconPlusIcPublicStar iconSize="0.875rem" iconColor={['currentcolor']} />收藏</Tag>
+        <Tag color="geekblue"><IconPlusIcPublicSecurity iconSize="0.875rem" iconColor={['currentcolor']} />已认证</Tag>
       </DemoSection>
 
       <DemoSection
@@ -100,10 +100,7 @@ export default function TagShowcase() {
           <Tag
             key={tag}
             closable
-            onClose={(e) => {
-              e.preventDefault();
-              handleClose(tag);
-            }}
+            onClose={() => handleClose(tag)}
           >
             {tag}
           </Tag>
@@ -114,6 +111,7 @@ export default function TagShowcase() {
             value={inputValue}
             onChange={(value) => setInputValue(value)}
             onBlur={handleInputConfirm}
+            onKeyDown={(e) => { if (e.key === "Enter") handleInputConfirm(); }}
             autoFocus
           />
         ) : (
@@ -128,19 +126,15 @@ export default function TagShowcase() {
         description="Tag.CheckableTag 支持选中切换,适用于分类筛选、多选标签等场景。"
       >
         <span className="tag-inline-label">兴趣方向:</span>
-        {CATEGORIES.map((cat) => {
-          const isSelected = selected.indexOf(cat) > -1;
-          return (
-            <Tag
-              key={cat}
-              color={isSelected ? "processing" : undefined}
-              onClick={() => handleCategoryChange(cat, !isSelected)}
-              style={{ cursor: "pointer" }}
-            >
-              {cat}
-            </Tag>
-          );
-        })}
+        {CATEGORIES.map((cat) => (
+          <Tag
+            key={cat}
+            color={selected.indexOf(cat) > -1 ? "processing" : "default"}
+            onClick={() => handleCategoryChange(cat, !(selected.indexOf(cat) > -1))}
+          >
+            {cat}
+          </Tag>
+        ))}
         <span className="tag-inline-label">已选:</span>
         <span className="tag-selected-text">{selected.join("、") || "无"}</span>
       </DemoSection>
@@ -149,14 +143,14 @@ export default function TagShowcase() {
         title="无边框标签"
         description="bordered={false} 去除描边,适合信息密度高的列表场景。"
       >
-        <Tag bordered={false}>default</Tag>
-        <Tag bordered={false} color="success">success</Tag>
-        <Tag bordered={false} color="processing">processing</Tag>
-        <Tag bordered={false} color="error">error</Tag>
-        <Tag bordered={false} color="warning">warning</Tag>
-        <Tag bordered={false} color="magenta">magenta</Tag>
-        <Tag bordered={false} color="geekblue">geekblue</Tag>
-        <Tag bordered={false} color="purple">purple</Tag>
+        <Tag>default</Tag>
+        <Tag color="success">success</Tag>
+        <Tag color="processing">processing</Tag>
+        <Tag color="error">error</Tag>
+        <Tag color="warning">warning</Tag>
+        <Tag color="magenta">magenta</Tag>
+        <Tag color="geekblue">geekblue</Tag>
+        <Tag color="purple">purple</Tag>
       </DemoSection>
 
       <DemoSection
@@ -180,9 +174,9 @@ export default function TagShowcase() {
         <Tag color="processing">同步中</Tag>
         <Tag color="error">故障</Tag>
         <Tag color="warning">维护中</Tag>
-        <Tag color="success" icon={<IconPlusIcPublicCheckmark iconSize="0.875rem" iconColor={['currentcolor']} />}>健康</Tag>
-        <Tag color="error" icon={<IconPlusIcPublicCloseCircle iconSize="0.875rem" iconColor={['currentcolor']} />}>异常</Tag>
-        <Tag color="processing" icon={<IconPlusIcPublicLoadingClockwise iconSize="0.875rem" iconColor={['currentcolor']} />}>部署中</Tag>
+        <Tag color="success"><IconPlusIcPublicCheckmark iconSize="0.875rem" iconColor={['currentcolor']} />健康</Tag>
+        <Tag color="error"><IconPlusIcPublicCloseCircle iconSize="0.875rem" iconColor={['currentcolor']} />异常</Tag>
+        <Tag color="processing"><IconPlusIcPublicLoadingClockwise iconSize="0.875rem" iconColor={['currentcolor']} />部署中</Tag>
       </DemoSection>
     </div>
   );
