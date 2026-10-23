@@ -1,0 +1,266 @@
+/* ⑤⑥ 主表格 + 工具栏 + 批量操作栏 + 分页（.fm 表单骨架见 order-console/index.css） */
+
+/* 工具栏 */
+.ot-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.875rem var(--spacing-inset) 0;
+}
+
+.ot-result {
+  font: var(--font-body-m);
+  color: var(--color-text-secondary);
+}
+
+.ot-result b {
+  color: var(--on-surface);
+  font-weight: var(--font-weight-semibold);
+  padding: 0 0.125rem;
+}
+
+.ot-result-sel {
+  color: var(--primary);
+}
+
+.ot-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ot-tool {
+  color: var(--color-icon-secondary);
+}
+
+.ot-tool:hover {
+  color: var(--color-brand);
+}
+
+@keyframes ot-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ot-tool-spin {
+  animation: ot-rotate 0.8s linear infinite;
+}
+
+/* 批量操作栏 */
+.ot-batch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.625rem var(--spacing-inset) 0;
+  padding: 0.5rem 0.75rem;
+  background: var(--primary-container);
+  border-radius: var(--radius-base);
+}
+
+.ot-batch-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: var(--font-body-m);
+  color: var(--on-primary-container);
+}
+
+.ot-batch-n {
+  padding: 0 0.125rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary);
+}
+
+.ot-batch-clear {
+  margin-left: 0.25rem;
+  font: var(--font-body-s);
+  color: var(--interactive-link);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ot-batch-clear:hover {
+  color: var(--interactive-link-hover);
+}
+
+.ot-batch-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ot-table {
+  margin-top: 0.875rem;
+}
+
+.ot-pager {
+  padding: 1rem var(--spacing-inset) 1.25rem;
+}
+
+/* 单元格 */
+.ot-link {
+  color: var(--interactive-link);
+  cursor: pointer;
+}
+
+.ot-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.ot-no {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* 行内小标记（订单号列备注指示） */
+.ot-flag {
+  color: var(--color-icon-tertiary);
+  flex-shrink: 0;
+}
+
+.ot-goods {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.ot-thumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-base);
+}
+
+.ot-goods-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ot-goods-name {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ot-goods-sub {
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ot-cust {
+  display: flex;
+  flex-direction: column;
+}
+
+.ot-cust-name {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.ot-cust-phone {
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ot-amount {
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--on-surface);
+}
+
+/* 物流状态链接（点击查看轨迹） */
+.ot-logi-link {
+  color: var(--interactive-link);
+  cursor: pointer;
+}
+
+.ot-logi-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.ot-logi-error {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+.ot-logi-error:hover {
+  color: var(--color-error);
+}
+
+.ot-time {
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 操作列 — 纯图标，间距 1rem，hover 品牌色 */
+.ot-ops {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ot-op {
+  color: var(--color-icon-secondary);
+}
+
+.ot-op:hover {
+  color: var(--color-brand);
+}
+
+.ot-op-disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.ot-op-disabled:hover {
+  color: var(--color-text-disabled);
+}
+
+/* 行悬浮商品摘要浮层 */
+.ot-pop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 20rem;
+}
+
+.ot-pop-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font: var(--font-body-s);
+}
+
+.ot-pop-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ot-pop-num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ot-pop-total {
+  margin-top: 0.25rem;
+  padding-top: 0.375rem;
+  border-top: 1px solid var(--divider);
+  color: var(--color-text-secondary);
+}

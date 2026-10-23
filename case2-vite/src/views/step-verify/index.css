@@ -1,0 +1,154 @@
+.step-verify {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-active-note {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  background: var(--primary-container);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+  font: var(--font-body-s);
+  color: var(--on-surface);
+}
+
+/* 事故经过折叠面板 */
+.incident-collapse {
+  margin-bottom: var(--spacing-4);
+}
+
+.incident-label {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.incident-desc {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+  line-height: var(--line-height-md);
+}
+
+.incident-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-inline) var(--spacing-gutter);
+  margin-top: var(--spacing-3);
+}
+
+.im-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.im-label {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.im-value {
+  font: var(--font-body-s);
+  color: var(--on-surface);
+}
+
+.verify-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-gutter);
+  margin-bottom: var(--spacing-4);
+}
+
+.vs-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.375rem;
+  background: var(--surface-variant);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-3) var(--spacing-4);
+}
+
+.vs-label {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.vs-value {
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+}
+
+.step-verify .ant-table-row {
+  cursor: pointer;
+}
+
+/* 说明区锚定卡片底部：内容不足整卡高度时避免大片空白 */
+.verify-remark {
+  margin-top: auto;
+  padding-top: var(--spacing-3);
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+  line-height: var(--line-height-md);
+}
+
+.verify-tip {
+  margin-top: var(--spacing-2);
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+/* 材料预览弹窗 */
+.mp-image {
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  margin-bottom: var(--spacing-3);
+}
+
+.mp-image img {
+  display: block;
+  width: 100%;
+  max-height: 14rem;
+  object-fit: cover;
+}
+
+.mp-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-2) var(--spacing-gutter);
+}
+
+.mp-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.mp-key {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.mp-value {
+  font: var(--font-body-s);
+  color: var(--on-surface);
+}
+
+.mp-tip {
+  margin-top: var(--spacing-3);
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+@media (max-width: 60rem) {
+  .verify-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mp-meta {
+    grid-template-columns: 1fr;
+  }
+}

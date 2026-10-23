@@ -1,0 +1,24 @@
+/* 状态标签 — 软徽章语义色（文字色 + 浅底色 token，暗色自动跟随），图标内嵌 */
+.st {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-inline-end: 0;
+  padding-inline: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-base);
+  font: var(--font-body-s);
+  line-height: 1.375rem;
+}
+
+.st-icon {
+  flex-shrink: 0;
+}
+
+.st-warning { color: var(--color-tag-text-warning); background: var(--color-tag-bg-warning); }
+.st-alert { color: var(--color-tag-text-alert); background: var(--color-tag-bg-alert); }
+.st-info { color: var(--color-tag-text-info); background: var(--color-tag-bg-info); }
+.st-success { color: var(--color-tag-text-success); background: var(--color-tag-bg-success); }
+.st-error { color: var(--color-tag-text-error); background: var(--color-tag-bg-error); }
+.st-purple { color: var(--color-tag-text-purple); background: var(--color-tag-bg-purple); }
+.st-cyan { color: var(--color-tag-text-cyan); background: var(--color-tag-bg-cyan); }

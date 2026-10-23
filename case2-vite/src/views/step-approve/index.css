@@ -1,0 +1,295 @@
+.step-approve {
+  display: flex;
+  flex-direction: column;
+}
+
+.approve-locked {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  background: var(--surface-variant);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+.approve-locked-icon {
+  color: var(--success);
+  flex-shrink: 0;
+}
+
+/* 赔付摘要条（随免赔额联动） */
+.approve-summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-inline) var(--spacing-gutter);
+  background: var(--surface-variant);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-bottom: var(--spacing-5);
+}
+
+.as-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--spacing-1);
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+  white-space: nowrap;
+}
+
+.as-item b {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+}
+
+.as-item--hl b {
+  color: var(--primary);
+  font-size: var(--font-size-lg);
+}
+
+/* 表单区（标签居上 · 星号悬挂 · 错误文案不占位） */
+.approve-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding-bottom: var(--spacing-2);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--spacing-8);
+}
+
+.deduct-control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.deduct-unit {
+  font: var(--font-body-m);
+  color: var(--on-surface-variant);
+}
+
+.injury-control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.injury-text {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+}
+
+/* 快捷短语 */
+.opinion-head {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gutter);
+  flex-wrap: wrap;
+}
+
+.quick-phrases {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.qp-label {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.qp-chip {
+  border: none;
+  background: var(--surface-variant);
+  color: var(--on-surface);
+  font: var(--font-caption-m);
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.qp-chip:hover {
+  background: var(--primary-container);
+  color: var(--primary);
+}
+
+.qp-chip:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  background: var(--surface-variant);
+}
+
+/* 高风险警示 */
+.high-risk-warn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  margin-top: var(--spacing-2);
+  background: var(--critical-container);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-2) var(--spacing-3);
+  font: var(--font-body-s);
+  color: var(--on-surface);
+}
+
+.hr-icon {
+  color: var(--critical);
+  flex-shrink: 0;
+}
+
+/* 风控提示条：固定在卡片底部（表单区在上方滚动） */
+.risk-notice {
+  display: flex;
+  gap: var(--spacing-inline);
+  align-items: flex-start;
+  background: var(--info-container);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-3) var(--spacing-4);
+  margin-top: var(--spacing-4);
+  flex-shrink: 0;
+}
+
+.risk-icon {
+  color: var(--info);
+  flex-shrink: 0;
+  margin-top: 0.1875rem;
+}
+
+.risk-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.risk-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+}
+
+.risk-title {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+}
+
+.risk-report-link {
+  color: var(--interactive-link);
+  cursor: pointer;
+  font: var(--font-caption-m);
+  white-space: nowrap;
+}
+
+.risk-report-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.risk-text {
+  margin-top: 0.125rem;
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+  line-height: var(--line-height-md);
+}
+
+/* 风控报告弹窗 */
+.rr-score {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-inline);
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--info-container);
+  border-radius: var(--radius-base);
+}
+
+.rr-score--high {
+  background: var(--critical-container);
+}
+
+.rr-score-num {
+  font: var(--font-display-s);
+  font-weight: var(--font-weight-bold);
+  color: var(--info);
+}
+
+.rr-score--high .rr-score-num {
+  color: var(--critical);
+}
+
+.rr-score-unit {
+  font: var(--font-body-m);
+  color: var(--on-surface-variant);
+}
+
+.rr-score-tag {
+  margin-left: auto;
+}
+
+.rr-section-title {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  margin: var(--spacing-4) 0 var(--spacing-2);
+}
+
+.rr-rules {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.rr-rule {
+  background: var(--surface-variant);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-2) var(--spacing-3);
+}
+
+.rr-rule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+}
+
+.rr-rule-name {
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.rr-rule-desc {
+  margin-top: 0.125rem;
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+  line-height: var(--line-height-md);
+}
+
+.rr-suggestion {
+  font: var(--font-body-s);
+  color: var(--on-surface-variant);
+  line-height: var(--line-height-md);
+  background: var(--surface-variant);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-2) var(--spacing-3);
+}
+
+@media (max-width: 60rem) {
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .opinion-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+}

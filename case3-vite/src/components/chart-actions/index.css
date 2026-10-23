@@ -1,0 +1,21 @@
+/* 图表卡操作组 — 图标间距 1rem，hover 变品牌色 */
+.chart-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chart-actions-divider {
+  width: 1px;
+  height: 0.75rem;
+  background: var(--color-border);
+}
+
+.chart-action-icon {
+  color: var(--on-surface-variant);
+  transition: color 0.2s ease;
+}
+
+.chart-action-icon:hover {
+  color: var(--color-brand);
+}

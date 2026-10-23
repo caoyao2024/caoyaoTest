@@ -1,0 +1,4 @@
+/* 趋势卡 — 图表固定高度（Pattern B），容器不产生额外约束 */
+.trend-card .section-card-body {
+  padding-top: var(--spacing-2);
+}

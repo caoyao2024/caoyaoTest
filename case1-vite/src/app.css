@@ -1,0 +1,11 @@
+/* 应用级基础样式 */
+.app-root {
+  min-height: 100vh;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+.app-root a {
+  text-decoration: none;
+}

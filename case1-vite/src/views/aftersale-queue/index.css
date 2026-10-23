@@ -1,0 +1,149 @@
+/* ⑦ 右侧售后队列 — 卡片随右栏等高弹性填充，列表内部滚动 */
+.afq {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+}
+
+.afq-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.125rem 0.25rem;
+}
+
+.afq-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+}
+
+.afq-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.375rem;
+  height: 1.25rem;
+  padding: 0 0.375rem;
+  border-radius: var(--radius-full);
+  background: var(--color-error);
+  color: var(--on-error);
+  font: var(--font-caption-m);
+  font-weight: var(--font-weight-medium);
+}
+
+.afq-tip {
+  padding: 0.25rem 1.125rem 0.75rem;
+  border-bottom: 1px solid var(--divider);
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+}
+
+.afq-filters {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.625rem 1.125rem 0;
+}
+
+.afq-chip {
+  padding: 0.0625rem 0.5rem;
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-full);
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.afq-chip:hover {
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.afq-chip-on {
+  background: var(--primary-container);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.afq-list {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.afq-empty {
+  flex: 1 1 0;
+  padding: 2.5rem 0;
+}
+
+
+.afq-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.875rem 1.125rem;
+  border-bottom: 1px solid var(--divider);
+}
+
+.afq-item:last-child {
+  border-bottom: none;
+}
+
+.afq-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.afq-no {
+  font: var(--font-body-m);
+  color: var(--interactive-link);
+  cursor: pointer;
+}
+
+.afq-no:hover {
+  color: var(--interactive-link-hover);
+}
+
+.afq-amount {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+.afq-wait {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+}
+
+.afq-urgent {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+.afq-reason {
+  font: var(--font-body-s);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.afq-actions {
+  display: flex;
+  gap: 0.5rem;
+}

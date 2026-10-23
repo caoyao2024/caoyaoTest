@@ -1,0 +1,48 @@
+/* 应用级基础样式 — 页面骨架与主内容栅格（紧凑布局：图表行全宽 → 表格全宽 → 底部三卡等高对齐） */
+.app-root {
+  min-height: 100vh;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+.page-main {
+  width: 100%;
+  max-width: 104rem;
+  margin: 0 auto;
+  padding: var(--spacing-3) var(--spacing-6) var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+/* 图表行（全宽）：趋势区（宽） + 构成区（窄） */
+.charts-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+  gap: var(--spacing-gutter);
+}
+
+/* 底部三卡：到期榜单 / 团队负载 / 快捷操作 — 等高对齐（stretch） */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: var(--spacing-gutter);
+  align-items: stretch;
+}
+
+@media (max-width: 80rem) {
+  .charts-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bottom-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 64rem) {
+  .page-main {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+}

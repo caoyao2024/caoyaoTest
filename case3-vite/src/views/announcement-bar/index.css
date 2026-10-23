@@ -1,0 +1,249 @@
+/* 产品公告悬浮组件 — 固定右下角：收起为胶囊，展开为公告面板 */
+.announce-float {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 90;
+}
+
+/* 收起态：胶囊按钮 */
+.announce-fab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5625rem 1rem;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--surface-container-highest);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.announce-fab-btn:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.announce-fab-icon {
+  color: var(--primary);
+}
+
+.announce-fab-count {
+  min-width: 1.125rem;
+  height: 1.125rem;
+  padding: 0 0.25rem;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: var(--on-primary);
+  font: var(--font-caption-s);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 展开态：公告面板 */
+.announce-panel {
+  width: 23rem;
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: announce-pop 0.25s ease;
+  transform-origin: bottom right;
+}
+
+@keyframes announce-pop {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.announce-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem 0.375rem;
+}
+
+.announce-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: var(--primary-container);
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.announce-panel-title {
+  flex: 1;
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+}
+
+.announce-collapse {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: var(--radius-base);
+  background: transparent;
+  color: var(--on-surface-variant);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.announce-collapse:hover {
+  background: var(--surface-variant);
+  color: var(--primary);
+}
+
+/* 面板主体：左右切换 + 轮播 */
+.announce-panel-body {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.5rem 0.5rem;
+}
+
+.announce-carousel {
+  flex: 1;
+  min-width: 0;
+}
+
+.announce-arrow {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--surface-variant);
+  color: var(--on-surface-variant);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.announce-arrow:hover {
+  background: var(--primary-container);
+  color: var(--primary);
+}
+
+/* 轮播条目：类型 + 日期 / 标题 / 描述 */
+.announce-slide {
+  height: 5.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0 0.625rem 0.75rem;
+  cursor: pointer;
+}
+
+.announce-slide-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-inline);
+}
+
+.announce-tag {
+  flex-shrink: 0;
+  margin-inline-end: 0;
+}
+
+.announce-slide-date {
+  flex-shrink: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.announce-slide-title {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--on-surface);
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-semibold);
+  transition: color 0.2s ease;
+}
+
+.announce-slide:hover .announce-slide-title {
+  color: var(--primary);
+}
+
+.announce-slide-desc {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+/* 轮播指示点（antd Carousel dots 定制） */
+.announce-carousel .slick-dots {
+  bottom: 0.125rem;
+}
+
+.announce-carousel .slick-dots li button {
+  width: 1rem;
+  height: 0.25rem;
+  border-radius: var(--radius-full);
+  background: var(--outline);
+  opacity: 1;
+}
+
+.announce-carousel .slick-dots li.slick-active button {
+  width: 1.5rem;
+  background: var(--primary);
+}
+
+/* 公告详情弹窗 */
+.announce-detail-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  color: var(--on-surface);
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+}
+
+.announce-detail-date {
+  margin: 0 0 0.75rem;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.announce-detail-text {
+  margin: 0;
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  line-height: var(--line-height-lg);
+}
+
+.announce-detail-note {
+  margin: 0.75rem 0 0;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-base);
+  background: var(--surface-variant);
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}

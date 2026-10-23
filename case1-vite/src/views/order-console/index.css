@@ -1,0 +1,115 @@
+/* 订单运营台 — 页面骨架 */
+.console-page {
+  min-height: 100vh;
+  padding-bottom: 3.25rem; /* 让出底部异常提示条 */
+}
+
+.console-main {
+  display: flex;
+  align-items: stretch; /* 左右两栏等高：右栏随左栏（表格卡片）高度拉伸 */
+  gap: var(--spacing-gutter);
+  max-width: 118rem;
+  margin: 0 auto;
+  padding: var(--spacing-gutter) var(--spacing-page) var(--spacing-page);
+}
+
+.console-content {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--spacing-section);
+}
+
+/* 右侧栏（售后队列 + 操作动态）— 与左栏等高：售后队列弹性填充，列表内部滚动 */
+.console-aside {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 21rem;
+  width: 21rem;
+  min-height: 0;
+  gap: var(--spacing-gutter);
+}
+
+/* 内容卡片（布局容器模式：阴影 + 圆角，无边框） */
+.console-card {
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- H5 表单骨架（页面级共享：修改地址 / 备注 / 拒绝原因 / 新建订单 / 快捷创建弹窗） ---- */
+.fm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.fm-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fm-label {
+  position: relative;
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.fm-required::before {
+  content: "*";
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-error);
+  font: var(--font-body-m);
+}
+
+.fm-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--color-error);
+}
+
+/* 弹窗内双列表单栅格 */
+.fm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.fm-grid .fm-field-wide {
+  grid-column: 1 / -1;
+}
+
+/* 窄屏：右侧栏下移为通栏，恢复自然高度 */
+@media (max-width: 96rem) {
+  .console-main {
+    flex-direction: column;
+  }
+
+  .console-main .console-aside {
+    flex: none;
+    width: 100%;
+  }
+
+  .console-main .afq {
+    flex: none;
+  }
+
+  .console-main .afq-list {
+    flex: none;
+    max-height: none;
+  }
+
+  .console-main .al-list {
+    max-height: none;
+  }
+}

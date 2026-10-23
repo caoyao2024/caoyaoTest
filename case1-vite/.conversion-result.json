@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS"
+  },
+  "notes": "All relative imports resolved on first pass. i18n scenario A wired (IntlProvider + dayjs zh-cn locale in main.jsx). Dark mode: context.jsx toggles .dark on <html> + aui3_1_dark on <body>. antd ConfigProvider removed from app.jsx."
+}

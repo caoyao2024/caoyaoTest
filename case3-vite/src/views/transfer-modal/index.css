@@ -1,0 +1,5 @@
+/* 转交负责人弹窗 — 表单骨架样式复用 form-sheet */
+.transfer-current {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}

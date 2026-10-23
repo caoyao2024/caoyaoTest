@@ -1,0 +1,162 @@
+/* 订单详情弹窗 — 信息栅格 + 商品清单 */
+.odm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.odm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.5rem;
+}
+
+.odm-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.odm-cell-wide {
+  grid-column: 1 / -1;
+}
+
+.odm-k {
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+}
+
+.odm-amount {
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+.odm-logi-error {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+.odm-aftersale {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--color-message-bg-error);
+  border-radius: var(--radius-base);
+  font: var(--font-body-s);
+  color: var(--on-surface);
+}
+
+/* 订单进度时间轴 */
+.odm-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.odm-tl {
+  margin-top: 0.25rem;
+  padding: 0 0 0 0.25rem;
+}
+
+.odm-tl-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.odm-tl-title {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.odm-tl-time {
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.odm-tl-desc {
+  margin-top: 0.125rem;
+  font: var(--font-body-s);
+  color: var(--color-text-secondary);
+}
+
+.odm-goods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--divider);
+}
+
+.odm-goods-title {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.odm-goods-row {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.375rem 0;
+}
+
+.odm-thumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-base);
+}
+
+.odm-goods-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.odm-goods-name {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.odm-goods-spec {
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+}
+
+.odm-goods-qty {
+  width: 3rem;
+  font: var(--font-body-m);
+  color: var(--color-text-secondary);
+  text-align: right;
+}
+
+.odm-goods-sum {
+  width: 5.5rem;
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.odm-goods-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--divider);
+  font: var(--font-body-m);
+  color: var(--color-text-secondary);
+}

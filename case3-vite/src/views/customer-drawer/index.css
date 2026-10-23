@@ -1,0 +1,162 @@
+/* 客户详情抽屉 — 分区纵排，信息网格两列 */
+.drawer-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  min-width: 0;
+}
+
+.drawer-title-name {
+  color: var(--on-surface);
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+}
+
+.drawer-title-industry {
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.drawer-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-inline);
+}
+
+.drawer-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.drawer-section-title {
+  margin: 0 0 var(--spacing-3);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* 健康分区 */
+.drawer-score-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  margin-bottom: var(--spacing-inline);
+}
+
+.drawer-score {
+  font: var(--font-display-s);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.1;
+}
+
+.drawer-score-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.drawer-score-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-medium);
+}
+
+.drawer-score-delta.is-up {
+  color: var(--success);
+}
+
+.drawer-score-delta.is-down {
+  color: var(--error);
+}
+
+.drawer-score-note {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.drawer-chart {
+  margin-top: var(--spacing-3);
+}
+
+/* 基本信息区 */
+.drawer-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-3) var(--spacing-4);
+}
+
+.drawer-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.drawer-info-label {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.drawer-info-value {
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+.drawer-info-value.is-urgent {
+  color: var(--error);
+  font-weight: var(--font-weight-semibold);
+}
+
+.drawer-info-value.is-soon {
+  color: var(--critical);
+  font-weight: var(--font-weight-semibold);
+}
+
+.drawer-info-csm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+.drawer-info-avatar {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+/* 跟进动态时间轴 */
+.drawer-timeline-item {
+  min-width: 0;
+}
+
+.drawer-timeline-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-inline);
+}
+
+.drawer-timeline-title {
+  color: var(--on-surface);
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-medium);
+}
+
+.drawer-timeline-time {
+  flex-shrink: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.drawer-timeline-detail {
+  margin: 0.125rem 0 0;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+  line-height: var(--line-height-md);
+}

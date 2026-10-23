@@ -1,0 +1,88 @@
+/* ⑧ 底部异常提示条 — 深色反色状态条，固定于视口底部 */
+.exc-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  background: var(--inverse-surface);
+  color: var(--inverse-on-surface);
+  box-shadow: var(--shadow-t-sm);
+}
+
+.exc-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: 2.75rem;
+  max-width: 118rem;
+  margin: 0 auto;
+  padding: 0 var(--spacing-page);
+}
+
+.exc-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--warning);
+  white-space: nowrap;
+}
+
+.exc-items {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.exc-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-base);
+  font: var(--font-body-m);
+  color: var(--inverse-on-surface);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.exc-item b {
+  padding: 0 0.125rem;
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.exc-timeout b {
+  color: var(--warning);
+}
+
+.exc-logistics b {
+  color: var(--critical);
+}
+
+.exc-item:hover {
+  background: var(--inverse-primary);
+  color: var(--on-primary-fixed);
+}
+
+.exc-item:hover b {
+  color: var(--on-primary-fixed);
+}
+
+.exc-item.on {
+  background: var(--inverse-primary);
+  color: var(--on-primary-fixed);
+}
+
+.exc-item.on b {
+  color: var(--on-primary-fixed);
+}
+
+.exc-hint {
+  margin-left: auto;
+  font: var(--font-caption-m);
+  opacity: 0.72;
+  white-space: nowrap;
+}

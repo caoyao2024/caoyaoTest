@@ -1,0 +1,84 @@
+/* ② 今日概览 — 4 卡栅格 */
+.ov-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--spacing-gutter);
+}
+
+.ov-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+}
+
+.ov-card.ov-click {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ov-card.ov-click:hover {
+  box-shadow: var(--shadow-base);
+  transform: translateY(-2px);
+}
+
+.ov-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ov-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-md);
+}
+
+.ov-info { background: var(--color-message-bg-info); color: var(--color-info-primary); }
+.ov-alert { background: var(--color-message-bg-alert); color: var(--color-alert); }
+.ov-error { background: var(--color-message-bg-error); color: var(--color-error); }
+.ov-success { background: var(--color-message-bg-success); color: var(--color-success); }
+
+.ov-title {
+  font: var(--font-body-m);
+  color: var(--color-text-secondary);
+}
+
+.ov-value {
+  font: var(--font-headline-l);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  font-variant-numeric: tabular-nums;
+}
+
+.ov-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font: var(--font-body-s);
+}
+
+.ov-good { color: var(--color-success); }
+.ov-bad { color: var(--color-error); }
+
+.ov-pct {
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.ov-vs {
+  color: var(--color-text-secondary);
+  font: var(--font-caption-m);
+}
+
+@media (max-width: 64rem) {
+  .ov-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

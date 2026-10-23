@@ -1,0 +1,52 @@
+/* 筛选条 — 行内筛选区，右侧汇总口径 + 导出动作 */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-inline);
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+}
+
+.filter-search {
+  width: 17rem;
+}
+
+.filter-industry {
+  width: 8.5rem;
+}
+
+.filter-export-caret {
+  margin-left: 0.25rem;
+}
+
+.filter-summary {
+  margin-left: auto;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.filter-reset {
+  flex-shrink: 0;
+  color: var(--interactive-link);
+  font: var(--font-body-s);
+  cursor: pointer;
+}
+
+.filter-reset:hover {
+  color: var(--interactive-link-hover);
+}
+
+@media (max-width: 64rem) {
+  .filter-search {
+    width: 100%;
+  }
+
+  .filter-summary {
+    margin-left: 0;
+    width: 100%;
+    order: 5;
+  }
+}

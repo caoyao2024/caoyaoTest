@@ -1,0 +1,107 @@
+.process-nav {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nav-scroll {
+  gap: var(--spacing-4);
+  overflow-x: hidden;
+}
+
+.process-steps {
+  margin-top: 0;
+}
+
+.step-title {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+}
+
+.step-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.step-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--success);
+  font: var(--font-caption-m);
+}
+
+/* 案件速览（紧凑） */
+.fast-view {
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--surface-variant);
+  border-radius: var(--radius-base);
+}
+
+.fv-title {
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  margin-bottom: var(--spacing-2);
+}
+
+.fv-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.1875rem 0;
+}
+
+.fv-k {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+}
+
+.fv-v {
+  font: var(--font-body-s);
+  color: var(--on-surface);
+  line-height: var(--line-height-md);
+  word-break: break-all;
+}
+
+/* 处理时限（固定卡片底部） */
+.process-deadline {
+  display: flex;
+  gap: var(--spacing-inline);
+  align-items: flex-start;
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--surface-variant);
+  border-radius: var(--radius-base);
+  flex-shrink: 0;
+}
+
+.process-deadline--hot {
+  background: var(--critical-container);
+}
+
+.deadline-icon {
+  color: var(--critical);
+  flex-shrink: 0;
+  margin-top: 0.1875rem;
+}
+
+.deadline-main {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  color: var(--on-surface);
+}
+
+.process-deadline--hot .deadline-main {
+  color: var(--critical);
+}
+
+.deadline-sub {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+  margin-top: 0.125rem;
+}

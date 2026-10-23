@@ -1,0 +1,84 @@
+/* 物流轨迹弹窗 */
+.lm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lm-head {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1.5rem;
+  padding: 0.75rem 0.875rem;
+  background: var(--surface-variant);
+  border-radius: var(--radius-base);
+}
+
+.lm-head-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: var(--font-body-s);
+  color: var(--on-surface);
+}
+
+.lm-k {
+  color: var(--color-text-secondary);
+  font: var(--font-caption-m);
+  flex-shrink: 0;
+}
+
+.lm-waybill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.lm-copy {
+  color: var(--color-icon-tertiary);
+  cursor: pointer;
+}
+
+.lm-copy:hover {
+  color: var(--color-brand);
+}
+
+.lm-copied {
+  color: var(--color-success);
+}
+
+.lm-status-error {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+.lm-tl {
+  margin-top: 0.5rem;
+  padding: 0.25rem 0 0 0.25rem;
+}
+
+.lm-item-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.lm-item-title {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+}
+
+.lm-item-time {
+  font: var(--font-caption-m);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.lm-item-desc {
+  margin-top: 0.125rem;
+  font: var(--font-body-s);
+  color: var(--color-text-secondary);
+}

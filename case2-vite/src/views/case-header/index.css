@@ -1,0 +1,249 @@
+.case-header {
+  flex-shrink: 0;
+  background: var(--surface-container-lowest);
+}
+
+/* 顶部工具条（48px 全局导航层） */
+.chrome-bar {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-page);
+  background: var(--surface-container-highest);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.chrome-left,
+.chrome-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.chrome-logo {
+  color: var(--primary);
+}
+
+.chrome-title {
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+.chrome-divider {
+  width: 1px;
+  height: 1rem;
+  background: var(--divider);
+}
+
+.chrome-org {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+  white-space: nowrap;
+}
+
+.chrome-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font: var(--font-body-m);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+.chrome-theme {
+  color: var(--on-surface-variant);
+}
+
+.chrome-theme:hover {
+  color: var(--primary);
+}
+
+/* 案件切换器 */
+.case-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.switch-btn {
+  color: var(--on-surface-variant);
+}
+
+.switch-btn:hover {
+  color: var(--primary);
+}
+
+.switch-pos {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+  min-width: 2rem;
+  text-align: center;
+}
+
+/* 案件摘要卡片 */
+.summary-wrap {
+  padding: var(--spacing-gutter) var(--spacing-page) 0;
+}
+
+.summary-card {
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-4) var(--spacing-5);
+}
+
+.summary-main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: var(--spacing-2);
+}
+
+/* 六个摘要字段等宽弹性分布，占满整行宽度，避免中部大片留白 */
+.sum-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  flex: 1 1 9.5rem;
+  min-width: 0;
+  padding-right: var(--spacing-gutter);
+  margin-right: var(--spacing-gutter);
+  border-right: 1px solid var(--divider);
+}
+
+.sum-field:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+/* 案件号列稍宽，容纳号码 + 复制图标 */
+.sum-field--no {
+  flex: 1.4 1 13rem;
+}
+
+.sum-field--hover {
+  cursor: pointer;
+}
+
+.sum-label {
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+  white-space: nowrap;
+}
+
+.sum-value {
+  font: var(--font-body-m);
+  color: var(--on-surface);
+  white-space: nowrap;
+}
+
+.sum-pop-trigger {
+  border-bottom: 1px dashed var(--outline);
+}
+
+.sum-claim-no {
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.sum-copy {
+  color: var(--on-surface-variant);
+}
+
+.sum-copy:hover {
+  color: var(--primary);
+}
+
+.sum-amount {
+  font: var(--font-headline-s);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sum-status-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.summary-sub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-inline) var(--spacing-gutter);
+  margin-top: var(--spacing-stack);
+  padding-top: var(--spacing-stack);
+  border-top: 1px solid var(--divider);
+}
+
+.sub-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font: var(--font-caption-m);
+  color: var(--on-surface-variant);
+  white-space: nowrap;
+}
+
+.sub-item--hover {
+  cursor: pointer;
+}
+
+.sub-item--hover .sum-pop-trigger,
+.sub-item--hover {
+  border-bottom: 1px dashed transparent;
+}
+
+.sub-item--hover:hover {
+  color: var(--on-surface);
+}
+
+.sub-item--hot {
+  color: var(--critical);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Popover 画像内容 */
+.pop-detail {
+  min-width: 12rem;
+}
+
+.pop-title {
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-surface);
+  margin-bottom: var(--spacing-2);
+}
+
+.pop-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-gutter);
+  padding: 0.1875rem 0;
+  font: var(--font-caption-m);
+}
+
+.pop-key {
+  color: var(--on-surface-variant);
+  white-space: nowrap;
+}
+
+.pop-value {
+  color: var(--on-surface);
+  text-align: right;
+}
+
+@media (max-width: 75rem) {
+  .chrome-org {
+    display: none;
+  }
+}

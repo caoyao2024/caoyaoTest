@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS",
+    "i18n-keys": "PASS",
+    "npm-install": "SKIP"
+  },
+  "notes": "npm install SKIP: @nce is internal network dependency, cannot install from external network. All static checks pass: no antd imports remaining, no message.xxx() calls remaining, i18n-keys check passed."
+}
