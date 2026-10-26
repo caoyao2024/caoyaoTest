@@ -1,7 +1,0 @@
-{
-  "status": "PASS",
-  "round": 1,
-  "failures": [],
-  "checks": { "relative-imports": "PASS" },
-  "notes": "code moved, paths fixed, i18n scenario A wired, dark mode updated"
-}

@@ -1,9 +1,0 @@
-{
-  "status": "PASS",
-  "round": 1,
-  "failures": [],
-  "checks": {
-    "relative-imports": "PASS"
-  },
-  "notes": "All relative imports resolved. Icon imports changed to default from @/shared/Icon. Chart imports changed to @/shared/Chart. Image paths changed from ./assets/uploads/ to /uploads/. app.jsx ConfigProvider removed. context.jsx dark mode useEffect updated with aui3_1_dark body class. main.jsx dayjs zh-cn locale registered."
-}

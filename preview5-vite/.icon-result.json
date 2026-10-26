@@ -1,9 +1,0 @@
-{
-  "status": "PASS",
-  "confirmed": 12,
-  "residualsResolved": 18,
-  "placeholdersResolved": 11,
-  "shimRetained": 2,
-  "remainingIconCalls": 2,
-  "notes": "2 shim sites retained as expected (status-tag conf.icon object lookup, side-nav it.icon function mapping)"
-}
