@@ -1,0 +1,55 @@
+/* Layer 3: 共享表单骨架 — 标签居上（间距 0.5rem）、必填星号悬挂、校验文案绝对定位不占位（Form.md 规范） */
+.form-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 0.25rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  position: relative;
+  color: var(--on-surface);
+  font: var(--font-body-m);
+}
+
+.form-label.required::before {
+  content: "*";
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-error);
+  font: var(--font-body-m);
+}
+
+.form-field {
+  position: relative;
+}
+
+.form-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  font: var(--font-caption-m);
+  color: var(--color-error);
+}
+
+/* 表单内只读信息行（如转交对象） */
+.form-static {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3125rem 0.75rem;
+  border-radius: var(--radius-base);
+  background: var(--surface-variant);
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  align-self: flex-start;
+}

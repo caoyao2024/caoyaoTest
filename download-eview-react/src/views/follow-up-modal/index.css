@@ -1,0 +1,6 @@
+/* 新建跟进 / 发起回访弹窗 — 表单骨架样式复用 form-sheet */
+.follow-modal-hint {
+  margin: 0 0 0.25rem;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}

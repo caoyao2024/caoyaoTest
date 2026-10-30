@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS(skip)",
+    "i18n-keys": "PASS",
+    "antd-css": "PASS",
+    "npm-install": "SKIP"
+  },
+  "notes": "All 23 migrationPlan items processed. 16 JSX files migrated, 1 file deleted (src/shared/chart.jsx old Chart wrapper). No .ant- CSS selectors found in business components (src/components/ + src/views/); only comments in src/shared/Tag/Tag.css (shell layer, excluded). Icons untouched: match-icons.cjs not run, all <Icon name=...> call sites preserved except risk-table row-actions ellipsis Icon had onClick stopPropagation removed as part of Dropdown→PopUpMenu component migration. DivMessage focus competition handled via setNotice(null) in input callbacks (filter-bar, follow-up-modal, quick-actions, transfer-modal, risk-table). Chart options all include a2ui:true + theme (derived from isDark). Table migrated with enableZebraCrossing=false, width=unset, enableColumnCompareUpdate=true, allowSort=false on non-sortable columns. B-class handwrites: Progress→SimpleProgress (4 files), Timeline→SimpleTimeline (customer-drawer), Carousel→state-based slide (announcement-bar). Dropdown: PopUpMenu for filter-bar+risk-table menus, handwritten toggle panel for top-nav custom panels. Menu→handwritten UserMenu (top-nav)."
+}

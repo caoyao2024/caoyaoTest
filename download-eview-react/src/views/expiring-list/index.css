@@ -1,0 +1,109 @@
+/* 到期客户榜单 — 紧凑双行条目，剩余天数按紧急度分色 */
+.expiring-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.expiring-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.expiring-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0.25rem;
+}
+
+/* 跟进：链接式蓝色文本 */
+.expiring-follow-link {
+  flex-shrink: 0;
+  color: var(--interactive-link);
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.expiring-follow-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.expiring-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-inline);
+}
+
+.expiring-item-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.expiring-company-link {
+  color: var(--interactive-link);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.expiring-company-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.expiring-industry {
+  flex-shrink: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.expiring-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.expiring-days {
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-semibold);
+}
+
+.expiring-days.is-urgent {
+  color: var(--error);
+}
+
+.expiring-days.is-soon {
+  color: var(--critical);
+}
+
+.expiring-days.is-normal {
+  color: var(--on-surface-variant);
+}
+
+.expiring-meta-text {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.expiring-owner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.expiring-owner-avatar {
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}

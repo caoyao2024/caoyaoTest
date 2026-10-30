@@ -1,0 +1,7 @@
+/* 状态标签 — 图标与文字同行对齐 */
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-inline-end: 0;
+}

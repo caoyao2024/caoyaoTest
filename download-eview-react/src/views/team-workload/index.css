@@ -1,0 +1,103 @@
+/* 团队负载 — 底部卡片：纵向成员行（Level 2 内嵌块：surface-variant），等高拉伸时行间距自然分布 */
+.team-card .section-card-body {
+  display: flex;
+}
+
+.team-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.375rem;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  padding: 0.5rem 0.625rem;
+  border-radius: var(--radius-base);
+  background: var(--surface-variant);
+  cursor: pointer;
+  min-width: 0;
+  transition: background 0.2s ease;
+}
+
+.team-member:hover {
+  background: var(--primary-container);
+}
+
+.team-member-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.team-member-avatar {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.team-member-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.team-member-name {
+  color: var(--on-surface);
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.team-member-role {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.team-member-tasks {
+  flex-shrink: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.team-member-bar {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+}
+
+.team-member-capacity {
+  flex-shrink: 0;
+  min-width: 2.25rem;
+  text-align: right;
+  font: var(--font-caption-m);
+  font-weight: var(--font-weight-medium);
+}
+
+.team-member-capacity.is-heavy {
+  color: var(--error);
+}
+
+.team-member-capacity.is-medium {
+  color: var(--critical);
+}
+
+.team-member-capacity.is-light {
+  color: var(--success);
+}

@@ -1,0 +1,147 @@
+/* 实时风险告警轮播条 — LIVE 胶囊 | 当前事件（级别 Tag + 类型 + 标题 + 相对时间 + 处理） | 暂停与切换 */
+.alert-ticker {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  padding: 0.375rem var(--spacing-4);
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+}
+
+.alert-ticker-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--error-container);
+  color: var(--error);
+}
+
+.alert-live-dot {
+  position: relative;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: var(--radius-full);
+  background: var(--error);
+}
+
+.alert-live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background: var(--error);
+  animation: alert-live-pulse 1.6s ease-out infinite;
+}
+
+@keyframes alert-live-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.alert-ticker-title {
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-semibold);
+}
+
+.alert-ticker-stage {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  animation: alert-ticker-in 0.35s ease;
+}
+
+@keyframes alert-ticker-in {
+  from {
+    opacity: 0;
+    transform: translateX(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.alert-level-tag {
+  flex-shrink: 0;
+  margin-inline-end: 0;
+}
+
+.alert-event-type {
+  flex-shrink: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.alert-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--on-surface);
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-medium);
+}
+
+.alert-time {
+  flex-shrink: 0;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.alert-action {
+  flex-shrink: 0;
+  color: var(--interactive-link);
+  font: var(--font-body-s);
+  cursor: pointer;
+}
+
+.alert-action:hover {
+  color: var(--interactive-link-hover);
+}
+
+.alert-ticker-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+.alert-index {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+  min-width: 1.75rem;
+  text-align: center;
+}
+
+.alert-ctrl-icon {
+  color: var(--on-surface-variant);
+  transition: color 0.2s ease;
+}
+
+.alert-ctrl-icon:hover {
+  color: var(--color-brand);
+}
+
+.alert-ctrl-icon.is-paused {
+  color: var(--primary);
+}
+
+@media (max-width: 64rem) {
+  .alert-event-type,
+  .alert-time {
+    display: none;
+  }
+}

@@ -1,0 +1,4 @@
+/* 构成卡 — 图表固定高度（Pattern B） */
+.health-pie-card .section-card-body {
+  padding-top: var(--spacing-2);
+}

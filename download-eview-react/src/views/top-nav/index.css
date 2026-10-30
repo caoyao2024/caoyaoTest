@@ -1,0 +1,337 @@
+/* 顶部导航 — 48px 吸顶，原生 nav：选中项品牌色 + 2px 下划线，未选中透明占位不跳动 */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface-container-highest);
+  box-shadow: var(--shadow-sm);
+}
+
+.top-nav-inner {
+  max-width: 104rem;
+  margin: 0 auto;
+  height: 3rem;
+  padding: 0 var(--spacing-6);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+/* 品牌区 */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  flex-shrink: 0;
+}
+
+.brand-mark {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: var(--on-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-name {
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+}
+
+.brand-sub {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-s);
+}
+
+/* 主导航（原生 nav） */
+.main-nav {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  gap: var(--spacing-4);
+}
+
+.main-nav-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.25rem;
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.main-nav-item:hover {
+  color: var(--primary);
+}
+
+.main-nav-item.is-active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 右侧工具区 */
+.top-nav-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+}
+
+.nav-icon-btn {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: var(--radius-base);
+  background: transparent;
+  color: var(--on-surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-icon-btn:hover {
+  background: var(--surface-variant);
+  color: var(--primary);
+}
+
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.1875rem 0.5rem 0.1875rem 0.1875rem;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.user-chip:hover {
+  background: var(--surface-variant);
+}
+
+.user-chip-avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+/* 消息面板（Dropdown 内容） */
+.notice-panel {
+  width: 22rem;
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-overlay);
+  box-shadow: var(--shadow-popover);
+  overflow: hidden;
+}
+
+.notice-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.5rem;
+}
+
+.notice-panel-title {
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+}
+
+.notice-tabs {
+  padding: 0 1rem;
+}
+
+.notice-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.notice-tab-count {
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.1875rem;
+  border-radius: var(--radius-badge);
+  background: var(--error);
+  color: var(--on-error);
+  font: var(--font-caption-s);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-link {
+  color: var(--interactive-link);
+  font: var(--font-body-s);
+  cursor: pointer;
+}
+
+.panel-link:hover {
+  color: var(--interactive-link-hover);
+}
+
+.notice-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  max-height: 18rem;
+  overflow-y: auto;
+}
+
+.notice-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding: 0.625rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.notice-item:hover {
+  background: var(--surface-variant);
+}
+
+.notice-item-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notice-item-icon.is-error {
+  background: var(--error-container);
+  color: var(--error);
+}
+
+.notice-item-icon.is-critical {
+  background: var(--critical-container);
+  color: var(--critical);
+}
+
+.notice-item-icon.is-success {
+  background: var(--success-container);
+  color: var(--success);
+}
+
+.notice-item-icon.is-info {
+  background: var(--info-container);
+  color: var(--info);
+}
+
+.notice-item-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.notice-item-title {
+  margin: 0;
+  color: var(--on-surface);
+  font: var(--font-body-s);
+  font-weight: var(--font-weight-normal);
+}
+
+.notice-item.is-unread .notice-item-title {
+  font-weight: var(--font-weight-semibold);
+}
+
+.notice-item-time {
+  display: block;
+  margin-top: 0.125rem;
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+.notice-dot {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.75rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: var(--radius-full);
+  background: var(--error);
+}
+
+.notice-panel-foot {
+  padding: 0.5rem 1rem;
+  border-top: 1px solid var(--divider);
+  text-align: center;
+}
+
+/* 用户菜单面板（Dropdown + Menu） */
+.user-menu-panel {
+  width: 13rem;
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-overlay);
+  box-shadow: var(--shadow-popover);
+  overflow: hidden;
+  padding-bottom: 0.25rem;
+}
+
+.user-menu-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem 0.75rem;
+  border-bottom: 1px solid var(--divider);
+  margin-bottom: 0.25rem;
+}
+
+.user-menu-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.user-menu-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.user-menu-name {
+  color: var(--on-surface);
+  font: var(--font-body-m);
+  font-weight: var(--font-weight-semibold);
+}
+
+.user-menu-role {
+  color: var(--on-surface-variant);
+  font: var(--font-caption-m);
+}
+
+@media (max-width: 64rem) {
+  .top-nav-inner {
+    padding: 0 var(--spacing-4);
+    gap: var(--spacing-4);
+  }
+
+  .brand-sub,
+  .user-chip-name {
+    display: none;
+  }
+}

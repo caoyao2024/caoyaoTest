@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "round": 1,
+  "failures": [],
+  "checks": {
+    "relative-imports": "PASS"
+  },
+  "notes": "Steps 3-4 complete. All source files migrated to src/ with path rewrites (Icon → @/shared/Icon default import, Chart → @/shared/chart, ./assets/uploads/ → /uploads/). antd ConfigProvider + zhCN locale removed from app.jsx; eview-react ConfigProvider + IntlProvider in main.jsx unchanged. Dark mode useEffect in context.jsx toggles both .dark on <html> and aui3_1_dark on <body>. i18n scenario A (hardcoded zh, wired=true) — no changes needed to business code."
+}

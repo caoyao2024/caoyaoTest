@@ -1,0 +1,47 @@
+/* 通用卡片容器 — Level 1 容器：白底 + 卡片阴影，无边框 */
+.section-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--surface-container-highest);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-card);
+}
+
+.section-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-inline);
+  padding: var(--spacing-3) var(--spacing-4) 0;
+}
+
+.section-card-heading {
+  min-width: 0;
+}
+
+.section-card-title {
+  margin: 0;
+  color: var(--on-surface);
+  font: var(--font-headline-m);
+  font-weight: var(--font-weight-semibold);
+}
+
+.section-card-subtitle {
+  margin: 0.125rem 0 0;
+  color: var(--on-surface-variant);
+  font: var(--font-body-s);
+}
+
+.section-card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-inline);
+  flex-shrink: 0;
+}
+
+.section-card-body {
+  flex: 1;
+  padding: var(--spacing-3) var(--spacing-4) var(--spacing-3);
+  min-width: 0;
+}
